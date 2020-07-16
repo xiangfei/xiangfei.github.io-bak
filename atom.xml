@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>1320959247@qq.com</title>
+  
+  <subtitle>山崎龙二</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-07-16T02:07:51.736Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>相飞</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>karafka 业务监控</title>
+    <link href="http://yoursite.com/2020/07/16/karafka-6/"/>
+    <id>http://yoursite.com/2020/07/16/karafka-6/</id>
+    <published>2020-07-16T02:04:51.000Z</published>
+    <updated>2020-07-16T02:07:51.736Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;karafka-使用ruby-kafka-monitor-监控业务状态&quot;&gt;&lt;a href=&quot;#karafka-使用ruby-kafka-monitor-监控业务状态&quot; class=&quot;headerlink&quot; title=&quot;karafka 使用ruby kafka
+        
+      
+    
+    </summary>
+    
+      <category term="karafka" scheme="http://yoursite.com/categories/karafka/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>monitor kafka</title>
+    <link href="http://yoursite.com/2020/07/16/monitor-1/"/>
+    <id>http://yoursite.com/2020/07/16/monitor-1/</id>
+    <published>2020-07-16T02:03:48.000Z</published>
+    <updated>2020-07-16T03:10:47.976Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;主要监控指标&quot;&gt;&lt;a href=&quot;#主要监控指标&quot; class=&quot;headerlink&quot; title=&quot;主要监控指标&quot;&gt;&lt;/a&gt;主要监控指标&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;consumer lag  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;link
+        
+      
+    
+    </summary>
+    
+      <category term="monitor" scheme="http://yoursite.com/categories/monitor/"/>
+    
+      <category term="kafka" scheme="http://yoursite.com/categories/monitor/kafka/"/>
+    
+    
+      <category term="monitor" scheme="http://yoursite.com/tags/monitor/"/>
+    
+      <category term="kafka" scheme="http://yoursite.com/tags/kafka/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql 监控</title>
+    <link href="http://yoursite.com/2020/07/16/monitor/"/>
+    <id>http://yoursite.com/2020/07/16/monitor/</id>
+    <published>2020-07-16T01:47:17.000Z</published>
+    <updated>2020-07-16T02:03:37.928Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;常见的mysql监控指标&quot;&gt;&lt;a href=&quot;#常见的mysql监控指标&quot; class=&quot;headerlink&quot; title=&quot;常见的mysql监控指标&quot;&gt;&lt;/a&gt;常见的mysql监控指标&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;tps &lt;pre class=&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="monitor" scheme="http://yoursite.com/categories/monitor/"/>
+    
+      <category term="mysql" scheme="http://yoursite.com/categories/monitor/mysql/"/>
+    
+    
+      <category term="monitor" scheme="http://yoursite.com/tags/monitor/"/>
+    
+      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nodejs hexo  deploy error</title>
+    <link href="http://yoursite.com/2020/07/16/nodejs/"/>
+    <id>http://yoursite.com/2020/07/16/nodejs/</id>
+    <published>2020-07-16T01:43:51.000Z</published>
+    <updated>2020-07-16T01:46:15.915Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;node-js-deploy-报错&quot;&gt;&lt;a href=&quot;#node-js-deploy-报错&quot; class=&quot;headerlink&quot; title=&quot;node js deploy 报错&quot;&gt;&lt;/a&gt;node js deploy 报错&lt;/h3&gt;&lt;pre class=&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="nodejs" scheme="http://yoursite.com/categories/nodejs/"/>
+    
+    
+      <category term="nodejs" scheme="http://yoursite.com/tags/nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rails  controller heartbeat 实现</title>
+    <link href="http://yoursite.com/2020/07/13/rails-7/"/>
+    <id>http://yoursite.com/2020/07/13/rails-7/</id>
+    <published>2020-07-13T00:59:25.000Z</published>
+    <updated>2020-07-13T01:06:39.509Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;rails-心跳日志实现&quot;&gt;&lt;a href=&quot;#rails-心跳日志实现&quot; class=&quot;headerlink&quot; title=&quot;rails 心跳日志实现&quot;&gt;&lt;/a&gt;rails 心跳日志实现&lt;/h3&gt;&lt;h4
+        
+      
+    
+    </summary>
+    
+      <category term="rails" scheme="http://yoursite.com/categories/rails/"/>
+    
+    
+      <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack stein 高可用安装horizon</title>
+    <link href="http://yoursite.com/2020/05/21/openstack-11/"/>
+    <id>http://yoursite.com/2020/05/21/openstack-11/</id>
+    <published>2020-05-21T05:49:49.000Z</published>
+    <updated>2020-05-21T06:12:22.341Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;controller01&quot;&gt;&lt;a href=&quot;#controller01&quot; class=&quot;headerlink&quot; title=&quot;controller01&quot;&gt;&lt;/a&gt;controller01&lt;/h3&gt;&lt;h4 id=&quot;安装包&quot;&gt;&lt;a href=&quot;#安装包&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack  stein 高可用安装neutron(ovn)</title>
+    <link href="http://yoursite.com/2020/05/21/openstack-10/"/>
+    <id>http://yoursite.com/2020/05/21/openstack-10/</id>
+    <published>2020-05-21T02:03:19.000Z</published>
+    <updated>2020-05-26T09:31:34.923Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;ovn-准备&quot;&gt;&lt;a href=&quot;#ovn-准备&quot; class=&quot;headerlink&quot; title=&quot;ovn 准备&quot;&gt;&lt;/a&gt;ovn 准备&lt;/h2&gt;&lt;p&gt;gateway node   ovn-central&lt;/p&gt;
+&lt;p&gt;database
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack stein 高可用安装(nova)</title>
+    <link href="http://yoursite.com/2020/05/21/openstack-9/"/>
+    <id>http://yoursite.com/2020/05/21/openstack-9/</id>
+    <published>2020-05-21T00:36:07.000Z</published>
+    <updated>2020-05-22T01:53:37.707Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;controller01&quot;&gt;&lt;a href=&quot;#controller01&quot; class=&quot;headerlink&quot; title=&quot;controller01&quot;&gt;&lt;/a&gt;controller01&lt;/h2&gt;&lt;h3 id=&quot;安装数据库&quot;&gt;&lt;a href=&quot;#安装数据库&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack stein 高可用安装(placement)</title>
+    <link href="http://yoursite.com/2020/05/21/openstack-8/"/>
+    <id>http://yoursite.com/2020/05/21/openstack-8/</id>
+    <published>2020-05-21T00:34:50.000Z</published>
+    <updated>2020-05-22T01:20:49.680Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;controller01&quot;&gt;&lt;a href=&quot;#controller01&quot; class=&quot;headerlink&quot; title=&quot;controller01&quot;&gt;&lt;/a&gt;controller01&lt;/h2&gt;&lt;h3 id=&quot;创建数据库&quot;&gt;&lt;a href=&quot;#创建数据库&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack stein 高可用安装(glance)</title>
+    <link href="http://yoursite.com/2020/05/20/openstack-7/"/>
+    <id>http://yoursite.com/2020/05/20/openstack-7/</id>
+    <published>2020-05-20T09:02:58.000Z</published>
+    <updated>2020-05-20T10:26:09.484Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;controller01&quot;&gt;&lt;a href=&quot;#controller01&quot; class=&quot;headerlink&quot; title=&quot;controller01&quot;&gt;&lt;/a&gt;controller01&lt;/h2&gt;&lt;h3 id=&quot;初始化数据库&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack stein 高可用安装(keystone)</title>
+    <link href="http://yoursite.com/2020/05/20/openstack-6/"/>
+    <id>http://yoursite.com/2020/05/20/openstack-6/</id>
+    <published>2020-05-20T08:17:02.000Z</published>
+    <updated>2020-05-20T09:29:43.719Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;controller01-执行&quot;&gt;&lt;a href=&quot;#controller01-执行&quot; class=&quot;headerlink&quot; title=&quot;controller01 执行&quot;&gt;&lt;/a&gt;controller01 执行&lt;/h2&gt;&lt;h3
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack stein 高可用安装(mariadb  rabbitmq , memcached  , chronyd , etcd)</title>
+    <link href="http://yoursite.com/2020/05/20/openstack-5/"/>
+    <id>http://yoursite.com/2020/05/20/openstack-5/</id>
+    <published>2020-05-20T06:19:29.000Z</published>
+    <updated>2020-05-21T01:56:04.215Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;mariadb-galera-安装&quot;&gt;&lt;a href=&quot;#mariadb-galera-安装&quot; class=&quot;headerlink&quot; title=&quot;mariadb galera 安装&quot;&gt;&lt;/a&gt;mariadb galera 安装&lt;/h2&gt;&lt;h3
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack stein 高可用安装 -- 环境准备</title>
+    <link href="http://yoursite.com/2020/05/20/openstack-4/"/>
+    <id>http://yoursite.com/2020/05/20/openstack-4/</id>
+    <published>2020-05-20T05:54:14.000Z</published>
+    <updated>2020-05-20T08:19:44.379Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;基本信息&quot;&gt;&lt;a href=&quot;#基本信息&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ruby  agent 内存增长</title>
+    <link href="http://yoursite.com/2020/04/16/ruby-29/"/>
+    <id>http://yoursite.com/2020/04/16/ruby-29/</id>
+    <published>2020-04-16T07:24:49.000Z</published>
+    <updated>2020-04-16T07:31:13.273Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;ruby-collect-内存一直增加&quot;&gt;&lt;a href=&quot;#ruby-collect-内存一直增加&quot; class=&quot;headerlink&quot; title=&quot;ruby collect 内存一直增加&quot;&gt;&lt;/a&gt;ruby collect
+        
+      
+    
+    </summary>
+    
+      <category term="ruby" scheme="http://yoursite.com/categories/ruby/"/>
+    
+    
+      <category term="ruby" scheme="http://yoursite.com/tags/ruby/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ruby  Memory debug</title>
+    <link href="http://yoursite.com/2020/04/16/ruby-28/"/>
+    <id>http://yoursite.com/2020/04/16/ruby-28/</id>
+    <published>2020-04-16T00:59:39.000Z</published>
+    <updated>2020-04-16T01:28:25.432Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre class=&quot; language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;token
+        
+      
+    
+    </summary>
+    
+      <category term="ruby" scheme="http://yoursite.com/categories/ruby/"/>
+    
+    
+      <category term="ruby" scheme="http://yoursite.com/tags/ruby/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack  存储 iscsi</title>
+    <link href="http://yoursite.com/2020/04/15/openstack-3/"/>
+    <id>http://yoursite.com/2020/04/15/openstack-3/</id>
+    <published>2020-04-15T01:28:09.000Z</published>
+    <updated>2020-04-15T01:29:00.826Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre&gt;&lt;code&gt; tgtadm --lld iscsi --op show --mode target
+
+ iscsiadm -m node -T targetname -p ipaddress -l
+  iscsiadm -m node -o
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>opennebula win7 img制作</title>
+    <link href="http://yoursite.com/2020/04/15/opennebula-20/"/>
+    <id>http://yoursite.com/2020/04/15/opennebula-20/</id>
+    <published>2020-04-15T01:17:06.000Z</published>
+    <updated>2020-04-15T01:27:51.829Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;需要安装virtio-win-0-1-141-iso&quot;&gt;&lt;a href=&quot;#需要安装virtio-win-0-1-141-iso&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="opennebula" scheme="http://yoursite.com/categories/opennebula/"/>
+    
+    
+      <category term="opennebula" scheme="http://yoursite.com/tags/opennebula/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack 存储问题</title>
+    <link href="http://yoursite.com/2020/04/15/openstack-2/"/>
+    <id>http://yoursite.com/2020/04/15/openstack-2/</id>
+    <published>2020-04-15T01:10:23.000Z</published>
+    <updated>2020-04-15T01:14:13.029Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;mount 存储 一直pending&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;br-aux 网络异常，cinder-volume 进程报错&lt;br&gt;vip 不能访问&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;存储disk
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack IDC 问题 网络</title>
+    <link href="http://yoursite.com/2020/04/15/openstack-1/"/>
+    <id>http://yoursite.com/2020/04/15/openstack-1/</id>
+    <published>2020-04-15T01:02:41.000Z</published>
+    <updated>2020-04-15T01:10:12.084Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;br-aux-网络问题&quot;&gt;&lt;a href=&quot;#br-aux-网络问题&quot; class=&quot;headerlink&quot; title=&quot;br-aux 网络问题&quot;&gt;&lt;/a&gt;br-aux 网络问题&lt;/h4&gt;&lt;p&gt;不能访问外网 ,
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rails api 文档</title>
+    <link href="http://yoursite.com/2020/04/09/rails-6/"/>
+    <id>http://yoursite.com/2020/04/09/rails-6/</id>
+    <published>2020-04-09T08:03:55.000Z</published>
+    <updated>2020-04-09T08:12:25.845Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;创建markdown文档&quot;&gt;&lt;a href=&quot;#创建markdown文档&quot; class=&quot;headerlink&quot; title=&quot;创建markdown文档&quot;&gt;&lt;/a&gt;创建markdown文档&lt;/h4&gt;&lt;p&gt;扩展rails
+        
+      
+    
+    </summary>
+    
+      <category term="rails" scheme="http://yoursite.com/categories/rails/"/>
+    
+    
+  </entry>
+  
+</feed>

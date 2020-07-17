@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-16T02:07:51.736Z</updated>
+  <updated>2020-07-17T09:36:41.135Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,199 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>openstack ussuri centos8 高可用安装 keystone</title>
+    <link href="http://yoursite.com/2020/07/17/openstack-17/"/>
+    <id>http://yoursite.com/2020/07/17/openstack-17/</id>
+    <published>2020-07-17T08:52:02.000Z</published>
+    <updated>2020-07-17T09:36:41.135Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;创建vip&quot;&gt;&lt;a href=&quot;#创建vip&quot; class=&quot;headerlink&quot; title=&quot;创建vip&quot;&gt;&lt;/a&gt;创建vip&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;用来安装, 手动创建vip  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/categories/openstack/centos8/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/tags/centos8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack ussuri centos8 高可用安装 memache , etcd , ntp</title>
+    <link href="http://yoursite.com/2020/07/17/openstack-16/"/>
+    <id>http://yoursite.com/2020/07/17/openstack-16/</id>
+    <published>2020-07-17T08:30:00.000Z</published>
+    <updated>2020-07-17T08:50:09.142Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;memache-安装&quot;&gt;&lt;a href=&quot;#memache-安装&quot; class=&quot;headerlink&quot; title=&quot;memache 安装&quot;&gt;&lt;/a&gt;memache 安装&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;安装&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/categories/openstack/centos8/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/tags/centos8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack ussuri centos8 高可用安装 rabbitmq cluster</title>
+    <link href="http://yoursite.com/2020/07/17/openstack-15/"/>
+    <id>http://yoursite.com/2020/07/17/openstack-15/</id>
+    <published>2020-07-17T08:00:59.000Z</published>
+    <updated>2020-07-17T08:29:53.528Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;all-controller-nodes&quot;&gt;&lt;a href=&quot;#all-controller-nodes&quot; class=&quot;headerlink&quot; title=&quot;all  controller nodes&quot;&gt;&lt;/a&gt;all  controller
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/categories/openstack/centos8/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/tags/centos8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack ussuri centos8 高可用安装 Mysql galera cluster</title>
+    <link href="http://yoursite.com/2020/07/17/openstack-14/"/>
+    <id>http://yoursite.com/2020/07/17/openstack-14/</id>
+    <published>2020-07-17T02:45:21.000Z</published>
+    <updated>2020-07-17T08:00:50.385Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;准备-管理网段&quot;&gt;&lt;a href=&quot;#准备-管理网段&quot; class=&quot;headerlink&quot; title=&quot;准备 管理网段&quot;&gt;&lt;/a&gt;准备 管理网段&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;10.10.102.191
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/categories/openstack/centos8/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/tags/centos8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack ussuri centos8 高可用安装 env 准备</title>
+    <link href="http://yoursite.com/2020/07/17/openstack-13/"/>
+    <id>http://yoursite.com/2020/07/17/openstack-13/</id>
+    <published>2020-07-17T02:05:49.000Z</published>
+    <updated>2020-07-17T08:17:22.265Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;基本信息&quot;&gt;&lt;a href=&quot;#基本信息&quot; class=&quot;headerlink&quot; title=&quot;基本信息&quot;&gt;&lt;/a&gt;基本信息&lt;/h1&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;vip&lt;/th&gt;
+&lt;th&gt;管理ip ens5&lt;/th&gt;
+&lt;th&gt;存储ip
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/categories/openstack/centos8/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/tags/centos8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack ussuri centos8 高可用安装 yum 替换</title>
+    <link href="http://yoursite.com/2020/07/17/openstack-12/"/>
+    <id>http://yoursite.com/2020/07/17/openstack-12/</id>
+    <published>2020-07-17T01:31:18.000Z</published>
+    <updated>2020-07-17T05:57:51.054Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;替换centos-8-源&quot;&gt;&lt;a href=&quot;#替换centos-8-源&quot; class=&quot;headerlink&quot; title=&quot;替换centos 8 源&quot;&gt;&lt;/a&gt;替换centos 8 源&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;删除
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/categories/openstack/centos8/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+      <category term="centos8" scheme="http://yoursite.com/tags/centos8/"/>
+    
+  </entry>
   
   <entry>
     <title>karafka 业务监控</title>
@@ -292,7 +485,7 @@
     <link href="http://yoursite.com/2020/05/20/openstack-6/"/>
     <id>http://yoursite.com/2020/05/20/openstack-6/</id>
     <published>2020-05-20T08:17:02.000Z</published>
-    <updated>2020-05-20T09:29:43.719Z</updated>
+    <updated>2020-07-17T09:05:23.926Z</updated>
     
     <summary type="html">
     
@@ -318,7 +511,7 @@
     <link href="http://yoursite.com/2020/05/20/openstack-5/"/>
     <id>http://yoursite.com/2020/05/20/openstack-5/</id>
     <published>2020-05-20T06:19:29.000Z</published>
-    <updated>2020-05-21T01:56:04.215Z</updated>
+    <updated>2020-07-17T08:24:56.261Z</updated>
     
     <summary type="html">
     
@@ -388,167 +581,6 @@
     
     
       <category term="ruby" scheme="http://yoursite.com/tags/ruby/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ruby  Memory debug</title>
-    <link href="http://yoursite.com/2020/04/16/ruby-28/"/>
-    <id>http://yoursite.com/2020/04/16/ruby-28/</id>
-    <published>2020-04-16T00:59:39.000Z</published>
-    <updated>2020-04-16T01:28:25.432Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;pre class=&quot; language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;token
-        
-      
-    
-    </summary>
-    
-      <category term="ruby" scheme="http://yoursite.com/categories/ruby/"/>
-    
-    
-      <category term="ruby" scheme="http://yoursite.com/tags/ruby/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>openstack  存储 iscsi</title>
-    <link href="http://yoursite.com/2020/04/15/openstack-3/"/>
-    <id>http://yoursite.com/2020/04/15/openstack-3/</id>
-    <published>2020-04-15T01:28:09.000Z</published>
-    <updated>2020-04-15T01:29:00.826Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;pre&gt;&lt;code&gt; tgtadm --lld iscsi --op show --mode target
-
- iscsiadm -m node -T targetname -p ipaddress -l
-  iscsiadm -m node -o
-        
-      
-    
-    </summary>
-    
-      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
-    
-    
-      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>opennebula win7 img制作</title>
-    <link href="http://yoursite.com/2020/04/15/opennebula-20/"/>
-    <id>http://yoursite.com/2020/04/15/opennebula-20/</id>
-    <published>2020-04-15T01:17:06.000Z</published>
-    <updated>2020-04-15T01:27:51.829Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;需要安装virtio-win-0-1-141-iso&quot;&gt;&lt;a href=&quot;#需要安装virtio-win-0-1-141-iso&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="opennebula" scheme="http://yoursite.com/categories/opennebula/"/>
-    
-    
-      <category term="opennebula" scheme="http://yoursite.com/tags/opennebula/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>openstack 存储问题</title>
-    <link href="http://yoursite.com/2020/04/15/openstack-2/"/>
-    <id>http://yoursite.com/2020/04/15/openstack-2/</id>
-    <published>2020-04-15T01:10:23.000Z</published>
-    <updated>2020-04-15T01:14:13.029Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;mount 存储 一直pending&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;br-aux 网络异常，cinder-volume 进程报错&lt;br&gt;vip 不能访问&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;存储disk
-        
-      
-    
-    </summary>
-    
-      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
-    
-    
-      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>openstack IDC 问题 网络</title>
-    <link href="http://yoursite.com/2020/04/15/openstack-1/"/>
-    <id>http://yoursite.com/2020/04/15/openstack-1/</id>
-    <published>2020-04-15T01:02:41.000Z</published>
-    <updated>2020-04-15T01:10:12.084Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h4 id=&quot;br-aux-网络问题&quot;&gt;&lt;a href=&quot;#br-aux-网络问题&quot; class=&quot;headerlink&quot; title=&quot;br-aux 网络问题&quot;&gt;&lt;/a&gt;br-aux 网络问题&lt;/h4&gt;&lt;p&gt;不能访问外网 ,
-        
-      
-    
-    </summary>
-    
-      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
-    
-    
-      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>rails api 文档</title>
-    <link href="http://yoursite.com/2020/04/09/rails-6/"/>
-    <id>http://yoursite.com/2020/04/09/rails-6/</id>
-    <published>2020-04-09T08:03:55.000Z</published>
-    <updated>2020-04-09T08:12:25.845Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h4 id=&quot;创建markdown文档&quot;&gt;&lt;a href=&quot;#创建markdown文档&quot; class=&quot;headerlink&quot; title=&quot;创建markdown文档&quot;&gt;&lt;/a&gt;创建markdown文档&lt;/h4&gt;&lt;p&gt;扩展rails
-        
-      
-    
-    </summary>
-    
-      <category term="rails" scheme="http://yoursite.com/categories/rails/"/>
-    
     
   </entry>
   

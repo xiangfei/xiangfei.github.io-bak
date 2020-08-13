@@ -5,13 +5,15 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="Ruby 注释, openstack,opennebula">
-    <meta name="description" content="Ruby 注释注释是在运行时会被忽略的 Ruby 代码内的注释行。单行注释以 # 字符开始，直到该行结束，如下所示：
-Ruby 单行注解实例
+    <meta name="description" content="Ruby 注释
+注释是在运行时会被忽略的 Ruby 代码内的注释行。单行注释以 # 字符开始，直到该行结束，如下所示：
+Ruby 单行注解
+实例
 #!/usr/bin/ruby -w
-
+ 
 # 这是一个单行注释。
-
-puts &amp;quot;Hello">
+ 
+puts &amp;quot;H">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -458,35 +460,41 @@ puts &amp;quot;Hello">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-注释"><a href="#Ruby-注释" class="headerlink" title="Ruby 注释"></a>Ruby 注释</h3><p>注释是在运行时会被忽略的 Ruby 代码内的注释行。单行注释以 # 字符开始，直到该行结束，如下所示：</p>
-<h4 id="Ruby-单行注解"><a href="#Ruby-单行注解" class="headerlink" title="Ruby 单行注解"></a>Ruby 单行注解</h4><p>实例</p>
+                <h3 id="Ruby-注释">Ruby 注释</h3>
+<p>注释是在运行时会被忽略的 Ruby 代码内的注释行。单行注释以 # 字符开始，直到该行结束，如下所示：</p>
+<h4 id="Ruby-单行注解">Ruby 单行注解</h4>
+<p>实例</p>
 <pre><code>#!/usr/bin/ruby -w
-
+ 
 # 这是一个单行注释。
-
+ 
 puts &quot;Hello, Ruby!&quot;
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
 <p>Hello, Ruby!</p>
 </blockquote>
 </div></div>
-<h4 id="Ruby-多行注释"><a href="#Ruby-多行注释" class="headerlink" title="Ruby 多行注释"></a>Ruby 多行注释</h4><p>您可以使用 =begin 和 =end 语法注释多行，如下所示：</p>
+<h4 id="Ruby-多行注释">Ruby 多行注释</h4>
+<p>您可以使用 =begin 和 =end 语法注释多行，如下所示：</p>
 <p>实例</p>
 <pre><code>#!/usr/bin/ruby -w
-
+ 
 puts &quot;Hello, Ruby!&quot;
-
+ 
 =begin
 这是一个多行注释。
 可扩展至任意数量的行。
 但 =begin 和 =end 只能出现在第一行和最后一行。 
 =end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><p>Hello, Ruby!</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><p>Hello, Ruby!</p>
 </div></div>
 <p>请确保尾部的注释离代码有足够的距离，以便容易区分注释和代码。如果尾部超过一条注释，请将它们对齐。例如：</p>
 <p>实例</p>
 <pre><code>@counter      # 跟踪页面被点击的次数
 @siteCounter  # 跟踪所有页面被点击的次数
-</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -669,13 +677,16 @@ puts &quot;Hello, Ruby!&quot;
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">Ruby 表达式
+
 Ruby 提供了几种很常见的条件结构。在这里，我们将解释所有的条件语句和 Ruby 中可用的修饰符。
 
 Ruby if…else 语句
+
 语法
+
 if conditional [then]
       code...
-[els</div>
+[</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-05
@@ -720,8 +731,9 @@ if conditional [then]
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 运算符Ruby 支持一套丰富的运算符。大多数运算符实际上是方法调用。例如，a + b 被解释为 a.+(b)，其中指向变量 a 的 + 方法被调用，b 作为方法调用的参数。
-对于每个运算符（+ - * / % ** &amp; |</div>
+                    <div class="summary block-with-text">Ruby 运算符
+Ruby 支持一套丰富的运算符。大多数运算符实际上是方法调用。例如，a + b 被解释为 a.+(b)，其中指向变量 a 的 + 方法被调用，b 作为方法调用的参数。
+对于每个运算符（+ - * / % ** &amp; </div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-23
@@ -899,7 +911,7 @@ if conditional [then]
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

@@ -5,7 +5,9 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="karafka Error committing offsets, openstack,opennebula">
-    <meta name="description" content="kafka现象I, [2019-10-09T11:23:08.506232 #9611]  INFO -- : Inline processing of topic data-monitor with 1 messages took 265">
+    <meta name="description" content="kafka
+现象
+I, [2019-10-09T11:23:08.506232 #9611]  INFO -- : Inline processing of topic data-monitor with 1 messages took 2">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -429,7 +431,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        255
+                        256
                     </div>
                     
 
@@ -452,7 +454,9 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h3><h4 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h4><pre><code>I, [2019-10-09T11:23:08.506232 #9611]  INFO -- : Inline processing of topic data-monitor with 1 messages took 265 ms
+                <h3 id="kafka">kafka</h3>
+<h4 id="现象">现象</h4>
+<pre><code>I, [2019-10-09T11:23:08.506232 #9611]  INFO -- : Inline processing of topic data-monitor with 1 messages took 265 ms
 I, [2019-10-09T11:23:08.506383 #9611]  INFO -- : 1 messages on data-monitor topic delegated to DataMonitorConsumer
 E, [2019-10-09T11:23:08.507763 #9611] ERROR -- : [[devops_server_bigger_group] {}:] Error committing offsets: Kafka::UnknownMemberId
 I, [2019-10-09T11:23:08.507862 #9611]  INFO -- : [[devops_server_bigger_group] {}:] Joining group `devops_server_bigger_group`
@@ -461,13 +465,18 @@ I, [2019-10-09T11:23:09.509288 #9611]  INFO -- : [[devops_server_bigger_group] {
 I, [2019-10-09T11:23:09.511525 #9611]  INFO -- : [[devops_server_bigger_group] {}:] Joined group `devops_server_bigger_group` with member id `devops_server-799ce8f4-d197-4115-82fa-498ae9ee8a16`
 
 
-</code></pre><h4 id="reason"><a href="#reason" class="headerlink" title="reason"></a>reason</h4><ul>
-<li>batch commit </li>
+</code></pre>
+<h4 id="reason">reason</h4>
+<ul>
+<li>batch commit</li>
 </ul>
-<h4 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h4><ul>
-<li><p>if you increase <strong>max.poll.interval.ms</strong> that says “it’s ok to spend time processing a large batch of records” and you’ll gain throughput if you can process larger batches more efficiently than smaller ones.</p>
+<h4 id="solution">solution</h4>
+<ul>
+<li>
+<p>if you increase <strong><a href="http://max.poll.interval.ms" target="_blank" rel="noopener">max.poll.interval.ms</a></strong> that says “it’s ok to spend time processing a large batch of records” and you’ll gain throughput if you can process larger batches more efficiently than smaller ones.</p>
 </li>
-<li><p>To decrease <strong>max.poll.records says</strong> ”take fewer records so there’s enough time to process them” and would favor latency over throughput.</p>
+<li>
+<p>To decrease <strong>max.poll.records says</strong> ”take fewer records so there’s enough time to process them” and would favor latency over throughput.</p>
 </li>
 </ul>
 <pre><code># kafka_2.12-2.3.0
@@ -480,7 +489,8 @@ batch.size 1024 -&gt; 10240
 max.block.ms 1000 
 buffer.memory 4096 -&gt; 40960
 
-</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -662,7 +672,8 @@ buffer.memory 4096 -&gt; 40960
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">consumer group 多次消费#config.client_id = "teamwork_manage_#{ENV["HOSTNAME"]}"
+                    <div class="summary block-with-text">consumer group 多次消费
+#config.client_id = "teamwork_manage_#{ENV["HOSTNAME"]}"
 config.client_id = "devops_server"
 
 
@@ -701,19 +712,20 @@ config.client_id = "devops_server"
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/09/09/ruby-25/">
+                <a href="/2019/09/09/ruby-26/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="ruby 正则">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="ruby thread">
                         
-                        <span class="card-title">ruby 正则</span>
+                        <span class="card-title">ruby thread</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 正则表达式正则表达式是一种特殊序列的字符，它通过使用有专门语法的模式来匹配或查找字符串集合。
-正则表达式用事先定义好的一些特定字符、及这些特定字符的组合，组成一个”规则字符串”，这个”规则字符串”用来表达对字符串的一种过滤逻辑。
-</div>
+                    <div class="summary block-with-text">Ruby 多线程
+每个正在系统上运行的程序都是一个进程。每个进程包含一到多个线程。
+线程是程序中一个单一的顺序控制流程，在单个程序中同时运行多个线程完成不同的工作,称为多线程。
+Ruby 中我们可以通过 Thread 类来创建多线程，Rub</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -891,7 +903,7 @@ config.client_id = "devops_server"
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

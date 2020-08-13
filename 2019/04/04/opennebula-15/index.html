@@ -5,8 +5,10 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula onegate, openstack,opennebula">
-    <meta name="description" content="configcofig file  /etc/one/onegate-server.conf
-#########################################################################">
+    <meta name="description" content="config
+cofig file  /etc/one/onegate-server.conf
+
+#######################################################################">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -430,7 +432,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        81
+                        86
                     </div>
                     
 
@@ -453,7 +455,9 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="config"><a href="#config" class="headerlink" title="config"></a>config</h3><h4 id="cofig-file-etc-one-onegate-server-conf"><a href="#cofig-file-etc-one-onegate-server-conf" class="headerlink" title="cofig file  /etc/one/onegate-server.conf"></a>cofig file  /etc/one/onegate-server.conf</h4><pre><code>
+                <h3 id="config">config</h3>
+<h4 id="cofig-file-etc-one-onegate-server-conf">cofig file  /etc/one/onegate-server.conf</h4>
+<pre><code>
 ################################################################################
 # Server Configuration
 ################################################################################
@@ -468,11 +472,18 @@
 :port: 5030
 
 :oneflow_server: http://localhost:2474
-</code></pre><h4 id="Start-OneGate"><a href="#Start-OneGate" class="headerlink" title="Start OneGate"></a>Start OneGate</h4><pre><code>systemctl start opennebula-gate
+</code></pre>
+<h4 id="Start-OneGate">Start OneGate</h4>
+<pre><code>systemctl start opennebula-gate
 
-</code></pre><h4 id="use-update-etc-one-oned-conf"><a href="#use-update-etc-one-oned-conf" class="headerlink" title="use , update /etc/one/oned.conf"></a>use , update /etc/one/oned.conf</h4><pre><code>ONEGATE_ENDPOINT = &quot;http://192.168.0.5:5030&quot;
+</code></pre>
+<h4 id="use-update-etc-one-oned-conf">use , update /etc/one/oned.conf</h4>
+<pre><code>ONEGATE_ENDPOINT = &quot;http://192.168.0.5:5030&quot;
 
-</code></pre><h3 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h3><h4 id="vm-template"><a href="#vm-template" class="headerlink" title="vm template"></a>vm template</h4><pre><code>CPU     = &quot;0.5&quot;
+</code></pre>
+<h3 id="usage">usage</h3>
+<h4 id="vm-template">vm template</h4>
+<pre><code>CPU     = &quot;0.5&quot;
 MEMORY  = &quot;1024&quot;
 
 DISK = [
@@ -482,8 +493,11 @@ NIC = [
 
 CONTEXT = [
   TOKEN = &quot;YES&quot; ]
-</code></pre><h4 id="OneGate-Client-Usage"><a href="#OneGate-Client-Usage" class="headerlink" title="OneGate Client Usage"></a>OneGate Client Usage</h4><pre><code> onegate vm show
-</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre>
+<h4 id="OneGate-Client-Usage">OneGate Client Usage</h4>
+<pre><code> onegate vm show
+</code></pre>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -666,10 +680,11 @@ CONTEXT = [
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">dependency
+
 g++ compiler (&gt;= 4.0)
 xmlrpc-c development libraries (&gt;= 1.06)
 scons build tool (&gt;= 0.98)
-sqlite3 de</div>
+sqlite3 d</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -714,8 +729,10 @@ sqlite3 de</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">ruby xml prcrequire &#39;xmlrpc/client&#39;
-server = XMLRPC::Client.new(&quot;opennebulaserver&quot;, &quot;/RPC2&quot;,</div>
+                    <div class="summary block-with-text">ruby xml prc
+require 'xmlrpc/client'
+server = XMLRPC::Client.new(&quot;opennebulaserver&quot;, &quot;/RPC2&quot;, 2633)
+</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -893,7 +910,7 @@ server = XMLRPC::Client.new(&quot;opennebulaserver&quot;, &quot;/RPC2&quot;,</di
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

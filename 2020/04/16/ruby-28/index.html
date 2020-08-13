@@ -434,14 +434,14 @@ def print_memory_usage
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        329
+                        95
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        1 分
                     </div>
                     
                 
@@ -457,168 +457,168 @@ def print_memory_usage
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string">'benchmark'</span>
+                <pre class=" language-language-ruby"><code class="language-language-ruby">require 'benchmark'
 
-<span class="token keyword">def</span> print_memory_usage
-  memory_before <span class="token operator">=</span> `ps <span class="token operator">-</span>o rss<span class="token operator">=</span> <span class="token operator">-</span>p #<span class="token punctuation">{</span><span class="token constant">Process</span><span class="token punctuation">.</span>pid<span class="token punctuation">}</span>`<span class="token punctuation">.</span>to_i
-  <span class="token keyword">yield</span>
-  memory_after <span class="token operator">=</span> `ps <span class="token operator">-</span>o rss<span class="token operator">=</span> <span class="token operator">-</span>p #<span class="token punctuation">{</span><span class="token constant">Process</span><span class="token punctuation">.</span>pid<span class="token punctuation">}</span>`<span class="token punctuation">.</span>to_i
+def print_memory_usage
+  memory_before = `ps -o rss= -p #{Process.pid}`.to_i
+  yield
+  memory_after = `ps -o rss= -p #{Process.pid}`.to_i
 
-  puts <span class="token string">"Memory: <span class="token interpolation"><span class="token delimiter tag">#{</span><span class="token punctuation">(</span><span class="token punctuation">(</span>memory_after <span class="token operator">-</span> memory_before<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1024.0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token delimiter tag">}</span></span> MB"</span>
-<span class="token keyword">end</span>
+  puts "Memory: #{((memory_after - memory_before) / 1024.0).round(2)} MB"
+end
 
-<span class="token keyword">def</span> print_time_spent
-  time <span class="token operator">=</span> <span class="token constant">Benchmark</span><span class="token punctuation">.</span>realtime <span class="token keyword">do</span>
-    <span class="token keyword">yield</span>
-  <span class="token keyword">end</span>
+def print_time_spent
+  time = Benchmark.realtime do
+    yield
+  end
 
-  puts <span class="token string">"Time: <span class="token interpolation"><span class="token delimiter tag">#{</span>time<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token delimiter tag">}</span></span>"</span>
-<span class="token keyword">end</span>
-
-
-<span class="token comment" spellcheck="true"># generate.rb</span>
-
-<span class="token keyword">require</span> <span class="token string">'csv'</span>
-require_relative <span class="token string">'./helpers'</span>
-
-headers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token string">'email'</span><span class="token punctuation">,</span> <span class="token string">'city'</span><span class="token punctuation">,</span> <span class="token string">'street'</span><span class="token punctuation">,</span> <span class="token string">'country'</span><span class="token punctuation">]</span>
-
-name    <span class="token operator">=</span> <span class="token string">"Pink Panther"</span>
-email   <span class="token operator">=</span> <span class="token string">"pink.panther@example.com"</span>
-city    <span class="token operator">=</span> <span class="token string">"Pink City"</span>
-street  <span class="token operator">=</span> <span class="token string">"Pink Road"</span>
-country <span class="token operator">=</span> <span class="token string">"Pink Country"</span>
-
-print_memory_usage <span class="token keyword">do</span>
-  print_time_spent <span class="token keyword">do</span>
-    <span class="token constant">CSV</span><span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'data.csv'</span><span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">,</span> write_headers<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span> headers<span class="token punctuation">:</span> headers<span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>csv<span class="token operator">|</span>
-      1_000_000<span class="token punctuation">.</span>times <span class="token keyword">do</span> <span class="token operator">|</span>i<span class="token operator">|</span>
-        csv <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token punctuation">[</span>i<span class="token punctuation">,</span> name<span class="token punctuation">,</span> email<span class="token punctuation">,</span> city<span class="token punctuation">,</span> street<span class="token punctuation">,</span> country<span class="token punctuation">]</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-
-<span class="token comment" spellcheck="true"># ruby generate.rb</span>
-<span class="token comment" spellcheck="true"># Time: 5.17</span>
-<span class="token comment" spellcheck="true"># Memory: 1.08 MB</span>
+  puts "Time: #{time.round(2)}"
+end
 
 
-require_relative <span class="token string">'./helpers'</span>
-<span class="token keyword">require</span> <span class="token string">'csv'</span>
+# generate.rb
 
-print_memory_usage <span class="token keyword">do</span>
-  print_time_spent <span class="token keyword">do</span>
-    csv <span class="token operator">=</span> <span class="token constant">CSV</span><span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token string">'data.csv'</span><span class="token punctuation">,</span> headers<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">)</span>
-    sum <span class="token operator">=</span> <span class="token number">0</span>
+require 'csv'
+require_relative './helpers'
 
-    csv<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>row<span class="token operator">|</span>
-      sum <span class="token operator">+</span><span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>to_i
-    <span class="token keyword">end</span>
+headers = ['id', 'name', 'email', 'city', 'street', 'country']
 
-    puts <span class="token string">"Sum: <span class="token interpolation"><span class="token delimiter tag">#{</span>sum<span class="token delimiter tag">}</span></span>"</span>
-  <span class="token keyword">end</span>
-<span class="token keyword">end</span>
+name    = "Pink Panther"
+email   = "pink.panther@example.com"
+city    = "Pink City"
+street  = "Pink Road"
+country = "Pink Country"
 
-<span class="token constant">Sum</span><span class="token punctuation">:</span> <span class="token number">499999500000</span>
-<span class="token builtin">Time</span><span class="token punctuation">:</span> <span class="token number">19.84</span>
-<span class="token constant">Memory</span><span class="token punctuation">:</span> <span class="token number">920.14</span> <span class="token constant">MB</span>
+print_memory_usage do
+  print_time_spent do
+    CSV.open('data.csv', 'w', write_headers: true, headers: headers) do |csv|
+      1_000_000.times do |i|
+        csv << [i, name, email, city, street, country]
+      end
+    end
+  end
+end
 
-
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
-
-
-require_relative <span class="token string">'./helpers'</span>
-<span class="token keyword">require</span> <span class="token string">'csv'</span>
-
-print_memory_usage <span class="token keyword">do</span>
-  print_time_spent <span class="token keyword">do</span>
-    content <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token string">'data.csv'</span><span class="token punctuation">)</span>
-    csv <span class="token operator">=</span> <span class="token constant">CSV</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>content<span class="token punctuation">,</span> headers<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">)</span>
-    sum <span class="token operator">=</span> <span class="token number">0</span>
-
-    csv<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>row<span class="token operator">|</span>
-      sum <span class="token operator">+</span><span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>to_i
-    <span class="token keyword">end</span>
-
-    puts <span class="token string">"Sum: <span class="token interpolation"><span class="token delimiter tag">#{</span>sum<span class="token delimiter tag">}</span></span>"</span>
-  <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-
-<span class="token comment" spellcheck="true">#Sum: 499999500000</span>
-<span class="token comment" spellcheck="true">#Time: 21.71</span>
-<span class="token comment" spellcheck="true">#Memory: 1003.69 MB</span>
+# ruby generate.rb
+# Time: 5.17
+# Memory: 1.08 MB
 
 
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+require_relative './helpers'
+require 'csv'
 
-require_relative <span class="token string">'./helpers'</span>
-<span class="token keyword">require</span> <span class="token string">'csv'</span>
+print_memory_usage do
+  print_time_spent do
+    csv = CSV.read('data.csv', headers: true)
+    sum = 0
 
-print_memory_usage <span class="token keyword">do</span>
-  print_time_spent <span class="token keyword">do</span>
-    content <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token string">'data.csv'</span><span class="token punctuation">)</span>
-    csv <span class="token operator">=</span> <span class="token constant">CSV</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>content<span class="token punctuation">,</span> headers<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">)</span>
-    sum <span class="token operator">=</span> <span class="token number">0</span>
+    csv.each do |row|
+      sum += row['id'].to_i
+    end
 
-    <span class="token keyword">while</span> row <span class="token operator">=</span> csv<span class="token punctuation">.</span>shift
-      sum <span class="token operator">+</span><span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>to_i
-    <span class="token keyword">end</span>
+    puts "Sum: #{sum}"
+  end
+end
 
-    puts <span class="token string">"Sum: <span class="token interpolation"><span class="token delimiter tag">#{</span>sum<span class="token delimiter tag">}</span></span>"</span>
-  <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-
-
-<span class="token comment" spellcheck="true"># Sum: 499999500000</span>
-<span class="token comment" spellcheck="true"># Time: 9.73</span>
-<span class="token comment" spellcheck="true"># Memory: 74.64 MB</span>
-
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
+Sum: 499999500000
+Time: 19.84
+Memory: 920.14 MB
 
 
-
-require_relative <span class="token string">'./helpers'</span>
-<span class="token keyword">require</span> <span class="token string">'csv'</span>
-
-print_memory_usage <span class="token keyword">do</span>
-  print_time_spent <span class="token keyword">do</span>
-    <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'data.csv'</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>file<span class="token operator">|</span>
-      csv <span class="token operator">=</span> <span class="token constant">CSV</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>file<span class="token punctuation">,</span> headers<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">)</span>
-      sum <span class="token operator">=</span> <span class="token number">0</span>
-
-      <span class="token keyword">while</span> row <span class="token operator">=</span> csv<span class="token punctuation">.</span>shift
-        sum <span class="token operator">+</span><span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>to_i
-      <span class="token keyword">end</span>
-
-      puts <span class="token string">"Sum: <span class="token interpolation"><span class="token delimiter tag">#{</span>sum<span class="token delimiter tag">}</span></span>"</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-
-<span class="token comment" spellcheck="true">#Sum: 499999500000</span>
-<span class="token comment" spellcheck="true">#Time: 9.88</span>
-<span class="token comment" spellcheck="true">#Memory: 0.58 MB</span>
+----------------
 
 
-require_relative <span class="token string">'./helpers'</span>
-<span class="token keyword">require</span> <span class="token string">'csv'</span>
+require_relative './helpers'
+require 'csv'
 
-print_memory_usage <span class="token keyword">do</span>
-  print_time_spent <span class="token keyword">do</span>
-    sum <span class="token operator">=</span> <span class="token number">0</span>
+print_memory_usage do
+  print_time_spent do
+    content = File.read('data.csv')
+    csv = CSV.parse(content, headers: true)
+    sum = 0
 
-    <span class="token constant">CSV</span><span class="token punctuation">.</span><span class="token function">foreach</span><span class="token punctuation">(</span><span class="token string">'data.csv'</span><span class="token punctuation">,</span> headers<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>row<span class="token operator">|</span>
-      sum <span class="token operator">+</span><span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>to_i
-    <span class="token keyword">end</span>
+    csv.each do |row|
+      sum += row['id'].to_i
+    end
 
-    puts <span class="token string">"Sum: <span class="token interpolation"><span class="token delimiter tag">#{</span>sum<span class="token delimiter tag">}</span></span>"</span>
-  <span class="token keyword">end</span>
-<span class="token keyword">end</span>
+    puts "Sum: #{sum}"
+  end
+end
 
-<span class="token comment" spellcheck="true">#Sum: 499999500000</span>
-<span class="token comment" spellcheck="true">#Time: 9.84</span>
-<span class="token comment" spellcheck="true">#Memory: 0.53 MB</span>
+#Sum: 499999500000
+#Time: 21.71
+#Memory: 1003.69 MB
+
+
+---------------------
+
+require_relative './helpers'
+require 'csv'
+
+print_memory_usage do
+  print_time_spent do
+    content = File.read('data.csv')
+    csv = CSV.new(content, headers: true)
+    sum = 0
+
+    while row = csv.shift
+      sum += row['id'].to_i
+    end
+
+    puts "Sum: #{sum}"
+  end
+end
+
+
+# Sum: 499999500000
+# Time: 9.73
+# Memory: 74.64 MB
+
+----------------------
+
+
+
+require_relative './helpers'
+require 'csv'
+
+print_memory_usage do
+  print_time_spent do
+    File.open('data.csv', 'r') do |file|
+      csv = CSV.new(file, headers: true)
+      sum = 0
+
+      while row = csv.shift
+        sum += row['id'].to_i
+      end
+
+      puts "Sum: #{sum}"
+    end
+  end
+end
+
+#Sum: 499999500000
+#Time: 9.88
+#Memory: 0.58 MB
+
+
+require_relative './helpers'
+require 'csv'
+
+print_memory_usage do
+  print_time_spent do
+    sum = 0
+
+    CSV.foreach('data.csv', headers: true) do |row|
+      sum += row['id'].to_i
+    end
+
+    puts "Sum: #{sum}"
+  end
+end
+
+#Sum: 499999500000
+#Time: 9.84
+#Memory: 0.53 MB
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
@@ -802,19 +802,22 @@ print_memory_usage <span class="token keyword">do</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">ruby collect 内存一直增加reason ruby 申请的内存不会释放,需要自己去解决
+                    <div class="summary block-with-text">ruby collect 内存一直增加
+reason ruby 申请的内存不会释放,需要自己去解决
 
 代码启动过高的线程
 代码可能导致内存泄露
 
 解决方式
 
-god  killer 
+
+god  killer
+
 
 线程换成进程处理
 
 
-require 'timeout'</div>
+require 'timeou</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-16
@@ -1041,7 +1044,7 @@ require 'timeout'</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

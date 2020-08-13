@@ -6,13 +6,15 @@
     <meta charset="utf-8">
     <meta name="keywords" content="rails  puma 内存过高, openstack,opennebula">
     <meta name="description" content="puma 内存高
+
 puma 操作系统内存占用, 但会复用已经申请过的内存. 所以会随着每分钟请求量的增加导致内存不断上升. 如果超出某个极限, 则有可能导致内存爆掉
 
 解决方法
+
 手动kill  worker
 
 
-手动kill puma会自动">
+手动kill puma会">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -459,10 +461,12 @@ puma 操作系统内存占用, 但会复用已经申请过的内存. 所以会�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="puma-内存高"><a href="#puma-内存高" class="headerlink" title="puma 内存高"></a>puma 内存高</h4><ul>
+                <h4 id="puma-内存高">puma 内存高</h4>
+<ul>
 <li>puma 操作系统内存占用, 但会复用已经申请过的内存. 所以会随着每分钟请求量的增加导致内存不断上升. 如果超出某个极限, 则有可能导致内存爆掉</li>
 </ul>
-<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><ul>
+<h4 id="解决方法">解决方法</h4>
+<ul>
 <li>手动kill  worker</li>
 </ul>
 <blockquote>
@@ -471,25 +475,25 @@ puma 操作系统内存占用, 但会复用已经申请过的内存. 所以会�
 <ul>
 <li>puma worker killer</li>
 </ul>
-<pre class=" language-ruby"><code class="language-ruby">before_fork <span class="token keyword">do</span>
-  <span class="token keyword">require</span> <span class="token string">'puma_worker_killer'</span>
+<pre class=" language-language-ruby"><code class="language-language-ruby">before_fork do
+  require 'puma_worker_killer'
 
-  <span class="token constant">PumaWorkerKiller</span><span class="token punctuation">.</span>start
-<span class="token keyword">end</span>
+  PumaWorkerKiller.start
+end
 
-<span class="token comment" spellcheck="true"># 设置内存使用</span>
+# 设置内存使用
 
-<span class="token constant">PumaWorkerKiller</span><span class="token punctuation">.</span>config <span class="token keyword">do</span> <span class="token operator">|</span>config<span class="token operator">|</span>
-  config<span class="token punctuation">.</span>ram           <span class="token operator">=</span> <span class="token number">1024</span> <span class="token comment" spellcheck="true"># mb</span>
-  config<span class="token punctuation">.</span>frequency     <span class="token operator">=</span> <span class="token number">5</span>    <span class="token comment" spellcheck="true"># seconds</span>
-  config<span class="token punctuation">.</span>percent_usage <span class="token operator">=</span> <span class="token number">0.98</span>
-  config<span class="token punctuation">.</span>rolling_restart_frequency <span class="token operator">=</span> <span class="token number">12</span> <span class="token operator">*</span> <span class="token number">3600</span> <span class="token comment" spellcheck="true"># 12 hours in seconds, or 12.hours if using Rails</span>
-  config<span class="token punctuation">.</span>reaper_status_logs <span class="token operator">=</span> <span class="token keyword">true</span> <span class="token comment" spellcheck="true"># setting this to false will not log lines like:</span>
-  <span class="token comment" spellcheck="true"># PumaWorkerKiller: Consuming 54.34765625 mb with master and 2 workers.</span>
+PumaWorkerKiller.config do |config|
+  config.ram           = 1024 # mb
+  config.frequency     = 5    # seconds
+  config.percent_usage = 0.98
+  config.rolling_restart_frequency = 12 * 3600 # 12 hours in seconds, or 12.hours if using Rails
+  config.reaper_status_logs = true # setting this to false will not log lines like:
+  # PumaWorkerKiller: Consuming 54.34765625 mb with master and 2 workers.
 
-  config<span class="token punctuation">.</span>pre_term <span class="token operator">=</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">(</span>worker<span class="token punctuation">)</span> <span class="token punctuation">{</span> puts <span class="token string">"Worker <span class="token interpolation"><span class="token delimiter tag">#{</span>worker<span class="token punctuation">.</span>inspect<span class="token delimiter tag">}</span></span> being killed"</span> <span class="token punctuation">}</span>
-<span class="token keyword">end</span>
-<span class="token constant">PumaWorkerKiller</span><span class="token punctuation">.</span>start
+  config.pre_term = -> (worker) { puts "Worker #{worker.inspect} being killed" }
+end
+PumaWorkerKiller.start
 
 
 </code></pre>
@@ -675,11 +679,13 @@ puma 操作系统内存占用, 但会复用已经申请过的内存. 所以会�
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">reloadgem reloadrequire "zeitwerk"
+                    <div class="summary block-with-text">reload
+gem reload
+require "zeitwerk"
 @loader = Zeitwerk::Loader.for_gem
 @loader.enable_reloading
 @loader.setup
-def reload!</div>
+def reloa</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-17
@@ -724,7 +730,10 @@ def reload!</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">ksm 内存压缩zRAM means Virtual Swap Compressed in RAMswap 使用</div>
+                    <div class="summary block-with-text">ksm 内存压缩
+zRAM means Virtual Swap Compressed in RAM
+swap 使用
+</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-05
@@ -906,7 +915,7 @@ def reload!</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

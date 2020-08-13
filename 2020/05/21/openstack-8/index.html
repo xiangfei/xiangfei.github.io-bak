@@ -5,9 +5,11 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="openstack stein 高可用安装(placement), openstack,opennebula">
-    <meta name="description" content="controller01创建数据库[root@controller01 ~]# mysql
+    <meta name="description" content="controller01
+创建数据库
+[root@controller01 ~]# mysql
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB c">
+Your MariaDB">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -431,7 +433,7 @@ Your MariaDB c">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        554
+                        529
                     </div>
                     
 
@@ -454,219 +456,232 @@ Your MariaDB c">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="controller01"><a href="#controller01" class="headerlink" title="controller01"></a>controller01</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mysql</span>
-Welcome to the MariaDB monitor.  Commands end with <span class="token punctuation">;</span> or \g.
-Your MariaDB connection <span class="token function">id</span> is 51
+                <h2 id="controller01">controller01</h2>
+<h3 id="创建数据库">创建数据库</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# mysql
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 51
 Server version: 10.3.10-MariaDB MariaDB Server
 
-Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
-Type <span class="token string">'help;'</span> or <span class="token string">'\h'</span> <span class="token keyword">for</span> help. Type <span class="token string">'\c'</span> to <span class="token function">clear</span> the current input statement.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span>  CREATE DATABASE placement<span class="token punctuation">;</span>
-Query OK, 1 row affected <span class="token punctuation">(</span>0.005 sec<span class="token punctuation">)</span>
+MariaDB [(none)]>  CREATE DATABASE placement;
+Query OK, 1 row affected (0.005 sec)
 
-MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> GRANT ALL PRIVILEGES ON placement.* TO <span class="token string">'placement'</span>@<span class="token string">'localhost'</span>   IDENTIFIED BY <span class="token string">'placement'</span><span class="token punctuation">;</span>
-Query OK, 0 rows affected <span class="token punctuation">(</span>0.007 sec<span class="token punctuation">)</span>
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost'   IDENTIFIED BY 'placement';
+Query OK, 0 rows affected (0.007 sec)
 
-MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> GRANT ALL PRIVILEGES ON placement.* TO <span class="token string">'placement'</span>@<span class="token string">'%'</span> IDENTIFIED BY <span class="token string">'placement'</span><span class="token punctuation">;</span>
-Query OK, 0 rows affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' IDENTIFIED BY 'placement';
+Query OK, 0 rows affected (0.006 sec)
 
-MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> 
+MariaDB [(none)]> 
 
 
 </code></pre>
-<h3 id="创建用户-endpoint-service"><a href="#创建用户-endpoint-service" class="headerlink" title="创建用户, endpoint ,service"></a>创建用户, endpoint ,service</h3><pre class=" language-bash"><code class="language-bash">
+<h3 id="创建用户-endpoint-service">创建用户, endpoint ,service</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">
 
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># source openrc </span>
-<span class="token comment" spellcheck="true"># password set placement</span>
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  openstack user create --domain default --password-prompt placement</span>
+[root@controller01 ~]# source openrc 
+# password set placement
+[root@controller01 ~]#  openstack user create --domain default --password-prompt placement
 User Password:
 Repeat User Password:
 +---------------------+----------------------------------+
-<span class="token operator">|</span> Field               <span class="token operator">|</span> Value                            <span class="token operator">|</span>
+| Field               | Value                            |
 +---------------------+----------------------------------+
-<span class="token operator">|</span> domain_id           <span class="token operator">|</span> default                          <span class="token operator">|</span>
-<span class="token operator">|</span> enabled             <span class="token operator">|</span> True                             <span class="token operator">|</span>
-<span class="token operator">|</span> <span class="token function">id</span>                  <span class="token operator">|</span> 285a363d771349abad2aed6ea040f3c0 <span class="token operator">|</span>
-<span class="token operator">|</span> name                <span class="token operator">|</span> placement                        <span class="token operator">|</span>
-<span class="token operator">|</span> options             <span class="token operator">|</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>                               <span class="token operator">|</span>
-<span class="token operator">|</span> password_expires_at <span class="token operator">|</span> None                             <span class="token operator">|</span>
+| domain_id           | default                          |
+| enabled             | True                             |
+| id                  | 285a363d771349abad2aed6ea040f3c0 |
+| name                | placement                        |
+| options             | {}                               |
+| password_expires_at | None                             |
 +---------------------+----------------------------------+
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  openstack role add --project service --user placement admin</span>
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack service create --name placement \</span>
-<span class="token operator">></span>   --description <span class="token string">"Placement API"</span> placement
+[root@controller01 ~]#  openstack role add --project service --user placement admin
+[root@controller01 ~]# openstack service create --name placement \
+>   --description "Placement API" placement
 +-------------+----------------------------------+
-<span class="token operator">|</span> Field       <span class="token operator">|</span> Value                            <span class="token operator">|</span>
+| Field       | Value                            |
 +-------------+----------------------------------+
-<span class="token operator">|</span> description <span class="token operator">|</span> Placement API                    <span class="token operator">|</span>
-<span class="token operator">|</span> enabled     <span class="token operator">|</span> True                             <span class="token operator">|</span>
-<span class="token operator">|</span> <span class="token function">id</span>          <span class="token operator">|</span> 0e02955c810b49339a689a09f9eafd84 <span class="token operator">|</span>
-<span class="token operator">|</span> name        <span class="token operator">|</span> placement                        <span class="token operator">|</span>
-<span class="token operator">|</span> <span class="token function">type</span>        <span class="token operator">|</span> placement                        <span class="token operator">|</span>
+| description | Placement API                    |
+| enabled     | True                             |
+| id          | 0e02955c810b49339a689a09f9eafd84 |
+| name        | placement                        |
+| type        | placement                        |
 +-------------+----------------------------------+
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint create --region RegionOne \</span>
-<span class="token operator">></span>   placement public http://controller:8778
+[root@controller01 ~]# openstack endpoint create --region RegionOne \
+>   placement public http://controller:8778
 +--------------+----------------------------------+
-<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
+| Field        | Value                            |
 +--------------+----------------------------------+
-<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
-<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> 7bff99341c014979913882f4180a1fef <span class="token operator">|</span>
-<span class="token operator">|</span> interface    <span class="token operator">|</span> public                           <span class="token operator">|</span>
-<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
-<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
-<span class="token operator">|</span> service_id   <span class="token operator">|</span> 0e02955c810b49339a689a09f9eafd84 <span class="token operator">|</span>
-<span class="token operator">|</span> service_name <span class="token operator">|</span> placement                        <span class="token operator">|</span>
-<span class="token operator">|</span> service_type <span class="token operator">|</span> placement                        <span class="token operator">|</span>
-<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:8778           <span class="token operator">|</span>
+| enabled      | True                             |
+| id           | 7bff99341c014979913882f4180a1fef |
+| interface    | public                           |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 0e02955c810b49339a689a09f9eafd84 |
+| service_name | placement                        |
+| service_type | placement                        |
+| url          | http://controller:8778           |
 +--------------+----------------------------------+
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint create --region RegionOne \</span>
-<span class="token operator">></span>   placement internal http://controller:8778
+[root@controller01 ~]# openstack endpoint create --region RegionOne \
+>   placement internal http://controller:8778
 +--------------+----------------------------------+
-<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
+| Field        | Value                            |
 +--------------+----------------------------------+
-<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
-<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> 832d68cbc2464e63a0a9b0e12d03cbc2 <span class="token operator">|</span>
-<span class="token operator">|</span> interface    <span class="token operator">|</span> internal                         <span class="token operator">|</span>
-<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
-<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
-<span class="token operator">|</span> service_id   <span class="token operator">|</span> 0e02955c810b49339a689a09f9eafd84 <span class="token operator">|</span>
-<span class="token operator">|</span> service_name <span class="token operator">|</span> placement                        <span class="token operator">|</span>
-<span class="token operator">|</span> service_type <span class="token operator">|</span> placement                        <span class="token operator">|</span>
-<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:8778           <span class="token operator">|</span>
+| enabled      | True                             |
+| id           | 832d68cbc2464e63a0a9b0e12d03cbc2 |
+| interface    | internal                         |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 0e02955c810b49339a689a09f9eafd84 |
+| service_name | placement                        |
+| service_type | placement                        |
+| url          | http://controller:8778           |
 +--------------+----------------------------------+
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint create --region RegionOne \</span>
-<span class="token operator">></span>   placement admin http://controller:8778
+[root@controller01 ~]# openstack endpoint create --region RegionOne \
+>   placement admin http://controller:8778
 +--------------+----------------------------------+
-<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
+| Field        | Value                            |
 +--------------+----------------------------------+
-<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
-<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> fd3295547dc1420297786e92624f94fc <span class="token operator">|</span>
-<span class="token operator">|</span> interface    <span class="token operator">|</span> admin                            <span class="token operator">|</span>
-<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
-<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
-<span class="token operator">|</span> service_id   <span class="token operator">|</span> 0e02955c810b49339a689a09f9eafd84 <span class="token operator">|</span>
-<span class="token operator">|</span> service_name <span class="token operator">|</span> placement                        <span class="token operator">|</span>
-<span class="token operator">|</span> service_type <span class="token operator">|</span> placement                        <span class="token operator">|</span>
-<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:8778           <span class="token operator">|</span>
+| enabled      | True                             |
+| id           | fd3295547dc1420297786e92624f94fc |
+| interface    | admin                            |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | 0e02955c810b49339a689a09f9eafd84 |
+| service_name | placement                        |
+| service_type | placement                        |
+| url          | http://controller:8778           |
 +--------------+----------------------------------+
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+[root@controller01 ~]# 
 
 
 </code></pre>
-<h3 id="安装placement"><a href="#安装placement" class="headerlink" title="安装placement"></a>安装placement</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install openstack-placement-api -y</span>
+<h3 id="安装placement">安装placement</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# yum install openstack-placement-api -y
 </code></pre>
-<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>  <strong>/etc/placement/placement.conf</strong></p>
-<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>placement_database<span class="token punctuation">]</span>
-<span class="token comment" spellcheck="true"># ...</span>
-connection <span class="token operator">=</span> mysql+pymysql://placement:placement@controller/placement
+<h3 id="修改配置">修改配置</h3>
+<p><strong>/etc/placement/placement.conf</strong></p>
+<pre class=" language-language-bash"><code class="language-language-bash">[placement_database]
+# ...
+connection = mysql+pymysql://placement:placement@controller/placement
 
-<span class="token punctuation">[</span>api<span class="token punctuation">]</span>
-<span class="token comment" spellcheck="true"># ...</span>
-auth_strategy <span class="token operator">=</span> keystone
+[api]
+# ...
+auth_strategy = keystone
 
-<span class="token punctuation">[</span>keystone_authtoken<span class="token punctuation">]</span>
-<span class="token comment" spellcheck="true"># ...</span>
-auth_url <span class="token operator">=</span> http://controller:5000/v3
-memcached_servers <span class="token operator">=</span> controller01:11211,controller02:11211,controller03:11211
-auth_type <span class="token operator">=</span> password
-project_domain_name <span class="token operator">=</span> Default
-user_domain_name <span class="token operator">=</span> Default
-project_name <span class="token operator">=</span> <span class="token function">service</span>
-username <span class="token operator">=</span> placement
-password <span class="token operator">=</span> placement
-
-
-</code></pre>
-<h3 id="同步数据"><a href="#同步数据" class="headerlink" title="同步数据"></a>同步数据</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># su -s /bin/sh -c "placement-manage db sync" placement</span>
-
-</code></pre>
-<h3 id="重启httpd"><a href="#重启httpd" class="headerlink" title="重启httpd"></a>重启httpd</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl restart httpd</span>
-</code></pre>
-<h2 id="controller02-controller03"><a href="#controller02-controller03" class="headerlink" title="controller02 , controller03"></a>controller02 , controller03</h2><h3 id="安装placement-1"><a href="#安装placement-1" class="headerlink" title="安装placement"></a>安装placement</h3><pre class=" language-bash"><code class="language-bash">
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install openstack-placement-api -y</span>
-
-</code></pre>
-<h3 id="修改配置-1"><a href="#修改配置-1" class="headerlink" title="修改配置"></a>修改配置</h3><p>  <strong>/etc/placement/placement.conf</strong></p>
-<pre class=" language-bash"><code class="language-bash">
-<span class="token punctuation">[</span>placement_database<span class="token punctuation">]</span>
-
-<span class="token comment" spellcheck="true"># ...</span>
-
-connection <span class="token operator">=</span> mysql+pymysql://placement:placement@controller/placement
-
-
-
-<span class="token punctuation">[</span>api<span class="token punctuation">]</span>
-
-<span class="token comment" spellcheck="true"># ...</span>
-
-auth_strategy <span class="token operator">=</span> keystone
-
-
-
-<span class="token punctuation">[</span>keystone_authtoken<span class="token punctuation">]</span>
-
-<span class="token comment" spellcheck="true"># ...</span>
-
-auth_url <span class="token operator">=</span> http://controller:5000/v3
-
-memcached_servers <span class="token operator">=</span> controller01:11211,controller02:11211,controller03:11211
-
-auth_type <span class="token operator">=</span> password
-
-project_domain_name <span class="token operator">=</span> Default
-
-user_domain_name <span class="token operator">=</span> Default
-
-project_name <span class="token operator">=</span> <span class="token function">service</span>
-
-username <span class="token operator">=</span> placement
-
-password <span class="token operator">=</span> placement
-
+[keystone_authtoken]
+# ...
+auth_url = http://controller:5000/v3
+memcached_servers = controller01:11211,controller02:11211,controller03:11211
+auth_type = password
+project_domain_name = Default
+user_domain_name = Default
+project_name = service
+username = placement
+password = placement
 
 
 </code></pre>
-<h3 id="重启httpd-1"><a href="#重启httpd-1" class="headerlink" title="重启httpd"></a>重启httpd</h3><pre class=" language-bash"><code class="language-bash">
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl restart httpd</span>
+<h3 id="同步数据">同步数据</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# su -s /bin/sh -c "placement-manage db sync" placement
 
 </code></pre>
-<h2 id="vip"><a href="#vip" class="headerlink" title="vip"></a>vip</h2><blockquote>
+<h3 id="重启httpd">重启httpd</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# systemctl restart httpd
+</code></pre>
+<h2 id="controller02-controller03">controller02 , controller03</h2>
+<h3 id="安装placement-2">安装placement</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">
+[root@controller01 ~]# yum install openstack-placement-api -y
+
+</code></pre>
+<h3 id="修改配置-2">修改配置</h3>
+<p><strong>/etc/placement/placement.conf</strong></p>
+<pre class=" language-language-bash"><code class="language-language-bash">
+[placement_database]
+
+# ...
+
+connection = mysql+pymysql://placement:placement@controller/placement
+
+
+
+[api]
+
+# ...
+
+auth_strategy = keystone
+
+
+
+[keystone_authtoken]
+
+# ...
+
+auth_url = http://controller:5000/v3
+
+memcached_servers = controller01:11211,controller02:11211,controller03:11211
+
+auth_type = password
+
+project_domain_name = Default
+
+user_domain_name = Default
+
+project_name = service
+
+username = placement
+
+password = placement
+
+
+
+</code></pre>
+<h3 id="重启httpd-2">重启httpd</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">
+[root@controller01 ~]# systemctl restart httpd
+
+</code></pre>
+<h2 id="vip">vip</h2>
+<blockquote>
 <p>controller02, controller 03 不需要创建service , endpoint , db .其他的和controller01 一致</p>
 </blockquote>
-<h2 id="eror"><a href="#eror" class="headerlink" title="eror"></a>eror</h2><ul>
+<h2 id="eror">eror</h2>
+<ul>
 <li>AH01630: client denied by server configuration: /usr/bin/placement-api</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash">
-<span class="token comment" spellcheck="true"># 增加directory </span>
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim /etc/httpd/conf.d/00-placement-api.conf </span>
+<pre class=" language-language-bash"><code class="language-language-bash">
+# 增加directory 
+[root@controller01 ~]# vim /etc/httpd/conf.d/00-placement-api.conf 
 
-<span class="token operator">&lt;</span>VirtualHost *:8778<span class="token operator">></span>
+<VirtualHost *:8778>
   WSGIProcessGroup placement-api
-  WSGIApplicationGroup %<span class="token punctuation">{</span>GLOBAL<span class="token punctuation">}</span>
+  WSGIApplicationGroup %{GLOBAL}
   WSGIPassAuthorization On
-  WSGIDaemonProcess placement-api processes<span class="token operator">=</span>3 threads<span class="token operator">=</span>1 user<span class="token operator">=</span>placement group<span class="token operator">=</span>placement
+  WSGIDaemonProcess placement-api processes=3 threads=1 user=placement group=placement
   WSGIScriptAlias / /usr/bin/placement-api
-  <span class="token operator">&lt;</span>IfVersion <span class="token operator">>=</span> 2.4<span class="token operator">></span>
-    ErrorLogFormat <span class="token string">"%M"</span>
-  <span class="token operator">&lt;</span>/IfVersion<span class="token operator">></span>
+  <IfVersion >= 2.4>
+    ErrorLogFormat "%M"
+  </IfVersion>
   ErrorLog /var/log/placement/placement-api.log
-  <span class="token comment" spellcheck="true">#SSLEngine On</span>
-  <span class="token comment" spellcheck="true">#SSLCertificateFile ...</span>
-  <span class="token comment" spellcheck="true">#SSLCertificateKeyFile ...</span>
+  #SSLEngine On
+  #SSLCertificateFile ...
+  #SSLCertificateKeyFile ...
 
-  <span class="token operator">&lt;</span>Directory /usr/bin<span class="token operator">></span>
-    <span class="token operator">&lt;</span>IfVersion <span class="token operator">>=</span> 2.4<span class="token operator">></span>
+  <Directory /usr/bin>
+    <IfVersion >= 2.4>
         Require all granted
-    <span class="token operator">&lt;</span>/IfVersion<span class="token operator">></span>
-    <span class="token operator">&lt;</span>IfVersion <span class="token operator">&lt;</span> 2.4<span class="token operator">></span>
+    </IfVersion>
+    <IfVersion < 2.4>
         Order allow,deny
         Allow from all
-    <span class="token operator">&lt;</span>/IfVersion<span class="token operator">></span>
-  <span class="token operator">&lt;</span>/Directory<span class="token operator">></span>
+    </IfVersion>
+  </Directory>
 
-<span class="token operator">&lt;</span>/VirtualHost<span class="token operator">></span>
+</VirtualHost>
 
 
 
@@ -854,10 +869,12 @@ password <span class="token operator">=</span> placement
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">controller01安装数据库MariaDB [(none)]> CREATE DATABASE nova_api;
+                    <div class="summary block-with-text">controller01
+安装数据库
+MariaDB [(none)]> CREATE DATABASE nova_api;
 Query OK, 1 row affected (0.005 sec)
 
-MariaDB [(none)]> CRE</div>
+MariaDB [(none)]> C</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-21
@@ -902,9 +919,11 @@ MariaDB [(none)]> CRE</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">controller01初始化数据库[root@controller01 ~]# mysql -u root 
+                    <div class="summary block-with-text">controller01
+初始化数据库
+[root@controller01 ~]# mysql -u root 
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your</div>
+Yo</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-20
@@ -1082,7 +1101,7 @@ Your</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

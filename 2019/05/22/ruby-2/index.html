@@ -6,11 +6,12 @@
     <meta charset="utf-8">
     <meta name="keywords" content="ruby 语法基础, openstack,opennebula">
     <meta name="description" content="Ruby 语法
+
 让我们编写一个简单的 Ruby 程序。所有的 Ruby 文件扩展名都是 .rb。所以，把下面的源代码放在 test.rb 文件中。
 
 #!/usr/bin/ruby -w
-
-puts &amp;quot;Hello, Ruby!&amp;q">
+ 
+puts &amp;quot;Hello, Ruby!">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -457,34 +458,42 @@ puts &amp;quot;Hello, Ruby!&amp;q">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-语法"><a href="#Ruby-语法" class="headerlink" title="Ruby 语法"></a>Ruby 语法</h3><ul>
+                <h3 id="Ruby-语法">Ruby 语法</h3>
+<ul>
 <li>让我们编写一个简单的 Ruby 程序。所有的 Ruby 文件扩展名都是 .rb。所以，把下面的源代码放在 test.rb 文件中。</li>
 </ul>
 <pre><code>#!/usr/bin/ruby -w
-
+ 
 puts &quot;Hello, Ruby!&quot;;
-</code></pre><p>在这里，假设您的 /usr/bin 目录下已经有可用的 Ruby 解释器。现在，尝试运行这个程序，如下所示：</p>
+</code></pre>
+<p>在这里，假设您的 /usr/bin 目录下已经有可用的 Ruby 解释器。现在，尝试运行这个程序，如下所示：</p>
 <pre><code>&gt; $ ruby test.rb
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
 <p>Hello, Ruby!</p>
 </blockquote>
 </div></div>
 <p>您已经看到了一个简单的 Ruby 程序，现在让我们看看一些 Ruby 语法相关的基本概念：</p>
-<h3 id="Ruby-程序中的空白"><a href="#Ruby-程序中的空白" class="headerlink" title="Ruby 程序中的空白"></a>Ruby 程序中的空白</h3><ul>
+<h3 id="Ruby-程序中的空白">Ruby 程序中的空白</h3>
+<ul>
 <li>在 Ruby 代码中的空白字符，如空格和制表符一般会被忽略，除非当它们出现在字符串中时才不会被忽略。然而，有时候它们用于解释模棱两可的语句。当启用 -w 选项时，这种解释会产生警告。</li>
 </ul>
 <p>实例：</p>
 <blockquote>
-<p>a + b 被解释为 a+b （这是一个局部变量）<br>a  +b 被解释为 a(+b) （这是一个方法调用）</p>
+<p>a + b 被解释为 a+b （这是一个局部变量）<br>
+a  +b 被解释为 a(+b) （这是一个方法调用）</p>
 </blockquote>
-<h3 id="Ruby-程序中的行尾"><a href="#Ruby-程序中的行尾" class="headerlink" title="Ruby 程序中的行尾"></a>Ruby 程序中的行尾</h3><ul>
+<h3 id="Ruby-程序中的行尾">Ruby 程序中的行尾</h3>
+<ul>
 <li>Ruby 把分号和换行符解释为语句的结尾。但是，如果 Ruby 在行尾遇到运算符，比如 +、- 或反斜杠，它们表示一个语句的延续。</li>
 </ul>
-<h3 id="Ruby-标识符"><a href="#Ruby-标识符" class="headerlink" title="Ruby 标识符"></a>Ruby 标识符</h3><ul>
+<h3 id="Ruby-标识符">Ruby 标识符</h3>
+<ul>
 <li>标识符是变量、常量和方法的名称。Ruby 标识符是大小写敏感的。这意味着 Ram 和 RAM 在 Ruby 中是两个不同的标识符。</li>
 <li>Ruby 标识符的名称可以包含字母、数字和下划线</li>
 </ul>
-<h3 id="保留字"><a href="#保留字" class="headerlink" title="保留字"></a>保留字</h3><ul>
+<h3 id="保留字">保留字</h3>
+<ul>
 <li>下表列出了 Ruby 中的保留字。这些保留字不能作为常量或变量的名称。但是，它们可以作为方法名。</li>
 </ul>
 <table>
@@ -543,101 +552,135 @@ puts &quot;Hello, Ruby!&quot;;
 <td style="text-align:center">def</td>
 <td style="text-align:center">in</td>
 <td style="text-align:center">self</td>
-<td style="text-align:center">__FILE__</td>
+<td style="text-align:center">_<em>FILE</em>_</td>
 </tr>
 <tr>
 <td style="text-align:center">defined?</td>
 <td style="text-align:center">module</td>
 <td style="text-align:center">super</td>
-<td style="text-align:center">__LINE__</td>
+<td style="text-align:center">_<em>LINE</em>_</td>
 </tr>
 </tbody>
 </table>
-<h3 id="Ruby-程序中的空白-1"><a href="#Ruby-程序中的空白-1" class="headerlink" title="Ruby 程序中的空白"></a>Ruby 程序中的空白</h3><ul>
+<h3 id="Ruby-程序中的空白-2">Ruby 程序中的空白</h3>
+<ul>
 <li>在 Ruby 代码中的空白字符，如空格和制表符一般会被忽略，除非当它们出现在字符串中时才不会被忽略。然而，有时候它们用于解释模棱两可的语句。当启用 -w 选项时，这种解释会产生警告。</li>
 </ul>
-<h3 id="Ruby-中的-Here-Document"><a href="#Ruby-中的-Here-Document" class="headerlink" title="Ruby 中的 Here Document"></a>Ruby 中的 Here Document</h3><ul>
-<li><p>“Here Document” 是指建立多行字符串。在 &lt;&lt; 之后，您可以指定一个字符串或标识符来终止字符串，且当前行之后直到终止符为止的所有行是字符串的值。</p>
+<h3 id="Ruby-中的-Here-Document">Ruby 中的 Here Document</h3>
+<ul>
+<li>
+<p>“Here Document” 是指建立多行字符串。在 &lt;&lt; 之后，您可以指定一个字符串或标识符来终止字符串，且当前行之后直到终止符为止的所有行是字符串的值。</p>
 </li>
-<li><p>如果终止符用引号括起，引号的类型决定了面向行的字符串类型。请注意&lt;&lt; 和终止符之间必须没有空格。</p>
+<li>
+<p>如果终止符用引号括起，引号的类型决定了面向行的字符串类型。请注意&lt;&lt; 和终止符之间必须没有空格。</p>
 </li>
 </ul>
 <p>下面是不同的实例：</p>
 <pre><code>#!/usr/bin/ruby -w
 # -*- coding : utf-8 -*-
-
+ 
 print &lt;&lt;EOF
     这是第一种方式创建here document 。
     多行字符串。
 EOF
-
+ 
 print &lt;&lt;&quot;EOF&quot;;                # 与上面相同
     这是第二种方式创建here document 。
     多行字符串。
 EOF
-
+ 
 print &lt;&lt;`EOC`                 # 执行命令
     echo hi there
     echo lo there
 EOC
-
+ 
 print &lt;&lt;&quot;foo&quot;, &lt;&lt;&quot;bar&quot;          # 您可以把它们进行堆叠
     I said foo.
 foo
     I said bar.
 bar
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>这是第一种方式创建here document 。<br>多行字符串。<br>这是第二种方式创建here document 。<br>多行字符串。<br>hi there<br>lo there<br>I said foo.<br>I said bar.</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>这是第一种方式创建here document 。<br>
+多行字符串。<br>
+这是第二种方式创建here document 。<br>
+多行字符串。<br>
+hi there<br>
+lo there<br>
+I said foo.<br>
+I said bar.</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-BEGIN-语句"><a href="#Ruby-BEGIN-语句" class="headerlink" title="Ruby BEGIN 语句"></a>Ruby BEGIN 语句</h3><h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><pre><code>BEGIN {
+<h3 id="Ruby-BEGIN-语句">Ruby BEGIN 语句</h3>
+<h4 id="语法">语法</h4>
+<pre><code>BEGIN {
    code
 }
-</code></pre><p>声明 code 会在程序运行之前被调用。</p>
-<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><pre><code>#!/usr/bin/ruby
-
+</code></pre>
+<p>声明 code 会在程序运行之前被调用。</p>
+<h4 id="实例">实例</h4>
+<pre><code>#!/usr/bin/ruby
+ 
 puts &quot;这是主 Ruby 程序&quot;
-
+ 
 BEGIN {
    puts &quot;初始化 Ruby 程序&quot;
 }
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>初始化 Ruby 程序<br>这是主 Ruby 程序</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>初始化 Ruby 程序<br>
+这是主 Ruby 程序</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-END-语句"><a href="#Ruby-END-语句" class="headerlink" title="Ruby END 语句"></a>Ruby END 语句</h3><h4 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h4><pre><code>END {
+<h3 id="Ruby-END-语句">Ruby END 语句</h3>
+<h4 id="语法-2">语法</h4>
+<pre><code>END {
    code
 }
-</code></pre><p>声明 code 会在程序的结尾被调用。</p>
-<h4 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h4><pre><code>#!/usr/bin/ruby
-
+</code></pre>
+<p>声明 code 会在程序的结尾被调用。</p>
+<h4 id="实例-2">实例</h4>
+<pre><code>#!/usr/bin/ruby
+ 
 puts &quot;这是主 Ruby 程序&quot;
-
+ 
 END {
    puts &quot;停止 Ruby 程序&quot;
 }
 BEGIN {
    puts &quot;初始化 Ruby 程序&quot;
 }
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>初始化 Ruby 程序<br>这是主 Ruby 程序<br>停止 Ruby 程序<br>Ruby 注释</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>初始化 Ruby 程序<br>
+这是主 Ruby 程序<br>
+停止 Ruby 程序<br>
+Ruby 注释</p>
 </blockquote>
 </div></div>
-<h3 id="注释会对-Ruby"><a href="#注释会对-Ruby" class="headerlink" title="注释会对 Ruby"></a>注释会对 Ruby</h3><ul>
-<li>解释器隐藏一行，或者一行的一部分，或者若干行。您可以在行首使用字符（ # ）：<pre><code># 我是注释，请忽略我。
-</code></pre>或者，注释可以跟着语句或表达式的同一行的后面：<pre><code>name = &quot;Madisetti&quot; # 这也是注释
-</code></pre>您可以注释多行，如下所示：<pre><code># 这是注释。
+<h3 id="注释会对-Ruby">注释会对 Ruby</h3>
+<ul>
+<li>解释器隐藏一行，或者一行的一部分，或者若干行。您可以在行首使用字符（ # ）：</li>
+</ul>
+<pre><code># 我是注释，请忽略我。
+</code></pre>
+<p>或者，注释可以跟着语句或表达式的同一行的后面：</p>
+<pre><code>name = &quot;Madisetti&quot; # 这也是注释
+</code></pre>
+<p>您可以注释多行，如下所示：</p>
+<pre><code># 这是注释。
 # 这也是注释。
 # 这也是注释。
 # 这还是注释。
-</code></pre>下面是另一种形式。这种块注释会对解释器隐藏 =begin/=end 之间的行：<pre><code>=begin
+</code></pre>
+<p>下面是另一种形式。这种块注释会对解释器隐藏 =begin/=end 之间的行：</p>
+<pre><code>=begin
 这是注释。
 这也是注释。
 这也是注释。
 这还是注释。
 =end
-</code></pre></li>
-</ul>
+</code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
@@ -820,10 +863,15 @@ BEGIN {
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 数据类型数值类型(Number)整型(Integer)
+                    <div class="summary block-with-text">Ruby 数据类型
+数值类型(Number)
+整型(Integer)
+
+
 整型分两种，如果在31位以内（四字节），那为Fixnum实例。如果超过，即为Bignum实例。
 
-整数范围从 -230 到 230-1，在这个范围内的整数是类 Fixnum </div>
+
+整数范围从 -230 到 230-1，在这个范围内的整数是类 Fi</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-23
@@ -869,14 +917,16 @@ BEGIN {
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">交互式ruby
+
 irb
 
 [root@autotest-ruby-agent ~]# irb
 2.4.5 :001 &gt; 
 
+
 最简单的ruby程序
 
-2.4.5 :001 &gt; puts &quot;hello world&quot</div>
+2.4.5 :001 &gt; puts &quot;hello world&qu</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-22
@@ -1054,7 +1104,7 @@ irb
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

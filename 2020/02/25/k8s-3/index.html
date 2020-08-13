@@ -5,13 +5,16 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="k8s flannal 介绍, openstack,opennebula">
-    <meta name="description" content="一、flannel简介flannel官网
-https://coreos.com/flannel/  
+    <meta name="description" content="一、flannel简介
+flannel官网
+
+https://coreos.com/flannel/
 
 flannel官方文档
-https://coreos.com/flannel/docs/latest/  
 
-flannel githu">
+https://coreos.com/flannel/docs/latest/
+
+flannel github">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -435,7 +438,7 @@ flannel githu">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        752
+                        765
                     </div>
                     
 
@@ -458,35 +461,61 @@ flannel githu">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、flannel简介"><a href="#一、flannel简介" class="headerlink" title="一、flannel简介"></a>一、flannel简介</h1><h3 id="flannel官网"><a href="#flannel官网" class="headerlink" title="flannel官网"></a>flannel官网</h3><blockquote>
-<p><a href="https://coreos.com/flannel/" target="_blank" rel="noopener">https://coreos.com/flannel/</a>  </p>
+                <h1>一、flannel简介</h1>
+<h3 id="flannel官网">flannel官网</h3>
+<blockquote>
+<p><a href="https://coreos.com/flannel/" target="_blank" rel="noopener">https://coreos.com/flannel/</a></p>
 </blockquote>
-<h3 id="flannel官方文档"><a href="#flannel官方文档" class="headerlink" title="flannel官方文档"></a>flannel官方文档</h3><blockquote>
-<p><a href="https://coreos.com/flannel/docs/latest/" target="_blank" rel="noopener">https://coreos.com/flannel/docs/latest/</a>  </p>
+<h3 id="flannel官方文档">flannel官方文档</h3>
+<blockquote>
+<p><a href="https://coreos.com/flannel/docs/latest/" target="_blank" rel="noopener">https://coreos.com/flannel/docs/latest/</a></p>
 </blockquote>
-<h3 id="flannel-github"><a href="#flannel-github" class="headerlink" title="flannel github"></a>flannel github</h3><blockquote>
-<p><a href="https://github.com/coreos/flannel" target="_blank" rel="noopener">https://github.com/coreos/flannel</a>    </p>
+<h3 id="flannel-github">flannel github</h3>
+<blockquote>
+<p><a href="https://github.com/coreos/flannel" target="_blank" rel="noopener">https://github.com/coreos/flannel</a></p>
 </blockquote>
-<h3 id="flannel下载-Latest-release）"><a href="#flannel下载-Latest-release）" class="headerlink" title="flannel下载(Latest release）"></a>flannel下载(Latest release）</h3><blockquote>
-<p><a href="https://github.com/coreos/flannel/releases" target="_blank" rel="noopener">https://github.com/coreos/flannel/releases</a>  </p>
+<h3 id="flannel下载-Latest-release）">flannel下载(Latest release）</h3>
+<blockquote>
+<p><a href="https://github.com/coreos/flannel/releases" target="_blank" rel="noopener">https://github.com/coreos/flannel/releases</a></p>
 </blockquote>
-<h1 id="二、flannel安装并应用到docker"><a href="#二、flannel安装并应用到docker" class="headerlink" title="二、flannel安装并应用到docker"></a>二、flannel安装并应用到docker</h1><ol>
-<li>使用etcd创建虚拟网络<br><code>etcdctl mkdir /coreos.com/network</code><br><code>etcdctl set /coreos.com/network/config &#39;{&quot;Network&quot;:&quot;172.17.0.0/16&quot;}</code>  </li>
-<li>运行flannel  <h5 id="NODE1"><a href="#NODE1" class="headerlink" title="NODE1"></a>NODE1</h5><code>flanneld --logtostderr=false --log_dir=/var/log/k8s/flannel/ --etcd-endpoints=http://172.16.249.130:4001</code>  <h5 id="NODE2"><a href="#NODE2" class="headerlink" title="NODE2"></a>NODE2</h5><code>flanneld --logtostderr=false --log_dir=/var/log/k8s/flannel/ --etcd-endpoints=http://172.16.249.129:4001</code>  </li>
-<li>运行mk-docker-opts.sh脚本<br><code>sh mk-docker-opts.sh</code>  </li>
-<li>查看/run/docker_opts.env<br><code>cat /run/docker_opts.env</code>  </li>
-<li>修改/etc/sysconfig/docker文件，将上面文件的DOCKER_OPTS内容添加到docker的启动配置<br><code>OPTIONS=--selinux-enabled  --graph=&quot;/data/docker&quot; --bip=172.17.77.1/24 --mtu=1472</code>  </li>
-<li>重启docker.service<br><code>systemctl restart docker.service</code>  </li>
-</ol>
-<h3 id="flannel网络Type中UDP和xvlan的性能对比"><a href="#flannel网络Type中UDP和xvlan的性能对比" class="headerlink" title="flannel网络Type中UDP和xvlan的性能对比"></a>flannel网络Type中UDP和xvlan的性能对比</h3><p>1、性能测试工具选用qperf，选择另外一台主机运行 <code>qperf &amp;</code>用以接受测试。<br>2、分配测试原生网络、docker + flannel type类型为xvlan的网络以及docker + flannel type类型为UDP的网络的网络传输速度(tcp_bw)及延迟(tcp_lat)。<br>3、分别测试不同传输大小的十组数据。  </p>
+<h1>二、flannel安装并应用到docker</h1>
 <ol>
-<li><p>原生网络<br><code>qperf 101.201.65.159 -oo msg_size:1:64k:*2 tcp_bw tcp_lat</code>  </p>
+<li>使用etcd创建虚拟网络<br>
+<code>etcdctl mkdir /coreos.com/network</code><br>
+<code>etcdctl set /coreos.com/network/config '{&quot;Network&quot;:&quot;172.17.0.0/16&quot;}</code></li>
+<li>运行flannel</li>
+</ol>
+<h5 id="NODE1">NODE1</h5>
+<p><code>flanneld --logtostderr=false --log_dir=/var/log/k8s/flannel/ --etcd-endpoints=http://172.16.249.130:4001</code></p>
+<h5 id="NODE2">NODE2</h5>
+<p><code>flanneld --logtostderr=false --log_dir=/var/log/k8s/flannel/ --etcd-endpoints=http://172.16.249.129:4001</code><br>
+3. 运行mk-docker-opts.sh脚本<br>
+<code>sh mk-docker-opts.sh</code><br>
+4. 查看/run/docker_opts.env<br>
+<code>cat /run/docker_opts.env</code><br>
+5. 修改/etc/sysconfig/docker文件，将上面文件的DOCKER_OPTS内容添加到docker的启动配置<br>
+<code>OPTIONS=--selinux-enabled  --graph=&quot;/data/docker&quot; --bip=172.17.77.1/24 --mtu=1472</code><br>
+6. 重启docker.service<br>
+<code>systemctl restart docker.service</code></p>
+<h3 id="flannel网络Type中UDP和xvlan的性能对比">flannel网络Type中UDP和xvlan的性能对比</h3>
+<p>1、性能测试工具选用qperf，选择另外一台主机运行 <code>qperf &amp;</code>用以接受测试。<br>
+2、分配测试原生网络、docker + flannel type类型为xvlan的网络以及docker + flannel type类型为UDP的网络的网络传输速度(tcp_bw)及延迟(tcp_lat)。<br>
+3、分别测试不同传输大小的十组数据。</p>
+<ol>
+<li>
+<p>原生网络<br>
+<code>qperf 101.201.65.159 -oo msg_size:1:64k:*2 tcp_bw tcp_lat</code></p>
 </li>
-<li><p>docker + flannel xvlan 网络<br><code>docker run -it registry.cn-hangzhou.aliyuncs.com/cheyang/centos-qperf 101.201.65.159 -oo msg_size:1:64k:*2 tcp_bw tcp_lat</code>  </p>
+<li>
+<p>docker + flannel xvlan 网络<br>
+<code>docker run -it registry.cn-hangzhou.aliyuncs.com/cheyang/centos-qperf 101.201.65.159 -oo msg_size:1:64k:*2 tcp_bw tcp_lat</code></p>
 </li>
-<li><p>docker + flannel udp 网络<br><code>docker run -it registry.cn-hangzhou.aliyuncs.com/cheyang/centos-qperf 101.201.65.159 -oo msg_size:1:64k:*2 tcp_bw tcp_lat</code></p>
+<li>
+<p>docker + flannel udp 网络<br>
+<code>docker run -it registry.cn-hangzhou.aliyuncs.com/cheyang/centos-qperf 101.201.65.159 -oo msg_size:1:64k:*2 tcp_bw tcp_lat</code></p>
 </li>
-<li><p>测试结果  </p>
+<li>
+<p>测试结果</p>
 </li>
 </ol>
 <table>
@@ -779,13 +808,17 @@ flannel githu">
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">K8S简介K8S官网
-http://kubernetes.io/  
+                    <div class="summary block-with-text">K8S简介
+K8S官网
+
+http://kubernetes.io/
 
 K8S官方指导文档
-http://kubernetes.io/docs/user-guide/  
+
+http://kubernetes.io/docs/user-guide/
 
 Google docker registry
+
 gcr.io/goo</div>
                     <div class="publish-info">
                         <span class="publish-date">
@@ -832,7 +865,8 @@ gcr.io/goo</div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">DOKCER TIPS
-log-driver 通过使用--log-driver指定log-driver的类型，可以有none、json-file、syslog、journald等，docker version 1.12以前默认的log-dr</div>
+
+log-driver 通过使用--log-driver指定log-driver的类型，可以有none、json-file、syslog、journald等，docker version 1.12以前默认的log-d</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-25
@@ -1010,7 +1044,7 @@ log-driver 通过使用--log-driver指定log-driver的类型，可以有none、j
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

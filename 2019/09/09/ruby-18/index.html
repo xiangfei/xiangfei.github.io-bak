@@ -5,13 +5,15 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="ruby Range, openstack,opennebula">
-    <meta name="description" content="Ruby 范围（Range）范围（Range）无处不在：a 到 z、 0 到 9、等等。Ruby 支持范围，并允许我们以不同的方式使用范围：
+    <meta name="description" content="Ruby 范围（Range）
+范围（Range）无处不在：a 到 z、 0 到 9、等等。Ruby 支持范围，并允许我们以不同的方式使用范围：
 
 作为序列的范围
 作为条件的范围
 作为间隔的范围
 
-作为序列的范围范围的第一个也是最常见的用途是表">
+作为序列的范围
+范围的第一个也是最常见的用途">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -435,7 +437,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        768
+                        732
                     </div>
                     
 
@@ -458,67 +460,88 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-范围（Range）"><a href="#Ruby-范围（Range）" class="headerlink" title="Ruby 范围（Range）"></a>Ruby 范围（Range）</h3><p>范围（Range）无处不在：a 到 z、 0 到 9、等等。Ruby 支持范围，并允许我们以不同的方式使用范围：</p>
+                <h3 id="Ruby-范围（Range）">Ruby 范围（Range）</h3>
+<p>范围（Range）无处不在：a 到 z、 0 到 9、等等。Ruby 支持范围，并允许我们以不同的方式使用范围：</p>
 <ul>
 <li>作为序列的范围</li>
 <li>作为条件的范围</li>
 <li>作为间隔的范围</li>
 </ul>
-<h4 id="作为序列的范围"><a href="#作为序列的范围" class="headerlink" title="作为序列的范围"></a>作为序列的范围</h4><p>范围的第一个也是最常见的用途是表达序列。序列有一个起点、一个终点和一个在序列产生连续值的方式。</p>
-<p>Ruby 使用 ‘’..’’ 和 ‘’…’’ 范围运算符创建这些序列。两点形式创建一个包含指定的最高值的范围，三点形式创建一个不包含指定的最高值的范围。</p>
+<h4 id="作为序列的范围">作为序列的范围</h4>
+<p>范围的第一个也是最常见的用途是表达序列。序列有一个起点、一个终点和一个在序列产生连续值的方式。</p>
+<p>Ruby 使用 ‘’…’’ 和 ‘’…’’ 范围运算符创建这些序列。两点形式创建一个包含指定的最高值的范围，三点形式创建一个不包含指定的最高值的范围。</p>
 <pre><code>(1..5)        #==&gt; 1, 2, 3, 4, 5
 (1...5)       #==&gt; 1, 2, 3, 4
-(&#39;a&#39;..&#39;d&#39;)    #==&gt; &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;
-</code></pre><p>序列 1..100 是一个 Range 对象，包含了两个 Fixnum 对象的引用。如果需要，您可以使用 to_a 方法把范围转换为列表。尝试下面的实例：</p>
+('a'..'d')    #==&gt; 'a', 'b', 'c', 'd'
+</code></pre>
+<p>序列 1…100 是一个 Range 对象，包含了两个 Fixnum 对象的引用。如果需要，您可以使用 to_a 方法把范围转换为列表。尝试下面的实例：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
-
+ 
 $, =&quot;, &quot;   # Array 值分隔符
 range1 = (1..10).to_a
-range2 = (&#39;bar&#39;..&#39;bat&#39;).to_a
-
+range2 = ('bar'..'bat').to_a
+ 
 puts &quot;#{range1}&quot;
 puts &quot;#{range2}&quot;
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]<br>[“bar”, “bas”, “bat”]</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]<br>
+[“bar”, “bas”, “bat”]</p>
 </blockquote>
 </div></div>
 <p>范围实现了让您可以遍历它们的方法，您可以通过多种方式检查它们的内容：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 # 指定范围
 digits = 0..9
-
+ 
 puts digits.include?(5)
 ret = digits.min
 puts &quot;最小值为 #{ret}&quot;
-
+ 
 ret = digits.max
 puts &quot;最大值为 #{ret}&quot;
-
+ 
 ret = digits.reject {|i| i &lt; 5 }
 puts &quot;不符合条件的有 #{ret}&quot;
-
+ 
 digits.each do |digit|
    puts &quot;在循环中 #{digit}&quot;
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>true<br>最小值为 0<br>最大值为 9<br>不符合条件的有 [5, 6, 7, 8, 9]<br>在循环中 0<br>在循环中 1<br>在循环中 2<br>在循环中 3<br>在循环中 4<br>在循环中 5<br>在循环中 6<br>在循环中 7<br>在循环中 8<br>在循环中 9</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>true<br>
+最小值为 0<br>
+最大值为 9<br>
+不符合条件的有 [5, 6, 7, 8, 9]<br>
+在循环中 0<br>
+在循环中 1<br>
+在循环中 2<br>
+在循环中 3<br>
+在循环中 4<br>
+在循环中 5<br>
+在循环中 6<br>
+在循环中 7<br>
+在循环中 8<br>
+在循环中 9</p>
 </blockquote>
 </div></div>
-<h4 id="作为条件的范围"><a href="#作为条件的范围" class="headerlink" title="作为条件的范围"></a>作为条件的范围</h4><p>范围也可以用作条件表达式。例如，下面的代码片段从标准输入打印行，其中每个集合的第一行包含单词 start，最后一行包含单词 end.：</p>
+<h4 id="作为条件的范围">作为条件的范围</h4>
+<p>范围也可以用作条件表达式。例如，下面的代码片段从标准输入打印行，其中每个集合的第一行包含单词 start，最后一行包含单词 end.：</p>
 <pre><code>while gets
    print if /start/../end/
 end
-</code></pre><p>范围可以用在 case 语句中：</p>
+</code></pre>
+<p>范围可以用在 case 语句中：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 score = 70
-
+ 
 result = case score
 when 0..40
     &quot;糟糕的分数&quot;
@@ -531,30 +554,34 @@ when 71..100
 else
     &quot;错误的分数&quot;
 end
-
+ 
 puts result
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
 <p>及格分数</p>
 </blockquote>
 </div></div>
-<h4 id="作为间隔的范围"><a href="#作为间隔的范围" class="headerlink" title="作为间隔的范围"></a>作为间隔的范围</h4><p>范围的最后一个用途是间隔检测：检查指定值是否在指定的范围内。需要使用 === 相等运算符来完成计算。</p>
+<h4 id="作为间隔的范围">作为间隔的范围</h4>
+<p>范围的最后一个用途是间隔检测：检查指定值是否在指定的范围内。需要使用 === 相等运算符来完成计算。</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 if ((1..10) === 5)
   puts &quot;5 在 (1..10)&quot;
 end
-
-if ((&#39;a&#39;..&#39;j&#39;) === &#39;c&#39;)
-  puts &quot;c 在 (&#39;a&#39;..&#39;j&#39;)&quot;
+ 
+if (('a'..'j') === 'c')
+  puts &quot;c 在 ('a'..'j')&quot;
 end
-
-if ((&#39;a&#39;..&#39;j&#39;) === &#39;z&#39;)
-  puts &quot;z 在 (&#39;a&#39;..&#39;j&#39;)&quot;
+ 
+if (('a'..'j') === 'z')
+  puts &quot;z 在 ('a'..'j')&quot;
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>5 在 (1..10)<br>c 在 (‘a’..’j’) </p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>5 在 (1…10)<br>
+c 在 (‘a’…‘j’)</p>
 </blockquote>
 </div></div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -739,8 +766,9 @@ end
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 迭代器简单来说：迭代(iterate)指的是重复做相同的事，所以迭代器(iterator)就是用来重复多次相同的事。
-迭代器是集合支持的方法。存储一组数据成员的对象称为集合。在 Ruby 中，数组(Array)和哈希(Hash)可</div>
+                    <div class="summary block-with-text">Ruby 迭代器
+简单来说：迭代(iterate)指的是重复做相同的事，所以迭代器(iterator)就是用来重复多次相同的事。
+迭代器是集合支持的方法。存储一组数据成员的对象称为集合。在 Ruby 中，数组(Array)和哈希(Hash)</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -785,9 +813,10 @@ end
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 日期 &amp; 时间（Date &amp; Time）Time 类在 Ruby 中用于表示日期和时间。它是基于操作系统提供的系统日期和时间之上。该类可能无法表示 1970 年之前或者 2038 年之后的日期。
+                    <div class="summary block-with-text">Ruby 日期 &amp; 时间（Date &amp; Time）
+Time 类在 Ruby 中用于表示日期和时间。它是基于操作系统提供的系统日期和时间之上。该类可能无法表示 1970 年之前或者 2038 年之后的日期。
 
-创建当前的日期和</div>
+创建当前的日期</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -965,7 +994,7 @@ end
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

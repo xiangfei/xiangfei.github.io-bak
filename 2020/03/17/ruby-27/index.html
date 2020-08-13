@@ -5,11 +5,13 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="ruby  zeitwerk, openstack,opennebula">
-    <meta name="description" content="reloadgem reloadrequire &#34;zeitwerk&#34;
+    <meta name="description" content="reload
+gem reload
+require &#34;zeitwerk&#34;
 @loader = Zeitwerk::Loader.for_gem
 @loader.enable_reloading
 @loader.setup
-def reload!">
+def reloa">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -433,7 +435,7 @@ def reload!">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        150
+                        155
                     </div>
                     
 
@@ -456,24 +458,27 @@ def reload!">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="reload"><a href="#reload" class="headerlink" title="reload"></a>reload</h3><h4 id="gem-reload"><a href="#gem-reload" class="headerlink" title="gem reload"></a>gem reload</h4><pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string">"zeitwerk"</span>
-<span class="token variable">@loader</span> <span class="token operator">=</span> <span class="token constant">Zeitwerk</span><span class="token punctuation">:</span><span class="token symbol">:Loader</span><span class="token punctuation">.</span>for_gem
-<span class="token variable">@loader</span><span class="token punctuation">.</span>enable_reloading
-<span class="token variable">@loader</span><span class="token punctuation">.</span>setup
-<span class="token keyword">def</span> reload<span class="token operator">!</span>
-  <span class="token variable">@loader</span><span class="token punctuation">.</span>reload
-<span class="token keyword">end</span>
+                <h3 id="reload">reload</h3>
+<h4 id="gem-reload">gem reload</h4>
+<pre class=" language-language-ruby"><code class="language-language-ruby">require "zeitwerk"
+@loader = Zeitwerk::Loader.for_gem
+@loader.enable_reloading
+@loader.setup
+def reload!
+  @loader.reload
+end
 
-<span class="token keyword">module</span> <span class="token constant">Teamwork</span>
+module Teamwork
 
-   include <span class="token constant">Logger</span>
-<span class="token keyword">end</span>
+   include Logger
+end
 
-loader<span class="token punctuation">.</span>eager_load
+loader.eager_load
 
 </code></pre>
 <blockquote>
-<p>teamwork/logger.rb<br>teamwork.rb</p>
+<p>teamwork/logger.rb<br>
+teamwork.rb</p>
 </blockquote>
 <pre><code>[root@autotest-ruby-agent zeitwerk_test]# ruby bin/console 
 2.4.5 :001 &gt; reload!
@@ -482,26 +487,33 @@ loader<span class="token punctuation">.</span>eager_load
 
 # 修改代码直接reload
 
-</code></pre><h3 id="FILE-Structure"><a href="#FILE-Structure" class="headerlink" title="FILE Structure"></a>FILE Structure</h3><pre><code>lib/my_gem.rb         -&gt; MyGem
+</code></pre>
+<h3 id="FILE-Structure">FILE Structure</h3>
+<pre><code>lib/my_gem.rb         -&gt; MyGem
 lib/my_gem/foo.rb     -&gt; MyGem::Foo
 lib/my_gem/bar_baz.rb -&gt; MyGem::BarBaz
 lib/my_gem/woo/zoo.rb -&gt; MyGem::Woo::Zoo
 
-</code></pre><h3 id="manual-add-file-to-load"><a href="#manual-add-file-to-load" class="headerlink" title="manual add file to load"></a>manual add file to load</h3><pre><code>loader.push_dir(Rails.root.join(&quot;app/models&quot;))
+</code></pre>
+<h3 id="manual-add-file-to-load">manual add file to load</h3>
+<pre><code>loader.push_dir(Rails.root.join(&quot;app/models&quot;))
 loader.push_dir(Rails.root.join(&quot;app/controllers&quot;))
 
 # 在 /app/models , app/controllers目录下查找
 
 app/models/user.rb                        -&gt; User
 app/controllers/admin/users_controller.rb -&gt; Admin::UsersController
-</code></pre><h3 id="Collapsing-directories"><a href="#Collapsing-directories" class="headerlink" title="Collapsing directories"></a>Collapsing directories</h3><pre><code>
+</code></pre>
+<h3 id="Collapsing-directories">Collapsing directories</h3>
+<pre><code>
 booking.rb                -&gt; Booking
 booking/actions/create.rb -&gt; Booking::Create
 
 loader.collapse(&quot;booking/actions&quot;)
 
 
-</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -688,6 +700,7 @@ loader.collapse(&quot;booking/actions&quot;)
 {% endplantuml %}
 
 
+
 </div>
                     <div class="publish-info">
                         <span class="publish-date">
@@ -734,13 +747,15 @@ loader.collapse(&quot;booking/actions&quot;)
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">puma 内存高
+
 puma 操作系统内存占用, 但会复用已经申请过的内存. 所以会随着每分钟请求量的增加导致内存不断上升. 如果超出某个极限, 则有可能导致内存爆掉
 
 解决方法
+
 手动kill  worker
 
 
-手动kill puma会自动</div>
+手动kill puma会</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-06
@@ -918,7 +933,7 @@ puma 操作系统内存占用, 但会复用已经申请过的内存. 所以会�
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

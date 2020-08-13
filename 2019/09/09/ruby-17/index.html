@@ -5,9 +5,10 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="ruby Date and Time, openstack,opennebula">
-    <meta name="description" content="Ruby 日期 &amp;amp; 时间（Date &amp;amp; Time）Time 类在 Ruby 中用于表示日期和时间。它是基于操作系统提供的系统日期和时间之上。该类可能无法表示 1970 年之前或者 2038 年之后的日期。
+    <meta name="description" content="Ruby 日期 &amp;amp; 时间（Date &amp;amp; Time）
+Time 类在 Ruby 中用于表示日期和时间。它是基于操作系统提供的系统日期和时间之上。该类可能无法表示 1970 年之前或者 2038 年之后的日期。
 
-创建当前的日期和">
+创建当前的日期">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -454,31 +455,36 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-日期-amp-时间（Date-amp-Time）"><a href="#Ruby-日期-amp-时间（Date-amp-Time）" class="headerlink" title="Ruby 日期 &amp; 时间（Date &amp; Time）"></a>Ruby 日期 &amp; 时间（Date &amp; Time）</h3><p><strong>Time</strong> 类在 Ruby 中用于表示日期和时间。它是基于操作系统提供的系统日期和时间之上。该类可能无法表示 1970 年之前或者 2038 年之后的日期。</p>
+                <h3 id="Ruby-日期-时间（Date-Time）">Ruby 日期 &amp; 时间（Date &amp; Time）</h3>
+<p><strong>Time</strong> 类在 Ruby 中用于表示日期和时间。它是基于操作系统提供的系统日期和时间之上。该类可能无法表示 1970 年之前或者 2038 年之后的日期。</p>
 <hr>
-<h4 id="创建当前的日期和时间"><a href="#创建当前的日期和时间" class="headerlink" title="创建当前的日期和时间"></a>创建当前的日期和时间</h4><p>下面是获取当前的日期和时间的简单实例：</p>
+<h4 id="创建当前的日期和时间">创建当前的日期和时间</h4>
+<p>下面是获取当前的日期和时间的简单实例：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby -w
 # -*- coding: UTF-8 -*-
-
+ 
 time1 = Time.new
-
+ 
 puts &quot;当前时间 : &quot; + time1.inspect
-
+ 
 # Time.now 功能相同
 time2 = Time.now
 puts &quot;当前时间 : &quot; + time2.inspect
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>当前时间 : 2015-09-17 15:23:14 +0800<br>当前时间 : 2015-09-17 15:23:14 +0800</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>当前时间 : 2015-09-17 15:23:14 +0800<br>
+当前时间 : 2015-09-17 15:23:14 +0800</p>
 </blockquote>
 </div></div>
-<h4 id="获取-Date-amp-Time-组件"><a href="#获取-Date-amp-Time-组件" class="headerlink" title="获取 Date &amp; Time 组件"></a>获取 Date &amp; Time 组件</h4><p>我们可以使用 Time 对象来获取各种日期和时间的组件。请看下面的实例：</p>
+<h4 id="获取-Date-Time-组件">获取 Date &amp; Time 组件</h4>
+<p>我们可以使用 Time 对象来获取各种日期和时间的组件。请看下面的实例：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby -w
 # -*- coding: UTF-8 -*-
-
+ 
 time = Time.new
-
+ 
 # Time 的组件
 puts &quot;当前时间 : &quot; + time.inspect
 puts time.year    # =&gt; 日期的年份
@@ -491,11 +497,23 @@ puts time.min     # =&gt; 59
 puts time.sec     # =&gt; 59
 puts time.usec    # =&gt; 999999：微秒
 puts time.zone    # =&gt; &quot;UTC&quot;：时区名称
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>当前时间 : 2015-09-17 15:24:44 +0800<br>2015<br>9<br>17<br>4<br>260<br>15<br>24<br>44<br>921519<br>CST</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>当前时间 : 2015-09-17 15:24:44 +0800<br>
+2015<br>
+9<br>
+17<br>
+4<br>
+260<br>
+15<br>
+24<br>
+44<br>
+921519<br>
+CST</p>
 </blockquote>
 </div></div>
-<h4 id="Time-utc、Time-gm-和-Time-local-函数"><a href="#Time-utc、Time-gm-和-Time-local-函数" class="headerlink" title="Time.utc、Time.gm 和 Time.local 函数"></a>Time.utc、Time.gm 和 Time.local 函数</h4><p>这些函数可用于格式化标准格式的日期，如下所示：</p>
+<h4 id="Time-utc、Time-gm-和-Time-local-函数">Time.utc、<a href="http://Time.gm" target="_blank" rel="noopener">Time.gm</a> 和 Time.local 函数</h4>
+<p>这些函数可用于格式化标准格式的日期，如下所示：</p>
 <pre><code># July 8, 2008
 Time.local(2008, 7, 8)  
 # July 8, 2008, 09:10am，本地时间
@@ -504,44 +522,50 @@ Time.local(2008, 7, 8, 9, 10)
 Time.utc(2008, 7, 8, 9, 10)  
 # July 8, 2008, 09:10:11 GMT （与 UTC 相同）
 Time.gm(2008, 7, 8, 9, 10, 11)
-</code></pre><p>下面的实例在数组中获取所有的组件：</p>
+</code></pre>
+<p>下面的实例在数组中获取所有的组件：</p>
 <pre><code>[sec,min,hour,day,month,year,wday,yday,isdst,zone]
-</code></pre><p>尝试下面的实例：</p>
+</code></pre>
+<p>尝试下面的实例：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby -w
-
+ 
 time = Time.new
-
+ 
 values = time.to_a
 p values
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
 <p>[39, 25, 15, 17, 9, 2015, 4, 260, false, “CST”]</p>
 </blockquote>
 </div></div>
 <p>该数组可被传到 Time.utc 或 Time.local 函数来获取日期的不同格式，如下所示：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby -w
-
+ 
 time = Time.new
-
+ 
 values = time.to_a
 puts Time.utc(*values)
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
 <p>2015-09-17 15:26:09 UTC</p>
 </blockquote>
 </div></div>
 <p>下面是获取时间的方式，从纪元以来的秒数（平台相关）：</p>
 <pre><code># 返回从纪元以来的秒数
 time = Time.now.to_i  
-
+ 
 # 把秒数转换为 Time 对象
 Time.at(time)
-
+ 
 # 返回从纪元以来的秒数，包含微妙
 time = Time.now.to_f
-</code></pre><h4 id="时区和夏令时"><a href="#时区和夏令时" class="headerlink" title="时区和夏令时"></a>时区和夏令时</h4><p>您可以使用 Time 对象来获取与时区和夏令时有关的所有信息，如下所示：</p>
+</code></pre>
+<h4 id="时区和夏令时">时区和夏令时</h4>
+<p>您可以使用 Time 对象来获取与时区和夏令时有关的所有信息，如下所示：</p>
 <pre><code>time = Time.new
-
+ 
 # 这里是解释
 time.zone       # =&gt; &quot;UTC&quot;：返回时区
 time.utc_offset # =&gt; 0：UTC 是相对于 UTC 的 0 秒偏移
@@ -552,20 +576,27 @@ time.localtime  # 转换为本地时区
 time.gmtime     # 转换回 UTC
 time.getlocal   # 返回本地区中的一个新的 Time 对象
 time.getutc     # 返回 UTC 中的一个新的 Time 对象
-</code></pre><h4 id="格式化时间和日期"><a href="#格式化时间和日期" class="headerlink" title="格式化时间和日期"></a>格式化时间和日期</h4><p>有多种方式格式化日期和时间。下面的实例演示了其中一部分：</p>
+</code></pre>
+<h4 id="格式化时间和日期">格式化时间和日期</h4>
+<p>有多种方式格式化日期和时间。下面的实例演示了其中一部分：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby -w
 time = Time.new
-
+ 
 puts time.to_s
 puts time.ctime
 puts time.localtime
 puts time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>2015-09-17 15:26:42 +0800<br>Thu Sep 17 15:26:42 2015<br>2015-09-17 15:26:42 +0800<br>2015-09-17 15:26:42</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>2015-09-17 15:26:42 +0800<br>
+Thu Sep 17 15:26:42 2015<br>
+2015-09-17 15:26:42 +0800<br>
+2015-09-17 15:26:42</p>
 </blockquote>
 </div></div>
-<h4 id="时间格式化指令"><a href="#时间格式化指令" class="headerlink" title="时间格式化指令"></a>时间格式化指令</h4><p>下表所列出的指令与方法 Time.strftime 一起使用。</p>
+<h4 id="时间格式化指令">时间格式化指令</h4>
+<p>下表所列出的指令与方法 Time.strftime 一起使用。</p>
 <table>
 <thead>
 <tr>
@@ -664,20 +695,25 @@ puts time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)
 </tr>
 </tbody>
 </table>
-<h4 id="时间算法"><a href="#时间算法" class="headerlink" title="时间算法"></a>时间算法</h4><p>您可以用时间做一些简单的算术，如下所示：</p>
+<h4 id="时间算法">时间算法</h4>
+<p>您可以用时间做一些简单的算术，如下所示：</p>
 <pre><code>now = Time.now           # 当前时间
 puts now
-
+ 
 past = now - 10          # 10 秒之前。Time - number =&gt; Time
 puts past
-
+ 
 future = now + 10        # 从现在开始 10 秒之后。Time + number =&gt; Time
 puts future
-
+ 
 diff = future - now      # =&gt; 10  Time - Time =&gt; 秒数
 puts diff
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>2015-09-17 15:27:08 +0800<br>2015-09-17 15:26:58 +0800<br>2015-09-17 15:27:18 +0800<br>10.0</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>2015-09-17 15:27:08 +0800<br>
+2015-09-17 15:26:58 +0800<br>
+2015-09-17 15:27:18 +0800<br>
+10.0</p>
 </blockquote>
 </div></div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -862,13 +898,15 @@ puts diff
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 范围（Range）范围（Range）无处不在：a 到 z、 0 到 9、等等。Ruby 支持范围，并允许我们以不同的方式使用范围：
+                    <div class="summary block-with-text">Ruby 范围（Range）
+范围（Range）无处不在：a 到 z、 0 到 9、等等。Ruby 支持范围，并允许我们以不同的方式使用范围：
 
 作为序列的范围
 作为条件的范围
 作为间隔的范围
 
-作为序列的范围范围的第一个也是最常见的用途是表</div>
+作为序列的范围
+范围的第一个也是最常见的用途</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -914,9 +952,10 @@ puts diff
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">Ruby 哈希（Hash）
+
 哈希（Hash）是类似 “key” =&gt; “value” 这样的键值对集合。哈希类似于一个数组，只不过它的索引不局限于使用数字。
-Hash 的索引（或者叫”键”）几乎可以是任何对象。
-Hash 虽然和数组类</div>
+Hash 的索引（或者叫&quot;键&quot;）几乎可以是任何对象。
+</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -1094,7 +1133,7 @@ Hash 虽然和数组类</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

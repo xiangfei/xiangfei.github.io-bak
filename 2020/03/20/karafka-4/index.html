@@ -5,12 +5,14 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="karafka 集群配置, openstack,opennebula">
-    <meta name="description" content="ruby  zookeeper 配置require &#39;zk&#39;
+    <meta name="description" content="ruby  zookeeper 配置
+require &#39;zk&#39;
 
 zk = ZK.new(&#34;127.0.0.1:2181,127.0.0.1:2281,127.0.0.1:2381&#34;)
 
 
-karafka 配置    kafk_conn = ">
+karafka 配置
+    kafk_conn ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -430,7 +432,7 @@ karafka 配置    kafk_conn = ">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        53
+                        44
                     </div>
                     
 
@@ -453,16 +455,18 @@ karafka 配置    kafk_conn = ">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="ruby-zookeeper-配置"><a href="#ruby-zookeeper-配置" class="headerlink" title="ruby  zookeeper 配置"></a>ruby  zookeeper 配置</h2><pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string">'zk'</span>
+                <h2 id="ruby-zookeeper-配置">ruby  zookeeper 配置</h2>
+<pre class=" language-language-ruby"><code class="language-language-ruby">require 'zk'
 
-zk <span class="token operator">=</span> <span class="token constant">ZK</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1:2181,127.0.0.1:2281,127.0.0.1:2381"</span><span class="token punctuation">)</span>
+zk = ZK.new("127.0.0.1:2181,127.0.0.1:2281,127.0.0.1:2381")
 
 </code></pre>
-<h2 id="karafka-配置"><a href="#karafka-配置" class="headerlink" title="karafka 配置"></a>karafka 配置</h2><pre class=" language-ruby"><code class="language-ruby">    kafk_conn <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token constant">Awifi</span><span class="token punctuation">:</span><span class="token symbol">:Consul</span><span class="token punctuation">:</span><span class="token symbol">:Kv</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"devops/devops-server"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">"kafka_conn"</span><span class="token punctuation">]</span>
-    kafk_conn<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>conn<span class="token operator">|</span>
-      connect <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token string">"kafka://<span class="token interpolation"><span class="token delimiter tag">#{</span>conn<span class="token delimiter tag">}</span></span>"</span>
-    <span class="token keyword">end</span>
-    config<span class="token punctuation">.</span>kafka<span class="token punctuation">.</span>seed_brokers <span class="token operator">=</span> connect
+<h2 id="karafka-配置">karafka 配置</h2>
+<pre class=" language-language-ruby"><code class="language-language-ruby">    kafk_conn = JSON.load(Awifi::Consul::Kv.get("devops/devops-server"))["kafka_conn"]
+    kafk_conn.split(",").each do |conn|
+      connect << "kafka://#{conn}"
+    end
+    config.kafka.seed_brokers = connect
 
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -647,7 +651,8 @@ zk <span class="token operator">=</span> <span class="token constant">ZK</span><
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">metadata servercurl http://169.254.169.254/latest/meta-data/local-ipv4
+                    <div class="summary block-with-text">metadata server
+curl http://169.254.169.254/latest/meta-data/local-ipv4
 
 
 </div>
@@ -698,6 +703,7 @@ zk <span class="token operator">=</span> <span class="token constant">ZK</span><
                     <div class="summary block-with-text">{% plantuml %}
     Bob->Alice : hello
 {% endplantuml %}
+
 
 
 </div>
@@ -878,7 +884,7 @@ zk <span class="token operator">=</span> <span class="token constant">ZK</span><
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

@@ -5,10 +5,12 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="spirent 测试, openstack,opennebula">
-    <meta name="description" content="spirent 流量测试spirent 主流程
+    <meta name="description" content="spirent 流量测试
+spirent 主流程
+
 step up a communication between your pc and your spirent testcenter chassis
 prepare DUT/SUT
-conn">
+co">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -459,7 +461,9 @@ conn">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="spirent-流量测试"><a href="#spirent-流量测试" class="headerlink" title="spirent 流量测试"></a>spirent 流量测试</h3><h4 id="spirent-主流程"><a href="#spirent-主流程" class="headerlink" title="spirent 主流程"></a>spirent 主流程</h4><ul>
+                <h3 id="spirent-流量测试">spirent 流量测试</h3>
+<h4 id="spirent-主流程">spirent 主流程</h4>
+<ul>
 <li>step up a communication between your pc and your spirent testcenter chassis</li>
 <li>prepare DUT/SUT</li>
 <li>connect spirent testcenter chassis to DUT/SUT</li>
@@ -473,12 +477,14 @@ conn">
 <li>review/retrive the test results</li>
 <li>cleanup  after finish</li>
 </ul>
-<h4 id="监控项"><a href="#监控项" class="headerlink" title="监控项"></a>监控项</h4><ul>
+<h4 id="监控项">监控项</h4>
+<ul>
 <li>吞吐量</li>
 <li>frame lost</li>
 <li>延时时间</li>
 </ul>
-<h4 id="tcl-demo"><a href="#tcl-demo" class="headerlink" title="tcl demo"></a>tcl demo</h4><pre><code>###############################################################################
+<h4 id="tcl-demo">tcl demo</h4>
+<pre><code>###############################################################################
 #
 #                     2544 Spirent TestCenter Lingo Example
 #                         by Spirent Communications
@@ -515,7 +521,7 @@ conn">
 # are met:
 #  1. Redistribution of source code must retain the above copyright notice,
 #     this list of conditions and the following disclaimer.
-#  2. Redistribution&#39;s in binary form must reproduce the above copyright notice.
+#  2. Redistribution's in binary form must reproduce the above copyright notice.
 #     This list of conditions and the following disclaimer in the documentation
 #     and/or other materials provided with the distribution.
 #  3. Neither the name SPIRENT, SPIRENT COMMUNICATIONS, SMARTBITS, nor the names
@@ -570,7 +576,7 @@ set framesizelist &quot;64 1518&quot;
 
 proc debugGUI { } {
     # This procedure displays a Tk-based object browser, allowing the user to
-    # view the API&#39;s entire object tree.
+    # view the API's entire object tree.
     package require stclib
 
     stclib::gdbg::stcdebug on
@@ -640,7 +646,7 @@ proc createReport { databasefilename reportfilename template } {
 
 # Create the root project object
 puts &quot;Creating project ...&quot;
-set project [stc::create project]       ;# Storing the project handle isn&#39;t necessary, but I&#39;ll do it here.
+set project [stc::create project]       ;# Storing the project handle isn't necessary, but I'll do it here.
 
 stc::config automationoptions -logTo             &quot;stcapi.log&quot; \
                               -logLevel          INFO         \
@@ -664,7 +670,7 @@ foreach port $locationlist {
 
 # You have the option to create the hosts individually, or by using the &quot;wizard&quot; (DeviceGenConfigExpand).
 # If you create the hosts individually, you have more flexibility in assigning the addressing to the hosts.
-# However, my emulated host addresses are in a single, contiguous sequence, so I&#39;m going to use the wizard.
+# However, my emulated host addresses are in a single, contiguous sequence, so I'm going to use the wizard.
 # The following code will create a &quot;Host&quot; object on each port in the configuration.
 stc::perform DeviceGenConfigExpand -DeleteExisting yes                                     \
                                    -HostGenParams [list                                    \
@@ -724,7 +730,7 @@ puts &quot;The test has completed...Saving results...&quot;
 set resultsdb [stc::get system1.project.TestResultSetting -CurrentResultFileName]
 
 
-puts &quot;The results database is &#39;$resultsdb&#39;&quot;
+puts &quot;The results database is '$resultsdb'&quot;
 
 
 if {0} {
@@ -742,7 +748,8 @@ if {0} {
 puts &quot;Done!&quot;
 
 
-</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -924,9 +931,12 @@ puts &quot;Done!&quot;
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">安装安装rvm在线安装
-gpg –keyserver hkp://keys.gnupg.net –recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-curl -sSL https://ge</div>
+                    <div class="summary block-with-text">安装
+安装rvm
+在线安装
+
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-22
@@ -972,6 +982,7 @@ curl -sSL https://ge</div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">nginx 配置
+
 proxy_set_header Connection ‘’;
 proxy_buffering off;
 proxy_cache off;
@@ -1163,7 +1174,7 @@ proxy_http_version 1.1;
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

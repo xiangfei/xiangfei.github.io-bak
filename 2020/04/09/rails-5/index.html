@@ -6,19 +6,18 @@
     <meta charset="utf-8">
     <meta name="keywords" content="sidekiq karafka  微服务(consul), openstack,opennebula">
     <meta name="description" content="sidekiq
+
 官方没有实现的方法
 k8s 直接重启容器
 虚拟器 重启应用
 
-
-
 虚拟机重启的方式 GOD
+
 god 监听consul ,发现字段变化重启
 consul挂机,连接失败,跳过
-
-
 扩展PollCondition test 方法
-">
+
+r">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -438,7 +437,7 @@ consul挂机,连接失败,跳过
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        303
+                        301
                     </div>
                     
 
@@ -461,99 +460,98 @@ consul挂机,连接失败,跳过
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="sidekiq"><a href="#sidekiq" class="headerlink" title="sidekiq"></a>sidekiq</h4><ul>
-<li>官方没有实现的方法<ul>
+                <h4 id="sidekiq">sidekiq</h4>
+<ul>
+<li>官方没有实现的方法</li>
 <li>k8s 直接重启容器</li>
 <li>虚拟器 重启应用</li>
 </ul>
-</li>
-</ul>
-<h4 id="虚拟机重启的方式-GOD"><a href="#虚拟机重启的方式-GOD" class="headerlink" title="虚拟机重启的方式 GOD"></a>虚拟机重启的方式 GOD</h4><ul>
-<li>god 监听consul ,发现字段变化重启<ul>
+<h4 id="虚拟机重启的方式-GOD">虚拟机重启的方式 GOD</h4>
+<ul>
+<li>god 监听consul ,发现字段变化重启</li>
 <li>consul挂机,连接失败,跳过</li>
-</ul>
-</li>
 <li>扩展PollCondition test 方法</li>
 </ul>
-<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string">"diplomat"</span>
-<span class="token keyword">require</span> <span class="token string">"yaml"</span>
-<span class="token constant">RAILS_ROOT</span> <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span>dirname <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">expand_path</span><span class="token punctuation">(</span>__FILE__<span class="token punctuation">)</span>
-<span class="token constant">CONSUL</span> <span class="token operator">=</span> <span class="token constant">YAML</span><span class="token punctuation">.</span><span class="token function">load_file</span><span class="token punctuation">(</span><span class="token string">"<span class="token interpolation"><span class="token delimiter tag">#{</span>RAILS_ROOT<span class="token delimiter tag">}</span></span>/config/consul.yaml"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">"consul"</span><span class="token punctuation">]</span>
-<span class="token keyword">module</span> <span class="token constant">God</span>
-  <span class="token keyword">module</span> <span class="token constant">Conditions</span>
-    <span class="token keyword">class</span> <span class="token class-name">AwifiConsul</span> <span class="token operator">&lt;</span> <span class="token constant">PollCondition</span>
-      attr_accessor <span class="token symbol">:file</span>
-      <span class="token keyword">def</span> initialize
-        <span class="token keyword">super</span>
-        <span class="token keyword">self</span><span class="token punctuation">.</span>setupdiplomat
-      <span class="token keyword">end</span>
-      <span class="token keyword">def</span> setupdiplomat
-        <span class="token punctuation">:</span><span class="token symbol">:Diplomat</span><span class="token punctuation">.</span>configure <span class="token keyword">do</span> <span class="token operator">|</span>config<span class="token operator">|</span>
-          config<span class="token punctuation">.</span>url <span class="token operator">=</span> <span class="token constant">CONSUL</span><span class="token punctuation">[</span><span class="token string">"url"</span><span class="token punctuation">]</span>
-          config<span class="token punctuation">.</span>options <span class="token operator">=</span> <span class="token constant">CONSUL</span><span class="token punctuation">[</span><span class="token string">"opts"</span><span class="token punctuation">]</span>
-        <span class="token keyword">end</span>
-      <span class="token keyword">end</span>
-      <span class="token keyword">def</span> prepare
-        <span class="token variable">@timeline</span> <span class="token operator">=</span> <span class="token constant">Timeline</span><span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">2</span>
-      <span class="token keyword">end</span>
+<pre class=" language-language-ruby"><code class="language-language-ruby">require "diplomat"
+require "yaml"
+RAILS_ROOT = File.dirname File.expand_path(__FILE__)
+CONSUL = YAML.load_file("#{RAILS_ROOT}/config/consul.yaml")["consul"]
+module God
+  module Conditions
+    class AwifiConsul < PollCondition
+      attr_accessor :file
+      def initialize
+        super
+        self.setupdiplomat
+      end
+      def setupdiplomat
+        ::Diplomat.configure do |config|
+          config.url = CONSUL["url"]
+          config.options = CONSUL["opts"]
+        end
+      end
+      def prepare
+        @timeline = Timeline.new 2
+      end
 
-      <span class="token keyword">def</span> reset
-        <span class="token variable">@timeline</span><span class="token punctuation">.</span>clear
-      <span class="token keyword">end</span>
-      <span class="token keyword">def</span> valid<span class="token operator">?</span>
-        valid <span class="token operator">=</span> <span class="token keyword">true</span>
-        valid <span class="token operator">&amp;</span><span class="token operator">=</span> <span class="token function">complain</span><span class="token punctuation">(</span><span class="token string">"Attribute 'file' must be specified"</span><span class="token punctuation">,</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token keyword">self</span><span class="token punctuation">.</span>file<span class="token punctuation">.</span><span class="token keyword">nil</span><span class="token operator">?</span>
+      def reset
+        @timeline.clear
+      end
+      def valid?
+        valid = true
+        valid &= complain("Attribute 'file' must be specified", self) if self.file.nil?
         valid
-      <span class="token keyword">end</span>
-      <span class="token comment" spellcheck="true">#如果 true 重启 , false skip</span>
-      <span class="token keyword">def</span> test
-        data <span class="token operator">=</span> <span class="token punctuation">:</span><span class="token symbol">:Diplomat</span><span class="token punctuation">:</span><span class="token symbol">:Kv</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>file<span class="token punctuation">)</span>
-        <span class="token variable">@timeline</span><span class="token punctuation">.</span>push data
-        p <span class="token variable">@timeline</span><span class="token punctuation">.</span>length
-        a <span class="token operator">=</span> <span class="token variable">@timeline</span><span class="token punctuation">.</span>all<span class="token operator">?</span> <span class="token keyword">do</span> <span class="token operator">|</span>x<span class="token operator">|</span>
-          x <span class="token operator">==</span> data
-        <span class="token keyword">end</span>
-        <span class="token operator">!</span>a
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
-<span class="token keyword">end</span>
+      end
+      #如果 true 重启 , false skip
+      def test
+        data = ::Diplomat::Kv.get(self.file)
+        @timeline.push data
+        p @timeline.length
+        a = @timeline.all? do |x|
+          x == data
+        end
+        !a
+      end
+    end
+  end
+end
 
 
-<span class="token constant">God</span><span class="token punctuation">.</span>watch <span class="token keyword">do</span> <span class="token operator">|</span>w<span class="token operator">|</span>
+God.watch do |w|
 
-  w<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"sidekiq"</span>
-  w<span class="token punctuation">.</span>dir <span class="token operator">=</span> <span class="token constant">RAILS_ROOT</span>
-  w<span class="token punctuation">.</span>env <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">'RAILS_ROOT'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"<span class="token interpolation"><span class="token delimiter tag">#{</span>RAILS_ROOT<span class="token delimiter tag">}</span></span>"</span><span class="token punctuation">,</span> <span class="token string">'RAILS_ENV'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"production"</span> <span class="token punctuation">}</span>
-  w<span class="token punctuation">.</span>pid_file <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token constant">RAILS_ROOT</span><span class="token punctuation">,</span> <span class="token string">"tmp/pids/sidekiq.pid"</span><span class="token punctuation">)</span>
-  w<span class="token punctuation">.</span>start <span class="token operator">=</span> <span class="token string">"bundle exec sidekiq  -P <span class="token interpolation"><span class="token delimiter tag">#{</span>RAILS_ROOT<span class="token delimiter tag">}</span></span>/tmp/pids/sidekiq.pid -d"</span>
-  <span class="token comment" spellcheck="true">#w.stop =  "kill -9 `cat #{RAILS_ROOT}/tmp/pids/sidekiq.pid`"</span>
-  <span class="token comment" spellcheck="true">#w.restart = "kill -9 `cat #{RAILS_ROOT}/tmp/pids/sidekiq.pid` ; bundle exec rails restart -P #{RAILS_ROOT}/tmp/pids/sidekiq.pid"</span>
-  w<span class="token punctuation">.</span>keepalive
-  w<span class="token punctuation">.</span>restart_if <span class="token keyword">do</span> <span class="token operator">|</span>restart<span class="token operator">|</span>
-    restart<span class="token punctuation">.</span><span class="token function">condition</span><span class="token punctuation">(</span><span class="token symbol">:awifi_consul</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>c<span class="token operator">|</span>
-      c<span class="token punctuation">.</span>interval <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">.</span>seconds
-      c<span class="token punctuation">.</span>file <span class="token operator">=</span> <span class="token string">"devops/automationtesting-backend"</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+  w.name = "sidekiq"
+  w.dir = RAILS_ROOT
+  w.env = { 'RAILS_ROOT' => "#{RAILS_ROOT}", 'RAILS_ENV' => "production" }
+  w.pid_file = File.join(RAILS_ROOT, "tmp/pids/sidekiq.pid")
+  w.start = "bundle exec sidekiq  -P #{RAILS_ROOT}/tmp/pids/sidekiq.pid -d"
+  #w.stop =  "kill -9 `cat #{RAILS_ROOT}/tmp/pids/sidekiq.pid`"
+  #w.restart = "kill -9 `cat #{RAILS_ROOT}/tmp/pids/sidekiq.pid` ; bundle exec rails restart -P #{RAILS_ROOT}/tmp/pids/sidekiq.pid"
+  w.keepalive
+  w.restart_if do |restart|
+    restart.condition(:awifi_consul) do |c|
+      c.interval = 5.seconds
+      c.file = "devops/automationtesting-backend"
+    end
+  end
 
 
-<span class="token keyword">end</span>
+end
 
 
 </code></pre>
-<h4 id="启动方式"><a href="#启动方式" class="headerlink" title="启动方式"></a>启动方式</h4><ul>
-<li><p>bundle exec  god -c sidekiq.god</p>
+<h4 id="启动方式">启动方式</h4>
+<ul>
+<li>bundle exec  god -c sidekiq.god</li>
+</ul>
 <blockquote>
 <p>god 默认后台启动</p>
 </blockquote>
-</li>
-<li><p>bundle exec  god restart -c sidekiq.god </p>
+<ul>
+<li>bundle exec  god restart -c sidekiq.god</li>
+</ul>
 <blockquote>
 <p>配置pid文件,不需要重新写restart脚本</p>
 </blockquote>
-</li>
-</ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
@@ -736,9 +734,12 @@ consul挂机,连接失败,跳过
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">现象客户端处理,突然member 下线
-原因代码问题batch处理queue过多, 单条处理时间长, 被踢下线
+                    <div class="summary block-with-text">现象
+客户端处理,突然member 下线
+原因
+代码问题batch处理queue过多, 单条处理时间长, 被踢下线
 解决方式
+
 优化代码
 
 
@@ -781,7 +782,8 @@ consul挂机,连接失败,跳过
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">metadata servercurl http://169.254.169.254/latest/meta-data/local-ipv4
+                    <div class="summary block-with-text">metadata server
+curl http://169.254.169.254/latest/meta-data/local-ipv4
 
 
 </div>
@@ -962,7 +964,7 @@ consul挂机,连接失败,跳过
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

@@ -5,10 +5,11 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="karafka 业务监控, openstack,opennebula">
-    <meta name="description" content="karafka 使用ruby kafka monitor 监控业务状态#frozen_string_literal: true
+    <meta name="description" content="karafka 使用ruby kafka monitor 监控业务状态
+#frozen_string_literal: true
 
 ENV[&#34;RAILS_ENV&#34;] ||= &#34;development&#34;
-ENV[&#34;KARAFKA_ENV&#34;] =">
+ENV[&#34;KARAFKA_ENV&#34;] ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -428,14 +429,14 @@ ENV[&#34;KARAFKA_ENV&#34;] =">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        800
+                        112
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        1 分
                     </div>
                     
                 
@@ -451,255 +452,256 @@ ENV[&#34;KARAFKA_ENV&#34;] =">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="karafka-使用ruby-kafka-monitor-监控业务状态"><a href="#karafka-使用ruby-kafka-monitor-监控业务状态" class="headerlink" title="karafka 使用ruby kafka monitor 监控业务状态"></a>karafka 使用ruby kafka monitor 监控业务状态</h3><pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#frozen_string_literal: true</span>
+                <h3 id="karafka-使用ruby-kafka-monitor-监控业务状态">karafka 使用ruby kafka monitor 监控业务状态</h3>
+<pre class=" language-language-ruby"><code class="language-language-ruby">#frozen_string_literal: true
 
-<span class="token constant">ENV</span><span class="token punctuation">[</span><span class="token string">"RAILS_ENV"</span><span class="token punctuation">]</span> <span class="token operator">||</span><span class="token operator">=</span> <span class="token string">"development"</span>
-<span class="token constant">ENV</span><span class="token punctuation">[</span><span class="token string">"KARAFKA_ENV"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">ENV</span><span class="token punctuation">[</span><span class="token string">"RAILS_ENV"</span><span class="token punctuation">]</span>
-<span class="token keyword">require</span> <span class="token punctuation">:</span><span class="token symbol">:File</span><span class="token punctuation">.</span><span class="token function">expand_path</span><span class="token punctuation">(</span><span class="token string">"../config/environment"</span><span class="token punctuation">,</span> __FILE__<span class="token punctuation">)</span>
-<span class="token constant">Rails</span><span class="token punctuation">.</span>application<span class="token punctuation">.</span>eager_load<span class="token operator">!</span>
-<span class="token comment" spellcheck="true"># This lines will make Karafka print to stdout like puma or unicorn</span>
-<span class="token keyword">if</span> <span class="token constant">Rails</span><span class="token punctuation">.</span>env<span class="token punctuation">.</span>development<span class="token operator">?</span>
-  <span class="token constant">Rails</span><span class="token punctuation">.</span>logger<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span>
-    <span class="token constant">ActiveSupport</span><span class="token punctuation">:</span><span class="token symbol">:Logger</span><span class="token punctuation">.</span><span class="token function">broadcast</span><span class="token punctuation">(</span>
-      <span class="token constant">ActiveSupport</span><span class="token punctuation">:</span><span class="token symbol">:Logger</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token variable">$stdout</span><span class="token punctuation">)</span>
-    <span class="token punctuation">)</span>
-  <span class="token punctuation">)</span>
-<span class="token keyword">end</span>
-<span class="token constant">ENV</span><span class="token punctuation">[</span><span class="token string">"KARAFKA_ROOT_DIR"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">expand_path</span><span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">,</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">dirname</span><span class="token punctuation">(</span>__FILE__<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">require</span> <span class="token string">"active_support/notifications"</span>
+ENV["RAILS_ENV"] ||= "development"
+ENV["KARAFKA_ENV"] = ENV["RAILS_ENV"]
+require ::File.expand_path("../config/environment", __FILE__)
+Rails.application.eager_load!
+# This lines will make Karafka print to stdout like puma or unicorn
+if Rails.env.development?
+  Rails.logger.extend(
+    ActiveSupport::Logger.broadcast(
+      ActiveSupport::Logger.new($stdout)
+    )
+  )
+end
+ENV["KARAFKA_ROOT_DIR"] = File.expand_path(".", File.dirname(__FILE__))
+require "active_support/notifications"
 
-<span class="token keyword">class</span> <span class="token class-name">KarafkaApp</span> <span class="token operator">&lt;</span> <span class="token constant">Karafka</span><span class="token punctuation">:</span><span class="token symbol">:App</span>
-  setup <span class="token keyword">do</span> <span class="token operator">|</span>config<span class="token operator">|</span>
-    kflogger <span class="token operator">=</span> <span class="token constant">ActiveSupport</span><span class="token punctuation">:</span><span class="token symbol">:Logger</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token string">"log/karafka.log"</span><span class="token punctuation">)</span>
-    config<span class="token punctuation">.</span>batch_fetching <span class="token operator">=</span> <span class="token keyword">true</span>
-    <span class="token comment" spellcheck="true">#config.backend = :sidekiq</span>
-    <span class="token comment" spellcheck="true">#config.monitor = ActiveSupport::Notifications</span>
-    config<span class="token punctuation">.</span>batch_consuming <span class="token operator">=</span> <span class="token keyword">true</span>
-    connect <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-    kafk_conn <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token constant">Awifi</span><span class="token punctuation">:</span><span class="token symbol">:Consul</span><span class="token punctuation">:</span><span class="token symbol">:Kv</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"devops/devops-server"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">"kafka_conn"</span><span class="token punctuation">]</span>
+class KarafkaApp < Karafka::App
+  setup do |config|
+    kflogger = ActiveSupport::Logger.new("log/karafka.log")
+    config.batch_fetching = true
+    #config.backend = :sidekiq
+    #config.monitor = ActiveSupport::Notifications
+    config.batch_consuming = true
+    connect = []
+    kafk_conn = JSON.load(Awifi::Consul::Kv.get("devops/devops-server"))["kafka_conn"]
 
-    kafk_conn<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>conn<span class="token operator">|</span>
-      connect <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token string">"kafka://<span class="token interpolation"><span class="token delimiter tag">#{</span>conn<span class="token delimiter tag">}</span></span>"</span>
-    <span class="token keyword">end</span>
-    <span class="token comment" spellcheck="true">#config.kafka.seed_brokers =  ["kafka://192.168.212.58:9092",  "kafka://192.168.213.37:9092" , "kafka://192.168.213.35:9092"]</span>
-    config<span class="token punctuation">.</span>kafka<span class="token punctuation">.</span>seed_brokers <span class="token operator">=</span> connect
-    config<span class="token punctuation">.</span>kafka<span class="token punctuation">.</span>start_from_beginning <span class="token operator">=</span> <span class="token keyword">false</span>
-    config<span class="token punctuation">.</span>kafka<span class="token punctuation">.</span>automatically_mark_as_consumed <span class="token operator">=</span> <span class="token keyword">true</span>
-    <span class="token comment" spellcheck="true">#config.kafka.fetcher_max_queue_size = 100</span>
-    <span class="token comment" spellcheck="true">#config.kafka.offset_commit_interval = 10</span>
-    <span class="token comment" spellcheck="true">#config.kafka.offset_commit_threshold = 100</span>
-    <span class="token comment" spellcheck="true">#config.kafka.offset_retention_time = 7 * 60 * 60</span>
-    config<span class="token punctuation">.</span>kafka<span class="token punctuation">.</span>session_timeout <span class="token operator">=</span> <span class="token number">300</span>  <span class="token comment" spellcheck="true">#调整时间，保证数据处理完,数据过大?</span>
-    <span class="token comment" spellcheck="true">#config.kafka.socket_timeout =  300</span>
-    <span class="token comment" spellcheck="true">#config.kafka.max_wait_time =  300</span>
-    <span class="token comment" spellcheck="true">#config.kafka.max_bytes_per_partition = 10 * 1024 * 1024</span>
-    <span class="token comment" spellcheck="true">#config.client_id = "teamwork_manage_#{ENV["HOSTNAME"]}"</span>
-    config<span class="token punctuation">.</span>client_id <span class="token operator">=</span> <span class="token string">"devops_server"</span>
-    <span class="token keyword">if</span> <span class="token constant">Rails</span><span class="token punctuation">.</span>env<span class="token punctuation">.</span>development<span class="token operator">?</span>
-      config<span class="token punctuation">.</span>logger <span class="token operator">=</span> <span class="token constant">Rails</span><span class="token punctuation">.</span>logger
-    <span class="token keyword">else</span>
-      kflogger<span class="token punctuation">.</span>level <span class="token operator">=</span> <span class="token constant">Logger</span><span class="token punctuation">:</span><span class="token symbol">:ERROR</span>
-      config<span class="token punctuation">.</span>logger <span class="token operator">=</span> kflogger
-    <span class="token keyword">end</span>
-    config<span class="token punctuation">.</span>monitor <span class="token operator">=</span> <span class="token constant">ActiveSupport</span><span class="token punctuation">:</span><span class="token symbol">:Notifications</span>
-  <span class="token keyword">end</span>
+    kafk_conn.split(",").each do |conn|
+      connect << "kafka://#{conn}"
+    end
+    #config.kafka.seed_brokers =  ["kafka://192.168.212.58:9092",  "kafka://192.168.213.37:9092" , "kafka://192.168.213.35:9092"]
+    config.kafka.seed_brokers = connect
+    config.kafka.start_from_beginning = false
+    config.kafka.automatically_mark_as_consumed = true
+    #config.kafka.fetcher_max_queue_size = 100
+    #config.kafka.offset_commit_interval = 10
+    #config.kafka.offset_commit_threshold = 100
+    #config.kafka.offset_retention_time = 7 * 60 * 60
+    config.kafka.session_timeout = 300  #调整时间，保证数据处理完,数据过大?
+    #config.kafka.socket_timeout =  300
+    #config.kafka.max_wait_time =  300
+    #config.kafka.max_bytes_per_partition = 10 * 1024 * 1024
+    #config.client_id = "teamwork_manage_#{ENV["HOSTNAME"]}"
+    config.client_id = "devops_server"
+    if Rails.env.development?
+      config.logger = Rails.logger
+    else
+      kflogger.level = Logger::ERROR
+      config.logger = kflogger
+    end
+    config.monitor = ActiveSupport::Notifications
+  end
 
-  <span class="token comment" spellcheck="true"># Comment out this part if you are not using instrumentation and/or you are not</span>
-  <span class="token comment" spellcheck="true"># interested in logging events for certain environments. Since instrumentation</span>
-  <span class="token comment" spellcheck="true"># notifications add extra boilerplate, if you want to achieve max performance,</span>
-  <span class="token comment" spellcheck="true"># listen to only what you really need for given environment.</span>
+  # Comment out this part if you are not using instrumentation and/or you are not
+  # interested in logging events for certain environments. Since instrumentation
+  # notifications add extra boilerplate, if you want to achieve max performance,
+  # listen to only what you really need for given environment.
 
-  <span class="token comment" spellcheck="true">#  Karafka.monitor.subscribe(WaterDrop::Instrumentation::StdoutListener.new)</span>
-  <span class="token comment" spellcheck="true">#  Karafka.monitor.subscribe(Karafka::Instrumentation::StdoutListener.new)</span>
-  <span class="token comment" spellcheck="true">#  Karafka.monitor.subscribe(Karafka::Instrumentation::ProctitleListener.new)</span>
+  #  Karafka.monitor.subscribe(WaterDrop::Instrumentation::StdoutListener.new)
+  #  Karafka.monitor.subscribe(Karafka::Instrumentation::StdoutListener.new)
+  #  Karafka.monitor.subscribe(Karafka::Instrumentation::ProctitleListener.new)
 
-  <span class="token comment" spellcheck="true"># Uncomment that in order to achieve code reload in development mode</span>
-  <span class="token comment" spellcheck="true"># Be aware, that this might have some side-effects. Please refer to the wiki</span>
-  <span class="token comment" spellcheck="true"># for more details on benefits and downsides of the code reload in the</span>
-  <span class="token comment" spellcheck="true"># development mode</span>
-  <span class="token comment" spellcheck="true">#</span>
-  <span class="token comment" spellcheck="true"># Karafka.monitor.subscribe(</span>
-  <span class="token comment" spellcheck="true">#   Karafka::CodeReloader.new(</span>
-  <span class="token comment" spellcheck="true">#     *Rails.application.reloaders</span>
-  <span class="token comment" spellcheck="true">#   )</span>
-  <span class="token comment" spellcheck="true"># )</span>
+  # Uncomment that in order to achieve code reload in development mode
+  # Be aware, that this might have some side-effects. Please refer to the wiki
+  # for more details on benefits and downsides of the code reload in the
+  # development mode
+  #
+  # Karafka.monitor.subscribe(
+  #   Karafka::CodeReloader.new(
+  #     *Rails.application.reloaders
+  #   )
+  # )
 
-  <span class="token keyword">class</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token keyword">self</span>
-    <span class="token keyword">def</span> <span class="token function">sync_to_redis</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span>
-      key <span class="token operator">=</span> <span class="token string">"devops___<span class="token interpolation"><span class="token delimiter tag">#{</span>payload<span class="token punctuation">[</span><span class="token punctuation">:</span>group_id<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>:<span class="token interpolation"><span class="token delimiter tag">#{</span>payload<span class="token punctuation">[</span><span class="token punctuation">:</span>topic<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>:<span class="token interpolation"><span class="token delimiter tag">#{</span>payload<span class="token punctuation">[</span><span class="token punctuation">:</span>partition<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>___devops"</span>
-      monitor_redis<span class="token punctuation">.</span>set key<span class="token punctuation">,</span> payload<span class="token punctuation">.</span>to_json
-    <span class="token keyword">end</span>
+  class << self
+    def sync_to_redis(payload)
+      key = "devops___#{payload[:group_id]}:#{payload[:topic]}:#{payload[:partition]}___devops"
+      monitor_redis.set key, payload.to_json
+    end
 
-    <span class="token keyword">def</span> monitor_redis
-      <span class="token variable">@@redis_url</span> <span class="token operator">||</span><span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token constant">Awifi</span><span class="token punctuation">:</span><span class="token symbol">:Consul</span><span class="token punctuation">:</span><span class="token symbol">:Kv</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"devops/devops-server"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">"redis"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"monitor_url"</span><span class="token punctuation">]</span>
-      <span class="token variable">@@redis</span> <span class="token operator">||</span><span class="token operator">=</span> <span class="token constant">Redis</span><span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">url</span><span class="token punctuation">:</span> <span class="token variable">@@redis_url</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+    def monitor_redis
+      @@redis_url ||= JSON.load(Awifi::Consul::Kv.get("devops/devops-server"))["redis"]["monitor_url"]
+      @@redis ||= Redis.new url: @@redis_url
+    end
+  end
 
-  <span class="token comment" spellcheck="true"># 增加业务监控</span>
-  <span class="token constant">ActiveSupport</span><span class="token punctuation">:</span><span class="token symbol">:Notifications</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token string">"process_message.consumer.kafka"</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span><span class="token operator">*</span>args<span class="token operator">|</span>
-    event <span class="token operator">=</span> <span class="token constant">ActiveSupport</span><span class="token punctuation">:</span><span class="token symbol">:Notifications</span><span class="token punctuation">:</span><span class="token symbol">:Event</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">)</span>
-    <span class="token constant">KarafkaApp</span><span class="token punctuation">.</span>sync_to_redis event<span class="token punctuation">.</span>payload
-  <span class="token keyword">end</span>
+  # 增加业务监控
+  ActiveSupport::Notifications.subscribe("process_message.consumer.kafka") do |*args|
+    event = ActiveSupport::Notifications::Event.new(*args)
+    KarafkaApp.sync_to_redis event.payload
+  end
 
-  <span class="token constant">ActiveSupport</span><span class="token punctuation">:</span><span class="token symbol">:Notifications</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token string">"process_batch.consumer.kafka"</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span><span class="token operator">*</span>args<span class="token operator">|</span>
-    <span class="token comment" spellcheck="true">#logger.info "event.name  #{event.name} --------  #{event.payload}"</span>
-    event <span class="token operator">=</span> <span class="token constant">ActiveSupport</span><span class="token punctuation">:</span><span class="token symbol">:Notifications</span><span class="token punctuation">:</span><span class="token symbol">:Event</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">)</span>
-    <span class="token constant">KarafkaApp</span><span class="token punctuation">.</span>sync_to_redis event<span class="token punctuation">.</span>payload
-  <span class="token keyword">end</span>
-  consumer_groups<span class="token punctuation">.</span>draw <span class="token keyword">do</span>
-    consumer_group <span class="token symbol">:resource</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.resource"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceHostConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:resourceusage</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.resourceusage"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceUsageHostConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:vtcp</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.vtcp"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceUsageVtcpConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:vtcpconf</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.vtcpconf"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceVtcpConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:service_monitor</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.service_monitor"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceServiceNewConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:bigscreen</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.bigscreenalarm"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceBigscreenAlarmConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:downstream</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.downstream"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceDownstreamConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:upstream</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.upstream"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceUpstreamConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:heartbeat</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.heartbeat"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceHeartbeatConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:gateway</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.collectgateway"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceCollectGatewayConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:route</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.routedata"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceRouteDataConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:api_alarm</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.apialarm"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceApiAlarmConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:port_alarm</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.portalarm"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourcePortAlarmConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:script_alarm</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.scriptalarm"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceScriptAlarmConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:script_check_alarm</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.scriptcheckalarm"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceScriptCheckAlarmConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    consumer_group <span class="token symbol">:script_data</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.scriptdata"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceScriptDataConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
+  ActiveSupport::Notifications.subscribe("process_batch.consumer.kafka") do |*args|
+    #logger.info "event.name  #{event.name} --------  #{event.payload}"
+    event = ActiveSupport::Notifications::Event.new(*args)
+    KarafkaApp.sync_to_redis event.payload
+  end
+  consumer_groups.draw do
+    consumer_group :resource do
+      topic :"host.teamwork.resource" do
+        consumer TeamworkResourceHostConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :resourceusage do
+      topic :"host.teamwork.resourceusage" do
+        consumer TeamworkResourceUsageHostConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :vtcp do
+      topic :"host.teamwork.vtcp" do
+        consumer TeamworkResourceUsageVtcpConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :vtcpconf do
+      topic :"host.teamwork.vtcpconf" do
+        consumer TeamworkResourceVtcpConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :service_monitor do
+      topic :"host.teamwork.service_monitor" do
+        consumer TeamworkResourceServiceNewConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :bigscreen do
+      topic :"host.teamwork.bigscreenalarm" do
+        consumer TeamworkResourceBigscreenAlarmConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :downstream do
+      topic :"host.teamwork.downstream" do
+        consumer TeamworkResourceDownstreamConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :upstream do
+      topic :"host.teamwork.upstream" do
+        consumer TeamworkResourceUpstreamConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :heartbeat do
+      topic :"host.teamwork.heartbeat" do
+        consumer TeamworkResourceHeartbeatConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :gateway do
+      topic :"host.teamwork.collectgateway" do
+        consumer TeamworkResourceCollectGatewayConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :route do
+      topic :"host.teamwork.routedata" do
+        consumer TeamworkResourceRouteDataConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :api_alarm do
+      topic :"host.teamwork.apialarm" do
+        consumer TeamworkResourceApiAlarmConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :port_alarm do
+      topic :"host.teamwork.portalarm" do
+        consumer TeamworkResourcePortAlarmConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :script_alarm do
+      topic :"host.teamwork.scriptalarm" do
+        consumer TeamworkResourceScriptAlarmConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :script_check_alarm do
+      topic :"host.teamwork.scriptcheckalarm" do
+        consumer TeamworkResourceScriptCheckAlarmConsumer
+        batch_consuming true
+      end
+    end
+    consumer_group :script_data do
+      topic :"host.teamwork.scriptdata" do
+        consumer TeamworkResourceScriptDataConsumer
+        batch_consuming true
+      end
+    end
 
-    consumer_group <span class="token symbol">:script_once</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.scripttask"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceScriptOnceConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
+    consumer_group :script_once do
+      topic :"host.teamwork.scripttask" do
+        consumer TeamworkResourceScriptOnceConsumer
+        batch_consuming true
+      end
+    end
 
-    consumer_group <span class="token symbol">:k8s_service</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.helm_info"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceK8sServiceConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
+    consumer_group :k8s_service do
+      topic :"host.teamwork.helm_info" do
+        consumer TeamworkResourceK8sServiceConsumer
+        batch_consuming true
+      end
+    end
 
-    consumer_group <span class="token symbol">:resource_alarm</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.resourcealarm"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceAlarmConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
+    consumer_group :resource_alarm do
+      topic :"host.teamwork.resourcealarm" do
+        consumer TeamworkResourceAlarmConsumer
+        batch_consuming true
+      end
+    end
 
-    consumer_group <span class="token symbol">:k8s_alarm</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.helm_alarm"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">TeamworkResourceK8sAlarmConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
+    consumer_group :k8s_alarm do
+      topic :"host.teamwork.helm_alarm" do
+        consumer TeamworkResourceK8sAlarmConsumer
+        batch_consuming true
+      end
+    end
 
-    consumer_group <span class="token symbol">:nginx_upstream_group</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.nginxgroup"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">NginxUpstreamGroupConsumer</span>
-        start_from_beginning <span class="token keyword">false</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
+    consumer_group :nginx_upstream_group do
+      topic :"host.teamwork.nginxgroup" do
+        consumer NginxUpstreamGroupConsumer
+        start_from_beginning false
+      end
+    end
 
-    consumer_group <span class="token symbol">:backup_task_status_group</span> <span class="token keyword">do</span>
-      topic <span class="token punctuation">:</span><span class="token string">"host.teamwork.cronscriptdata"</span> <span class="token keyword">do</span>
-        consumer <span class="token constant">BackupTaskStatusConsumer</span>
-        batch_consuming <span class="token keyword">true</span>
-        start_from_beginning <span class="token keyword">false</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
-<span class="token keyword">end</span>
+    consumer_group :backup_task_status_group do
+      topic :"host.teamwork.cronscriptdata" do
+        consumer BackupTaskStatusConsumer
+        batch_consuming true
+        start_from_beginning false
+      end
+    end
+  end
+end
 
-<span class="token comment" spellcheck="true">#Karafka.monitor.subscribe("app.initialized") do</span>
-<span class="token comment" spellcheck="true">#  #  # Put here all the things you want to do after the Karafka framework</span>
-<span class="token comment" spellcheck="true">#  #  # initialization</span>
-<span class="token comment" spellcheck="true">#  WaterDrop.setup do |config|</span>
-<span class="token comment" spellcheck="true">#    config.deliver = true</span>
-<span class="token comment" spellcheck="true">#    config.kafka.seed_brokers = ["kafka://#{ENV["KAFKA_CONN"]}"]</span>
-<span class="token comment" spellcheck="true">#  end</span>
-<span class="token comment" spellcheck="true">#end</span>
+#Karafka.monitor.subscribe("app.initialized") do
+#  #  # Put here all the things you want to do after the Karafka framework
+#  #  # initialization
+#  WaterDrop.setup do |config|
+#    config.deliver = true
+#    config.kafka.seed_brokers = ["kafka://#{ENV["KAFKA_CONN"]}"]
+#  end
+#end
 
-<span class="token constant">KarafkaApp</span><span class="token punctuation">.</span>boot<span class="token operator">!</span>
+KarafkaApp.boot!
 
 
 </code></pre>
@@ -889,10 +891,11 @@ ENV[&#34;KARAFKA_ENV&#34;] =">
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">替换centos 8 源
+
 删除 /etc/yum.repos.d/*.repo 文件
 下载 centos-8 阿里云mirror
 http://mirrors.aliyun.com/repo/Centos-8.repo
-rename to </div>
+rename to</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-17
@@ -946,7 +949,8 @@ rename to </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">主要监控指标
-consumer lag  
+
+consumer lag
 
 </div>
                     <div class="publish-info">
@@ -1134,7 +1138,7 @@ consumer lag
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

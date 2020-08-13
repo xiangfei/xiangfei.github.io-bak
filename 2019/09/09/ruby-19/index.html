@@ -5,8 +5,9 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="ruby 迭代器, openstack,opennebula">
-    <meta name="description" content="Ruby 迭代器简单来说：迭代(iterate)指的是重复做相同的事，所以迭代器(iterator)就是用来重复多次相同的事。
-迭代器是集合支持的方法。存储一组数据成员的对象称为集合。在 Ruby 中，数组(Array)和哈希(Hash)可">
+    <meta name="description" content="Ruby 迭代器
+简单来说：迭代(iterate)指的是重复做相同的事，所以迭代器(iterator)就是用来重复多次相同的事。
+迭代器是集合支持的方法。存储一组数据成员的对象称为集合。在 Ruby 中，数组(Array)和哈希(Hash)">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -430,7 +431,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        460
+                        472
                     </div>
                     
 
@@ -453,52 +454,72 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-迭代器"><a href="#Ruby-迭代器" class="headerlink" title="Ruby 迭代器"></a>Ruby 迭代器</h3><p>简单来说：迭代(iterate)指的是重复做相同的事，所以迭代器(iterator)就是用来重复多次相同的事。</p>
+                <h3 id="Ruby-迭代器">Ruby 迭代器</h3>
+<p>简单来说：迭代(iterate)指的是重复做相同的事，所以迭代器(iterator)就是用来重复多次相同的事。</p>
 <p>迭代器是集合支持的方法。存储一组数据成员的对象称为集合。在 Ruby 中，数组(Array)和哈希(Hash)可以称之为集合。</p>
 <p>迭代器返回集合的所有元素，一个接着一个。在这里我们将讨论两种迭代器，each 和 collect。</p>
-<h4 id="Ruby-each-迭代器"><a href="#Ruby-each-迭代器" class="headerlink" title="Ruby each 迭代器"></a>Ruby each 迭代器</h4><p>each 迭代器返回数组或哈希的所有元素。</p>
+<h4 id="Ruby-each-迭代器">Ruby each 迭代器</h4>
+<p>each 迭代器返回数组或哈希的所有元素。</p>
 <p><strong>语法</strong></p>
 <pre><code>collection.each do |variable|
    code
 end
-</code></pre><p>为集合中的每个元素执行 code。在这里，集合可以是数组或哈希。</p>
+</code></pre>
+<p>为集合中的每个元素执行 code。在这里，集合可以是数组或哈希。</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
-
+ 
 ary = [1,2,3,4,5]
 ary.each do |i|
    puts i
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>1<br>2<br>3<br>4<br>5</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
 </blockquote>
 </div></div>
 <p>each 迭代器总是与一个块关联。它向块返回数组的每个值，一个接着一个。值被存储在变量 i 中，然后显示在屏幕上。</p>
-<h4 id="Ruby-collect-迭代器"><a href="#Ruby-collect-迭代器" class="headerlink" title="Ruby collect 迭代器"></a>Ruby collect 迭代器</h4><p>collect 迭代器返回集合的所有元素。</p>
+<h4 id="Ruby-collect-迭代器">Ruby collect 迭代器</h4>
+<p>collect 迭代器返回集合的所有元素。</p>
 <p><strong>语法</strong></p>
 <pre><code>collection = collection.collect
-</code></pre><p>collect 方法不需要总是与一个块关联。collect 方法返回整个集合，不管它是数组或者是哈希。</p>
+</code></pre>
+<p>collect 方法不需要总是与一个块关联。collect 方法返回整个集合，不管它是数组或者是哈希。</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
-
+ 
 a = [1,2,3,4,5]
 b = Array.new
 b = a.collect{ |x|x }
 puts b
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>1<br>2<br>3<br>4<br>5</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>1<br>
+2<br>
+3<br>
+4<br>
+5</p>
 </blockquote>
 </div></div>
 <p><code>collect 方法不是数组间进行复制的正确方式。这里有另一个称为 clone 的方法，用于复制一个数组到另一个数组。</code></p>
 <p>当您想要对每个值进行一些操作以便获得新的数组时，您通常使用 collect 方法。例如，下面的代码会生成一个数组，其值是 a 中每个值的 10 倍。</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
-
+ 
 a = [1,2,3,4,5]
 b = a.collect{|x| 10*x}
 puts b
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>10<br>20<br>30<br>40<br>50</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>10<br>
+20<br>
+30<br>
+40<br>
+50</p>
 </blockquote>
 </div></div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -683,8 +704,9 @@ puts b
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 文件的输入与输出Ruby 提供了一整套 I/O 相关的方法，在内核（Kernel）模块中实现。所有的 I/O 方法派生自 IO 类。
-类 IO 提供了所有基础的方法，比如 read、 write、 gets、 puts、 read</div>
+                    <div class="summary block-with-text">Ruby 文件的输入与输出
+Ruby 提供了一整套 I/O 相关的方法，在内核（Kernel）模块中实现。所有的 I/O 方法派生自 IO 类。
+类 IO 提供了所有基础的方法，比如 read、 write、 gets、 puts、 rea</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -729,13 +751,15 @@ puts b
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 范围（Range）范围（Range）无处不在：a 到 z、 0 到 9、等等。Ruby 支持范围，并允许我们以不同的方式使用范围：
+                    <div class="summary block-with-text">Ruby 范围（Range）
+范围（Range）无处不在：a 到 z、 0 到 9、等等。Ruby 支持范围，并允许我们以不同的方式使用范围：
 
 作为序列的范围
 作为条件的范围
 作为间隔的范围
 
-作为序列的范围范围的第一个也是最常见的用途是表</div>
+作为序列的范围
+范围的第一个也是最常见的用途</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -913,7 +937,7 @@ puts b
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

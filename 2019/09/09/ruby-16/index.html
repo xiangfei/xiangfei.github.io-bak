@@ -6,9 +6,10 @@
     <meta charset="utf-8">
     <meta name="keywords" content="ruby Hash, openstack,opennebula">
     <meta name="description" content="Ruby 哈希（Hash）
+
 哈希（Hash）是类似 “key” =&amp;gt; “value” 这样的键值对集合。哈希类似于一个数组，只不过它的索引不局限于使用数字。
-Hash 的索引（或者叫”键”）几乎可以是任何对象。
-Hash 虽然和数组类">
+Hash 的索引（或者叫&amp;quot;键&amp;quot;）几乎可以是任何对象。
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -439,7 +440,7 @@ Hash 虽然和数组类">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        7 分
+                        6 分
                     </div>
                     
                 
@@ -455,61 +456,74 @@ Hash 虽然和数组类">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-哈希（Hash）"><a href="#Ruby-哈希（Hash）" class="headerlink" title="Ruby 哈希（Hash）"></a>Ruby 哈希（Hash）</h3><ul>
+                <h3 id="Ruby-哈希（Hash）">Ruby 哈希（Hash）</h3>
+<ul>
 <li>哈希（Hash）是类似 “key” =&gt; “value” 这样的键值对集合。哈希类似于一个数组，只不过它的索引不局限于使用数字。</li>
-<li>Hash 的索引（或者叫”键”）几乎可以是任何对象。</li>
+<li>Hash 的索引（或者叫&quot;键&quot;）几乎可以是任何对象。</li>
 <li>Hash 虽然和数组类似，但却有一个很重要的区别：Hash 的元素没有特定的顺序。 如果顺序很重要的话就要使用数组了。</li>
 </ul>
-<h4 id="创建哈希"><a href="#创建哈希" class="headerlink" title="创建哈希"></a>创建哈希</h4><p>与数组一样，有各种不同的方式来创建哈希。您可以通过 new 类方法创建一个空的哈希：</p>
+<h4 id="创建哈希">创建哈希</h4>
+<p>与数组一样，有各种不同的方式来创建哈希。您可以通过 new 类方法创建一个空的哈希：</p>
 <pre><code>months = Hash.new
-</code></pre><p>您也可以使用 new 创建带有默认值的哈希，不带默认值的哈希是 nil：</p>
+</code></pre>
+<p>您也可以使用 new 创建带有默认值的哈希，不带默认值的哈希是 nil：</p>
 <pre><code>months = Hash.new( &quot;month&quot; )
-</code></pre><p>或</p>
+</code></pre>
+<p>或</p>
 <pre><code>months = Hash.new &quot;month&quot;
-</code></pre><p>当您访问带有默认值的哈希中的任意键时，如果键或值不存在，访问哈希将返回默认值：</p>
+</code></pre>
+<p>当您访问带有默认值的哈希中的任意键时，如果键或值不存在，访问哈希将返回默认值：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
-
+ 
 months = Hash.new( &quot;month&quot; )
-
+ 
 puts &quot;#{months[0]}&quot;
 puts &quot;#{months[72]}&quot;
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>month<br>month</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>month<br>
+month</p>
 </blockquote>
 </div></div>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
-
+ 
 H = Hash[&quot;a&quot; =&gt; 100, &quot;b&quot; =&gt; 200]
-
-puts &quot;#{H[&#39;a&#39;]}&quot;
-puts &quot;#{H[&#39;b&#39;]}&quot;
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>100<br>200</p>
+ 
+puts &quot;#{H['a']}&quot;
+puts &quot;#{H['b']}&quot;
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>100<br>
+200</p>
 </blockquote>
 </div></div>
 <p>您可以使用任何的 Ruby 对象作为键或值，甚至可以使用数组，如下实例所示：</p>
 <pre><code>[1,&quot;jan&quot;] =&gt; &quot;January&quot;
-</code></pre><h4 id="哈希内置方法"><a href="#哈希内置方法" class="headerlink" title="哈希内置方法"></a>哈希内置方法</h4><p>如果需要调用 Hash 方法，需要先实例化一个 Hash 对象。下面是创建 Hash 对象实例的方式：</p>
+</code></pre>
+<h4 id="哈希内置方法">哈希内置方法</h4>
+<p>如果需要调用 Hash 方法，需要先实例化一个 Hash 对象。下面是创建 Hash 对象实例的方式：</p>
 <pre><code>Hash[[key =&gt;|, value]* ] or
-
+ 
 Hash.new [or] Hash.new(obj) [or]
-
+ 
 Hash.new { |hash, key| block }
-</code></pre><p>这将返回一个使用给定对象进行填充的新的哈希。现在，使用创建的对象，我们可以调用任意可用的方法。例如：</p>
+</code></pre>
+<p>这将返回一个使用给定对象进行填充的新的哈希。现在，使用创建的对象，我们可以调用任意可用的方法。例如：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
-
+ 
 $, = &quot;, &quot;
 months = Hash.new( &quot;month&quot; )
-
+ 
 months = {&quot;1&quot; =&gt; &quot;January&quot;, &quot;2&quot; =&gt; &quot;February&quot;}
-
+ 
 keys = months.keys
-
+ 
 puts &quot;#{keys}&quot;
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
 <p>[“1”, “2”]</p>
 </blockquote>
 </div></div>
@@ -560,32 +574,32 @@ puts &quot;#{keys}&quot;
 </tr>
 <tr>
 <td style="text-align:center">8</td>
-<td style="text-align:center">hash.delete(key) [or] array.delete(key) {  &#166;    key&#166;     block }</td>
+<td style="text-align:center">hash.delete(key) [or] array.delete(key) {  ¦	key¦	 block }</td>
 <td style="text-align:center">通过 key 从 hash 中删除键值对。如果使用了块 且未找到匹配的键值对，则返回块的结果。把它与 delete_if 进行比较。</td>
 </tr>
 <tr>
 <td style="text-align:center">9</td>
-<td style="text-align:center">hash.delete_if { &#166;    key,value &#166;     block }</td>
+<td style="text-align:center">hash.delete_if { ¦	key,value ¦	 block }</td>
 <td style="text-align:center">block 为 true 的每个块，从 hash 中删除键值对。</td>
 </tr>
 <tr>
 <td style="text-align:center">10</td>
-<td style="text-align:center">hash.each { &#166;    key,value &#166;     block }</td>
+<td style="text-align:center">hash.each { ¦	key,value ¦	 block }</td>
 <td style="text-align:center">遍历 hash，为每个 key 调用一次 block，传递 key-value 作为一个二元素数组。</td>
 </tr>
 <tr>
 <td style="text-align:center">11</td>
-<td style="text-align:center">hash.each_key {  &#166;    key &#166;     block }</td>
+<td style="text-align:center">hash.each_key {  ¦	key ¦	 block }</td>
 <td style="text-align:center">遍历 hash，为每个 key 调用一次 block，传递 key 作为参数。</td>
 </tr>
 <tr>
 <td style="text-align:center">12</td>
-<td style="text-align:center">hash.each_key {  &#166;    key_value_array &#166;     block }</td>
+<td style="text-align:center">hash.each_key {  ¦	key_value_array ¦	 block }</td>
 <td style="text-align:center">遍历 hash，为每个 key 调用一次 block，传递 key 和 value 作为参数。</td>
 </tr>
 <tr>
 <td style="text-align:center">13</td>
-<td style="text-align:center">hash.each_value { &#166;    value &#166;     block }</td>
+<td style="text-align:center">hash.each_value { ¦	value ¦	 block }</td>
 <td style="text-align:center">遍历 hash，为每个 key 调用一次 block，传递 value 作为参数。</td>
 </tr>
 <tr>
@@ -595,7 +609,7 @@ puts &quot;#{keys}&quot;
 </tr>
 <tr>
 <td style="text-align:center">15</td>
-<td style="text-align:center">hash.fetch(key [, default] ) [or] hash.fetch(key) { &#166;     key &#166;     block }</td>
+<td style="text-align:center">hash.fetch(key [, default] ) [or] hash.fetch(key) { ¦	 key ¦	 block }</td>
 <td style="text-align:center">通过给定的 key 从 hash 返回值。如果未找到 key，且未提供其他参数，则抛出 IndexError 异常；如果给出了 default，则返回 default；如果指定了可选的 block，则返回 block 的结果。</td>
 </tr>
 <tr>
@@ -645,12 +659,12 @@ puts &quot;#{keys}&quot;
 </tr>
 <tr>
 <td style="text-align:center">25</td>
-<td style="text-align:center">hash.merge(other_hash) [or] hash.merge(other_hash) { &#166;    key, oldval, newval &#166;     block }</td>
+<td style="text-align:center">hash.merge(other_hash) [or] hash.merge(other_hash) { ¦	key, oldval, newval ¦	 block }</td>
 <td style="text-align:center">返回一个新的哈希，包含 hash 和 other_hash 的内容，重写 hash 中与 other_hash 带有重复键的键值对。</td>
 </tr>
 <tr>
 <td style="text-align:center">26</td>
-<td style="text-align:center">hash.merge!(other_hash) [or] hash.merge!(other_hash) {  &#166;    key, oldval, newval&#166;     block }</td>
+<td style="text-align:center">hash.merge!(other_hash) [or] hash.merge!(other_hash) {  ¦	key, oldval, newval¦	 block }</td>
 <td style="text-align:center">与 merge 相同，但实际上 hash 发生了变化。</td>
 </tr>
 <tr>
@@ -660,12 +674,12 @@ puts &quot;#{keys}&quot;
 </tr>
 <tr>
 <td style="text-align:center">28</td>
-<td style="text-align:center">hash.reject { &#166;    key, value &#166;     block }</td>
+<td style="text-align:center">hash.reject { ¦	key, value ¦	 block }</td>
 <td style="text-align:center">类似 delete_if, 但作用在一个拷贝的哈希上。相等于 hsh.dup.delete_if。</td>
 </tr>
 <tr>
 <td style="text-align:center">29</td>
-<td style="text-align:center">hash.reject! { &#166;    key, value &#166;     block }</td>
+<td style="text-align:center">hash.reject! { ¦	key, value ¦	 block }</td>
 <td style="text-align:center">相等于 delete_if, 但是如果没有修改，返回 nil。</td>
 </tr>
 <tr>
@@ -675,7 +689,7 @@ puts &quot;#{keys}&quot;
 </tr>
 <tr>
 <td style="text-align:center">31</td>
-<td style="text-align:center">hash.select { &#166;    key, value &#166;     block }</td>
+<td style="text-align:center">hash.select { ¦	key, value ¦	 block }</td>
 <td style="text-align:center">返回一个新的数组，由 block 返回 true 的 hash 中的键值对组成。</td>
 </tr>
 <tr>
@@ -715,7 +729,7 @@ puts &quot;#{keys}&quot;
 </tr>
 <tr>
 <td style="text-align:center">39</td>
-<td style="text-align:center">hash.update(other_hash) [or] hash.update(other_hash) { &#166;    key, oldval, newval&#166;     block}</td>
+<td style="text-align:center">hash.update(other_hash) [or] hash.update(other_hash) { ¦	key, oldval, newval¦	 block}</td>
 <td style="text-align:center">返回一个新的哈希，包含 hash 和 other_hash 的内容，重写 hash 中与 other_hash 带有重复键的键值对。</td>
 </tr>
 <tr>
@@ -917,9 +931,10 @@ puts &quot;#{keys}&quot;
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 日期 &amp; 时间（Date &amp; Time）Time 类在 Ruby 中用于表示日期和时间。它是基于操作系统提供的系统日期和时间之上。该类可能无法表示 1970 年之前或者 2038 年之后的日期。
+                    <div class="summary block-with-text">Ruby 日期 &amp; 时间（Date &amp; Time）
+Time 类在 Ruby 中用于表示日期和时间。它是基于操作系统提供的系统日期和时间之上。该类可能无法表示 1970 年之前或者 2038 年之后的日期。
 
-创建当前的日期和</div>
+创建当前的日期</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -964,9 +979,10 @@ puts &quot;#{keys}&quot;
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 数组（Array）Ruby 数组是任何对象的有序整数索引集合。数组中的每个元素都与一个索引相关，并可通过索引进行获取。
+                    <div class="summary block-with-text">Ruby 数组（Array）
+Ruby 数组是任何对象的有序整数索引集合。数组中的每个元素都与一个索引相关，并可通过索引进行获取。
 
-数组的索引从 0 开始，这与 C 或 Java 中一样。一个负数的索相对于数组的末尾计数的，也就是说，索引为</div>
+数组的索引从 0 开始，这与 C 或 Java 中一样。一个负数的索相对于数组的末尾计数的，也就是说，索引</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -1144,7 +1160,7 @@ puts &quot;#{keys}&quot;
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

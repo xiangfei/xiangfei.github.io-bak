@@ -6,9 +6,10 @@
     <meta charset="utf-8">
     <meta name="keywords" content="centos Affinity, openstack,opennebula">
     <meta name="description" content="centos cpu Affinity
+
 将程序绑定到cpu运行 , kvm libvirt 模板有设置的方法
 softaffinity仅是一个建议,如果不可避免,调度器还是会把进程调度到其它的CPU上
-hardaffinity是调度器必须遵">
+hardaffinity是调度器必须">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -459,13 +460,14 @@ hardaffinity是调度器必须遵">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="centos-cpu-Affinity"><a href="#centos-cpu-Affinity" class="headerlink" title="centos cpu Affinity"></a>centos cpu Affinity</h3><ul>
+                <h3 id="centos-cpu-Affinity">centos cpu Affinity</h3>
+<ul>
 <li>将程序绑定到cpu运行 , kvm libvirt 模板有设置的方法</li>
 <li>softaffinity仅是一个建议,如果不可避免,调度器还是会把进程调度到其它的CPU上</li>
 <li>hardaffinity是调度器必须遵守的规则</li>
 <li>irqbalance</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@compute ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ps -e |grep kvm       //我这里列出了一下kvm的进程号</span>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@compute ~]# ps -e |grep kvm       //我这里列出了一下kvm的进程号
   953 ?        00:00:00 kvm-irqfd-clean
  6852 ?        00:01:55 qemu-kvm
  6859 ?        00:00:00 kvm-pit/6852
@@ -474,33 +476,33 @@ hardaffinity是调度器必须遵">
 18943 ?        00:44:56 qemu-kvm
 18953 ?        00:00:00 kvm-pit/18943
 
-<span class="token punctuation">[</span>root@compute ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># taskset -h         //这里是关于taskset命令的用法</span>
+[root@compute ~]# taskset -h         //这里是关于taskset命令的用法
 
-Usage: taskset <span class="token punctuation">[</span>options<span class="token punctuation">]</span> <span class="token punctuation">[</span>mask <span class="token operator">|</span> cpu-list<span class="token punctuation">]</span> <span class="token punctuation">[</span>pid<span class="token operator">|</span>cmd <span class="token punctuation">[</span>args<span class="token punctuation">..</span>.<span class="token punctuation">]</span><span class="token punctuation">]</span>
+Usage: taskset [options] [mask | cpu-list] [pid|cmd [args...]]
 
 Options:
- -a, --all-tasks         operate on all the tasks <span class="token punctuation">(</span>threads<span class="token punctuation">)</span> <span class="token keyword">for</span> a given pid
+ -a, --all-tasks         operate on all the tasks (threads) for a given pid
  -p, --pid               operate on existing given pid
- -c, --cpu-list          display and specify cpus <span class="token keyword">in</span> list <span class="token function">format</span>
- -h, --help              display this <span class="token function">help</span>
+ -c, --cpu-list          display and specify cpus in list format
+ -h, --help              display this help
  -V, --version           output version information
 
 The default behavior is to run a new command:
     taskset 03 sshd -b 1024
 You can retrieve the mask of an existing task:
     taskset -p 700
-Or <span class="token keyword">set</span> it:
+Or set it:
     taskset -p 03 700
-List <span class="token function">format</span> uses a comma-separated list instead of a mask:
+List format uses a comma-separated list instead of a mask:
     taskset -pc 0,3,7-11 700
-Ranges <span class="token keyword">in</span> list <span class="token function">format</span> can take a stride argument:
+Ranges in list format can take a stride argument:
     e.g. 0-31:2 is equivalent to mask 0x55555555
 
-For <span class="token function">more</span> information see taskset<span class="token punctuation">(</span>1<span class="token punctuation">)</span>.
+For more information see taskset(1).
 
-<span class="token punctuation">[</span>root@compute ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /proc/7827/status          //查看上面查询的PID进程信息</span>
+[root@compute ~]# cat /proc/7827/status          //查看上面查询的PID进程信息
 Name:   kvm-pit/7820
-State:  S <span class="token punctuation">(</span>sleeping<span class="token punctuation">)</span>
+State:  S (sleeping)
 Tgid:   7827
 Ngid:   0
 Pid:    7827
@@ -529,13 +531,13 @@ Mems_allowed_list:      0
 voluntary_ctxt_switches:        158
 nonvoluntary_ctxt_switches:     0
 
-<span class="token punctuation">[</span>root@compute ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># taskset  -cp 6-8 7827               //将7827进程绑定到6-8号CPU上。</span>
-pid 7827<span class="token string">'s current affinity list: 0-15
-pid 7827'</span>s new affinity list: 6-8
+[root@compute ~]# taskset  -cp 6-8 7827               //将7827进程绑定到6-8号CPU上。
+pid 7827's current affinity list: 0-15
+pid 7827's new affinity list: 6-8
 
-<span class="token punctuation">[</span>root@compute ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /proc/7827/status </span>
+[root@compute ~]# cat /proc/7827/status 
 Name:   kvm-pit/7820
-State:  S <span class="token punctuation">(</span>sleeping<span class="token punctuation">)</span>
+State:  S (sleeping)
 Tgid:   7827
 Ngid:   0
 Pid:    7827
@@ -565,14 +567,14 @@ voluntary_ctxt_switches:        158
 nonvoluntary_ctxt_switches:     0
 
 
-<span class="token comment" spellcheck="true"># irqbalance</span>
+# irqbalance
 
-<span class="token punctuation">[</span>root@autotest-ruby-agent automationtesting-backend<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># service irqbalance status</span>
+[root@autotest-ruby-agent automationtesting-backend]# service irqbalance status
 Redirecting to /bin/systemctl status  irqbalance.service
 ● irqbalance.service - irqbalance daemon
-   Loaded: loaded <span class="token punctuation">(</span>/usr/lib/systemd/system/irqbalance.service<span class="token punctuation">;</span> enabled<span class="token punctuation">;</span> vendor preset: enabled<span class="token punctuation">)</span>
-   Active: active <span class="token punctuation">(</span>running<span class="token punctuation">)</span> since Thu 2020-01-16 08:36:45 CST<span class="token punctuation">;</span> 1 months 18 days ago
- Main PID: 522 <span class="token punctuation">(</span>irqbalance<span class="token punctuation">)</span>
+   Loaded: loaded (/usr/lib/systemd/system/irqbalance.service; enabled; vendor preset: enabled)
+   Active: active (running) since Thu 2020-01-16 08:36:45 CST; 1 months 18 days ago
+ Main PID: 522 (irqbalance)
    CGroup: /system.slice/irqbalance.service
            └─522 /usr/sbin/irqbalance --foreground
 
@@ -760,10 +762,13 @@ Redirecting to /bin/systemctl status  irqbalance.service
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">I/O 调度算法调优
+
 Linux I/O调度器（Linux I/O Scheduler）Linux内核中的一个组成部分，它介于通用块层和块设备驱动程序之间，用户可以通过调整这个调度器来优化系统性能。
 
 I/O调度的4种算法
-CFQ（完全公平</div>
+
+
+CFQ（完</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-05
@@ -812,7 +817,10 @@ CFQ（完全公平</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">hexo-theme-matery 增加新linkstep 1 hexo-theme-matery/layout/_partial/navigation.ejs hexo-theme-matery/layout/_partial/mobil</div>
+                    <div class="summary block-with-text">hexo-theme-matery 增加新link
+step 1
+hexo-theme-matery/layout/_partial/navigation.ejs
+hexo-theme-matery/layout/_partial/mobi</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-03
@@ -998,7 +1006,7 @@ CFQ（完全公平</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

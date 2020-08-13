@@ -6,17 +6,19 @@
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula 认证, openstack,opennebula">
     <meta name="description" content="流程
+
 CLI/API Authentication
+
 Built-in User/Password
 LDAP
 SSH
 
 Sunstone Authentication
+
 Built-in User/Password
 LDAP
 SSH
-X509
-">
+X5">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -440,7 +442,7 @@ X509
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        419
+                        401
                     </div>
                     
 
@@ -463,27 +465,34 @@ X509
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p><img src="/medias/opennebula/auth_options_350.png" alt></p>
-<h4 id="CLI-API-Authentication"><a href="#CLI-API-Authentication" class="headerlink" title="CLI/API Authentication"></a>CLI/API Authentication</h4><ul>
+                <h3 id="流程">流程</h3>
+<p><img src="/medias/opennebula/auth_options_350.png" alt></p>
+<h4 id="CLI-API-Authentication">CLI/API Authentication</h4>
+<ul>
 <li>Built-in User/Password</li>
 <li>LDAP</li>
 <li>SSH</li>
 </ul>
-<h4 id="Sunstone-Authentication"><a href="#Sunstone-Authentication" class="headerlink" title="Sunstone Authentication"></a>Sunstone Authentication</h4><ul>
+<h4 id="Sunstone-Authentication">Sunstone Authentication</h4>
+<ul>
 <li>Built-in User/Password</li>
 <li>LDAP</li>
 <li>SSH</li>
 <li>X509</li>
 </ul>
-<h4 id="Servers-Authentication"><a href="#Servers-Authentication" class="headerlink" title="Servers Authentication"></a>Servers Authentication</h4><ul>
+<h4 id="Servers-Authentication">Servers Authentication</h4>
+<ul>
 <li>Built-in User/Password</li>
 <li>LDAP</li>
 <li>SSH</li>
 </ul>
-<h3 id="Built-in-User-Password-and-token-authentication"><a href="#Built-in-User-Password-and-token-authentication" class="headerlink" title="Built-in User/Password and token authentication"></a>Built-in User/Password and token authentication</h3><pre><code>cat $HOME/.one/one_auth
+<h3 id="Built-in-User-Password-and-token-authentication">Built-in User/Password and token authentication</h3>
+<pre><code>cat $HOME/.one/one_auth
 oneadmin:opennebula
 
-</code></pre><h3 id="SSH-Authentication"><a href="#SSH-Authentication" class="headerlink" title="SSH Authentication"></a>SSH Authentication</h3><pre><code>vi /etc/one/oned.conf 
+</code></pre>
+<h3 id="SSH-Authentication">SSH Authentication</h3>
+<pre><code>vi /etc/one/oned.conf 
 AUTH_MAD = [
     EXECUTABLE = &quot;one_auth_mad&quot;,
     AUTHN = &quot;ssh,x509,ldap,server_cipher,server_x509&quot;
@@ -495,11 +504,14 @@ oneuser create newuser --ssh --key /home/newuser/.ssh/id_rsa
 oneuser chauth &lt;id|name&gt; ssh
 oneuser passwd &lt;id|name&gt; --ssh --key /home/newuser/.ssh/id_rsa
 oneuser login newuser --ssh
-</code></pre><h3 id="X509-auth"><a href="#X509-auth" class="headerlink" title="X509 auth"></a>X509 auth</h3><ul>
+</code></pre>
+<h3 id="X509-auth">X509 auth</h3>
+<ul>
 <li>配置参考ssh认证</li>
 <li>测试环境opensssl 成功公钥认证失败,下次有时间在测试</li>
 </ul>
-<h3 id="LDAP-auth"><a href="#LDAP-auth" class="headerlink" title="LDAP auth"></a>LDAP auth</h3><ul>
+<h3 id="LDAP-auth">LDAP auth</h3>
+<ul>
 <li>配置参考ssh认证</li>
 </ul>
 <pre><code>vi /etc/one/auth/ldap_auth.conf
@@ -508,9 +520,9 @@ server 2:
     :auth_method: :simple
     :host: localhost
     :port: 389
-    :base: &#39;dc=domain&#39;
-    #:group: &#39;cn=cloud,ou=groups,dc=domain&#39;
-    :user_field: &#39;cn&#39;
+    :base: 'dc=domain'
+    #:group: 'cn=cloud,ou=groups,dc=domain'
+    :user_field: 'cn'
 
 # List the order the servers are queried
 :order:
@@ -518,24 +530,26 @@ server 2:
     - server 2
 
 
-</code></pre><h3 id="custom-auth-xml-认证举例"><a href="#custom-auth-xml-认证举例" class="headerlink" title="custom auth (xml 认证举例)"></a>custom auth (xml 认证举例)</h3><pre><code>&lt;AUTHN&gt;
+</code></pre>
+<h3 id="custom-auth-xml-认证举例">custom auth (xml 认证举例)</h3>
+<pre><code>&lt;AUTHN&gt;
     &lt;USERNAME&gt;VALUE&lt;/USERNAME&gt;
     &lt;PASSWORD&gt;VALUE&lt;/PASSWORD&gt;
     &lt;SECRET&gt;VALUE&lt;/SECRET&gt;
 &lt;/AUTHN&gt;
 
-echo &#39;&lt;AUTHN&gt;&lt;USERNAME&gt;test&lt;/USERNAME&gt;&lt;PASSWORD&gt;5&lt;/PASSWORD&gt;&lt;SECRET&gt;testpassword&lt;/SECRET&gt;&lt;/AUTHN&gt;&#39; |  authenticate
+echo '&lt;AUTHN&gt;&lt;USERNAME&gt;test&lt;/USERNAME&gt;&lt;PASSWORD&gt;5&lt;/PASSWORD&gt;&lt;SECRET&gt;testpassword&lt;/SECRET&gt;&lt;/AUTHN&gt;' |  authenticate
 
 vi /var/lib/one/remotes/auth/length/authenticate
 #!/bin/bash
 
 data=$(cat -)
 
-username=$(echo &quot;${data}&quot; | xmllint --xpath &#39;//AUTHN/USERNAME/text()&#39; -)
-password=$(echo &quot;${data}&quot; | xmllint --xpath &#39;//AUTHN/PASSWORD/text()&#39; -)
-secret=$(echo &quot;${data}&quot; | xmllint --xpath &#39;//AUTHN/SECRET/text()&#39; -)
+username=$(echo &quot;${data}&quot; | xmllint --xpath '//AUTHN/USERNAME/text()' -)
+password=$(echo &quot;${data}&quot; | xmllint --xpath '//AUTHN/PASSWORD/text()' -)
+secret=$(echo &quot;${data}&quot; | xmllint --xpath '//AUTHN/SECRET/text()' -)
 
-length=$(echo -n &quot;$secret&quot; | wc -c | tr -d &#39; &#39;)
+length=$(echo -n &quot;$secret&quot; | wc -c | tr -d ' ')
 
 if [ $length = $password ]; then
     echo &quot;length $username $secret&quot;
@@ -548,19 +562,21 @@ AUTH_MAD = [
     executable = &quot;one_auth_mad&quot;,
     authn = &quot;ssh,x509,ldap,server_cipher,server_x509,length&quot;
 ]
-</code></pre><blockquote>
+</code></pre>
+<blockquote>
 <p>可以直接集成自己开发的平台</p>
 <blockquote>
-<p>执行oneuser create 方法<br>扩展auth认证</p>
+<p>执行oneuser create 方法<br>
+扩展auth认证</p>
 </blockquote>
 </blockquote>
 <pre><code>认证内部平台例子
 #!/usr/bin/env ruby
-require &#39;net/http&#39;
+require 'net/http'
 user   = ARGV[0]
 pass   = ARGV[1]
 #secret = ARGV[2]
-uri = URI(&#39;http://192.168.2.1&#39;)
+uri = URI('http://192.168.2.1')
 params = {name:user, password: pass}
 res = Net::HTTP.post_form(uri, params)
 if res.body.to_s =~/success/
@@ -574,7 +590,8 @@ end
 
 
 
-</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -757,12 +774,14 @@ end
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">views
+
 Admin view
 Group Admin view
 Cloud view
 User view
 
-5.8 定义 /etc/one/sunstone-views/{kvm,vcenter,mixed}vi /etc/one/su</div>
+5.8 定义 /etc/one/sunstone-views/{kvm,vcenter,mixed}
+vi /etc/one/</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -807,13 +826,15 @@ User view
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">file systemDatastore Layout/var/lib/one/datastores
+                    <div class="summary block-with-text">file system
+Datastore Layout
+/var/lib/one/datastores
 |-- 0/
 |   |-- 0/
 |   |   |-- disk.0
 |   |   `-- disk.1
 |   |-- 2/
-| </div>
+</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -991,7 +1012,7 @@ User view
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

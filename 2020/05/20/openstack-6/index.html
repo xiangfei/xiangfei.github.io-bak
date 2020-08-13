@@ -5,10 +5,12 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="openstack stein 高可用安装(keystone), openstack,opennebula">
-    <meta name="description" content="controller01 执行创建vip 只是用来测试,haproxy pcs 需要以后修改[root@controller01 ~]# ip address add 192.168.151.170/24 dev  ens37
+    <meta name="description" content="controller01 执行
+创建vip 只是用来测试,haproxy pcs 需要以后修改
+[root@controller01 ~]# ip address add 192.168.151.170/24 dev  ens37
 
 
-数据库准">
+数据">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -455,139 +457,155 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="controller01-执行"><a href="#controller01-执行" class="headerlink" title="controller01 执行"></a>controller01 执行</h2><h3 id="创建vip-只是用来测试-haproxy-pcs-需要以后修改"><a href="#创建vip-只是用来测试-haproxy-pcs-需要以后修改" class="headerlink" title="创建vip 只是用来测试,haproxy pcs 需要以后修改"></a>创建vip 只是用来测试,haproxy pcs 需要以后修改</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ip address add 192.168.151.170/24 dev  ens37</span>
+                <h2 id="controller01-执行">controller01 执行</h2>
+<h3 id="创建vip-只是用来测试-haproxy-pcs-需要以后修改">创建vip 只是用来测试,haproxy pcs 需要以后修改</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# ip address add 192.168.151.170/24 dev  ens37
 
 </code></pre>
-<h3 id="数据库准备"><a href="#数据库准备" class="headerlink" title="数据库准备"></a>数据库准备</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mysql </span>
-Welcome to the MariaDB monitor.  Commands end with <span class="token punctuation">;</span> or \g.
-Your MariaDB connection <span class="token function">id</span> is 11
+<h3 id="数据库准备">数据库准备</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# mysql 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
 Server version: 10.3.10-MariaDB MariaDB Server
 
-Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
-Type <span class="token string">'help;'</span> or <span class="token string">'\h'</span> <span class="token keyword">for</span> help. Type <span class="token string">'\c'</span> to <span class="token function">clear</span> the current input statement.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span>  CREATE DATABASE keystone<span class="token punctuation">;</span>
-Query OK, 1 row affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
+MariaDB [(none)]>  CREATE DATABASE keystone;
+Query OK, 1 row affected (0.006 sec)
 
-MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span>  GRANT ALL PRIVILEGES ON keystone.* TO <span class="token string">'keystone'</span>@<span class="token string">'localhost'</span> IDENTIFIED BY <span class="token string">'keystone'</span><span class="token punctuation">;</span>
-Query OK, 0 rows affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
+MariaDB [(none)]>  GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY 'keystone';
+Query OK, 0 rows affected (0.006 sec)
 
-MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> GRANT ALL PRIVILEGES ON keystone.* TO <span class="token string">'keystone'</span>@<span class="token string">'%'</span> IDENTIFIED BY <span class="token string">'keystone'</span><span class="token punctuation">;</span>
-Query OK, 0 rows affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY 'keystone';
+Query OK, 0 rows affected (0.006 sec)
 
-MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> 
+MariaDB [(none)]> 
 
-
-</code></pre>
-<h3 id="安装keystone"><a href="#安装keystone" class="headerlink" title="安装keystone"></a>安装keystone</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  yum install openstack-keystone httpd mod_wsgi</span>
-<span class="token comment" spellcheck="true">#修改配置</span>
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim /etc/keystone/keystone.conf</span>
-
-<span class="token punctuation">[</span>database<span class="token punctuation">]</span>
-<span class="token comment" spellcheck="true"># ...</span>
-connection <span class="token operator">=</span> mysql+pymysql://keystone:keystone@controller/keystone
-<span class="token punctuation">[</span>token<span class="token punctuation">]</span>
-<span class="token comment" spellcheck="true"># ...</span>
-provider <span class="token operator">=</span> fernet
 
 </code></pre>
-<h3 id="同步数据"><a href="#同步数据" class="headerlink" title="同步数据"></a>同步数据</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  su -s /bin/sh -c "keystone-manage db_sync" keystone</span>
-</code></pre>
-<h3 id="初始化key仓库"><a href="#初始化key仓库" class="headerlink" title="初始化key仓库"></a>初始化key仓库</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone</span>
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># keystone-manage credential_setup --keystone-user keystone --keystone-group keystone</span>
+<h3 id="安装keystone">安装keystone</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]#  yum install openstack-keystone httpd mod_wsgi
+#修改配置
+[root@controller01 ~]# vim /etc/keystone/keystone.conf
+
+[database]
+# ...
+connection = mysql+pymysql://keystone:keystone@controller/keystone
+[token]
+# ...
+provider = fernet
 
 </code></pre>
-<h3 id="boot-认证"><a href="#boot-认证" class="headerlink" title="boot 认证"></a>boot 认证</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  keystone-manage bootstrap --bootstrap-password ADMIN_PASS \</span>
-<span class="token operator">></span>   --bootstrap-admin-url http://controller:5000/v3/ \
-<span class="token operator">></span>   --bootstrap-internal-url http://controller:5000/v3/ \
-<span class="token operator">></span>   --bootstrap-public-url http://controller:5000/v3/ \
-<span class="token operator">></span>   --bootstrap-region-id RegionOne
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+<h3 id="同步数据">同步数据</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]#  su -s /bin/sh -c "keystone-manage db_sync" keystone
+</code></pre>
+<h3 id="初始化key仓库">初始化key仓库</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
+[root@controller01 ~]# keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
 
 </code></pre>
-<h3 id="配置apache-服务器"><a href="#配置apache-服务器" class="headerlink" title="配置apache 服务器"></a>配置apache 服务器</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim  /etc/httpd/conf/httpd.conf</span>
-<span class="token comment" spellcheck="true">#修改ServerName</span>
-ServerName controller <span class="token comment" spellcheck="true">#不存在需要增加 , controller 为虚拟ip</span>
-
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/</span>
+<h3 id="boot-认证">boot 认证</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]#  keystone-manage bootstrap --bootstrap-password ADMIN_PASS \
+>   --bootstrap-admin-url http://controller:5000/v3/ \
+>   --bootstrap-internal-url http://controller:5000/v3/ \
+>   --bootstrap-public-url http://controller:5000/v3/ \
+>   --bootstrap-region-id RegionOne
+[root@controller01 ~]# 
 
 </code></pre>
-<h3 id="启动-httpd"><a href="#启动-httpd" class="headerlink" title="启动 httpd"></a>启动 httpd</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  systemctl enable httpd.service</span>
+<h3 id="配置apache-服务器">配置apache 服务器</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# vim  /etc/httpd/conf/httpd.conf
+#修改ServerName
+ServerName controller #不存在需要增加 , controller 为虚拟ip
+
+[root@controller01 ~]# ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/
+
+</code></pre>
+<h3 id="启动-httpd">启动 httpd</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]#  systemctl enable httpd.service
 Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  systemctl start httpd.service</span>
+[root@controller01 ~]#  systemctl start httpd.service
 
 </code></pre>
-<h3 id="创建adminrc"><a href="#创建adminrc" class="headerlink" title="创建adminrc"></a>创建adminrc</h3><pre class=" language-bash"><code class="language-bash">
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat adminrc </span>
-<span class="token function">export</span> OS_PROJECT_DOMAIN_NAME<span class="token operator">=</span>Default
-<span class="token function">export</span> OS_USER_DOMAIN_NAME<span class="token operator">=</span>Default
-<span class="token function">export</span> OS_PROJECT_NAME<span class="token operator">=</span>admin
-<span class="token function">export</span> OS_USERNAME<span class="token operator">=</span>admin
-<span class="token function">export</span> OS_PASSWORD<span class="token operator">=</span>ADMIN_PASS
-<span class="token function">export</span> OS_AUTH_URL<span class="token operator">=</span>http://controller:5000/v3
-<span class="token function">export</span> OS_IDENTITY_API_VERSION<span class="token operator">=</span>3
-<span class="token function">export</span> OS_IMAGE_API_VERSION<span class="token operator">=</span>2
+<h3 id="创建adminrc">创建adminrc</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">
+[root@controller01 ~]# cat adminrc 
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_NAME=admin
+export OS_USERNAME=admin
+export OS_PASSWORD=ADMIN_PASS
+export OS_AUTH_URL=http://controller:5000/v3
+export OS_IDENTITY_API_VERSION=3
+export OS_IMAGE_API_VERSION=2
 </code></pre>
-<h3 id="验证是否安装成功"><a href="#验证是否安装成功" class="headerlink" title="验证是否安装成功"></a>验证是否安装成功</h3><pre class=" language-bash"><code class="language-bash">
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint list</span>
+<h3 id="验证是否安装成功">验证是否安装成功</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">
+[root@controller01 ~]# openstack endpoint list
 +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------+
-<span class="token operator">|</span> ID                               <span class="token operator">|</span> Region    <span class="token operator">|</span> Service Name <span class="token operator">|</span> Service Type <span class="token operator">|</span> Enabled <span class="token operator">|</span> Interface <span class="token operator">|</span> URL                        <span class="token operator">|</span>
+| ID                               | Region    | Service Name | Service Type | Enabled | Interface | URL                        |
 +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------+
-<span class="token operator">|</span> b3e86457b4474ecbbe603b5e67c86e5c <span class="token operator">|</span> RegionOne <span class="token operator">|</span> keystone     <span class="token operator">|</span> identity     <span class="token operator">|</span> True    <span class="token operator">|</span> admin     <span class="token operator">|</span> http://controller:5000/v3/ <span class="token operator">|</span>
-<span class="token operator">|</span> b944df58864d4805b5a3a1c6aabd66fe <span class="token operator">|</span> RegionOne <span class="token operator">|</span> keystone     <span class="token operator">|</span> identity     <span class="token operator">|</span> True    <span class="token operator">|</span> internal  <span class="token operator">|</span> http://controller:5000/v3/ <span class="token operator">|</span>
-<span class="token operator">|</span> e2d58415719f4d2a9b3b1463aed3a76b <span class="token operator">|</span> RegionOne <span class="token operator">|</span> keystone     <span class="token operator">|</span> identity     <span class="token operator">|</span> True    <span class="token operator">|</span> public    <span class="token operator">|</span> http://controller:5000/v3/ <span class="token operator">|</span>
+| b3e86457b4474ecbbe603b5e67c86e5c | RegionOne | keystone     | identity     | True    | admin     | http://controller:5000/v3/ |
+| b944df58864d4805b5a3a1c6aabd66fe | RegionOne | keystone     | identity     | True    | internal  | http://controller:5000/v3/ |
+| e2d58415719f4d2a9b3b1463aed3a76b | RegionOne | keystone     | identity     | True    | public    | http://controller:5000/v3/ |
 +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------+
 
 </code></pre>
-<h2 id="controller02-controller03-安装"><a href="#controller02-controller03-安装" class="headerlink" title="controller02 ,controller03 安装"></a>controller02 ,controller03 安装</h2><pre class=" language-bash"><code class="language-bash">yum <span class="token function">install</span> openstack-keystone httpd mod_wsgi -y
+<h2 id="controller02-controller03-安装">controller02 ,controller03 安装</h2>
+<pre class=" language-language-bash"><code class="language-language-bash">yum install openstack-keystone httpd mod_wsgi -y
 
-<span class="token comment" spellcheck="true">#修改配置 (参考controller01 ,)</span>
+#修改配置 (参考controller01 ,)
 
 vim  /etc/keystone/keystone.conf
 
 </code></pre>
-<h3 id="Initialize-Fernet-key-repositories"><a href="#Initialize-Fernet-key-repositories" class="headerlink" title="Initialize Fernet key repositories"></a>Initialize Fernet key repositories</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone</span>
-<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># keystone-manage credential_setup --keystone-user keystone --keystone-group keystone</span>
+<h3 id="Initialize-Fernet-key-repositories">Initialize Fernet key repositories</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller02 ~]# keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
+[root@controller02 ~]# keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
 
 
-<span class="token comment" spellcheck="true">### 配置apache 服务器</span>
+### 配置apache 服务器
  __ /etc/httpd/conf/httpd.conf__
 
 ```bash
 ServerName controller
 
 </code></pre>
-<h3 id="link"><a href="#link" class="headerlink" title="link"></a>link</h3><p> <strong>/usr/share/keystone/wsgi-keystone.conf</strong></p>
-<pre class=" language-bash"><code class="language-bash"> <span class="token function">ln</span> -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/
+<h3 id="link">link</h3>
+<p><strong>/usr/share/keystone/wsgi-keystone.conf</strong></p>
+<pre class=" language-language-bash"><code class="language-language-bash"> ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/
 </code></pre>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre class=" language-bash"><code class="language-bash">systemctl <span class="token function">enable</span> httpd.service
+<h3 id="启动">启动</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">systemctl enable httpd.service
 systemctl start httpd.service
 </code></pre>
-<h2 id="vip测试"><a href="#vip测试" class="headerlink" title="vip测试"></a>vip测试</h2><pre class=" language-bash"><code class="language-bash">
-<span class="token comment" spellcheck="true">#before </span>
+<h2 id="vip测试">vip测试</h2>
+<pre class=" language-language-bash"><code class="language-language-bash">
+#before 
 
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint list</span>
+[root@controller01 ~]# openstack endpoint list
 +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------+
-<span class="token operator">|</span> ID                               <span class="token operator">|</span> Region    <span class="token operator">|</span> Service Name <span class="token operator">|</span> Service Type <span class="token operator">|</span> Enabled <span class="token operator">|</span> Interface <span class="token operator">|</span> URL                        <span class="token operator">|</span>
+| ID                               | Region    | Service Name | Service Type | Enabled | Interface | URL                        |
 +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------+
-<span class="token operator">|</span> b3e86457b4474ecbbe603b5e67c86e5c <span class="token operator">|</span> RegionOne <span class="token operator">|</span> keystone     <span class="token operator">|</span> identity     <span class="token operator">|</span> True    <span class="token operator">|</span> admin     <span class="token operator">|</span> http://controller:5000/v3/ <span class="token operator">|</span>
-<span class="token operator">|</span> b944df58864d4805b5a3a1c6aabd66fe <span class="token operator">|</span> RegionOne <span class="token operator">|</span> keystone     <span class="token operator">|</span> identity     <span class="token operator">|</span> True    <span class="token operator">|</span> internal  <span class="token operator">|</span> http://controller:5000/v3/ <span class="token operator">|</span>
-<span class="token operator">|</span> e2d58415719f4d2a9b3b1463aed3a76b <span class="token operator">|</span> RegionOne <span class="token operator">|</span> keystone     <span class="token operator">|</span> identity     <span class="token operator">|</span> True    <span class="token operator">|</span> public    <span class="token operator">|</span> http://controller:5000/v3/ <span class="token operator">|</span>
+| b3e86457b4474ecbbe603b5e67c86e5c | RegionOne | keystone     | identity     | True    | admin     | http://controller:5000/v3/ |
+| b944df58864d4805b5a3a1c6aabd66fe | RegionOne | keystone     | identity     | True    | internal  | http://controller:5000/v3/ |
+| e2d58415719f4d2a9b3b1463aed3a76b | RegionOne | keystone     | identity     | True    | public    | http://controller:5000/v3/ |
 +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------+
 
 
-<span class="token comment" spellcheck="true"># after</span>
+# after
 
-<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ip address delete   192.168.151.170/24 dev  ens37</span>
-<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ip address add   192.168.151.170/24 dev  ens37</span>
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint list</span>
+[root@controller03 ~]# ip address delete   192.168.151.170/24 dev  ens37
+[root@controller02 ~]# ip address add   192.168.151.170/24 dev  ens37
+[root@controller01 ~]# openstack endpoint list
 +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------+
-<span class="token operator">|</span> ID                               <span class="token operator">|</span> Region    <span class="token operator">|</span> Service Name <span class="token operator">|</span> Service Type <span class="token operator">|</span> Enabled <span class="token operator">|</span> Interface <span class="token operator">|</span> URL                        <span class="token operator">|</span>
+| ID                               | Region    | Service Name | Service Type | Enabled | Interface | URL                        |
 +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------+
-<span class="token operator">|</span> b3e86457b4474ecbbe603b5e67c86e5c <span class="token operator">|</span> RegionOne <span class="token operator">|</span> keystone     <span class="token operator">|</span> identity     <span class="token operator">|</span> True    <span class="token operator">|</span> admin     <span class="token operator">|</span> http://controller:5000/v3/ <span class="token operator">|</span>
-<span class="token operator">|</span> b944df58864d4805b5a3a1c6aabd66fe <span class="token operator">|</span> RegionOne <span class="token operator">|</span> keystone     <span class="token operator">|</span> identity     <span class="token operator">|</span> True    <span class="token operator">|</span> internal  <span class="token operator">|</span> http://controller:5000/v3/ <span class="token operator">|</span>
-<span class="token operator">|</span> e2d58415719f4d2a9b3b1463aed3a76b <span class="token operator">|</span> RegionOne <span class="token operator">|</span> keystone     <span class="token operator">|</span> identity     <span class="token operator">|</span> True    <span class="token operator">|</span> public    <span class="token operator">|</span> http://controller:5000/v3/ <span class="token operator">|</span>
+| b3e86457b4474ecbbe603b5e67c86e5c | RegionOne | keystone     | identity     | True    | admin     | http://controller:5000/v3/ |
+| b944df58864d4805b5a3a1c6aabd66fe | RegionOne | keystone     | identity     | True    | internal  | http://controller:5000/v3/ |
+| e2d58415719f4d2a9b3b1463aed3a76b | RegionOne | keystone     | identity     | True    | public    | http://controller:5000/v3/ |
 +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------+
 
 
@@ -777,9 +795,11 @@ systemctl start httpd.service
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">controller01初始化数据库[root@controller01 ~]# mysql -u root 
+                    <div class="summary block-with-text">controller01
+初始化数据库
+[root@controller01 ~]# mysql -u root 
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your</div>
+Yo</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-20
@@ -824,8 +844,10 @@ Your</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">mariadb galera 安装controller node 执行# controller01 
-[root@controller01 ~]# yum install mariadb mariadb-server python2-PyM</div>
+                    <div class="summary block-with-text">mariadb galera 安装
+controller node 执行
+# controller01 
+[root@controller01 ~]# yum install mariadb mariadb-server python2-P</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-20
@@ -1003,7 +1025,7 @@ Your</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

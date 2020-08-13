@@ -6,22 +6,26 @@
     <meta charset="utf-8">
     <meta name="keywords" content="python ruby 元编程区别, openstack,opennebula">
     <meta name="description" content="蜜糖方法
-ruby 
+
+
+ruby
+
 
 method_missing
 
 
-python 
+python
 
-__getattr__  , __getattribute__
 
+_getattr_  , _getattribute_
 
 
 装饰器
-python 
+
+python
 
   def record_method(f):
-    def wr">
+    def wrapp">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -453,7 +457,7 @@ python
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        280
+                        279
                     </div>
                     
 
@@ -476,30 +480,34 @@ python
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="蜜糖方法"><a href="#蜜糖方法" class="headerlink" title="蜜糖方法"></a>蜜糖方法</h3><ul>
-<li><p>ruby </p>
+                <h3 id="蜜糖方法">蜜糖方法</h3>
 <ul>
-<li>method_missing</li>
-</ul>
+<li>
+<p>ruby</p>
 </li>
-<li><p>python </p>
+<li>
+<p>method_missing</p>
+</li>
+<li>
+<p>python</p>
+</li>
+<li>
+<p>_<em>getattr</em>_  , _<em>getattribute</em>_</p>
+</li>
+</ul>
+<h3 id="装饰器">装饰器</h3>
 <ul>
-<li>__getattr__  , __getattribute__</li>
+<li>python</li>
 </ul>
-</li>
-</ul>
-<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><ul>
-<li>python </li>
-</ul>
-<pre class=" language-python"><code class="language-python">  <span class="token keyword">def</span> <span class="token function">record_method</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-      puts <span class="token string">"xxxxxxxxxxx"</span>
-      f<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> wrapper
+<pre class=" language-language-python"><code class="language-language-python">  def record_method(f):
+    def wrapper(*args, **kwargs):
+      puts "xxxxxxxxxxx"
+      f(*args, **kwargs)
+    return wrapper
 
 </code></pre>
 <ul>
-<li>ruby  </li>
+<li>ruby</li>
 </ul>
 <pre><code>
 def with_record_log(method, *args)
@@ -508,129 +516,132 @@ def with_record_log(method, *args)
   puts &quot;yyyyyyyy&quot;
 end
 
-</code></pre><h3 id="动态方法"><a href="#动态方法" class="headerlink" title="动态方法"></a>动态方法</h3><ul>
+</code></pre>
+<h3 id="动态方法">动态方法</h3>
+<ul>
 <li>python</li>
 </ul>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># class method</span>
-<span class="token keyword">import</span> types
-
-<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    country <span class="token operator">=</span> <span class="token string">'china'</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>name <span class="token operator">=</span> name
-
+<pre class=" language-language-python"><code class="language-language-python"># class method
+import types
+ 
+class Person(object):
+    country = 'china'
+    def __init__(self,name):
+        self.name = name
+ 
 @classmethod
-<span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>cls<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'%s在奔跑'</span> <span class="token operator">%</span> cls<span class="token punctuation">.</span>country<span class="token punctuation">)</span>
+def run(cls):
+    print('%s在奔跑' % cls.country)
+ 
+Person.run = run
+Person.run()
 
-Person<span class="token punctuation">.</span>run <span class="token operator">=</span> run
-Person<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+#instance method
 
-<span class="token comment" spellcheck="true">#instance method</span>
+import types
+class Person(object):
+    def __init__(self,name):
+        self.name = name
+ 
+def run(self):
+    print('%s在奔跑' % self.name)
+ 
+p1 = Person('p1')
+p1.run = types.MethodType(run,p1)
+ 
+p1.run()
 
-<span class="token keyword">import</span> types
-<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>name <span class="token operator">=</span> name
-
-<span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'%s在奔跑'</span> <span class="token operator">%</span> self<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
-
-p1 <span class="token operator">=</span> Person<span class="token punctuation">(</span><span class="token string">'p1'</span><span class="token punctuation">)</span>
-p1<span class="token punctuation">.</span>run <span class="token operator">=</span> types<span class="token punctuation">.</span>MethodType<span class="token punctuation">(</span>run<span class="token punctuation">,</span>p1<span class="token punctuation">)</span>
-
-p1<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># static method</span>
+# static method
 
 
-<span class="token keyword">import</span> types
-
-<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    country <span class="token operator">=</span> <span class="token string">'china'</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>name <span class="token operator">=</span> name
-
+import types
+ 
+class Person(object):
+    country = 'china'
+    def __init__(self,name):
+        self.name = name
+ 
 @staticmethod
-<span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'在奔跑'</span><span class="token punctuation">)</span>
+def run():
+    print('在奔跑')
+ 
+Person.run = run
+Person.run()
 
-Person<span class="token punctuation">.</span>run <span class="token operator">=</span> run
-Person<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
+# function
 
-<span class="token comment" spellcheck="true"># function</span>
+from ast import *
+import types
 
-<span class="token keyword">from</span> ast <span class="token keyword">import</span> <span class="token operator">*</span>
-<span class="token keyword">import</span> types
+function_ast = FunctionDef(
+    name='foobar',
+    args=arguments(args=[], vararg=None, kwarg=None, defaults=[]),
+    body=[Return(value=Num(n=42, lineno=1, col_offset=0), lineno=1, col_offset=0)],
+    decorator_list=[],
+    lineno=1,
+    col_offset=0
+)
+module_ast = Module(body=[function_ast])
+module_code = compile(module_ast, "<>", "exec")
+function_code = [c for c in module_code.co_consts if isinstance(c, types.CodeType)][0]
+foobar = types.FunctionType(function_code, {})
+print foobar()
 
-function_ast <span class="token operator">=</span> FunctionDef<span class="token punctuation">(</span>
-    name<span class="token operator">=</span><span class="token string">'foobar'</span><span class="token punctuation">,</span>
-    args<span class="token operator">=</span>arguments<span class="token punctuation">(</span>args<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> vararg<span class="token operator">=</span>None<span class="token punctuation">,</span> kwarg<span class="token operator">=</span>None<span class="token punctuation">,</span> defaults<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    body<span class="token operator">=</span><span class="token punctuation">[</span>Return<span class="token punctuation">(</span>value<span class="token operator">=</span>Num<span class="token punctuation">(</span>n<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">,</span> lineno<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> col_offset<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lineno<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> col_offset<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-    decorator_list<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-    lineno<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>
-    col_offset<span class="token operator">=</span><span class="token number">0</span>
-<span class="token punctuation">)</span>
-module_ast <span class="token operator">=</span> Module<span class="token punctuation">(</span>body<span class="token operator">=</span><span class="token punctuation">[</span>function_ast<span class="token punctuation">]</span><span class="token punctuation">)</span>
-module_code <span class="token operator">=</span> compile<span class="token punctuation">(</span>module_ast<span class="token punctuation">,</span> <span class="token string">"&lt;>"</span><span class="token punctuation">,</span> <span class="token string">"exec"</span><span class="token punctuation">)</span>
-function_code <span class="token operator">=</span> <span class="token punctuation">[</span>c <span class="token keyword">for</span> c <span class="token keyword">in</span> module_code<span class="token punctuation">.</span>co_consts <span class="token keyword">if</span> isinstance<span class="token punctuation">(</span>c<span class="token punctuation">,</span> types<span class="token punctuation">.</span>CodeType<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-foobar <span class="token operator">=</span> types<span class="token punctuation">.</span>FunctionType<span class="token punctuation">(</span>function_code<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span> foobar<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 2</span>
-module_code <span class="token operator">=</span> compile<span class="token punctuation">(</span><span class="token string">'def foobar(): return "foobar"'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'exec'</span><span class="token punctuation">)</span>
-function_code <span class="token operator">=</span> <span class="token punctuation">[</span>c <span class="token keyword">for</span> c <span class="token keyword">in</span> module_code<span class="token punctuation">.</span>co_consts <span class="token keyword">if</span> isinstance<span class="token punctuation">(</span>c<span class="token punctuation">,</span> types<span class="token punctuation">.</span>CodeType<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-foobar <span class="token operator">=</span> types<span class="token punctuation">.</span>FunctionType<span class="token punctuation">(</span>function_code<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span> foobar<span class="token punctuation">(</span><span class="token punctuation">)</span>
+# 2
+module_code = compile('def foobar(): return "foobar"', '', 'exec')
+function_code = [c for c in module_code.co_consts if isinstance(c, types.CodeType)][0]
+foobar = types.FunctionType(function_code, {})
+print foobar()
 </code></pre>
 <ul>
 <li>ruby</li>
 </ul>
-<pre class=" language-ruby"><code class="language-ruby">
-<span class="token comment" spellcheck="true"># instance method</span>
+<pre class=" language-language-ruby"><code class="language-language-ruby">
+# instance method
 
-<span class="token keyword">class</span> <span class="token class-name">A</span> 
+class A 
 
-<span class="token keyword">end</span>
+end
 
-<span class="token constant">A</span><span class="token punctuation">.</span>instance_eval <span class="token keyword">do</span> 
+A.instance_eval do 
 
 
-<span class="token keyword">end</span>
+end
 
-<span class="token comment" spellcheck="true"># class method </span>
+# class method 
 
-<span class="token constant">A</span><span class="token punctuation">.</span>class_eval <span class="token keyword">do</span>
+A.class_eval do
 
-<span class="token keyword">end</span>
+end
 
-<span class="token comment" spellcheck="true"># open class </span>
+# open class 
 
-<span class="token keyword">class</span> <span class="token class-name">A</span> 
+class A 
 
-<span class="token keyword">end</span>
-<span class="token comment" spellcheck="true"># 定义方法 </span>
+end
+# 定义方法 
 
-<span class="token keyword">define_method</span> <span class="token symbol">:xxx</span> <span class="token keyword">do</span> <span class="token operator">|</span>args<span class="token operator">|</span>
+define_method :xxx do |args|
 
-<span class="token keyword">end</span>
+end
 
 </code></pre>
-<h3 id="动态类"><a href="#动态类" class="headerlink" title="动态类"></a>动态类</h3><ul>
+<h3 id="动态类">动态类</h3>
+<ul>
 <li>python</li>
 </ul>
-<pre class=" language-python"><code class="language-python">
-SomeClass <span class="token operator">=</span> type<span class="token punctuation">(</span><span class="token string">'SomeClass'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre class=" language-language-python"><code class="language-language-python">
+SomeClass = type('SomeClass', (), {})
 
 </code></pre>
 <ul>
 <li>ruby</li>
 </ul>
-<pre class=" language-ruby"><code class="language-ruby">
- <span class="token constant">A</span> <span class="token operator">=</span>   <span class="token builtin">Class</span><span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">do</span> 
+<pre class=" language-language-ruby"><code class="language-language-ruby">
+ A =   Class.new do 
 
-  <span class="token keyword">end</span>
+  end
 
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -816,15 +827,18 @@ SomeClass <span class="token operator">=</span> type<span class="token punctuati
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">说明
+
 可以在每一天机器安装  consul client, 然后通过脚本去watch
+
 需要在每一台机器安装consul client
 
 
 直接在代码watch service
+
 经过实践证明, 不存在性能瓶颈
 
 
-本文通过在代码watch s</div>
+本文通过在代码watc</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-24
@@ -872,6 +886,7 @@ SomeClass <span class="token operator">=</span> type<span class="token punctuati
                     <div class="summary block-with-text">内部常用链接
 
 
+
 地址
 URL
 用户名
@@ -892,7 +907,7 @@ http://dido.51iwifi.com/#/login
 -
 
 
-gitla</div>
+gitl</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-18
@@ -1070,7 +1085,7 @@ gitla</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

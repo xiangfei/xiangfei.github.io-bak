@@ -5,10 +5,11 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="nodejs hexo  deploy error, openstack,opennebula">
-    <meta name="description" content="node js deploy 报错[root@autotest-ruby-agent myblog]# hexo d
+    <meta name="description" content="node js deploy 报错
+[root@autotest-ruby-agent myblog]# hexo d
 INFO  Deploying: git
 INFO  Clearing .deploy_git folder...
-INF">
+IN">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -432,7 +433,7 @@ INF">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        368
+                        366
                     </div>
                     
 
@@ -455,34 +456,35 @@ INF">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="node-js-deploy-报错"><a href="#node-js-deploy-报错" class="headerlink" title="node js deploy 报错"></a>node js deploy 报错</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@autotest-ruby-agent myblog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># hexo d</span>
-INFO  Deploying: <span class="token function">git</span>
-INFO  Clearing .deploy_git folder<span class="token punctuation">..</span>.
-INFO  Copying files from public folder<span class="token punctuation">..</span>.
-FATAL Something's wrong. Maybe you can <span class="token function">find</span> the solution here: https://hexo.io/docs/troubleshooting.html
-TypeError <span class="token punctuation">[</span>ERR_INVALID_ARG_TYPE<span class="token punctuation">]</span>: The <span class="token string">"mode"</span> argument must be integer. Received an instance of Object
-    at copyFile <span class="token punctuation">(</span>fs.js:1895:10<span class="token punctuation">)</span>
-    at tryCatcher <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/util.js:16:23<span class="token punctuation">)</span>
-    at ret <span class="token punctuation">(</span>eval at makeNodePromisifiedEval <span class="token punctuation">(</span>/usr/lib/node_modules/hexo-cli/node_modules/bluebird/js/release/promisify.js:184:12<span class="token punctuation">)</span>, <span class="token operator">&lt;</span>anonymous<span class="token operator">></span>:13:39<span class="token punctuation">)</span>
+                <h3 id="node-js-deploy-报错">node js deploy 报错</h3>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@autotest-ruby-agent myblog]# hexo d
+INFO  Deploying: git
+INFO  Clearing .deploy_git folder...
+INFO  Copying files from public folder...
+FATAL Something's wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html
+TypeError [ERR_INVALID_ARG_TYPE]: The "mode" argument must be integer. Received an instance of Object
+    at copyFile (fs.js:1895:10)
+    at tryCatcher (/service/myblog/node_modules/bluebird/js/release/util.js:16:23)
+    at ret (eval at makeNodePromisifiedEval (/usr/lib/node_modules/hexo-cli/node_modules/bluebird/js/release/promisify.js:184:12), <anonymous>:13:39)
     at /service/myblog/node_modules/hexo-deployer-git/node_modules/hexo-fs/lib/fs.js:144:39
-    at tryCatcher <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/util.js:16:23<span class="token punctuation">)</span>
-    at Promise._settlePromiseFromHandler <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:512:31<span class="token punctuation">)</span>
-    at Promise._settlePromise <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:569:18<span class="token punctuation">)</span>
-    at Promise._settlePromise0 <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:614:10<span class="token punctuation">)</span>
-    at Promise._settlePromises <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:694:18<span class="token punctuation">)</span>
-    at Promise._fulfill <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:638:18<span class="token punctuation">)</span>
-    at Promise._resolveCallback <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:432:57<span class="token punctuation">)</span>
-    at Promise._settlePromiseFromHandler <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:524:17<span class="token punctuation">)</span>
-    at Promise._settlePromise <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:569:18<span class="token punctuation">)</span>
-    at Promise._settlePromise0 <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:614:10<span class="token punctuation">)</span>
-    at Promise._settlePromises <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:694:18<span class="token punctuation">)</span>
-    at Promise._fulfill <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:638:18<span class="token punctuation">)</span>
-    at Promise._resolveCallback <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:432:57<span class="token punctuation">)</span>
-    at Promise._settlePromiseFromHandler <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:524:17<span class="token punctuation">)</span>
-    at Promise._settlePromise <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:569:18<span class="token punctuation">)</span>
-    at Promise._settlePromise0 <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:614:10<span class="token punctuation">)</span>
-    at Promise._settlePromises <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:694:18<span class="token punctuation">)</span>
-    at Promise._fulfill <span class="token punctuation">(</span>/service/myblog/node_modules/bluebird/js/release/promise.js:638:18<span class="token punctuation">)</span>
+    at tryCatcher (/service/myblog/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/service/myblog/node_modules/bluebird/js/release/promise.js:512:31)
+    at Promise._settlePromise (/service/myblog/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromise0 (/service/myblog/node_modules/bluebird/js/release/promise.js:614:10)
+    at Promise._settlePromises (/service/myblog/node_modules/bluebird/js/release/promise.js:694:18)
+    at Promise._fulfill (/service/myblog/node_modules/bluebird/js/release/promise.js:638:18)
+    at Promise._resolveCallback (/service/myblog/node_modules/bluebird/js/release/promise.js:432:57)
+    at Promise._settlePromiseFromHandler (/service/myblog/node_modules/bluebird/js/release/promise.js:524:17)
+    at Promise._settlePromise (/service/myblog/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromise0 (/service/myblog/node_modules/bluebird/js/release/promise.js:614:10)
+    at Promise._settlePromises (/service/myblog/node_modules/bluebird/js/release/promise.js:694:18)
+    at Promise._fulfill (/service/myblog/node_modules/bluebird/js/release/promise.js:638:18)
+    at Promise._resolveCallback (/service/myblog/node_modules/bluebird/js/release/promise.js:432:57)
+    at Promise._settlePromiseFromHandler (/service/myblog/node_modules/bluebird/js/release/promise.js:524:17)
+    at Promise._settlePromise (/service/myblog/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromise0 (/service/myblog/node_modules/bluebird/js/release/promise.js:614:10)
+    at Promise._settlePromises (/service/myblog/node_modules/bluebird/js/release/promise.js:694:18)
+    at Promise._fulfill (/service/myblog/node_modules/bluebird/js/release/promise.js:638:18)
 
 
 
@@ -673,7 +675,10 @@ TypeError <span class="token punctuation">[</span>ERR_INVALID_ARG_TYPE<span clas
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">常见的mysql监控指标
-tps MariaDB [(none)]> show global status where variable_name in ('com_insert' , 'com_delete' , 'com_update'</div>
+
+tps
+
+MariaDB [(none)]> show global status where variable_name in ('com_insert' , 'com_delete' , 'com_updat</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-16
@@ -726,8 +731,10 @@ tps MariaDB [(none)]> show global status where variable_name in ('com_insert' , 
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">rails 心跳日志实现rails agent  每3秒钟 同步一次 hearheatdef agent_env
-  JSON.load(Diplomat::Kv.get("devops/automationtesting-backend-</div>
+                    <div class="summary block-with-text">rails 心跳日志实现
+rails agent  每3秒钟 同步一次 hearheat
+def agent_env
+  JSON.load(Diplomat::Kv.get("devops/automationtesting-backen</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-13
@@ -905,7 +912,7 @@ tps MariaDB [(none)]> show global status where variable_name in ('com_insert' , 
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

@@ -6,13 +6,16 @@
     <meta charset="utf-8">
     <meta name="keywords" content="ruby 表达式, openstack,opennebula">
     <meta name="description" content="Ruby 表达式
+
 Ruby 提供了几种很常见的条件结构。在这里，我们将解释所有的条件语句和 Ruby 中可用的修饰符。
 
 Ruby if…else 语句
+
 语法
+
 if conditional [then]
       code...
-[els">
+[">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -436,7 +439,7 @@ if conditional [then]
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        770
+                        766
                     </div>
                     
 
@@ -459,11 +462,14 @@ if conditional [then]
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-表达式"><a href="#Ruby-表达式" class="headerlink" title="Ruby 表达式"></a>Ruby 表达式</h3><ul>
+                <h3 id="Ruby-表达式">Ruby 表达式</h3>
+<ul>
 <li>Ruby 提供了几种很常见的条件结构。在这里，我们将解释所有的条件语句和 Ruby 中可用的修饰符。</li>
 </ul>
-<h4 id="Ruby-if…else-语句"><a href="#Ruby-if…else-语句" class="headerlink" title="Ruby if…else 语句"></a>Ruby if…else 语句</h4><blockquote>
+<h4 id="Ruby-if…else-语句">Ruby if…else 语句</h4>
+<blockquote>
 <p>语法</p>
+</blockquote>
 <pre><code>if conditional [then]
       code...
 [elsif conditional [then]
@@ -471,13 +477,16 @@ if conditional [then]
 [else
       code...]
 end
-</code></pre></blockquote>
+</code></pre>
 <ul>
-<li><p>if 表达式用于条件执行。值 false 和 nil 为假，其他值都为真。请注意，Ruby 使用 elsif，不是使用 else if 和 elif。</p>
+<li>
+<p>if 表达式用于条件执行。值 false 和 nil 为假，其他值都为真。请注意，Ruby 使用 elsif，不是使用 else if 和 elif。</p>
 </li>
-<li><p>如果 conditional 为真，则执行 code。如果 conditional 不为真，则执行 else 子句中指定的 code。</p>
+<li>
+<p>如果 conditional 为真，则执行 code。如果 conditional 不为真，则执行 else 子句中指定的 code。</p>
 </li>
-<li><p>通常我们省略保留字 then 。若想在一行内写出完整的 if 式，则必须以 then 隔开条件式和程式区块。如下所示:</p>
+<li>
+<p>通常我们省略保留字 then 。若想在一行内写出完整的 if 式，则必须以 then 隔开条件式和程式区块。如下所示:</p>
 </li>
 </ul>
 <blockquote>
@@ -486,7 +495,7 @@ end
 <hr>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 x=1
 if x &gt; 2
    puts &quot;x 大于 2&quot;
@@ -496,47 +505,56 @@ else
    puts &quot;无法得知 x 的值&quot;
 end
 
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p> x 是 1</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>x 是 1</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-if-修饰符"><a href="#Ruby-if-修饰符" class="headerlink" title="Ruby if 修饰符"></a>Ruby if 修饰符</h3><blockquote>
+<h3 id="Ruby-if-修饰符">Ruby if 修饰符</h3>
+<blockquote>
 <p>语法</p>
+</blockquote>
 <pre><code>code if condition
-</code></pre></blockquote>
-<p>if修饰词组表示当 if 右边之条件成立时才执行 if 左边的式子。即如果 conditional 为真，则执行 code。<br>实例</p>
+</code></pre>
+<p>if修饰词组表示当 if 右边之条件成立时才执行 if 左边的式子。即如果 conditional 为真，则执行 code。<br>
+实例</p>
 <pre><code>#!/usr/bin/ruby
-
+ 
 $debug=1
 print &quot;debug\n&quot; if $debug
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
 <p>debug</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-unless-语句"><a href="#Ruby-unless-语句" class="headerlink" title="Ruby unless 语句"></a>Ruby unless 语句</h3><blockquote>
+<h3 id="Ruby-unless-语句">Ruby unless 语句</h3>
+<blockquote>
 <p>语法</p>
+</blockquote>
 <pre><code>unless conditional [then]
    code
 [else
    code ]
 end
-</code></pre></blockquote>
+</code></pre>
 <p>unless式和 if式作用相反，即如果 conditional 为假，则执行 code。如果 conditional 为真，则执行 else 子句中指定的 code。</p>
 <p>实例</p>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 x=1
 unless x&gt;2
    puts &quot;x 小于 2&quot;
  else
   puts &quot;x 大于 2&quot;
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
 <p>x 小于 2</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-unless-修饰符"><a href="#Ruby-unless-修饰符" class="headerlink" title="Ruby unless 修饰符"></a>Ruby unless 修饰符</h3><p>语法</p>
+<h3 id="Ruby-unless-修饰符">Ruby unless 修饰符</h3>
+<p>语法</p>
 <blockquote>
 <p>code unless conditional</p>
 </blockquote>
@@ -544,24 +562,28 @@ end
 <p>实例</p>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 $var =  1
 print &quot;1 -- 这一行输出\n&quot; if $var
 print &quot;2 -- 这一行不输出\n&quot; unless $var
-
+ 
 $var = false
 print &quot;3 -- 这一行输出\n&quot; unless $var
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><p>1 – 这一行输出<br>3 – 这一行输出</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><p>1 – 这一行输出<br>
+3 – 这一行输出</p>
 </div></div>
-<h3 id="Ruby-case-语句"><a href="#Ruby-case-语句" class="headerlink" title="Ruby case 语句"></a>Ruby case 语句</h3><p>语法</p>
+<h3 id="Ruby-case-语句">Ruby case 语句</h3>
+<p>语法</p>
 <blockquote>
 <p>case expression</p>
+</blockquote>
 <pre><code>[when expression [, expression ...] [then]
    code ]...
 [else
    code ]
 end
-</code></pre></blockquote>
+</code></pre>
 <p>case先对一个 expression 进行匹配判断，然后根据匹配结果进行分支选择。</p>
 <p>它使用 ===运算符比较 when 指定的 expression，若一致的话就执行 when 部分的内容。</p>
 <p>通常我们省略保留字 then 。若想在一行内写出完整的 when 式，则必须以 then 隔开条件式和程式区块。如下所示:</p>
@@ -577,7 +599,8 @@ when expr3, expr4
 else
    stmt3
 end
-</code></pre><p>基本上类似于：</p>
+</code></pre>
+<p>基本上类似于：</p>
 <pre><code>_tmp = expr0
 if expr1 === _tmp || expr2 === _tmp
    stmt1
@@ -586,10 +609,11 @@ elsif expr3 === _tmp || expr4 === _tmp
 else
    stmt3
 end
-</code></pre><p>实例</p>
+</code></pre>
+<p>实例</p>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 $age =  5
 case $age
 when 0 .. 2
@@ -603,22 +627,24 @@ when 13 .. 18
 else
     puts &quot;其他年龄段的&quot;
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
 <p>小孩</p>
 </blockquote>
 </div></div>
-<p>当case的”表达式”部分被省略时，将计算第一个when条件部分为真的表达式。</p>
+<p>当case的&quot;表达式&quot;部分被省略时，将计算第一个when条件部分为真的表达式。</p>
 <pre><code>foo = false
 bar = true
 quu = false
-
+ 
 case
-when foo then puts &#39;foo is true&#39;
-when bar then puts &#39;bar is true&#39;
-when quu then puts &#39;quu is true&#39;
+when foo then puts 'foo is true'
+when bar then puts 'bar is true'
+when quu then puts 'quu is true'
 end
 # 显示 &quot;bar is true&quot;
-</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -800,10 +826,13 @@ end
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 循环Ruby 中的循环用于执行相同的代码块若干次。本章节将详细介绍 Ruby 支持的所有循环语句。
+                    <div class="summary block-with-text">Ruby 循环
+Ruby 中的循环用于执行相同的代码块若干次。本章节将详细介绍 Ruby 支持的所有循环语句。
 
 Ruby while 语句
+
 语法
+
 while conditional [do]
    code
 end
@@ -811,7 +840,8 @@ end
 或者
 
 语法
-whil</div>
+
+</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-05
@@ -856,13 +886,15 @@ whil</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 注释注释是在运行时会被忽略的 Ruby 代码内的注释行。单行注释以 # 字符开始，直到该行结束，如下所示：
-Ruby 单行注解实例
+                    <div class="summary block-with-text">Ruby 注释
+注释是在运行时会被忽略的 Ruby 代码内的注释行。单行注释以 # 字符开始，直到该行结束，如下所示：
+Ruby 单行注解
+实例
 #!/usr/bin/ruby -w
-
+ 
 # 这是一个单行注释。
-
-puts &quot;Hello</div>
+ 
+puts &quot;H</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-23
@@ -1040,7 +1072,7 @@ puts &quot;Hello</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

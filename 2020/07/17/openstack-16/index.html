@@ -6,11 +6,12 @@
     <meta charset="utf-8">
     <meta name="keywords" content="openstack ussuri centos8 高可用安装 memache , etcd , ntp, openstack,opennebula">
     <meta name="description" content="memache 安装
+
 安装
 
 ## all nodes执行
 [root@controller02 ~]# yum install memcached python3-memcached -y
-[root@controller02 ~]# s">
+[root@controller02 ~]# ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -442,7 +443,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        413
+                        393
                     </div>
                     
 
@@ -465,95 +466,98 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="memache-安装"><a href="#memache-安装" class="headerlink" title="memache 安装"></a>memache 安装</h2><ul>
+                <h2 id="memache-安装">memache 安装</h2>
+<ul>
 <li>安装</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">## all nodes执行</span>
-<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install memcached python3-memcached -y</span>
-<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable memcached.service</span>
+<pre class=" language-language-bash"><code class="language-language-bash">## all nodes执行
+[root@controller02 ~]# yum install memcached python3-memcached -y
+[root@controller02 ~]# systemctl enable memcached.service
 
 
-<span class="token comment" spellcheck="true">## 修改配置文件</span>
+## 修改配置文件
 
-<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat   /etc/sysconfig/memcached</span>
-PORT<span class="token operator">=</span><span class="token string">"11211"</span>
-USER<span class="token operator">=</span><span class="token string">"memcached"</span>
-MAXCONN<span class="token operator">=</span><span class="token string">"1024"</span>
-CACHESIZE<span class="token operator">=</span><span class="token string">"64"</span>
-OPTIONS<span class="token operator">=</span><span class="token string">"-l 127.0.0.1,::1,controller02"</span>
+[root@controller02 ~]# cat   /etc/sysconfig/memcached
+PORT="11211"
+USER="memcached"
+MAXCONN="1024"
+CACHESIZE="64"
+OPTIONS="-l 127.0.0.1,::1,controller02"
 
-<span class="token comment" spellcheck="true">## 不同机器监听不同的hostname</span>
+## 不同机器监听不同的hostname
 
-<span class="token comment" spellcheck="true">## 启动</span>
-<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl start memcached.service</span>
+## 启动
+[root@controller02 ~]# systemctl start memcached.service
 </code></pre>
 <ul>
 <li>test</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># telnet controller01 11211</span>
-Trying 10.10.102.191<span class="token punctuation">..</span>.
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# telnet controller01 11211
+Trying 10.10.102.191...
 Connected to controller01.
-Escape character is <span class="token string">'^]'</span><span class="token keyword">.</span>
-^<span class="token punctuation">]</span>
-telnet<span class="token operator">></span> q
+Escape character is '^]'.
+^]
+telnet> q
 Connection closed.
-<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+[root@controller01 ~]# 
 
 
 </code></pre>
-<h2 id="ntp-服务器"><a href="#ntp-服务器" class="headerlink" title="ntp 服务器"></a>ntp 服务器</h2><ul>
+<h2 id="ntp-服务器">ntp 服务器</h2>
+<ul>
 <li>安装</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># all nodes include compute nodes</span>
-<span class="token comment" spellcheck="true"># centos 8 安装安装了?</span>
-<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  yum install chrony -y</span>
-<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable chronyd.service</span>
-<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim /etc/chrony.conf </span>
+<pre class=" language-language-bash"><code class="language-language-bash"># all nodes include compute nodes
+# centos 8 安装安装了?
+[root@controller03 ~]#  yum install chrony -y
+[root@controller03 ~]# systemctl enable chronyd.service
+[root@controller03 ~]# vim /etc/chrony.conf 
 
-<span class="token comment" spellcheck="true">#pool 2.centos.pool.ntp.org iburst</span>
+#pool 2.centos.pool.ntp.org iburst
 pool  ntp1.aliyun.com  iburst
 pool ntp2.aliyun.com  iburst
 
 
-<span class="token comment" spellcheck="true"># enable</span>
-<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># timedatectl set-ntp yes</span>
-<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl restart chronyd.service</span>
-<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable chronyd</span>
+# enable
+[root@controller03 ~]# timedatectl set-ntp yes
+[root@controller03 ~]# systemctl restart chronyd.service
+[root@controller03 ~]# systemctl enable chronyd
 </code></pre>
 <ul>
 <li>test</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  tcpdump port 123 -i ens3</span>
-tcpdump: verbose output suppressed, use -v or -vv <span class="token keyword">for</span> full protocol decode
-listening on ens3, link-type EN10MB <span class="token punctuation">(</span>Ethernet<span class="token punctuation">)</span>, capture size 262144 bytes
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller02 ~]#  tcpdump port 123 -i ens3
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on ens3, link-type EN10MB (Ethernet), capture size 262144 bytes
 
 
-16:43:08.041038 IP controller02.50622 <span class="token operator">></span> 120.25.115.20.ntp: NTPv4, Client, length 48
-16:43:08.066173 IP 120.25.115.20.ntp <span class="token operator">></span> controller02.50622: NTPv4, Server, length 48
-16:43:08.656191 IP controller02.35652 <span class="token operator">></span> 203.107.6.88.ntp: NTPv4, Client, length 48
-16:43:08.679818 IP 203.107.6.88.ntp <span class="token operator">></span> controller02.35652: NTPv4, Server, length 48
+16:43:08.041038 IP controller02.50622 > 120.25.115.20.ntp: NTPv4, Client, length 48
+16:43:08.066173 IP 120.25.115.20.ntp > controller02.50622: NTPv4, Server, length 48
+16:43:08.656191 IP controller02.35652 > 203.107.6.88.ntp: NTPv4, Client, length 48
+16:43:08.679818 IP 203.107.6.88.ntp > controller02.35652: NTPv4, Server, length 48
 ^C
 4 packets captured
 4 packets received by filter
 0 packets dropped by kernel
-<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ping  ntp1.aliyun.com</span>
-PING ntp1.aliyun.com <span class="token punctuation">(</span>120.25.115.20<span class="token punctuation">)</span> 56<span class="token punctuation">(</span>84<span class="token punctuation">)</span> bytes of data.
-64 bytes from 120.25.115.20 <span class="token punctuation">(</span>120.25.115.20<span class="token punctuation">)</span>: icmp_seq<span class="token operator">=</span>1 ttl<span class="token operator">=</span>49 time<span class="token operator">=</span>25.6 ms
+[root@controller02 ~]# ping  ntp1.aliyun.com
+PING ntp1.aliyun.com (120.25.115.20) 56(84) bytes of data.
+64 bytes from 120.25.115.20 (120.25.115.20): icmp_seq=1 ttl=49 time=25.6 ms
 ^C
---- ntp1.aliyun.com <span class="token function">ping</span> statistics ---
-1 packets transmitted, 1 received, 0% packet loss, <span class="token function">time</span> 0ms
-rtt min/avg/max/mdev <span class="token operator">=</span> 25.591/25.591/25.591/0.000 ms
+--- ntp1.aliyun.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 25.591/25.591/25.591/0.000 ms
 
-<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># chronyc sources</span>
-210 Number of sources <span class="token operator">=</span> 2
+[root@controller03 ~]# chronyc sources
+210 Number of sources = 2
 MS Name/IP address         Stratum Poll Reach LastRx Last sample               
-<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>
-^* 120.25.115.20                 2   6    17     5   +237us<span class="token punctuation">[</span> -224us<span class="token punctuation">]</span> +/-   16ms
-^- 203.107.6.88                  2   6    17     5  -2159us<span class="token punctuation">[</span>-2159us<span class="token punctuation">]</span> +/-   21ms
+===============================================================================
+^* 120.25.115.20                 2   6    17     5   +237us[ -224us] +/-   16ms
+^- 203.107.6.88                  2   6    17     5  -2159us[-2159us] +/-   21ms
 
 
 </code></pre>
-<h2 id="etcd"><a href="#etcd" class="headerlink" title="etcd"></a>etcd</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#没用到, 先不安装。等出错在&lt;处理</span>
+<h2 id="etcd">etcd</h2>
+<pre class=" language-language-bash"><code class="language-language-bash">#没用到, 先不安装。等出错在<处理
 
 </code></pre>
 <blockquote>
@@ -742,12 +746,15 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">创建vip
-用来安装, 手动创建vip  
+
+用来安装, 手动创建vip
 
 [root@controller01 ~]# ip address add dev ens5 10.10.102.190/24
 
 
-controller01 操作初始化数据库[root@cont</div>
+controller01 操作
+初始化数据库
+[root@con</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-17
@@ -800,8 +807,9 @@ controller01 操作初始化数据库[root@cont</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">all  controller nodes[root@controller03 ~]#  yum install rabbitmq-server -y
-[root@controller03 ~]#  systemctl enable rab</div>
+                    <div class="summary block-with-text">all  controller nodes
+[root@controller03 ~]#  yum install rabbitmq-server -y
+[root@controller03 ~]#  systemctl enable ra</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-17
@@ -987,7 +995,7 @@ controller01 操作初始化数据库[root@cont</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

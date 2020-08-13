@@ -6,11 +6,14 @@
     <meta charset="utf-8">
     <meta name="keywords" content="mariadb galera 集群安装, openstack,opennebula">
     <meta name="description" content="准备
-192.168.224.181    controller1 
-192.168.224.182   controller2 
-192.168.224.183   controller3 
 
-yum 源# 163源测试,找不到wsrep">
+192.168.224.181    controller1
+192.168.224.182   controller2
+192.168.224.183   controller3
+
+yum 源
+# 163源测试,找不到wsrep
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -438,7 +441,7 @@ yum 源# 163源测试,找不到wsrep">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        250
+                        248
                     </div>
                     
 
@@ -461,12 +464,14 @@ yum 源# 163源测试,找不到wsrep">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><ul>
-<li>192.168.224.181    controller1 </li>
-<li>192.168.224.182   controller2 </li>
-<li>192.168.224.183   controller3 </li>
+                <h4 id="准备">准备</h4>
+<ul>
+<li>192.168.224.181    controller1</li>
+<li>192.168.224.182   controller2</li>
+<li>192.168.224.183   controller3</li>
 </ul>
-<h4 id="yum-源"><a href="#yum-源" class="headerlink" title="yum 源"></a>yum 源</h4><pre><code># 163源测试,找不到wsrep
+<h4 id="yum-源">yum 源</h4>
+<pre><code># 163源测试,找不到wsrep
 vim Mariadb.repo
 
 [mariadb]
@@ -479,14 +484,18 @@ enabled = 1
 
 gpgcheck = 0
 
-</code></pre><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ul>
-<li>在所有机器执行<pre><code>yum install mariadb-server mariadb-client galera xinetd rsync -y
+</code></pre>
+<h4 id="安装">安装</h4>
+<ul>
+<li>在所有机器执行</li>
+</ul>
+<pre><code> yum install mariadb-server mariadb-client galera xinetd rsync -y
 systemctl start mariadb
 systemctl status mariadb
-mysql_secure_installation
-</code></pre></li>
-</ul>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><ul>
+ mysql_secure_installation
+</code></pre>
+<h4 id="配置">配置</h4>
+<ul>
 <li>192.168.224.181</li>
 </ul>
 <pre><code>vim /etc/my.cnf.d/server.cnf
@@ -545,7 +554,8 @@ systemctl daemon-reload
 启动
 
  /usr/sbin/mysqld --wsrep-new-cluster --user=root &amp;
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>其他机器配置</li>
 </ul>
 <pre><code>拷贝机器  server.cnf文件 ,修改机器ip
@@ -556,12 +566,13 @@ systemctl daemon-reload
 /usr/sbin/mysqld  --user=root
 
 查看
-show status like &#39;wsrep%&#39;;
+show status like 'wsrep%';
 
 #集群size是不是3
 # | wsrep_incoming_addresses     | 192.168.17.132:3306,192.168.17.138:3306,192.168.17.151:3306
 
-</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -744,9 +755,10 @@ show status like &#39;wsrep%&#39;;
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">机器准备 (centos7)
+
 192.168.224.181 controller1  terminaldevice-1
 192.168.224.182 controller2  terminaldevice-2
-192.168.224.1</div>
+192.168.224.</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-22
@@ -795,13 +807,15 @@ show status like &#39;wsrep%&#39;;
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">openstsdb使用问题opentsdb api 查找lastdata 返回空
+                    <div class="summary block-with-text">openstsdb使用问题
+opentsdb api 查找lastdata 返回空
+
 解决方法
 
 opentsdb.conf
 
 tsd.core.auto_create_metrics = true
-tsd.core.meta.enable_r</div>
+tsd.core.meta.enable</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-19
@@ -979,7 +993,7 @@ tsd.core.meta.enable_r</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

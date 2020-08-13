@@ -5,11 +5,14 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="k8s 安装部署, openstack,opennebula">
-    <meta name="description" content="一、Docker 安装部署查看Liunx内核版本uname -a  
+    <meta name="description" content="一、Docker 安装部署
+查看Liunx内核版本
+uname -a
 
-Docker requires a 64-bit OS and version 3.10 or higher of the Linux kernel.  
+Docker requires a 64-bit OS and version 3.10 or higher of the Linux kernel.
 
-安装扩展源">
+安装扩展源
+s">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -456,69 +459,124 @@ Docker requires a 64-bit OS and version 3.10 or higher of the Linux kernel.
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、Docker-安装部署"><a href="#一、Docker-安装部署" class="headerlink" title="一、Docker 安装部署"></a>一、Docker 安装部署</h1><h3 id="查看Liunx内核版本"><a href="#查看Liunx内核版本" class="headerlink" title="查看Liunx内核版本"></a>查看Liunx内核版本</h3><p><code>uname -a</code>  </p>
+                <h1>一、Docker 安装部署</h1>
+<h3 id="查看Liunx内核版本">查看Liunx内核版本</h3>
+<p><code>uname -a</code></p>
 <blockquote>
-<p>Docker requires a 64-bit OS and version 3.10 or higher of the Linux kernel.  </p>
+<p>Docker requires a 64-bit OS and version 3.10 or higher of the Linux kernel.</p>
 </blockquote>
-<h3 id="安装扩展源"><a href="#安装扩展源" class="headerlink" title="安装扩展源"></a>安装扩展源</h3><p><code>sudo rpm -ihv http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</code></p>
-<h3 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h3><p><code>sudo yum install -y docker</code>  </p>
-<h3 id="启动docker服务"><a href="#启动docker服务" class="headerlink" title="启动docker服务"></a>启动docker服务</h3><p><code>sudo systemctl enable docker.service</code><br><code>sudo systemctl start docker.service</code></p>
-<h3 id="daemon-reload"><a href="#daemon-reload" class="headerlink" title="daemon-reload"></a>daemon-reload</h3><p><code>sudo systemctl daemon-reload</code>  </p>
-<h3 id="配置文件及启动脚本路径"><a href="#配置文件及启动脚本路径" class="headerlink" title="配置文件及启动脚本路径"></a>配置文件及启动脚本路径</h3><p><code>/etc/sysconfig/docker</code><br><code>/lib/system.d/system/docker.service</code>  </p>
-<p>更多请参考 ：[Docker基础介绍] (Docker基础介绍.md)  </p>
-<h1 id="二、ETCD-安装部署"><a href="#二、ETCD-安装部署" class="headerlink" title="二、ETCD 安装部署"></a>二、ETCD 安装部署</h1><h3 id="下载地址-Latest-release"><a href="#下载地址-Latest-release" class="headerlink" title="下载地址(Latest release)"></a>下载地址(Latest release)</h3><blockquote>
-<p><a href="https://github.com/coreos/etcd/releases" target="_blank" rel="noopener">https://github.com/coreos/etcd/releases</a>  </p>
+<h3 id="安装扩展源">安装扩展源</h3>
+<p><code>sudo rpm -ihv http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm  </code></p>
+<h3 id="安装docker">安装docker</h3>
+<p><code>sudo yum install -y docker</code></p>
+<h3 id="启动docker服务">启动docker服务</h3>
+<p><code>sudo systemctl enable docker.service</code><br>
+<code>sudo systemctl start docker.service</code></p>
+<h3 id="daemon-reload">daemon-reload</h3>
+<p><code>sudo systemctl daemon-reload</code></p>
+<h3 id="配置文件及启动脚本路径">配置文件及启动脚本路径</h3>
+<p><code>/etc/sysconfig/docker</code><br>
+<code>/lib/system.d/system/docker.service</code></p>
+<p>更多请参考 ：[Docker基础介绍] (<a href="http://xn--Docker-1s8i104dsq2egyn.md" target="_blank" rel="noopener">Docker基础介绍.md</a>)</p>
+<h1>二、ETCD 安装部署</h1>
+<h3 id="下载地址-Latest-release">下载地址(Latest release)</h3>
+<blockquote>
+<p><a href="https://github.com/coreos/etcd/releases" target="_blank" rel="noopener">https://github.com/coreos/etcd/releases</a></p>
 </blockquote>
-<h3 id="etcd安装配置（两节点）"><a href="#etcd安装配置（两节点）" class="headerlink" title="etcd安装配置（两节点）"></a>etcd安装配置（两节点）</h3><h5 id="在NODE1（172-16-249-130）执行："><a href="#在NODE1（172-16-249-130）执行：" class="headerlink" title="在NODE1（172.16.249.130）执行："></a>在NODE1（172.16.249.130）执行：</h5><pre><code>etcd --name &#39;etcd1&#39; --initial-advertise-peer-urls=http://172.16.249.130:7001 --data-dir=/data/etcd/ --listen-peer-urls=http://0.0.0.0:7001 --listen-client-urls=http://0.0.0.0:4001 --advertise-client-urls=http://172.16.249.130:4001 --initial-cluster=&quot;etcd1=http://172.16.249.130:7001,etcd2=http://172.16.249.129:7001&quot; --initial-cluster-state=new
-</code></pre><p>备注：其中IP地址、端口、文件路径可以根据具体情况自行配置。  </p>
-<h5 id="在NODE2（172-16-249-129）执行："><a href="#在NODE2（172-16-249-129）执行：" class="headerlink" title="在NODE2（172.16.249.129）执行："></a>在NODE2（172.16.249.129）执行：</h5><pre><code>etcd --name &#39;etcd2&#39; --initial-advertise-peer-urls=http://172.16.249.129:7001 --data-dir=/data/etcd/ --listen-peer-urls=http://0.0.0.0:7001 --listen-client-urls=http://0.0.0.0:4001 --advertise-client-urls=http://172.16.249.129:4001 --initial-cluster=&quot;etcd1=http://172.16.249.130:7001,etcd2=http://172.16.249.129:7001&quot; --initial-cluster-state=new
-</code></pre><p>备注：其中IP地址、端口、文件路径可以根据具体情况自行配置。  </p>
-<p>更多请参考 ：[Etcd基础介绍] (Etcd基础介绍.md)  </p>
-<h1 id="三、Flannel安装部署"><a href="#三、Flannel安装部署" class="headerlink" title="三、Flannel安装部署"></a>三、Flannel安装部署</h1><h3 id="flannel下载-Latest-release）"><a href="#flannel下载-Latest-release）" class="headerlink" title="flannel下载(Latest release）"></a>flannel下载(Latest release）</h3><blockquote>
-<p><a href="https://github.com/coreos/flannel/releases" target="_blank" rel="noopener">https://github.com/coreos/flannel/releases</a>  </p>
+<h3 id="etcd安装配置（两节点）">etcd安装配置（两节点）</h3>
+<h5 id="在NODE1（172-16-249-130）执行：">在NODE1（172.16.249.130）执行：</h5>
+<pre><code>etcd --name 'etcd1' --initial-advertise-peer-urls=http://172.16.249.130:7001 --data-dir=/data/etcd/ --listen-peer-urls=http://0.0.0.0:7001 --listen-client-urls=http://0.0.0.0:4001 --advertise-client-urls=http://172.16.249.130:4001 --initial-cluster=&quot;etcd1=http://172.16.249.130:7001,etcd2=http://172.16.249.129:7001&quot; --initial-cluster-state=new
+</code></pre>
+<p>备注：其中IP地址、端口、文件路径可以根据具体情况自行配置。</p>
+<h5 id="在NODE2（172-16-249-129）执行：">在NODE2（172.16.249.129）执行：</h5>
+<pre><code>etcd --name 'etcd2' --initial-advertise-peer-urls=http://172.16.249.129:7001 --data-dir=/data/etcd/ --listen-peer-urls=http://0.0.0.0:7001 --listen-client-urls=http://0.0.0.0:4001 --advertise-client-urls=http://172.16.249.129:4001 --initial-cluster=&quot;etcd1=http://172.16.249.130:7001,etcd2=http://172.16.249.129:7001&quot; --initial-cluster-state=new
+</code></pre>
+<p>备注：其中IP地址、端口、文件路径可以根据具体情况自行配置。</p>
+<p>更多请参考 ：[Etcd基础介绍] (<a href="http://xn--Etcd-o25fl00co68cm7k.md" target="_blank" rel="noopener">Etcd基础介绍.md</a>)</p>
+<h1>三、Flannel安装部署</h1>
+<h3 id="flannel下载-Latest-release）">flannel下载(Latest release）</h3>
+<blockquote>
+<p><a href="https://github.com/coreos/flannel/releases" target="_blank" rel="noopener">https://github.com/coreos/flannel/releases</a></p>
 </blockquote>
-<h3 id="flannel安装并应用到docker"><a href="#flannel安装并应用到docker" class="headerlink" title="flannel安装并应用到docker"></a>flannel安装并应用到docker</h3><ol>
-<li>使用etcd创建虚拟网络<br><code>etcdctl mkdir /coreos.com/network</code><br><code>etcdctl set /coreos.com/network/config &#39;{&quot;Network&quot;:&quot;172.17.0.0/16&quot;}</code>  </li>
-<li>运行flannel  <h5 id="NODE1"><a href="#NODE1" class="headerlink" title="NODE1"></a>NODE1</h5><code>flanneld --logtostderr=false --log_dir=/var/log/k8s/flannel/ --etcd-endpoints=http://172.16.249.130:4001</code>  <h5 id="NODE2"><a href="#NODE2" class="headerlink" title="NODE2"></a>NODE2</h5><code>flanneld --logtostderr=false --log_dir=/var/log/k8s/flannel/ --etcd-endpoints=http://172.16.249.129:4001</code>  </li>
-<li>运行mk-docker-opts.sh脚本<br><code>sh mk-docker-opts.sh</code>  </li>
-<li>查看/run/docker_opts.env<br><code>cat /run/docker_opts.env</code>  </li>
-<li>修改/etc/sysconfig/docker文件，将上面文件的DOCKER_OPTS内容添加到docker的启动配置<br><code>OPTIONS=--selinux-enabled  --graph=&quot;/data/docker&quot; --bip=172.17.77.1/24 --mtu=1472</code>  </li>
-<li>重启docker.service<br><code>systemctl restart docker.service</code></li>
+<h3 id="flannel安装并应用到docker">flannel安装并应用到docker</h3>
+<ol>
+<li>使用etcd创建虚拟网络<br>
+<code>etcdctl mkdir /coreos.com/network</code><br>
+<code>etcdctl set /coreos.com/network/config '{&quot;Network&quot;:&quot;172.17.0.0/16&quot;}</code></li>
+<li>运行flannel</li>
 </ol>
-<p>更多请参考 ：[Flannel基础介绍] (Flannel基础介绍.md)  </p>
-<h1 id="四、K8S安装部署"><a href="#四、K8S安装部署" class="headerlink" title="四、K8S安装部署"></a>四、K8S安装部署</h1><h3 id="K8S下载（latest-release）"><a href="#K8S下载（latest-release）" class="headerlink" title="K8S下载（latest release）"></a>K8S下载（latest release）</h3><blockquote>
-<p><a href="https://github.com/kubernetes/kubernetes/releases" target="_blank" rel="noopener">https://github.com/kubernetes/kubernetes/releases</a><br> 备注：github会把一些比较大的数据文件放在AWS公有云，因GWF部分AWS的访问将不可用。  </p>
+<h5 id="NODE1">NODE1</h5>
+<p><code>flanneld --logtostderr=false --log_dir=/var/log/k8s/flannel/ --etcd-endpoints=http://172.16.249.130:4001</code></p>
+<h5 id="NODE2">NODE2</h5>
+<p><code>flanneld --logtostderr=false --log_dir=/var/log/k8s/flannel/ --etcd-endpoints=http://172.16.249.129:4001</code><br>
+3. 运行mk-docker-opts.sh脚本<br>
+<code>sh mk-docker-opts.sh</code><br>
+4. 查看/run/docker_opts.env<br>
+<code>cat /run/docker_opts.env</code><br>
+5. 修改/etc/sysconfig/docker文件，将上面文件的DOCKER_OPTS内容添加到docker的启动配置<br>
+<code>OPTIONS=--selinux-enabled  --graph=&quot;/data/docker&quot; --bip=172.17.77.1/24 --mtu=1472</code><br>
+6. 重启docker.service<br>
+<code>systemctl restart docker.service</code></p>
+<p>更多请参考 ：[Flannel基础介绍] (<a href="http://xn--Flannel-q54kq69duy7edcp.md" target="_blank" rel="noopener">Flannel基础介绍.md</a>)</p>
+<h1>四、K8S安装部署</h1>
+<h3 id="K8S下载（latest-release）">K8S下载（latest release）</h3>
+<blockquote>
+<p><a href="https://github.com/kubernetes/kubernetes/releases" target="_blank" rel="noopener">https://github.com/kubernetes/kubernetes/releases</a><br>
+备注：github会把一些比较大的数据文件放在AWS公有云，因GWF部分AWS的访问将不可用。</p>
 </blockquote>
-<h3 id="下载最新release后-所需要的核心二进制应用包括："><a href="#下载最新release后-所需要的核心二进制应用包括：" class="headerlink" title="下载最新release后,所需要的核心二进制应用包括："></a>下载最新release后,所需要的核心二进制应用包括：</h3><ol>
-<li><p>K8S平台管理接口</p>
+<h3 id="下载最新release后-所需要的核心二进制应用包括：">下载最新release后,所需要的核心二进制应用包括：</h3>
+<ol>
+<li>K8S平台管理接口</li>
+</ol>
 <pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kube-apiserver
-</code></pre></li>
-<li><p>K8S平台CLI交互工具，用以进行部署、删除、回滚等操作</p>
-<pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kubectl
-</code></pre></li>
-<li><p>负责node的管理，基本所有操作都靠它</p>
-<pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kubelet
-</code></pre></li>
-<li><p>每个node里的container都在一个私有网络中，kube-proxy的作用就是做一个反向代理，让访问者访问这个node的时候，可以转发到内部对应的container。</p>
-<pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kube-proxy
-</code></pre></li>
-<li><p>k8s调度器，容器的启动、迁移、扩容缩减时候，选择哪个node，就看它了  </p>
-<pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kube-scheduler
-</code></pre></li>
-<li><p>k8s对node的控制行为，比如怎么去调用node启动一个容器</p>
-<pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kube-controller-manager
-</code></pre></li>
+</code></pre>
+<ol start="6">
+<li>K8S平台CLI交互工具，用以进行部署、删除、回滚等操作</li>
 </ol>
-<h3 id="Master-节点需要启动的应用："><a href="#Master-节点需要启动的应用：" class="headerlink" title="Master 节点需要启动的应用："></a>Master 节点需要启动的应用：</h3><h5 id="kube-apiserver"><a href="#kube-apiserver" class="headerlink" title="kube-apiserver"></a>kube-apiserver</h5><pre><code>nohup kube-apiserver --insecure-bind-address=0.0.0.0 --insecure-port=8080 --cors_allowed_origins=.* --etcd_servers=http://172.16.249.130:4001 --v=1 --logtostderr=false --log_dir=/var/log/k8s/apiserver --service-cluster-ip-range=172.17.200.0/24 &gt; kube-apiserver.log &amp;
-</code></pre><p>备注:端口和etcd接口地址请根据实际情况填写，service-cluster-ip-range 为定义后期部署service所规定的网段，当然也可以不设置，那样会默认从falnnel设置的子网里面随机取值。  </p>
-<h5 id="kube-scheduler"><a href="#kube-scheduler" class="headerlink" title="kube-scheduler"></a>kube-scheduler</h5><pre><code>nohup kube-scheduler --master=172.16.249.130:8080 --v=1 --logtostderr=false --log_dir=/var/log/k8s/scheduler &gt; kube-scheduler.log &amp;
-</code></pre><p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
-<h5 id="kube-controller-manager"><a href="#kube-controller-manager" class="headerlink" title="kube-controller-manager"></a>kube-controller-manager</h5><pre><code>nohup kube-controller-manager --master=172.16.249.130:8080 --enable-hostpath-provisioner=false --v=1 --logtostderr=false --log_dir=/var/log/k8s/controller-manager &gt; kube-controller-manager.log &amp;
-</code></pre><p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
-<h3 id="node-节点需要启动的应用："><a href="#node-节点需要启动的应用：" class="headerlink" title="node 节点需要启动的应用："></a>node 节点需要启动的应用：</h3><h5 id="kubelet"><a href="#kubelet" class="headerlink" title="kubelet"></a>kubelet</h5><pre><code>nohup kubelet --address=0.0.0.0 --port=10250 --cluster_dns=172.17.100.100 --cluster_domain=cluster.local --v=1 --log_dir=/var/log/k8s/kubelet --hostname_override=172.16.249.129 --api_servers=http://172.16.249.130:8080 --logtostderr=false &gt; kubelet.log &amp;
-</code></pre><p>备注：其中hostname_override为改node节点地址，api_servers需要填写部署 kube-apiserver 应用的master节点的地址和端口，cluster_dns在部署kube-dns服务时会用到（参见<a href="../yaml/kube-system">kube-system</a>）。  </p>
-<h5 id="kube-proxy"><a href="#kube-proxy" class="headerlink" title="kube-proxy"></a>kube-proxy</h5><pre><code>nohup kube-proxy --master=172.16.249.130:8080 --log_dir=/var/log/k8s/proxy --v=1 --logtostderr=false &gt; kube-proxy.log &amp;
-</code></pre><p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
+<pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kubectl
+</code></pre>
+<ol start="4">
+<li>负责node的管理，基本所有操作都靠它</li>
+</ol>
+<pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kubelet
+</code></pre>
+<ol start="5">
+<li>每个node里的container都在一个私有网络中，kube-proxy的作用就是做一个反向代理，让访问者访问这个node的时候，可以转发到内部对应的container。</li>
+</ol>
+<pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kube-proxy
+</code></pre>
+<ol start="2">
+<li>k8s调度器，容器的启动、迁移、扩容缩减时候，选择哪个node，就看它了</li>
+</ol>
+<pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kube-scheduler
+</code></pre>
+<ol start="3">
+<li>k8s对node的控制行为，比如怎么去调用node启动一个容器</li>
+</ol>
+<pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kube-controller-manager
+</code></pre>
+<h3 id="Master-节点需要启动的应用：">Master 节点需要启动的应用：</h3>
+<h5 id="kube-apiserver">kube-apiserver</h5>
+<pre><code>nohup kube-apiserver --insecure-bind-address=0.0.0.0 --insecure-port=8080 --cors_allowed_origins=.* --etcd_servers=http://172.16.249.130:4001 --v=1 --logtostderr=false --log_dir=/var/log/k8s/apiserver --service-cluster-ip-range=172.17.200.0/24 &gt; kube-apiserver.log &amp;
+</code></pre>
+<p>备注:端口和etcd接口地址请根据实际情况填写，service-cluster-ip-range 为定义后期部署service所规定的网段，当然也可以不设置，那样会默认从falnnel设置的子网里面随机取值。</p>
+<h5 id="kube-scheduler">kube-scheduler</h5>
+<pre><code>nohup kube-scheduler --master=172.16.249.130:8080 --v=1 --logtostderr=false --log_dir=/var/log/k8s/scheduler &gt; kube-scheduler.log &amp;
+</code></pre>
+<p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
+<h5 id="kube-controller-manager">kube-controller-manager</h5>
+<pre><code>nohup kube-controller-manager --master=172.16.249.130:8080 --enable-hostpath-provisioner=false --v=1 --logtostderr=false --log_dir=/var/log/k8s/controller-manager &gt; kube-controller-manager.log &amp;
+</code></pre>
+<p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
+<h3 id="node-节点需要启动的应用：">node 节点需要启动的应用：</h3>
+<h5 id="kubelet">kubelet</h5>
+<pre><code>nohup kubelet --address=0.0.0.0 --port=10250 --cluster_dns=172.17.100.100 --cluster_domain=cluster.local --v=1 --log_dir=/var/log/k8s/kubelet --hostname_override=172.16.249.129 --api_servers=http://172.16.249.130:8080 --logtostderr=false &gt; kubelet.log &amp;
+</code></pre>
+<p>备注：其中hostname_override为改node节点地址，api_servers需要填写部署 kube-apiserver 应用的master节点的地址和端口，cluster_dns在部署kube-dns服务时会用到（参见<a href="../yaml/kube-system">kube-system</a>）。</p>
+<h5 id="kube-proxy">kube-proxy</h5>
+<pre><code>nohup kube-proxy --master=172.16.249.130:8080 --log_dir=/var/log/k8s/proxy --v=1 --logtostderr=false &gt; kube-proxy.log &amp;
+</code></pre>
+<p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
@@ -701,8 +759,9 @@ Docker requires a 64-bit OS and version 3.10 or higher of the Linux kernel.
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">概念Docker: 根据[Docker基础介绍] (Docker基础介绍.md) 内部分说明，可以理解为把一个个应用程序以及它运行所需要的基础环境进行打包并运行的工具。  
-images(镜像): 应用程序以及它运行所需要的基础环境构成的p</div>
+                    <div class="summary block-with-text">概念
+Docker: 根据[Docker基础介绍] (Docker基础介绍.md) 内部分说明，可以理解为把一个个应用程序以及它运行所需要的基础环境进行打包并运行的工具。
+images(镜像): 应用程序以及它运行所需要的基础环境构成的pa</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-25
@@ -747,13 +806,17 @@ images(镜像): 应用程序以及它运行所需要的基础环境构成的p</d
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">K8S简介K8S官网
-http://kubernetes.io/  
+                    <div class="summary block-with-text">K8S简介
+K8S官网
+
+http://kubernetes.io/
 
 K8S官方指导文档
-http://kubernetes.io/docs/user-guide/  
+
+http://kubernetes.io/docs/user-guide/
 
 Google docker registry
+
 gcr.io/goo</div>
                     <div class="publish-info">
                             <span class="publish-date">
@@ -932,7 +995,7 @@ gcr.io/goo</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

@@ -6,9 +6,10 @@
     <meta charset="utf-8">
     <meta name="keywords" content="pacemaker haxproxy loadbalance, openstack,opennebula">
     <meta name="description" content="hosts
+
 192.168.224.181 controller1  terminaldevice-1
 192.168.224.182 controller2  terminaldevice-2
-192.168.224.183 contro">
+192.168.224.183 contr">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -463,12 +464,14 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="hosts"><a href="#hosts" class="headerlink" title="hosts"></a>hosts</h3><ul>
+                <h3 id="hosts">hosts</h3>
+<ul>
 <li>192.168.224.181 controller1  terminaldevice-1</li>
 <li>192.168.224.182 controller2  terminaldevice-2</li>
 <li>192.168.224.183 controller3  terminaldevice-3</li>
 </ul>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code>all node
+<h3 id="安装">安装</h3>
+<pre><code>all node
 
  yum install -y pacemaker pcs psmisc policycoreutils-python
 systemctl start pcsd.service
@@ -514,7 +517,8 @@ pcs resource meta p_vip migration-threshold=3 failure-timeout=60s
 
 
 
-</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -751,9 +755,10 @@ yum -y install haproxy keepalived
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">机器准备 (centos7)
+
 192.168.224.181 controller1  terminaldevice-1
 192.168.224.182 controller2  terminaldevice-2
-192.168.224.1</div>
+192.168.224.</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-22
@@ -935,7 +940,7 @@ yum -y install haproxy keepalived
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

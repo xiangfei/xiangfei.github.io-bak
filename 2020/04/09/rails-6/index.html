@@ -5,14 +5,15 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="rails api 文档, openstack,opennebula">
-    <meta name="description" content="创建markdown文档扩展rails apipie
+    <meta name="description" content="创建markdown文档
+扩展rails apipie
 
 rails apipie
 
 app/doc
 module BaseDoc
   include Apipie::DSL::Concern
-  extend Apipie::DSL::Co">
+  extend Apipie::DSL::C">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -455,406 +456,405 @@ module BaseDoc
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="创建markdown文档"><a href="#创建markdown文档" class="headerlink" title="创建markdown文档"></a>创建markdown文档</h4><p>扩展rails apipie</p>
+                <h4 id="创建markdown文档">创建markdown文档</h4>
+<p>扩展rails apipie</p>
 <ul>
 <li>rails apipie</li>
 </ul>
-<pre class=" language-ruby"><code class="language-ruby">app<span class="token operator">/</span>doc
-<span class="token keyword">module</span> <span class="token constant">BaseDoc</span>
-  include <span class="token constant">Apipie</span><span class="token punctuation">:</span><span class="token symbol">:DSL</span><span class="token punctuation">:</span><span class="token symbol">:Concern</span>
-  extend <span class="token constant">Apipie</span><span class="token punctuation">:</span><span class="token symbol">:DSL</span><span class="token punctuation">:</span><span class="token symbol">:Concern</span>
+<pre class=" language-language-ruby"><code class="language-language-ruby">app/doc
+module BaseDoc
+  include Apipie::DSL::Concern
+  extend Apipie::DSL::Concern
 
-  <span class="token keyword">def</span> check_token
-    <span class="token function">send</span><span class="token punctuation">(</span><span class="token symbol">:include</span><span class="token punctuation">,</span> <span class="token constant">Header</span><span class="token punctuation">:</span><span class="token symbol">:TokenDoc</span><span class="token punctuation">)</span>
-  <span class="token keyword">end</span>
+  def check_token
+    send(:include, Header::TokenDoc)
+  end
 
-  <span class="token keyword">def</span> check_permission
-    <span class="token function">send</span><span class="token punctuation">(</span><span class="token symbol">:include</span><span class="token punctuation">,</span> <span class="token constant">Header</span><span class="token punctuation">:</span><span class="token symbol">:DomainDoc</span><span class="token punctuation">)</span>
-  <span class="token keyword">end</span>
+  def check_permission
+    send(:include, Header::DomainDoc)
+  end
 
-  <span class="token keyword">def</span> check_paginate
-    <span class="token function">send</span><span class="token punctuation">(</span><span class="token symbol">:include</span><span class="token punctuation">,</span> <span class="token constant">Header</span><span class="token punctuation">:</span><span class="token symbol">:PaginateDoc</span><span class="token punctuation">)</span>
-  <span class="token keyword">end</span>
+  def check_paginate
+    send(:include, Header::PaginateDoc)
+  end
 
-  <span class="token keyword">def</span> <span class="token function">defaults</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>block<span class="token punctuation">)</span>
-    <span class="token variable">@defaults</span> <span class="token operator">=</span> block
-  <span class="token keyword">end</span>
+  def defaults(&block)
+    @defaults = block
+  end
 
-  <span class="token keyword">def</span> param_group_common_base
-    param <span class="token symbol">:id</span><span class="token punctuation">,</span> <span class="token builtin">Integer</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"id"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    param <span class="token symbol">:created_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"创建时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    param <span class="token symbol">:updated_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"修改时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-  <span class="token keyword">end</span>
+  def param_group_common_base
+    param :id, Integer, :desc => "id", :required => true
+    param :created_at, String, :desc => "创建时间", :required => true
+    param :updated_at, String, :desc => "修改时间", :required => true
+  end
 
 
 
-  <span class="token keyword">def</span> <span class="token function">doc_for</span><span class="token punctuation">(</span>action_name<span class="token punctuation">,</span> <span class="token operator">&amp;</span>block<span class="token punctuation">)</span>
-    formats <span class="token punctuation">[</span><span class="token string">"json"</span><span class="token punctuation">]</span>
-    <span class="token function">instance_eval</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>block<span class="token punctuation">)</span>
-    <span class="token function">instance_eval</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token variable">@defaults</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token variable">@defaults</span>
-    api_version <span class="token variable">@namespace_name</span> <span class="token keyword">if</span> <span class="token variable">@namespace_name</span>
+  def doc_for(action_name, &block)
+    formats ["json"]
+    instance_eval(&block)
+    instance_eval(&@defaults) if @defaults
+    api_version @namespace_name if @namespace_name
     internelerror
     notfound
     nopermission
-    <span class="token keyword">define_method</span><span class="token punctuation">(</span>action_name<span class="token punctuation">)</span> <span class="token keyword">do</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+    define_method(action_name) do
+    end
+  end
 
-  <span class="token keyword">def</span> <span class="token function">jsonlistreturn</span><span class="token punctuation">(</span>desc <span class="token operator">=</span> <span class="token string">"返回列表"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>block<span class="token punctuation">)</span>
-    returns <span class="token symbol">:code</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> desc <span class="token keyword">do</span>
-      property <span class="token symbol">:code</span><span class="token punctuation">,</span> <span class="token symbol">:number</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"200"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:message</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"返回全部数据"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:data</span><span class="token punctuation">,</span> <span class="token symbol">:array_of</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token builtin">Array</span> <span class="token keyword">do</span>
-        <span class="token function">instance_eval</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>block<span class="token punctuation">)</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+  def jsonlistreturn(desc = "返回列表", &block)
+    returns :code => 200, :desc => desc do
+      property :code, :number, :desc => "200", :required => true
+      property :message, String, :desc => "返回全部数据", :required => true
+      property :data, :array_of => Array do
+        instance_eval(&block)
+      end
+    end
+  end
 
-  <span class="token keyword">def</span> <span class="token function">singlejsonreturn</span><span class="token punctuation">(</span>desc <span class="token operator">=</span> <span class="token string">"返回单个数据"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>block<span class="token punctuation">)</span>
-    returns <span class="token symbol">:code</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> desc <span class="token keyword">do</span>
-      property <span class="token symbol">:code</span><span class="token punctuation">,</span> <span class="token symbol">:number</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"200"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:message</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"返回单个数据"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:data</span><span class="token punctuation">,</span> <span class="token symbol">:array_of</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token builtin">Hash</span> <span class="token keyword">do</span>
-        <span class="token function">instance_eval</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>block<span class="token punctuation">)</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+  def singlejsonreturn(desc = "返回单个数据", &block)
+    returns :code => 200, :desc => desc do
+      property :code, :number, :desc => "200", :required => true
+      property :message, String, :desc => "返回单个数据", :required => true
+      property :data, :array_of => Hash do
+        instance_eval(&block)
+      end
+    end
+  end
 
-  <span class="token keyword">def</span> <span class="token function">paginatejsonlistreturn</span><span class="token punctuation">(</span>desc <span class="token operator">=</span> <span class="token string">"返回分页数据"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>block<span class="token punctuation">)</span>
-    returns <span class="token symbol">:code</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">201</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> desc <span class="token keyword">do</span>
-      property <span class="token symbol">:code</span><span class="token punctuation">,</span> <span class="token symbol">:number</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"200"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:message</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"分页返回数据"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:data</span><span class="token punctuation">,</span> <span class="token symbol">:array_of</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token builtin">Array</span> <span class="token keyword">do</span>
-        <span class="token function">instance_eval</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>block<span class="token punctuation">)</span>
-      <span class="token keyword">end</span>
-      property <span class="token symbol">:total_number</span><span class="token punctuation">,</span> <span class="token builtin">Integer</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"总条数"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:current_page</span><span class="token punctuation">,</span> <span class="token builtin">Integer</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"当前页"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:total_page</span><span class="token punctuation">,</span> <span class="token builtin">Integer</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"总页数"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:limit</span><span class="token punctuation">,</span> <span class="token builtin">Integer</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"返回个数"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+  def paginatejsonlistreturn(desc = "返回分页数据", &block)
+    returns :code => 201, :desc => desc do
+      property :code, :number, :desc => "200", :required => true
+      property :message, String, :desc => "分页返回数据", :required => true
+      property :data, :array_of => Array do
+        instance_eval(&block)
+      end
+      property :total_number, Integer, :desc => "总条数", :required => true
+      property :current_page, Integer, :desc => "当前页", :required => true
+      property :total_page, Integer, :desc => "总页数", :required => true
+      property :limit, Integer, :desc => "返回个数", :required => true
+    end
+  end
 
-  <span class="token keyword">def</span> internelerror
-    returns <span class="token symbol">:code</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">500</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"服务器错误"</span> <span class="token keyword">do</span>
-      property <span class="token symbol">:code</span><span class="token punctuation">,</span> <span class="token symbol">:number</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"500"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:message</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"服务器内部错误"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:data</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"详细"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+  def internelerror
+    returns :code => 500, :desc => "服务器错误" do
+      property :code, :number, :desc => "500", :required => true
+      property :message, String, :desc => "服务器内部错误", :required => true
+      property :data, String, :desc => "详细", :required => true
+    end
+  end
 
-  <span class="token keyword">def</span> nopermission
-    returns <span class="token symbol">:code</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token symbol">:unprocessable_entity</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"422错误"</span> <span class="token keyword">do</span>
-      property <span class="token symbol">:code</span><span class="token punctuation">,</span> <span class="token symbol">:number</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"422"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:message</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"html 422 错误"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:data</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"详细"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+  def nopermission
+    returns :code => :unprocessable_entity, :desc => "422错误" do
+      property :code, :number, :desc => "422", :required => true
+      property :message, String, :desc => "html 422 错误", :required => true
+      property :data, String, :desc => "详细", :required => true
+    end
+  end
 
-  <span class="token keyword">def</span> notfound
-    returns <span class="token symbol">:code</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">404</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"Fleas were discovered on the pet"</span> <span class="token keyword">do</span>
-      property <span class="token symbol">:code</span><span class="token punctuation">,</span> <span class="token symbol">:number</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"404"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:message</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"找到到数据"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      property <span class="token symbol">:data</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"详细"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+  def notfound
+    returns :code => 404, :desc => "Fleas were discovered on the pet" do
+      property :code, :number, :desc => "404", :required => true
+      property :message, String, :desc => "找到到数据", :required => true
+      property :data, String, :desc => "详细", :required => true
+    end
+  end
 
 
 
-<span class="token keyword">end</span>
+end
 
-<span class="token comment" spellcheck="true"># app/doc/header/token_doc.rb</span>
-<span class="token keyword">module</span> <span class="token constant">Header</span><span class="token punctuation">:</span><span class="token symbol">:TokenDoc</span>
-  <span class="token keyword">def</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">included</span><span class="token punctuation">(</span>base<span class="token punctuation">)</span>
-    base<span class="token punctuation">.</span>instance_eval <span class="token keyword">do</span>
-      header <span class="token string">"Authorization"</span><span class="token punctuation">,</span> <span class="token string">"Bearer 123456"</span> <span class="token punctuation">,</span> <span class="token string">"Bearer 认证"</span>
-      error code<span class="token punctuation">:</span> <span class="token number">401</span><span class="token punctuation">,</span> desc<span class="token punctuation">:</span> <span class="token string">"认证失败"</span>
+# app/doc/header/token_doc.rb
+module Header::TokenDoc
+  def self.included(base)
+    base.instance_eval do
+      header "Authorization", "Bearer 123456" , "Bearer 认证"
+      error code: 401, desc: "认证失败"
 
-      returns <span class="token symbol">:code</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">401</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"需要登陆"</span> <span class="token keyword">do</span>
-        property <span class="token symbol">:code</span><span class="token punctuation">,</span> <span class="token symbol">:number</span> <span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"401"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-        property <span class="token symbol">:message</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"需要登录"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-        property <span class="token symbol">:data</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"详细"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
-<span class="token keyword">end</span>
+      returns :code => 401, :desc => "需要登陆" do
+        property :code, :number , :desc => "401", :required => true
+        property :message, String, :desc => "需要登录", :required => true
+        property :data, String, :desc => "详细", :required => true
+      end
+    end
+  end
+end
 
-<span class="token comment" spellcheck="true"># app/doc</span>
+# app/doc
 
-<span class="token keyword">module</span> <span class="token constant">DomainsDoc</span>
-  extend <span class="token constant">BaseDoc</span>
-  <span class="token keyword">def</span> <span class="token keyword">self</span><span class="token punctuation">.</span>superclass
-    <span class="token constant">DomainsController</span>
-  <span class="token keyword">end</span>
+module DomainsDoc
+  extend BaseDoc
+  def self.superclass
+    DomainsController
+  end
 
-  resource_description <span class="token keyword">do</span>
-    resource_id <span class="token string">"Domains"</span>
-    formats <span class="token punctuation">[</span><span class="token symbol">:json</span><span class="token punctuation">]</span>
-    api_versions <span class="token string">"public"</span>
-  <span class="token keyword">end</span>
+  resource_description do
+    resource_id "Domains"
+    formats [:json]
+    api_versions "public"
+  end
 
-  def_param_group <span class="token symbol">:domain</span> <span class="token keyword">do</span>
-    param <span class="token symbol">:name</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"域名"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    param <span class="token symbol">:description</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"描述"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    param <span class="token symbol">:superuser</span><span class="token punctuation">,</span> <span class="token builtin">Array</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"超级用户"</span>
-  <span class="token keyword">end</span>
+  def_param_group :domain do
+    param :name, String, :desc => "域名", :required => true
+    param :description, String, :desc => "描述", :required => true
+    param :superuser, Array, :desc => "超级用户"
+  end
 
-  doc_for <span class="token symbol">:show</span> <span class="token keyword">do</span>
+  doc_for :show do
     check_permission
     check_token
-    api <span class="token symbol">:GET</span><span class="token punctuation">,</span> <span class="token string">"/domains/:id"</span><span class="token punctuation">,</span> <span class="token string">"查看单个域"</span>
-    param_group <span class="token symbol">:domain</span>
-    singlejsonreturn <span class="token keyword">do</span>
-      param_group <span class="token symbol">:domain</span>
-      param <span class="token symbol">:id</span><span class="token punctuation">,</span> <span class="token builtin">Integer</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"域id"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:created_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"创建时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:updated_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"修改时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
-  doc_for <span class="token symbol">:destroy</span> <span class="token keyword">do</span>
+    api :GET, "/domains/:id", "查看单个域"
+    param_group :domain
+    singlejsonreturn do
+      param_group :domain
+      param :id, Integer, :desc => "域id", :required => true
+      param :created_at, String, :desc => "创建时间", :required => true
+      param :updated_at, String, :desc => "修改时间", :required => true
+    end
+  end
+  doc_for :destroy do
     check_permission
     check_token
-    api <span class="token symbol">:DELETE</span><span class="token punctuation">,</span> <span class="token string">"/domains/:id"</span><span class="token punctuation">,</span> <span class="token string">"删除域"</span>
-    singlejsonreturn <span class="token keyword">do</span>
-      param_group <span class="token symbol">:domain</span>
-      param <span class="token symbol">:id</span><span class="token punctuation">,</span> <span class="token builtin">Integer</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"域id"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:created_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"创建时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:updated_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"修改时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
-  doc_for <span class="token symbol">:update</span> <span class="token keyword">do</span>
+    api :DELETE, "/domains/:id", "删除域"
+    singlejsonreturn do
+      param_group :domain
+      param :id, Integer, :desc => "域id", :required => true
+      param :created_at, String, :desc => "创建时间", :required => true
+      param :updated_at, String, :desc => "修改时间", :required => true
+    end
+  end
+  doc_for :update do
     check_permission
     check_token
-    api <span class="token symbol">:PUT</span><span class="token punctuation">,</span> <span class="token string">"/domains/:id"</span><span class="token punctuation">,</span> <span class="token string">"修改域"</span>
-    param_group <span class="token symbol">:domain</span>
-    singlejsonreturn <span class="token keyword">do</span>
-      param_group <span class="token symbol">:domain</span>
-      param <span class="token symbol">:id</span><span class="token punctuation">,</span> <span class="token builtin">Integer</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"域id"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:created_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"创建时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:updated_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"修改时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
-  doc_for <span class="token symbol">:create</span> <span class="token keyword">do</span>
+    api :PUT, "/domains/:id", "修改域"
+    param_group :domain
+    singlejsonreturn do
+      param_group :domain
+      param :id, Integer, :desc => "域id", :required => true
+      param :created_at, String, :desc => "创建时间", :required => true
+      param :updated_at, String, :desc => "修改时间", :required => true
+    end
+  end
+  doc_for :create do
     check_permission
     check_token
-    api <span class="token symbol">:POST</span><span class="token punctuation">,</span> <span class="token string">"/domains"</span><span class="token punctuation">,</span> <span class="token string">"创建域"</span>
-    param_group <span class="token symbol">:domain</span>
-    singlejsonreturn <span class="token keyword">do</span>
-      param_group <span class="token symbol">:domain</span>
-      param <span class="token symbol">:id</span><span class="token punctuation">,</span> <span class="token builtin">Integer</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"域id"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:created_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"创建时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:updated_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"修改时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+    api :POST, "/domains", "创建域"
+    param_group :domain
+    singlejsonreturn do
+      param_group :domain
+      param :id, Integer, :desc => "域id", :required => true
+      param :created_at, String, :desc => "创建时间", :required => true
+      param :updated_at, String, :desc => "修改时间", :required => true
+    end
+  end
 
-  doc_for <span class="token symbol">:index</span> <span class="token keyword">do</span>
+  doc_for :index do
     check_permission
     check_token
-    api <span class="token symbol">:GET</span><span class="token punctuation">,</span> <span class="token string">"/domains"</span><span class="token punctuation">,</span> <span class="token string">"查看域列表"</span>
-    paginatejsonlistreturn <span class="token keyword">do</span>
-      param_group <span class="token symbol">:domain</span>
-      param <span class="token symbol">:id</span><span class="token punctuation">,</span> <span class="token builtin">Integer</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"域id"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:created_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"创建时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:updated_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"修改时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    <span class="token keyword">end</span>
-    jsonlistreturn <span class="token keyword">do</span>
-      param_group <span class="token symbol">:domain</span>
-      param <span class="token symbol">:id</span><span class="token punctuation">,</span> <span class="token builtin">Integer</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"域id"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:created_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"创建时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-      param <span class="token symbol">:updated_at</span><span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">,</span> <span class="token symbol">:desc</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"修改时间"</span><span class="token punctuation">,</span> <span class="token symbol">:required</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">true</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
-<span class="token keyword">end</span>
+    api :GET, "/domains", "查看域列表"
+    paginatejsonlistreturn do
+      param_group :domain
+      param :id, Integer, :desc => "域id", :required => true
+      param :created_at, String, :desc => "创建时间", :required => true
+      param :updated_at, String, :desc => "修改时间", :required => true
+    end
+    jsonlistreturn do
+      param_group :domain
+      param :id, Integer, :desc => "域id", :required => true
+      param :created_at, String, :desc => "创建时间", :required => true
+      param :updated_at, String, :desc => "修改时间", :required => true
+    end
+  end
+end
 
 
 </code></pre>
 <ul>
-<li>lib task 扩展<ul>
-<li>lib/tasks/apipie.rake </li>
+<li>lib task 扩展</li>
+<li>lib/tasks/apipie.rake</li>
 </ul>
-</li>
-</ul>
-<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
-<span class="token keyword">require</span> <span class="token string">"fileutils"</span>
+<pre class=" language-language-ruby"><code class="language-language-ruby"># -*- coding: utf-8 -*-
+require "fileutils"
 
-namespace <span class="token symbol">:apipie</span> <span class="token keyword">do</span>
-  desc <span class="token string">"创建markdown文档 , 通过json api 翻译"</span>
-  task <span class="token symbol">:markdown</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token symbol">:version</span><span class="token punctuation">]</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token symbol">:environment</span> <span class="token keyword">do</span> <span class="token operator">|</span>t<span class="token punctuation">,</span> args<span class="token operator">|</span>
-    with_loaded_documentation <span class="token keyword">do</span>
-      args<span class="token punctuation">.</span><span class="token function">with_defaults</span><span class="token punctuation">(</span><span class="token symbol">:version</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token constant">Apipie</span><span class="token punctuation">.</span>configuration<span class="token punctuation">.</span>default_version<span class="token punctuation">)</span>
-      doc <span class="token operator">=</span> <span class="token constant">Apipie</span><span class="token punctuation">.</span><span class="token function">to_json</span><span class="token punctuation">(</span>args<span class="token punctuation">[</span><span class="token symbol">:version</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">nil</span><span class="token punctuation">,</span> <span class="token keyword">nil</span><span class="token punctuation">,</span> <span class="token keyword">nil</span><span class="token punctuation">)</span>
+namespace :apipie do
+  desc "创建markdown文档 , 通过json api 翻译"
+  task :markdown, [:version] => :environment do |t, args|
+    with_loaded_documentation do
+      args.with_defaults(:version => Apipie.configuration.default_version)
+      doc = Apipie.to_json(args[:version], nil, nil, nil)
       generate_markdown_project_page doc
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+    end
+  end
 
-  desc <span class="token string">"创建wiki文档"</span>
-  task <span class="token symbol">:wiki</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token symbol">:version</span><span class="token punctuation">]</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token symbol">:environment</span> <span class="token keyword">do</span> <span class="token operator">|</span>t<span class="token punctuation">,</span> args<span class="token operator">|</span>
-    with_loaded_documentation <span class="token keyword">do</span>
-      <span class="token keyword">raise</span> <span class="token string">"暂时不支持"</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+  desc "创建wiki文档"
+  task :wiki, [:version] => :environment do |t, args|
+    with_loaded_documentation do
+      raise "暂时不支持"
+    end
+  end
 
-  <span class="token keyword">def</span> <span class="token function">generate_markdown_project_page</span><span class="token punctuation">(</span>doc<span class="token punctuation">)</span>
-    <span class="token constant">FileUtils</span><span class="token punctuation">.</span><span class="token function">mkdir_p</span><span class="token punctuation">(</span>doc_absolute_dir<span class="token punctuation">)</span> <span class="token keyword">unless</span> <span class="token builtin">File</span><span class="token punctuation">.</span>exists<span class="token operator">?</span><span class="token punctuation">(</span>doc_absolute_dir<span class="token punctuation">)</span>
-    generate_project_index_markdown doc<span class="token punctuation">[</span><span class="token symbol">:docs</span><span class="token punctuation">]</span>
-  <span class="token keyword">end</span>
+  def generate_markdown_project_page(doc)
+    FileUtils.mkdir_p(doc_absolute_dir) unless File.exists?(doc_absolute_dir)
+    generate_project_index_markdown doc[:docs]
+  end
 
-  <span class="token keyword">def</span> <span class="token function">generate_project_index_markdown</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span>
-    file <span class="token operator">=</span> <span class="token string">"index.md"</span>
+  def generate_project_index_markdown(info)
+    file = "index.md"
 
-    <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"<span class="token interpolation"><span class="token delimiter tag">#{</span>doc_absolute_dir<span class="token delimiter tag">}</span></span>/<span class="token interpolation"><span class="token delimiter tag">#{</span>file<span class="token delimiter tag">}</span></span>"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>io<span class="token operator">|</span>
-      io<span class="token punctuation">.</span>puts <span class="token string">"### 项目:    **<span class="token interpolation"><span class="token delimiter tag">#{</span>info<span class="token punctuation">[</span><span class="token punctuation">:</span>name<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>**"</span>
-      io<span class="token punctuation">.</span>puts <span class="token string">"### Info: <span class="token interpolation"><span class="token delimiter tag">#{</span><span class="token function">strip_html</span><span class="token punctuation">(</span>info<span class="token punctuation">[</span><span class="token punctuation">:</span>info<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token delimiter tag">}</span></span> "</span>
-      info<span class="token punctuation">[</span><span class="token symbol">:resources</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>controllername<span class="token punctuation">,</span> json_value<span class="token operator">|</span>
-        <span class="token comment" spellcheck="true">#io.puts " - [#{controllername}](#{doc_relative_dir}/#{controllername}/index.md})  #{json_value[:short_description]}"</span>
-        io<span class="token punctuation">.</span>puts <span class="token string">" - <span class="token interpolation"><span class="token delimiter tag">#{</span>controllername<span class="token delimiter tag">}</span></span> <span class="token interpolation"><span class="token delimiter tag">#{</span>json_value<span class="token punctuation">[</span><span class="token punctuation">:</span>short_description<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>"</span>
-        generate_controller_index_markdown json_value<span class="token punctuation">,</span> controllername
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+    File.open("#{doc_absolute_dir}/#{file}", "w") do |io|
+      io.puts "### 项目:    **#{info[:name]}**"
+      io.puts "### Info: #{strip_html(info[:info])} "
+      info[:resources].each do |controllername, json_value|
+        #io.puts " - [#{controllername}](#{doc_relative_dir}/#{controllername}/index.md})  #{json_value[:short_description]}"
+        io.puts " - #{controllername} #{json_value[:short_description]}"
+        generate_controller_index_markdown json_value, controllername
+      end
+    end
+  end
 
-  <span class="token keyword">def</span> <span class="token function">generate_controller_index_markdown</span><span class="token punctuation">(</span>json_value<span class="token punctuation">,</span> controllername<span class="token punctuation">)</span>
-    controller_index_dir <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>doc_absolute_dir<span class="token punctuation">,</span> controllername<span class="token punctuation">)</span>
-    filename <span class="token operator">=</span> <span class="token string">"index.md"</span>
-    <span class="token constant">FileUtils</span><span class="token punctuation">.</span><span class="token function">mkdir_p</span><span class="token punctuation">(</span>controller_index_dir<span class="token punctuation">)</span> <span class="token keyword">unless</span> <span class="token builtin">File</span><span class="token punctuation">.</span>exists<span class="token operator">?</span><span class="token punctuation">(</span>controller_index_dir<span class="token punctuation">)</span>
-    <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"<span class="token interpolation"><span class="token delimiter tag">#{</span>controller_index_dir<span class="token delimiter tag">}</span></span>/<span class="token interpolation"><span class="token delimiter tag">#{</span>filename<span class="token delimiter tag">}</span></span>"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>io<span class="token operator">|</span>
-      io<span class="token punctuation">.</span>puts <span class="token string">"#### <span class="token interpolation"><span class="token delimiter tag">#{</span>json_value<span class="token punctuation">[</span><span class="token punctuation">:</span>short_description<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>"</span>
-      io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-      json_value<span class="token punctuation">[</span><span class="token symbol">:methods</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>method<span class="token operator">|</span>
-        method<span class="token punctuation">[</span><span class="token symbol">:apis</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>api<span class="token operator">|</span>
-          <span class="token comment" spellcheck="true">#io.puts " - [#{method[:name]}](#{doc_relative_dir}/#{controllername}/#{method[:name]}/index.md})  #{api[:short_description]}"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"- <span class="token interpolation"><span class="token delimiter tag">#{</span>method<span class="token punctuation">[</span><span class="token punctuation">:</span>name<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span> <span class="token interpolation"><span class="token delimiter tag">#{</span>api<span class="token punctuation">[</span><span class="token punctuation">:</span>short_description<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>"</span>
-          <span class="token keyword">break</span>
-        <span class="token keyword">end</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-    generate_controller_action_markdown json_value<span class="token punctuation">,</span> controllername
-  <span class="token keyword">end</span>
+  def generate_controller_index_markdown(json_value, controllername)
+    controller_index_dir = File.join(doc_absolute_dir, controllername)
+    filename = "index.md"
+    FileUtils.mkdir_p(controller_index_dir) unless File.exists?(controller_index_dir)
+    File.open("#{controller_index_dir}/#{filename}", "w") do |io|
+      io.puts "#### #{json_value[:short_description]}"
+      io.puts ""
+      json_value[:methods].each do |method|
+        method[:apis].each do |api|
+          #io.puts " - [#{method[:name]}](#{doc_relative_dir}/#{controllername}/#{method[:name]}/index.md})  #{api[:short_description]}"
+          io.puts "- #{method[:name]} #{api[:short_description]}"
+          break
+        end
+      end
+    end
+    generate_controller_action_markdown json_value, controllername
+  end
 
-  <span class="token keyword">def</span> <span class="token function">generate_controller_action_markdown</span><span class="token punctuation">(</span>resource<span class="token punctuation">,</span> controllername<span class="token punctuation">)</span>
-    controller_index_dir <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>doc_absolute_dir<span class="token punctuation">,</span> controllername<span class="token punctuation">)</span>
-    <span class="token constant">FileUtils</span><span class="token punctuation">.</span><span class="token function">mkdir_p</span><span class="token punctuation">(</span>controller_index_dir<span class="token punctuation">)</span> <span class="token keyword">unless</span> <span class="token builtin">File</span><span class="token punctuation">.</span>exists<span class="token operator">?</span><span class="token punctuation">(</span>controller_index_dir<span class="token punctuation">)</span>
-    resource<span class="token punctuation">[</span><span class="token symbol">:methods</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>method<span class="token operator">|</span>
-      action_index_dir <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>controller_index_dir<span class="token punctuation">,</span> method<span class="token punctuation">[</span><span class="token symbol">:name</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-      <span class="token constant">FileUtils</span><span class="token punctuation">.</span><span class="token function">mkdir_p</span><span class="token punctuation">(</span>action_index_dir<span class="token punctuation">)</span> <span class="token keyword">unless</span> <span class="token builtin">File</span><span class="token punctuation">.</span>exists<span class="token operator">?</span><span class="token punctuation">(</span>action_index_dir<span class="token punctuation">)</span>
-      <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"<span class="token interpolation"><span class="token delimiter tag">#{</span>action_index_dir<span class="token delimiter tag">}</span></span>/index.md"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>io<span class="token operator">|</span>
-        method<span class="token punctuation">[</span><span class="token symbol">:apis</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>api<span class="token operator">|</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"#### action"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">" - <span class="token interpolation"><span class="token delimiter tag">#{</span>method<span class="token punctuation">[</span><span class="token punctuation">:</span>name<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"#### URL"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">" - <span class="token interpolation"><span class="token delimiter tag">#{</span>api<span class="token punctuation">[</span><span class="token punctuation">:</span>api_url<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span> "</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"#### 请求方法"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">" - <span class="token interpolation"><span class="token delimiter tag">#{</span>api<span class="token punctuation">[</span><span class="token punctuation">:</span>http_method<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"#### formats "</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">" - <span class="token interpolation"><span class="token delimiter tag">#{</span>method<span class="token punctuation">[</span><span class="token punctuation">:</span>formats<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"#### 描述"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">" - <span class="token interpolation"><span class="token delimiter tag">#{</span>api<span class="token punctuation">[</span><span class="token punctuation">:</span>short_description<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"#### 请求Header "</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"| 参数名  | 是否必须   | 默认值  |  描述  |"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"| :----- | :---- | :----- | :----- |"</span>
-          resource<span class="token punctuation">[</span><span class="token symbol">:headers</span><span class="token punctuation">]</span> <span class="token operator">||</span><span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-          <span class="token punctuation">(</span>method<span class="token punctuation">[</span><span class="token symbol">:headers</span><span class="token punctuation">]</span> <span class="token operator">+</span> resource<span class="token punctuation">[</span><span class="token symbol">:headers</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>uniq<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>param<span class="token operator">|</span>
-            io<span class="token punctuation">.</span>puts <span class="token string">"| <span class="token interpolation"><span class="token delimiter tag">#{</span>param<span class="token punctuation">[</span><span class="token punctuation">:</span>name<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span> |  true  | <span class="token interpolation"><span class="token delimiter tag">#{</span>param<span class="token punctuation">[</span><span class="token punctuation">:</span>description<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span> | <span class="token interpolation"><span class="token delimiter tag">#{</span>param<span class="token punctuation">[</span><span class="token punctuation">:</span>options<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span> | "</span>
-          <span class="token keyword">end</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"#### 请求参数"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"| 参数名  | 是否必须   |  参数类型  |  描述  | 校验 |"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"| :----- | :---- | :----- | :----- | :----- |"</span>
-          method<span class="token punctuation">[</span><span class="token symbol">:params</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>param<span class="token operator">|</span>
-            <span class="token function">recuirsvice_add</span><span class="token punctuation">(</span>io<span class="token punctuation">,</span> param<span class="token punctuation">)</span>
-          <span class="token keyword">end</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">""</span>
+  def generate_controller_action_markdown(resource, controllername)
+    controller_index_dir = File.join(doc_absolute_dir, controllername)
+    FileUtils.mkdir_p(controller_index_dir) unless File.exists?(controller_index_dir)
+    resource[:methods].each do |method|
+      action_index_dir = File.join(controller_index_dir, method[:name])
+      FileUtils.mkdir_p(action_index_dir) unless File.exists?(action_index_dir)
+      File.open("#{action_index_dir}/index.md", "w") do |io|
+        method[:apis].each do |api|
+          io.puts "#### action"
+          io.puts " - #{method[:name]}"
+          io.puts ""
+          io.puts "#### URL"
+          io.puts " - #{api[:api_url]} "
+          io.puts ""
+          io.puts "#### 请求方法"
+          io.puts " - #{api[:http_method]}"
+          io.puts ""
+          io.puts "#### formats "
+          io.puts " - #{method[:formats]}"
+          io.puts "#### 描述"
+          io.puts " - #{api[:short_description]}"
+          io.puts ""
+          io.puts "#### 请求Header "
+          io.puts "| 参数名  | 是否必须   | 默认值  |  描述  |"
+          io.puts "| :----- | :---- | :----- | :----- |"
+          resource[:headers] ||= []
+          (method[:headers] + resource[:headers]).uniq.each do |param|
+            io.puts "| #{param[:name]} |  true  | #{param[:description]} | #{param[:options]} | "
+          end
+          io.puts ""
+          io.puts "#### 请求参数"
+          io.puts ""
+          io.puts "| 参数名  | 是否必须   |  参数类型  |  描述  | 校验 |"
+          io.puts "| :----- | :---- | :----- | :----- | :----- |"
+          method[:params].each do |param|
+            recuirsvice_add(io, param)
+          end
+          io.puts ""
 
-          io<span class="token punctuation">.</span>puts <span class="token string">"#### 请求 example"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"```json"</span>
-          method<span class="token punctuation">[</span><span class="token symbol">:examples</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>example<span class="token operator">|</span>
-            <span class="token keyword">begin</span>
-              ex <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>example<span class="token punctuation">)</span>
-            <span class="token keyword">rescue</span>
-              ex <span class="token operator">=</span> example
-            <span class="token keyword">end</span>
-            io<span class="token punctuation">.</span>puts <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">pretty_generate</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span>
-            io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-          <span class="token keyword">end</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"```"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-          method<span class="token punctuation">[</span><span class="token symbol">:returns</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>returnjson<span class="token operator">|</span>
-            io<span class="token punctuation">.</span>puts <span class="token string">"#### 返回参数"</span>
-            <span class="token comment" spellcheck="true">#io.puts " - http code  #{returnjson[:code]} "</span>
-            <span class="token comment" spellcheck="true">#io.puts " - 描述 #{returnjson[:description]}"</span>
-            io<span class="token punctuation">.</span>puts <span class="token string">" - is_array <span class="token interpolation"><span class="token delimiter tag">#{</span>returnjson<span class="token punctuation">[</span><span class="token punctuation">:</span>is_array<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>"</span>
-            io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-            io<span class="token punctuation">.</span>puts <span class="token string">"| 参数名  | 是否必须   |  参数类型  |  描述  | 校验 |"</span>
-            io<span class="token punctuation">.</span>puts <span class="token string">"| :----- | :---- | :----- | :----- | :----- |"</span>
-            returnjson<span class="token punctuation">[</span><span class="token symbol">:returns_object</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>obj<span class="token operator">|</span>
-              <span class="token function">recuirsvice_add</span><span class="token punctuation">(</span>io<span class="token punctuation">,</span> obj<span class="token punctuation">)</span>
-            <span class="token keyword">end</span>
-            io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-          <span class="token keyword">end</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"### 错误返回"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"| code  | description   | metadata  |"</span>
-          io<span class="token punctuation">.</span>puts <span class="token string">"| :----- | :---- | :----- |"</span>
-          method<span class="token punctuation">[</span><span class="token symbol">:errors</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>error<span class="token operator">|</span>
-            io<span class="token punctuation">.</span>puts <span class="token string">"| <span class="token interpolation"><span class="token delimiter tag">#{</span>error<span class="token punctuation">[</span><span class="token punctuation">:</span>code<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>  | <span class="token interpolation"><span class="token delimiter tag">#{</span>error<span class="token punctuation">[</span><span class="token punctuation">:</span>description<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>   | <span class="token interpolation"><span class="token delimiter tag">#{</span>error<span class="token punctuation">[</span><span class="token punctuation">:</span>metadata<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span>  |"</span>
-          <span class="token keyword">end</span>
-        <span class="token keyword">end</span>
-        io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-        io<span class="token punctuation">.</span>puts <span class="token string">"---"</span>
-        io<span class="token punctuation">.</span>puts <span class="token string">""</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+          io.puts "#### 请求 example"
+          io.puts "```json"
+          method[:examples].each do |example|
+            begin
+              ex = JSON.load(example)
+            rescue
+              ex = example
+            end
+            io.puts JSON.pretty_generate(ex)
+            io.puts ""
+          end
+          io.puts "```"
+          io.puts ""
+          method[:returns].each do |returnjson|
+            io.puts "#### 返回参数"
+            #io.puts " - http code  #{returnjson[:code]} "
+            #io.puts " - 描述 #{returnjson[:description]}"
+            io.puts " - is_array #{returnjson[:is_array]}"
+            io.puts ""
+            io.puts "| 参数名  | 是否必须   |  参数类型  |  描述  | 校验 |"
+            io.puts "| :----- | :---- | :----- | :----- | :----- |"
+            returnjson[:returns_object].each do |obj|
+              recuirsvice_add(io, obj)
+            end
+            io.puts ""
+          end
+          io.puts ""
+          io.puts "### 错误返回"
+          io.puts "| code  | description   | metadata  |"
+          io.puts "| :----- | :---- | :----- |"
+          method[:errors].each do |error|
+            io.puts "| #{error[:code]}  | #{error[:description]}   | #{error[:metadata]}  |"
+          end
+        end
+        io.puts ""
+        io.puts "---"
+        io.puts ""
+      end
+    end
+  end
 
-  <span class="token keyword">def</span> <span class="token function">recuirsvice_add</span><span class="token punctuation">(</span>io<span class="token punctuation">,</span> obj<span class="token punctuation">,</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span>
-    intent <span class="token operator">=</span> <span class="token string">"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;"</span> <span class="token operator">*</span> i
-    io<span class="token punctuation">.</span>puts <span class="token string">"| <span class="token interpolation"><span class="token delimiter tag">#{</span>intent<span class="token delimiter tag">}</span></span><span class="token interpolation"><span class="token delimiter tag">#{</span>obj<span class="token punctuation">[</span><span class="token punctuation">:</span>name<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span> | <span class="token interpolation"><span class="token delimiter tag">#{</span>obj<span class="token punctuation">[</span><span class="token punctuation">:</span>required<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span> | <span class="token interpolation"><span class="token delimiter tag">#{</span>obj<span class="token punctuation">[</span><span class="token punctuation">:</span>expected_type<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span> | <span class="token interpolation"><span class="token delimiter tag">#{</span><span class="token function">strip_html</span><span class="token punctuation">(</span>obj<span class="token punctuation">[</span><span class="token punctuation">:</span>description<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token delimiter tag">}</span></span> | <span class="token interpolation"><span class="token delimiter tag">#{</span>obj<span class="token punctuation">[</span><span class="token punctuation">:</span>validator<span class="token punctuation">]</span><span class="token delimiter tag">}</span></span> |"</span>
-    params <span class="token operator">=</span> obj<span class="token punctuation">[</span><span class="token symbol">:params</span><span class="token punctuation">]</span>
-    <span class="token keyword">if</span> params
-      <span class="token keyword">if</span> params<span class="token punctuation">.</span>kind_of<span class="token operator">?</span> <span class="token builtin">Hash</span>
-        i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
-        <span class="token function">recuirsvice_add</span><span class="token punctuation">(</span>io<span class="token punctuation">,</span> params<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
-      <span class="token keyword">elsif</span> params<span class="token punctuation">.</span>kind_of<span class="token operator">?</span> <span class="token builtin">Array</span>
-        i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
-        params<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>param<span class="token operator">|</span>
-          <span class="token function">recuirsvice_add</span><span class="token punctuation">(</span>io<span class="token punctuation">,</span> param<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
-        <span class="token keyword">end</span>
-      <span class="token keyword">else</span>
-      <span class="token keyword">end</span>
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+  def recuirsvice_add(io, obj, i = 0)
+    intent = "&nbsp;&nbsp;&nbsp;&nbsp;" * i
+    io.puts "| #{intent}#{obj[:name]} | #{obj[:required]} | #{obj[:expected_type]} | #{strip_html(obj[:description])} | #{obj[:validator]} |"
+    params = obj[:params]
+    if params
+      if params.kind_of? Hash
+        i = i + 1
+        recuirsvice_add(io, params, i)
+      elsif params.kind_of? Array
+        i = i + 1
+        params.each do |param|
+          recuirsvice_add(io, param, i)
+        end
+      else
+      end
+    end
+  end
 
-  <span class="token keyword">def</span> <span class="token function">strip_html</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
-    regex <span class="token operator">=</span> <span class="token string">"&lt;p>(.*)&lt;/p>"</span>
-    result <span class="token operator">=</span> string<span class="token punctuation">.</span>match regex
-    <span class="token keyword">if</span> result
-      <span class="token keyword">return</span> result<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-    <span class="token keyword">else</span>
-      <span class="token keyword">return</span> string
-    <span class="token keyword">end</span>
-  <span class="token keyword">end</span>
+  def strip_html(string)
+    regex = "<p>(.*)</p>"
+    result = string.match regex
+    if result
+      return result[1]
+    else
+      return string
+    end
+  end
 
-  <span class="token keyword">def</span> doc_relative_dir
-    doc_base <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token constant">Apipie</span><span class="token punctuation">.</span>configuration<span class="token punctuation">.</span>doc_path<span class="token punctuation">)</span>
-  <span class="token keyword">end</span>
+  def doc_relative_dir
+    doc_base = File.join(Apipie.configuration.doc_path)
+  end
 
-  <span class="token keyword">def</span> doc_absolute_dir
-    <span class="token variable">@base_dir</span> <span class="token operator">||</span><span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">:</span><span class="token symbol">:Rails</span><span class="token punctuation">.</span>root<span class="token punctuation">,</span> <span class="token constant">Apipie</span><span class="token punctuation">.</span>configuration<span class="token punctuation">.</span>doc_path<span class="token punctuation">)</span>
-  <span class="token keyword">end</span>
-<span class="token keyword">end</span>
+  def doc_absolute_dir
+    @base_dir ||= File.join(::Rails.root, Apipie.configuration.doc_path)
+  end
+end
 
 
 </code></pre>
 <ul>
 <li>调用</li>
 </ul>
-<pre class=" language-ruby"><code class="language-ruby"> <span class="token keyword">class</span> <span class="token class-name">AppliactionController</span>
-   include <span class="token constant">BaseDoc</span>
- <span class="token keyword">end</span>
+<pre class=" language-language-ruby"><code class="language-language-ruby"> class AppliactionController
+   include BaseDoc
+ end
 
 </code></pre>
 <ul>
@@ -1045,11 +1045,13 @@ namespace <span class="token symbol">:apipie</span> <span class="token keyword">
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">br-aux 网络问题不能访问外网 , 内部ip互通
+                    <div class="summary block-with-text">br-aux 网络问题
+不能访问外网 , 内部ip互通
 
-br-aux 网卡 off line重启网卡,失败，去机房换网线
+br-aux 网卡 off line
+重启网卡,失败，去机房换网线
 
-&lt;46>Apr 13 17:55:41 controller01 horizon_access - - - [</div>
+Apr 13 17:55:41 controller01 horizon_access - - - [13/Ap</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-15
@@ -1094,9 +1096,12 @@ br-aux 网卡 off line重启网卡,失败，去机房换网线
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">现象客户端处理,突然member 下线
-原因代码问题batch处理queue过多, 单条处理时间长, 被踢下线
+                    <div class="summary block-with-text">现象
+客户端处理,突然member 下线
+原因
+代码问题batch处理queue过多, 单条处理时间长, 被踢下线
 解决方式
+
 优化代码
 
 
@@ -1272,7 +1277,7 @@ br-aux 网卡 off line重启网卡,失败，去机房换网线
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

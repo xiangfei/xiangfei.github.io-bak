@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="django rest 查找, openstack,opennebula">
     <meta name="description" content="说明
+
 查找get 改成post
 
 #!/usr/bin/python 
@@ -17,7 +18,7 @@ Created on 2018年5月2日
 
 @author: xiangfei
 &#39;&#39;&#39;
-from rest_">
+from rest">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -464,94 +465,95 @@ from rest_">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
+                <h1>说明</h1>
+<ul>
 <li>查找get 改成post</li>
 </ul>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/python </span>
-<span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
+<pre class=" language-language-python"><code class="language-language-python">#!/usr/bin/python 
+# -*- coding: utf-8 -*-
 
 
-<span class="token triple-quoted-string string">'''
+'''
 Created on 2018年5月2日
 
 @author: xiangfei
-'''</span>
-<span class="token keyword">from</span> rest_framework<span class="token punctuation">.</span>filters <span class="token keyword">import</span> SearchFilter
-<span class="token keyword">from</span>  django_filters<span class="token punctuation">.</span>rest_framework <span class="token keyword">import</span>  DjangoFilterBackend
-<span class="token keyword">from</span> django<span class="token punctuation">.</span>template <span class="token keyword">import</span> loader
-<span class="token keyword">class</span> <span class="token class-name">PostSearchFilter</span><span class="token punctuation">(</span>SearchFilter<span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-    search_param <span class="token operator">=</span> <span class="token string">'search_text'</span>
-
-    <span class="token keyword">def</span> <span class="token function">get_search_terms</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">"""
+'''
+from rest_framework.filters import SearchFilter
+from  django_filters.rest_framework import  DjangoFilterBackend
+from django.template import loader
+class PostSearchFilter(SearchFilter):
+    
+    search_param = 'search_text'
+    
+    def get_search_terms(self, request):
+        """
         Search terms are set by a ?search=... query parameter,
         and may be comma and/or whitespace delimited.
-        """</span>
-        params <span class="token operator">=</span> request<span class="token punctuation">.</span>data<span class="token punctuation">.</span>get<span class="token punctuation">(</span>self<span class="token punctuation">.</span>search_param<span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> params<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        """
+        params = request.data.get(self.search_param, '')
+        return params.replace(',', ' ').split()
+    
+class POSTDjangoFilterBackend(DjangoFilterBackend):
+    def filter_queryset(self, request, queryset, view):
+        filter_class = self.get_filter_class(view, queryset)
 
-<span class="token keyword">class</span> <span class="token class-name">POSTDjangoFilterBackend</span><span class="token punctuation">(</span>DjangoFilterBackend<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">filter_queryset</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> queryset<span class="token punctuation">,</span> view<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        filter_class <span class="token operator">=</span> self<span class="token punctuation">.</span>get_filter_class<span class="token punctuation">(</span>view<span class="token punctuation">,</span> queryset<span class="token punctuation">)</span>
+        if filter_class:
+            return filter_class(request.data, queryset=queryset, request=request).qs
 
-        <span class="token keyword">if</span> filter_class<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> filter_class<span class="token punctuation">(</span>request<span class="token punctuation">.</span>data<span class="token punctuation">,</span> queryset<span class="token operator">=</span>queryset<span class="token punctuation">,</span> request<span class="token operator">=</span>request<span class="token punctuation">)</span><span class="token punctuation">.</span>qs
+        return queryset
 
-        <span class="token keyword">return</span> queryset
+    def to_html(self, request, queryset, view):
+        filter_class = self.get_filter_class(view, queryset)
+        if not filter_class:
+            return None
+        filter_instance = filter_class(request.data, queryset=queryset, request=request)
 
-    <span class="token keyword">def</span> <span class="token function">to_html</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> queryset<span class="token punctuation">,</span> view<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        filter_class <span class="token operator">=</span> self<span class="token punctuation">.</span>get_filter_class<span class="token punctuation">(</span>view<span class="token punctuation">,</span> queryset<span class="token punctuation">)</span>
-        <span class="token keyword">if</span> <span class="token operator">not</span> filter_class<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> None
-        filter_instance <span class="token operator">=</span> filter_class<span class="token punctuation">(</span>request<span class="token punctuation">.</span>data<span class="token punctuation">,</span> queryset<span class="token operator">=</span>queryset<span class="token punctuation">,</span> request<span class="token operator">=</span>request<span class="token punctuation">)</span>
+        template = loader.get_template(self.template)
+        context = {
+            'filter': filter_instance
+        }
 
-        template <span class="token operator">=</span> loader<span class="token punctuation">.</span>get_template<span class="token punctuation">(</span>self<span class="token punctuation">.</span>template<span class="token punctuation">)</span>
-        context <span class="token operator">=</span> <span class="token punctuation">{</span>
-            <span class="token string">'filter'</span><span class="token punctuation">:</span> filter_instance
-        <span class="token punctuation">}</span>
+        return template.render(context, request)
 
-        <span class="token keyword">return</span> template<span class="token punctuation">.</span>render<span class="token punctuation">(</span>context<span class="token punctuation">,</span> request<span class="token punctuation">)</span>
+class ProjectFilter(django_filters.rest_framework.FilterSet):
 
-<span class="token keyword">class</span> <span class="token class-name">ProjectFilter</span><span class="token punctuation">(</span>django_filters<span class="token punctuation">.</span>rest_framework<span class="token punctuation">.</span>FilterSet<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    dateold = django_filters.NumberFilter(name="date_joined", lookup_expr='gte')
+    datenew = django_filters.NumberFilter(name="date_joined", lookup_expr='lte')
 
-    dateold <span class="token operator">=</span> django_filters<span class="token punctuation">.</span>NumberFilter<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"date_joined"</span><span class="token punctuation">,</span> lookup_expr<span class="token operator">=</span><span class="token string">'gte'</span><span class="token punctuation">)</span>
-    datenew <span class="token operator">=</span> django_filters<span class="token punctuation">.</span>NumberFilter<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"date_joined"</span><span class="token punctuation">,</span> lookup_expr<span class="token operator">=</span><span class="token string">'lte'</span><span class="token punctuation">)</span>
+    class Meta:
+        model = ProjectRecord
+        fields = ('dateold', 'datenew', 'organizational_id', 'department_id')
 
-    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
-        model <span class="token operator">=</span> ProjectRecord
-        fields <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'dateold'</span><span class="token punctuation">,</span> <span class="token string">'datenew'</span><span class="token punctuation">,</span> <span class="token string">'organizational_id'</span><span class="token punctuation">,</span> <span class="token string">'department_id'</span><span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 调用</span>
+# 调用
 
 
-<span class="token keyword">class</span>  <span class="token class-name">ServerListView</span><span class="token punctuation">(</span>ListModelMixin<span class="token punctuation">,</span> GenericAPIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+class  ServerListView(ListModelMixin, GenericAPIView):
 
-    queryset <span class="token operator">=</span> Server<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>all<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    serializer_class <span class="token operator">=</span> ServerListSerializer
-    <span class="token comment" spellcheck="true">#数据测试需要request.data 组装</span>
-    filter_backends <span class="token operator">=</span> <span class="token punctuation">(</span>PostSearchFilter<span class="token punctuation">,</span><span class="token punctuation">)</span>
-    search_fields <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'name'</span> <span class="token punctuation">,</span> <span class="token string">'outterip'</span> <span class="token punctuation">,</span><span class="token string">'innerip'</span> <span class="token punctuation">,</span> <span class="token string">'status'</span> <span class="token punctuation">,</span><span class="token string">'usage'</span><span class="token punctuation">,</span><span class="token string">'env'</span><span class="token punctuation">,</span><span class="token string">'config'</span><span class="token punctuation">,</span><span class="token string">'id'</span><span class="token punctuation">)</span>
-    pagination_class <span class="token operator">=</span> ServerPagination
-    authentication_classes <span class="token operator">=</span> <span class="token punctuation">(</span>TokenAuthentication<span class="token punctuation">,</span> <span class="token punctuation">)</span>
-
-    @check_permission<span class="token punctuation">(</span><span class="token string">'server.view_server'</span><span class="token punctuation">)</span>
+    queryset = Server.objects.all()
+    serializer_class = ServerListSerializer
+    #数据测试需要request.data 组装
+    filter_backends = (PostSearchFilter,)
+    search_fields = ('name' , 'outterip' ,'innerip' , 'status' ,'usage','env','config','id')
+    pagination_class = ServerPagination
+    authentication_classes = (TokenAuthentication, )
+    
+    @check_permission('server.view_server')
     @list_permission
-    <span class="token keyword">def</span> <span class="token function">post</span><span class="token punctuation">(</span>self <span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    def post(self , request):
+        
+        return self.list(request)
 
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>list<span class="token punctuation">(</span>request<span class="token punctuation">)</span>
 
-
-<span class="token comment" spellcheck="true">#@authentication()</span>
-<span class="token keyword">class</span> <span class="token class-name">ProjectViewset</span><span class="token punctuation">(</span>mixins<span class="token punctuation">.</span>ListModelMixin<span class="token punctuation">,</span> mixins<span class="token punctuation">.</span>RetrieveModelMixin<span class="token punctuation">,</span> mixins<span class="token punctuation">.</span>CreateModelMixin<span class="token punctuation">,</span> mixins<span class="token punctuation">.</span>UpdateModelMixin<span class="token punctuation">,</span> viewsets<span class="token punctuation">.</span>GenericViewSet<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true">#permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)</span>
-    <span class="token comment" spellcheck="true">#authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)</span>
-    queryset <span class="token operator">=</span> ProjectRecord<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>all<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>order_by<span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span>
-    pagination_class <span class="token operator">=</span> AllPagination
-    serializer_class <span class="token operator">=</span> ProjectRecordSerializer
-    filter_backends <span class="token operator">=</span> <span class="token punctuation">(</span>DjangoFilterBackend<span class="token punctuation">,</span> filters<span class="token punctuation">.</span>SearchFilter<span class="token punctuation">,</span> filters<span class="token punctuation">.</span>OrderingFilter<span class="token punctuation">)</span>
-    filter_class <span class="token operator">=</span> ProjectFilter
-    search_fields <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'project_name'</span><span class="token punctuation">,</span><span class="token punctuation">)</span>
+#@authentication()
+class ProjectViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    #permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
+    #authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
+    queryset = ProjectRecord.objects.all().order_by('id')
+    pagination_class = AllPagination
+    serializer_class = ProjectRecordSerializer
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
+    filter_class = ProjectFilter
+    search_fields = ('project_name',)
 
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -736,7 +738,8 @@ Created on 2018年5月2日
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">post 查找分页#!/usr/bin/python 
+                    <div class="summary block-with-text">post 查找分页
+#!/usr/bin/python 
 # -*- coding: utf-8 -*-
 
 
@@ -745,7 +748,7 @@ Created on 2018年5月2日
 
 @author: xiangfei
 '''
-from rest_framewor</div>
+from rest_framewo</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-25
@@ -790,7 +793,9 @@ from rest_framewor</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Kubernetes 开发参考文档Kubernetes  API 接口文档https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/  
+                    <div class="summary block-with-text">Kubernetes 开发参考文档
+Kubernetes  API 接口文档
+https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/
 v1.10 为 Kube</div>
                     <div class="publish-info">
                             <span class="publish-date">
@@ -969,7 +974,7 @@ v1.10 为 Kube</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

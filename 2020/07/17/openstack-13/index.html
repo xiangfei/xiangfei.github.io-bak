@@ -8,6 +8,7 @@
     <meta name="description" content="基本信息
 
 
+
 vip
 管理ip ens5
 存储ip ens6
@@ -21,7 +22,7 @@ OS
 
 10.10.102.190
 10.10.102.191
-10.10.100.191">
+10.10.100.19">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -476,7 +477,8 @@ OS
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><table>
+                <h1>基本信息</h1>
+<table>
 <thead>
 <tr>
 <th>vip</th>
@@ -527,34 +529,39 @@ OS
 </tr>
 </tbody>
 </table>
-<h3 id="All-节点"><a href="#All-节点" class="headerlink" title="All 节点"></a>All 节点</h3><ul>
-<li>更新yum </li>
+<h3 id="All-节点">All 节点</h3>
+<ul>
+<li>更新yum</li>
 </ul>
 <pre><code>[root@cotroller01 yum.repos.d]# yum upgrade -y
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>安装 python client</li>
 </ul>
 <pre><code>[root@cotroller01 yum.repos.d]#  yum install python3-openstackclient -y
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>安装openstack selinux</li>
 </ul>
 <pre><code>[root@cotroller01 yum.repos.d]# yum install openstack-selinux -y
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>disable firewall</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cotroller01 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># service firewalld stop</span>
-<span class="token punctuation">[</span>root@cotroller01 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl disable firewalld</span>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@cotroller01 yum.repos.d]# service firewalld stop
+[root@cotroller01 yum.repos.d]# systemctl disable firewalld
 </code></pre>
-<h3 id="控制节点"><a href="#控制节点" class="headerlink" title="控制节点"></a>控制节点</h3><ul>
-<li>修改hostname </li>
+<h3 id="控制节点">控制节点</h3>
+<ul>
+<li>修改hostname</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash">hostnamectl set-hostname controller02  controller03  controller01
+<pre class=" language-language-bash"><code class="language-language-bash">hostnamectl set-hostname controller02  controller03  controller01
 
 </code></pre>
 <ul>
-<li>修改hosts配置 </li>
+<li>修改hosts配置</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># /etc/hosts</span>
+<pre class=" language-language-bash"><code class="language-language-bash"># /etc/hosts
 10.10.102.191 controller01
 10.10.102.192 controller02
 10.10.102.193 controller03
@@ -565,7 +572,7 @@ OS
 <ul>
 <li>copy ssh-key</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash">ssh-keygen <span class="token comment" spellcheck="true"># 一直回车</span>
+<pre class=" language-language-bash"><code class="language-language-bash">ssh-keygen # 一直回车
 
 ssh-copy-id  root@controller01  root@controller02 root@controller03
 </code></pre>
@@ -752,14 +759,16 @@ ssh-copy-id  root@controller01  root@controller02 root@controller03
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">准备 管理网段
+
 10.10.102.191 controller1
 10.10.102.192 controller2
 10.10.102.193 controller3
 
 在控制节点运行
+
 安装mariadb all node
 
-[root</div>
+[ro</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-17
@@ -813,10 +822,11 @@ ssh-copy-id  root@controller01  root@controller02 root@controller03
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">替换centos 8 源
+
 删除 /etc/yum.repos.d/*.repo 文件
 下载 centos-8 阿里云mirror
 http://mirrors.aliyun.com/repo/Centos-8.repo
-rename to </div>
+rename to</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-17
@@ -1002,7 +1012,7 @@ rename to </div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

@@ -5,14 +5,15 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="ruby 类和对象, openstack,opennebula">
-    <meta name="description" content="Ruby 类和对象Ruby 是一种完美的面向对象编程语言。面向对象编程语言的特性包括：
+    <meta name="description" content="Ruby 类和对象
+Ruby 是一种完美的面向对象编程语言。面向对象编程语言的特性包括：
 
 数据封装
 数据抽象
 多态性
 继承
 
-一个面向对象的程序，涉及到的类和对象。类是个别对象创建的蓝图。在面向对象的术语中，您的自行车是自行车类的一个实例。">
+一个面向对象的程序，涉及到的类和对象。类是个别对象创建的蓝图。在面向对象的术语中，您的自行车是自行车类的一个实例">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -459,7 +460,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-类和对象"><a href="#Ruby-类和对象" class="headerlink" title="Ruby 类和对象"></a>Ruby 类和对象</h3><p>Ruby 是一种完美的面向对象编程语言。面向对象编程语言的特性包括：</p>
+                <h3 id="Ruby-类和对象">Ruby 类和对象</h3>
+<p>Ruby 是一种完美的面向对象编程语言。面向对象编程语言的特性包括：</p>
 <ul>
 <li>数据封装</li>
 <li>数据抽象</li>
@@ -477,43 +479,53 @@
    Number horsepower
    Characters type_of_tank
    Number Capacity
-
+ 
    Function speeding
    {
    }
-
+ 
    Function driving
    {
    }
-
+   
    Function halting
    {
    }
 }
-</code></pre><p>通过给这些数据成员分配不同的值，您可以创建类 Vehicle 的不同实例。例如，一架飞机有三个轮子，马力 1,000，燃油罐容量为 100 升。以同样的方式，一辆汽车有四个轮子，马力 200，煤气罐容量为 25 升。</p>
-<h4 id="在-Ruby-中定义类"><a href="#在-Ruby-中定义类" class="headerlink" title="在 Ruby 中定义类"></a>在 Ruby 中定义类</h4><p>为了使用 Ruby 实现面向对象编程，您需要先学习如何在 Ruby 中创建对象和类。</p>
+</code></pre>
+<p>通过给这些数据成员分配不同的值，您可以创建类 Vehicle 的不同实例。例如，一架飞机有三个轮子，马力 1,000，燃油罐容量为 100 升。以同样的方式，一辆汽车有四个轮子，马力 200，煤气罐容量为 25 升。</p>
+<h4 id="在-Ruby-中定义类">在 Ruby 中定义类</h4>
+<p>为了使用 Ruby 实现面向对象编程，您需要先学习如何在 Ruby 中创建对象和类。</p>
 <p>在 Ruby 中，类总是以关键字 class 开始，后跟类的名称。类名的首字母应该大写。类 Customer 如下所示：</p>
 <pre><code>class Customer
 end
-</code></pre><p>您可以使用关键字 end 终止一个类。类 中的所有数据成员都是介于类定义和 end 关键字之间。</p>
-<h4 id="Ruby-类中的变量"><a href="#Ruby-类中的变量" class="headerlink" title="Ruby 类中的变量"></a>Ruby 类中的变量</h4><p>Ruby 提供了四种类型的变量：</p>
+</code></pre>
+<p>您可以使用关键字 end 终止一个类。类 中的所有数据成员都是介于类定义和 end 关键字之间。</p>
+<h4 id="Ruby-类中的变量">Ruby 类中的变量</h4>
+<p>Ruby 提供了四种类型的变量：</p>
 <ul>
 <li>局部变量：局部变量是在方法中定义的变量。局部变量在方法外是不可用的。在后续的章节中，您将看到有关方法的更多细节。局部变量以小写字母或 _ 开始。</li>
 <li>实例变量：实例变量可以跨任何特定的实例或对象中的方法使用。这意味着，实例变量可以从对象到对象的改变。实例变量在变量名之前放置符号（@）。</li>
 <li>类变量：类变量可以跨不同的对象使用。类变量属于类，且是类的一个属性。类变量在变量名之前放置符号（@@）。</li>
-<li>全局变量：类变量不能跨类使用。如果您想要有一个可以跨类使用的变量，您需要定义全局变量。全局变量总是以美元符号（$）开始。<br>实例<br>使用类变量 @@no_of_customers，您可以判断被创建的对象数量，这样可以确定客户数量。</li>
+<li>全局变量：类变量不能跨类使用。如果您想要有一个可以跨类使用的变量，您需要定义全局变量。全局变量总是以美元符号（$）开始。<br>
+实例<br>
+使用类变量 @@no_of_customers，您可以判断被创建的对象数量，这样可以确定客户数量。</li>
 </ul>
 <p>实例</p>
 <pre><code>class Customer
    @@no_of_customers=0
 end
-</code></pre><h5 id="在-Ruby-中使用-new-方法创建对象"><a href="#在-Ruby-中使用-new-方法创建对象" class="headerlink" title="在 Ruby 中使用 new 方法创建对象"></a>在 Ruby 中使用 new 方法创建对象</h5><p>对象是类的实例。现在您将学习如何在 Ruby 中创建类的对象。在 Ruby 中，您可以使用类的方法 new 创建对象。</p>
+</code></pre>
+<h5 id="在-Ruby-中使用-new-方法创建对象">在 Ruby 中使用 new 方法创建对象</h5>
+<p>对象是类的实例。现在您将学习如何在 Ruby 中创建类的对象。在 Ruby 中，您可以使用类的方法 new 创建对象。</p>
 <p>方法 new 是一种独特的方法，在 Ruby 库中预定义。new 方法属于类方法。</p>
 <p>下面的实例创建了类 Customer 的两个对象 cust1 和 cust2：</p>
 <pre><code>cust1 = Customer. new
 cust2 = Customer. new
-</code></pre><p>在这里，cust1 和 cust2 是两个对象的名称。对象名称后跟着等号（=），等号后跟着类名，然后是点运算符和关键字 new。</p>
-<h5 id="自定义方法来创建-Ruby-对象"><a href="#自定义方法来创建-Ruby-对象" class="headerlink" title="自定义方法来创建 Ruby 对象"></a>自定义方法来创建 Ruby 对象</h5><p>您可以给方法 new 传递参数，这些参数可用于初始化类变量。</p>
+</code></pre>
+<p>在这里，cust1 和 cust2 是两个对象的名称。对象名称后跟着等号（=），等号后跟着类名，然后是点运算符和关键字 new。</p>
+<h5 id="自定义方法来创建-Ruby-对象">自定义方法来创建 Ruby 对象</h5>
+<p>您可以给方法 new 传递参数，这些参数可用于初始化类变量。</p>
 <p>当您想要声明带参数的 new 方法时，您需要在创建类的同时声明方法 initialize。</p>
 <p>initialize 方法是一种特殊类型的方法，将在调用带参数的类的 new 方法时执行。</p>
 <p>下面的实例创建了 initialize 方法：</p>
@@ -526,12 +538,15 @@ cust2 = Customer. new
       @cust_addr=addr
    end
 end
-</code></pre><p>在本实例中，您可以声明带有 id、name、addr 作为局部变量的 initialize方法。在这里，def 和 end 用于定义 Ruby 方法 initialize。在后续的章节中，您将学习有关方法的更多细节。</p>
+</code></pre>
+<p>在本实例中，您可以声明带有 id、name、addr 作为局部变量的 initialize方法。在这里，def 和 end 用于定义 Ruby 方法 initialize。在后续的章节中，您将学习有关方法的更多细节。</p>
 <p>在 initialize 方法中，把这些局部变量的值传给实例变量 @cust_id、@cust_name 和 @cust_addr。在这里，局部变量的值是随着 new 方法进行传递的。</p>
 <p>现在，您可以创建对象，如下所示：</p>
 <pre><code>cust1=Customer.new(&quot;1&quot;, &quot;John&quot;, &quot;Wisdom Apartments, Ludhiya&quot;)
 cust2=Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khandala&quot;)
-</code></pre><h4 id="Ruby-类中的成员函数"><a href="#Ruby-类中的成员函数" class="headerlink" title="Ruby 类中的成员函数"></a>Ruby 类中的成员函数</h4><p>在 Ruby 中，函数被称为方法。类中的每个方法是以关键字 def 开始，后跟方法名。</p>
+</code></pre>
+<h4 id="Ruby-类中的成员函数">Ruby 类中的成员函数</h4>
+<p>在 Ruby 中，函数被称为方法。类中的每个方法是以关键字 def 开始，后跟方法名。</p>
 <p>方法名总是以小写字母开头。在 Ruby 中，您可以使用关键字 end 来结束一个方法。</p>
 <p>下面的实例定义了一个 Ruby 方法：</p>
 <pre><code>class Sample
@@ -540,24 +555,28 @@ cust2=Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khand
       statement 2
    end
 end
-</code></pre><p>在这里，statement 1 和 statement 2 是类 Sample 内的方法 function 的主体的组成部分。这些语句可以是任何有效的 Ruby 语句。例如，我们可以使用方法 puts 来输出 Hello Ruby，如下所示：</p>
+</code></pre>
+<p>在这里，statement 1 和 statement 2 是类 Sample 内的方法 function 的主体的组成部分。这些语句可以是任何有效的 Ruby 语句。例如，我们可以使用方法 puts 来输出 Hello Ruby，如下所示：</p>
 <pre><code>class Sample
    def hello
       puts &quot;Hello Ruby!&quot;
    end
 end
-</code></pre><p>下面的实例将创建类 Sample 的一个对象，并调用 hello 方法：</p>
+</code></pre>
+<p>下面的实例将创建类 Sample 的一个对象，并调用 hello 方法：</p>
 <pre><code>#!/usr/bin/ruby
-
+ 
 class Sample
    def hello
       puts &quot;Hello Ruby!&quot;
    end
 end
-</code></pre><p>使用上面的类来创建对象</p>
+</code></pre>
+<p>使用上面的类来创建对象</p>
 <pre><code>object = Sample. new
 object.hello
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
 <p>Hello Ruby!</p>
 </blockquote>
 </div></div>
@@ -743,11 +762,12 @@ object.hello
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 类案例面将创建一个名为 Customer 的 Ruby 类，声明两个方法：
+                    <div class="summary block-with-text">Ruby 类案例
+面将创建一个名为 Customer 的 Ruby 类，声明两个方法：
+
 display_details：该方法用于显示客户的详细信息。
 total_no_of_customers：该方法用于显示在系统中创建的客户总数量。
-
-实</div>
+</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-23
@@ -792,10 +812,15 @@ total_no_of_customers：该方法用于显示在系统中创建的客户总数�
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 数据类型数值类型(Number)整型(Integer)
+                    <div class="summary block-with-text">Ruby 数据类型
+数值类型(Number)
+整型(Integer)
+
+
 整型分两种，如果在31位以内（四字节），那为Fixnum实例。如果超过，即为Bignum实例。
 
-整数范围从 -230 到 230-1，在这个范围内的整数是类 Fixnum </div>
+
+整数范围从 -230 到 230-1，在这个范围内的整数是类 Fi</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-23
@@ -973,7 +998,7 @@ total_no_of_customers：该方法用于显示在系统中创建的客户总数�
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

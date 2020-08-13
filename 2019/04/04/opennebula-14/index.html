@@ -5,10 +5,11 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula datacenter federation, openstack,opennebula">
-    <meta name="description" content="Configure the OpenNebula Federation Master Zonevi /etc/one/oned.conf
+    <meta name="description" content="Configure the OpenNebula Federation Master Zone
+vi /etc/one/oned.conf
 onezone update 0
 FEDERATION = [
-    MODE    = &amp;quot">
+    MODE    = &amp;quo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -432,7 +433,7 @@ FEDERATION = [
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        140
+                        143
                     </div>
                     
 
@@ -455,30 +456,40 @@ FEDERATION = [
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Configure-the-OpenNebula-Federation-Master-Zone"><a href="#Configure-the-OpenNebula-Federation-Master-Zone" class="headerlink" title="Configure the OpenNebula Federation Master Zone"></a>Configure the OpenNebula Federation Master Zone</h3><pre><code>vi /etc/one/oned.conf
+                <h3 id="Configure-the-OpenNebula-Federation-Master-Zone">Configure the OpenNebula Federation Master Zone</h3>
+<pre><code>vi /etc/one/oned.conf
 onezone update 0
 FEDERATION = [
     MODE    = &quot;MASTER&quot;,
     ZONE_ID = 0
 ]
-</code></pre><h3 id="Adding-a-New-Federation-Slave-Zone"><a href="#Adding-a-New-Federation-Slave-Zone" class="headerlink" title="Adding a New Federation Slave Zone"></a>Adding a New Federation Slave Zone</h3><ul>
+</code></pre>
+<h3 id="Adding-a-New-Federation-Slave-Zone">Adding a New Federation Slave Zone</h3>
+<ul>
 <li>Slave: Install OpenNebula on the slave as usual following the installation guide. Start OpenNebula at least once to bootstrap the zone database.</li>
 <li>Slave: Stop OpenNebula.</li>
-<li>Master: Create a zone for the slave, and write down the new Zone ID. This can be done via Sunstone, or with the onezone command.<pre><code>vim /tmp/zone.tmpl
+<li>Master: Create a zone for the slave, and write down the new Zone ID. This can be done via Sunstone, or with the onezone command.</li>
+</ul>
+<pre><code>vim /tmp/zone.tmpl
 NAME     = slave-name
 ENDPOINT = http://&lt;slave-zone-ip&gt;:2633/RPC2
 onezone create /tmp/zone.tmpl
 ID: 100
 onezone list
- ID NAME
-  0 OpenNebula
-100 slave-name
-</code></pre></li>
-<li>Master: backup db<pre><code>onedb backup --federated -s /var/lib/one/one.db
-</code></pre></li>
-<li>Slave: restore db<pre><code>onedb restore --federated -s /var/lib/one/one.db /var/lib/one/one.db_federated_2017-6-14_16:0:36.bck
-</code></pre></li>
+   ID NAME
+    0 OpenNebula
+  100 slave-name
+</code></pre>
+<ul>
+<li>Master: backup db</li>
 </ul>
+<pre><code>onedb backup --federated -s /var/lib/one/one.db
+</code></pre>
+<ul>
+<li>Slave: restore db</li>
+</ul>
+<pre><code>onedb restore --federated -s /var/lib/one/one.db /var/lib/one/one.db_federated_2017-6-14_16:0:36.bck
+</code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
@@ -651,18 +662,19 @@ onezone list
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/04/04/opennebula-18/">
+                <a href="/2019/04/04/opennebula-17/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="opennebula 公有云扩展">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="opennebula sunstone development">
                         
-                        <span class="card-title">opennebula 公有云扩展</span>
+                        <span class="card-title">opennebula sunstone development</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Add provider onehost create remote_provider im_provider vmm_provider
-Adding the Information Managervi /etc/one/oned.conf</div>
+                    <div class="summary block-with-text">前端
+准备
+requirejs allows you to define blocks of functionality in different modules/files and then load and reuse them in </div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -707,13 +719,14 @@ Adding the Information Managervi /etc/one/oned.conf</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">AWS/etc/one/ec2_driver.conf
+                    <div class="summary block-with-text">AWS
+/etc/one/ec2_driver.conf
 proxy_uri:
 state_wait_timeout_seconds: 300
 instance_types:
     c1.medium:
     cpu: 2
-    mem</div>
+    me</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -891,7 +904,7 @@ instance_types:
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

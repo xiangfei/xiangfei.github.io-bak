@@ -5,10 +5,13 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="Ruby 循环, openstack,opennebula">
-    <meta name="description" content="Ruby 循环Ruby 中的循环用于执行相同的代码块若干次。本章节将详细介绍 Ruby 支持的所有循环语句。
+    <meta name="description" content="Ruby 循环
+Ruby 中的循环用于执行相同的代码块若干次。本章节将详细介绍 Ruby 支持的所有循环语句。
 
 Ruby while 语句
+
 语法
+
 while conditional [do]
    code
 end
@@ -16,7 +19,8 @@ end
 或者
 
 语法
-whil">
+
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -463,21 +467,25 @@ whil">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Ruby-循环"><a href="#Ruby-循环" class="headerlink" title="Ruby 循环"></a>Ruby 循环</h2><p>Ruby 中的循环用于执行相同的代码块若干次。本章节将详细介绍 Ruby 支持的所有循环语句。</p>
+                <h2 id="Ruby-循环">Ruby 循环</h2>
+<p>Ruby 中的循环用于执行相同的代码块若干次。本章节将详细介绍 Ruby 支持的所有循环语句。</p>
 <hr>
-<h3 id="Ruby-while-语句"><a href="#Ruby-while-语句" class="headerlink" title="Ruby while 语句"></a>Ruby while 语句</h3><blockquote>
+<h3 id="Ruby-while-语句">Ruby while 语句</h3>
+<blockquote>
 <p>语法</p>
+</blockquote>
 <pre><code>while conditional [do]
    code
 end
-</code></pre></blockquote>
+</code></pre>
 <p>或者</p>
 <blockquote>
 <p>语法</p>
+</blockquote>
 <pre><code>while conditional [:]
    code
 end
-</code></pre></blockquote>
+</code></pre>
 <p>当 conditional 为真时，执行 code。</p>
 <p>语法中 do 或 : 可以省略不写。但若要在一行内写出 while 式，则必须以 do 或 : 隔开条件式或程式区块。</p>
 <blockquote>
@@ -485,48 +493,63 @@ end
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 $i = 0
 $num = 5
-
+ 
 while $i &lt; $num  do
    puts(&quot;在循环语句中 i = #$i&quot; )
    $i +=1
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><p>在循环语句中 i = 0<br>在循环语句中 i = 1<br>在循环语句中 i = 2<br>在循环语句中 i = 3<br>在循环语句中 i = 4</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><p>在循环语句中 i = 0<br>
+在循环语句中 i = 1<br>
+在循环语句中 i = 2<br>
+在循环语句中 i = 3<br>
+在循环语句中 i = 4</p>
 </div></div>
-<h3 id="Ruby-while-修饰符"><a href="#Ruby-while-修饰符" class="headerlink" title="Ruby while 修饰符"></a>Ruby while 修饰符</h3><blockquote>
+<h3 id="Ruby-while-修饰符">Ruby while 修饰符</h3>
+<blockquote>
 <p>语法</p>
+</blockquote>
 <pre><code>code while condition
-</code></pre></blockquote>
+</code></pre>
 <p>或者</p>
 <pre><code>begin 
   code 
 end while conditional
-</code></pre><p>当 conditional 为真时，执行 code。</p>
+</code></pre>
+<p>当 conditional 为真时，执行 code。</p>
 <p>如果 while 修饰符跟在一个没有 rescue 或 ensure 子句的 begin 语句后面，code 会在 conditional 判断之前执行一次。</p>
 <blockquote>
-<p>实例 </p>
+<p>实例</p>
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 $i = 0
 $num = 5
 begin
    puts(&quot;在循环语句中 i = #$i&quot; )
    $i +=1
 end while $i &lt; $num
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>在循环语句中 i = 0<br>在循环语句中 i = 1<br>在循环语句中 i = 2<br>在循环语句中 i = 3<br>在循环语句中 i = 4</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>在循环语句中 i = 0<br>
+在循环语句中 i = 1<br>
+在循环语句中 i = 2<br>
+在循环语句中 i = 3<br>
+在循环语句中 i = 4</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-until-语句"><a href="#Ruby-until-语句" class="headerlink" title="Ruby until 语句"></a>Ruby until 语句</h3><blockquote>
+<h3 id="Ruby-until-语句">Ruby until 语句</h3>
+<blockquote>
 <p>语法</p>
+</blockquote>
 <pre><code>until conditional [do]
    code
 end
-</code></pre></blockquote>
+</code></pre>
 <p>当 conditional 为假时，执行 code。</p>
 <p>语法中 do 可以省略不写。但若要在一行内写出 until 式，则必须以 do 隔开条件式或程式区块。</p>
 <blockquote>
@@ -534,144 +557,191 @@ end
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 $i = 0
 $num = 5
-
+ 
 until $i &gt; $num  do
    puts(&quot;在循环语句中 i = #$i&quot; )
    $i +=1;
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>在循环语句中 i = 0<br>在循环语句中 i = 1<br>在循环语句中 i = 2<br>在循环语句中 i = 3<br>在循环语句中 i = 4<br>在循环语句中 i = 5</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>在循环语句中 i = 0<br>
+在循环语句中 i = 1<br>
+在循环语句中 i = 2<br>
+在循环语句中 i = 3<br>
+在循环语句中 i = 4<br>
+在循环语句中 i = 5</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-until-修饰符"><a href="#Ruby-until-修饰符" class="headerlink" title="Ruby until 修饰符"></a>Ruby until 修饰符</h3><blockquote>
+<h3 id="Ruby-until-修饰符">Ruby until 修饰符</h3>
+<blockquote>
 <p>语法</p>
+</blockquote>
 <pre><code>code until conditional
-</code></pre></blockquote>
+</code></pre>
 <p>或者</p>
 <pre><code>begin
    code
 end until conditional
-</code></pre><p>当 conditional 为 false 时，执行 code。</p>
+</code></pre>
+<p>当 conditional 为 false 时，执行 code。</p>
 <p>如果 until 修饰符跟在一个没有 rescue 或 ensure 子句的 begin 语句后面，code 会在 conditional 判断之前执行一次。</p>
 <blockquote>
 <p>实例</p>
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 $i = 0
 $num = 5
 begin
    puts(&quot;在循环语句中 i = #$i&quot; )
    $i +=1;
 end until $i &gt; $num
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>在循环语句中 i = 0<br>在循环语句中 i = 1<br>在循环语句中 i = 2<br>在循环语句中 i = 3<br>在循环语句中 i = 4<br>在循环语句中 i = 5</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>在循环语句中 i = 0<br>
+在循环语句中 i = 1<br>
+在循环语句中 i = 2<br>
+在循环语句中 i = 3<br>
+在循环语句中 i = 4<br>
+在循环语句中 i = 5</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-for-语句"><a href="#Ruby-for-语句" class="headerlink" title="Ruby for 语句"></a>Ruby for 语句</h3><blockquote>
+<h3 id="Ruby-for-语句">Ruby for 语句</h3>
+<blockquote>
 <p>语法</p>
+</blockquote>
 <pre><code>for variable [, variable ...] in expression [do]
    code
 end
-</code></pre></blockquote>
+</code></pre>
 <p>先计算表达式得到一个对象，然后针对 expression 中的每个元素分别执行一次 code。</p>
 <p>实例</p>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 for i in 0..5
    puts &quot;局部变量的值为 #{i}&quot;
 end
-</code></pre><p>在这里，我们已经定义了范围 0..5。语句 for i in 0..5 允许 i 的值从 0 到 5（包含 5）。</p>
+</code></pre>
+<p>在这里，我们已经定义了范围 0…5。语句 for i in 0…5 允许 i 的值从 0 到 5（包含 5）。</p>
 <div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>局部变量的值为 0<br>局部变量的值为 1<br>局部变量的值为 2<br>局部变量的值为 3<br>局部变量的值为 4<br>局部变量的值为 5</p>
+<p>局部变量的值为 0<br>
+局部变量的值为 1<br>
+局部变量的值为 2<br>
+局部变量的值为 3<br>
+局部变量的值为 4<br>
+局部变量的值为 5</p>
 </blockquote>
 </div></div>
 <p>for…in 循环几乎是完全等价于：</p>
 <pre><code>(expression).each do |variable[, variable...]| code end
-</code></pre><p>但是，for 循环不会为局部变量创建一个新的作用域。</p>
+</code></pre>
+<p>但是，for 循环不会为局部变量创建一个新的作用域。</p>
 <p>语法中 do 可以省略不写。但若要在一行内写出 for 式，则必须以 do 隔开条件式或程式区块。</p>
 <blockquote>
 <p>实例</p>
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 (0..5).each do |i|
    puts &quot;局部变量的值为 #{i}&quot;
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>局部变量的值为 0<br>局部变量的值为 1<br>局部变量的值为 2<br>局部变量的值为 3<br>局部变量的值为 4<br>局部变量的值为 5</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>局部变量的值为 0<br>
+局部变量的值为 1<br>
+局部变量的值为 2<br>
+局部变量的值为 3<br>
+局部变量的值为 4<br>
+局部变量的值为 5</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-break-语句"><a href="#Ruby-break-语句" class="headerlink" title="Ruby break 语句"></a>Ruby break 语句</h3><blockquote>
+<h3 id="Ruby-break-语句">Ruby break 语句</h3>
+<blockquote>
 <p>语法</p>
+</blockquote>
 <pre><code>break
-</code></pre></blockquote>
+</code></pre>
 <p>终止最内部的循环。如果在块内调用，则终止相关块的方法（方法返回 nil）。</p>
 <blockquote>
 <p>实例</p>
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 for i in 0..5
    if i &gt; 2 then
       break
    end
    puts &quot;局部变量的值为 #{i}&quot;
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>局部变量的值为 0<br>局部变量的值为 1<br>局部变量的值为 2</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>局部变量的值为 0<br>
+局部变量的值为 1<br>
+局部变量的值为 2</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-next-语句"><a href="#Ruby-next-语句" class="headerlink" title="Ruby next 语句"></a>Ruby next 语句</h3><blockquote>
+<h3 id="Ruby-next-语句">Ruby next 语句</h3>
+<blockquote>
 <p>语法</p>
+</blockquote>
 <pre><code>next
-</code></pre></blockquote>
+</code></pre>
 <p>跳到循环的下一个迭代。如果在块内调用，则终止块的执行（yield 表达式返回 nil）。</p>
 <blockquote>
 <p>实例</p>
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 for i in 0..5
    if i &lt; 2 then
       next
    end
    puts &quot;局部变量的值为 #{i}&quot;
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>局部变量的值为 2<br>局部变量的值为 3<br>局部变量的值为 4<br>局部变量的值为 5</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>局部变量的值为 2<br>
+局部变量的值为 3<br>
+局部变量的值为 4<br>
+局部变量的值为 5</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-redo-语句"><a href="#Ruby-redo-语句" class="headerlink" title="Ruby redo 语句"></a>Ruby redo 语句</h3><blockquote>
+<h3 id="Ruby-redo-语句">Ruby redo 语句</h3>
+<blockquote>
 <p>语法</p>
-<pre><code>redo
-</code></pre><p>重新开始最内部循环的该次迭代，不检查循环条件。如果在块内调用，则重新开始 yield 或 call。</p>
 </blockquote>
+<pre><code>redo
+</code></pre>
+<p>重新开始最内部循环的该次迭代，不检查循环条件。如果在块内调用，则重新开始 yield 或 call。</p>
 <blockquote>
 <p>实例</p>
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 for i in 0..5
    if i &lt; 2 then
       puts &quot;局部变量的值为 #{i}&quot;
       redo
    end
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>局部变量的值为 0<br>局部变量的值为 0<br>……………………….</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>局部变量的值为 0<br>
+局部变量的值为 0<br>
+…</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-retry-语句"><a href="#Ruby-retry-语句" class="headerlink" title="Ruby retry 语句"></a>Ruby retry 语句</h3><blockquote>
+<h3 id="Ruby-retry-语句">Ruby retry 语句</h3>
+<blockquote>
 <blockquote>
 <p>注意：1.9以及之后的版本不支持在循环中使用retry。</p>
 </blockquote>
@@ -680,29 +750,39 @@ end
 <p>语法</p>
 </blockquote>
 <pre><code>retry
-</code></pre><p>如果 retry 出现在 begin 表达式的 rescue 子句中，则从 begin 主体的开头重新开始。</p>
+</code></pre>
+<p>如果 retry 出现在 begin 表达式的 rescue 子句中，则从 begin 主体的开头重新开始。</p>
 <pre><code>begin
    do_something   # 抛出的异常
 rescue
    # 处理错误
    retry          # 重新从 begin 开始
 end
-</code></pre><p>如果 retry 出现在迭代内、块内或者 for 表达式的主体内，则重新开始迭代调用。迭代的参数会重新评估。</p>
+</code></pre>
+<p>如果 retry 出现在迭代内、块内或者 for 表达式的主体内，则重新开始迭代调用。迭代的参数会重新评估。</p>
 <pre><code>for i in 1..5
    retry if some_condition # 重新从 i == 1 开始
 end
-</code></pre><blockquote>
+</code></pre>
+<blockquote>
 <p>实例</p>
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
-
+ 
 for i in 1..5
    retry if  i &gt; 2
    puts &quot;局部变量的值为 #{i}&quot;
 end
-</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>局部变量的值为 1<br>局部变量的值为 2<br>局部变量的值为 1<br>局部变量的值为 2<br>局部变量的值为 1<br>局部变量的值为 2<br>……………………….</p>
+</code></pre>
+<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>局部变量的值为 1<br>
+局部变量的值为 2<br>
+局部变量的值为 1<br>
+局部变量的值为 2<br>
+局部变量的值为 1<br>
+局部变量的值为 2<br>
+…</p>
 </blockquote>
 </div></div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -888,9 +968,10 @@ end
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">Ruby 方法
+
 Ruby 方法与其他编程语言中的函数类似。Ruby 方法用于捆绑一个或多个重复的语句到一个单元中。
 方法名应以小写字母开头。如果您以大写字母作为方法名的开头，Ruby 可能会把它当作常量，从而导致不正确地解析调用。
-方法应在</div>
+方法应</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-05
@@ -936,13 +1017,16 @@ Ruby 方法与其他编程语言中的函数类似。Ruby 方法用于捆绑一�
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">Ruby 表达式
+
 Ruby 提供了几种很常见的条件结构。在这里，我们将解释所有的条件语句和 Ruby 中可用的修饰符。
 
 Ruby if…else 语句
+
 语法
+
 if conditional [then]
       code...
-[els</div>
+[</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-05
@@ -1120,7 +1204,7 @@ if conditional [then]
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

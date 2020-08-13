@@ -317,20 +317,130 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2019/10/09/karafka/">
+                    <a href="/2019/10/12/karafka-3/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="karafka Error committing offsets">
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="karafka  Error sending heartbeat">
                             
-                            <span class="card-title">karafka Error committing offsets</span>
+                            <span class="card-title">karafka  Error sending heartbeat</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                kafka现象I, [2019-10-09T11:23:08.506232 #9611]  INFO -- : Inline processing of topic data-monitor with 1 messages took 265
+                                Error sending heartbeat: Kafka::UnknownMemberId
+
+通常是代码问题导致发送心跳失败
+
+
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-12
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/karafka/" class="post-category" target="_blank">
+                                    karafka
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/karafka/" target="_blank">
+                            <span class="chip bg-color">karafka</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/10/09/rails/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="rails console hang">
+                            
+                            <span class="card-title">rails console hang</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                rails c 一直卡着 , rails server 可以启动
+root@autotest:/service/automationtesting-agent# spring  stop
+Spring stopped.
+root@autot
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/rails/" class="post-category" target="_blank">
+                                    rails
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/rails/" target="_blank">
+                            <span class="chip bg-color">rails</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/10/09/karafka-2/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="karafka  返回批处理">
+                            
+                            <span class="card-title">karafka  返回批处理</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+class KarafkaApp < Karafka::App
+  setup do |config|
+    config.batch_fetching = true  #批量获取一次处理
+ 
+  end
+
+end
+
+class Col
                             
                         </div>
                         <div class="publish-info">
@@ -364,22 +474,124 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2019/09/09/ruby-25/">
+                    <a href="/2019/10/09/karafka-1/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="ruby 正则">
+                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="karafka group 多次消费">
                             
-                            <span class="card-title">ruby 正则</span>
+                            <span class="card-title">karafka group 多次消费</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Ruby 正则表达式正则表达式是一种特殊序列的字符，它通过使用有专门语法的模式来匹配或查找字符串集合。
-正则表达式用事先定义好的一些特定字符、及这些特定字符的组合，组成一个”规则字符串”，这个”规则字符串”用来表达对字符串的一种过滤逻辑。
+                                consumer group 多次消费
+#config.client_id = "teamwork_manage_#{ENV["HOSTNAME"]}"
+config.client_id = "devops_server"
 
+
+
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/karafka/" class="post-category" target="_blank">
+                                    karafka
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/karafka/" target="_blank">
+                            <span class="chip bg-color">karafka</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/10/09/karafka/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="karafka Error committing offsets">
+                            
+                            <span class="card-title">karafka Error committing offsets</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                kafka
+现象
+I, [2019-10-09T11:23:08.506232 #9611]  INFO -- : Inline processing of topic data-monitor with 1 messages took 2
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/karafka/" class="post-category" target="_blank">
+                                    karafka
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/karafka/" target="_blank">
+                            <span class="chip bg-color">karafka</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/09/ruby-26/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="ruby thread">
+                            
+                            <span class="card-title">ruby thread</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Ruby 多线程
+每个正在系统上运行的程序都是一个进程。每个进程包含一到多个线程。
+线程是程序中一个单一的顺序控制流程，在单个程序中同时运行多个线程完成不同的工作,称为多线程。
+Ruby 中我们可以通过 Thread 类来创建多线程，Rub
                             
                         </div>
                         <div class="publish-info">
@@ -413,22 +625,22 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2019/09/09/ruby-26/">
+                    <a href="/2019/09/09/ruby-25/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="ruby thread">
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="ruby 正则">
                             
-                            <span class="card-title">ruby thread</span>
+                            <span class="card-title">ruby 正则</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Ruby 多线程每个正在系统上运行的程序都是一个进程。每个进程包含一到多个线程。
-线程是程序中一个单一的顺序控制流程，在单个程序中同时运行多个线程完成不同的工作,称为多线程。
-Ruby 中我们可以通过 Thread 类来创建多线程，Ruby
+                                Ruby 正则表达式
+正则表达式是一种特殊序列的字符，它通过使用有专门语法的模式来匹配或查找字符串集合。
+正则表达式用事先定义好的一些特定字符、及这些特定字符的组合，组成一个&quot;规则字符串&quot;，这个&quot;规则字符串&q
                             
                         </div>
                         <div class="publish-info">
@@ -475,7 +687,8 @@ Ruby 中我们可以通过 Thread 类来创建多线程，Ruby
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Ruby 面向对象Ruby 是纯面向对象的语言，Ruby 中的一切都是以对象的形式出现。Ruby 中的每个值都是一个对象，即使是最原始的东西：字符串、数字，甚至连 true 和 false 都是对象。类本身也是一个对象，是 Class 类的
+                                Ruby 面向对象
+Ruby 是纯面向对象的语言，Ruby 中的一切都是以对象的形式出现。Ruby 中的每个值都是一个对象，即使是最原始的东西：字符串、数字，甚至连 true 和 false 都是对象。类本身也是一个对象，是 Class 类
                             
                         </div>
                         <div class="publish-info">
@@ -522,8 +735,9 @@ Ruby 中我们可以通过 Thread 类来创建多线程，Ruby
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Ruby 异常异常和执行总是被联系在一起。如果您打开一个不存在的文件，且没有恰当地处理这种情况，那么您的程序则被认为是低质量的。
-如果异常发生，则程序停止。异常用于处理各种类型的错误，这些错误可能在程序执行期间发生，所以要采取适当的行动，而
+                                Ruby 异常
+异常和执行总是被联系在一起。如果您打开一个不存在的文件，且没有恰当地处理这种情况，那么您的程序则被认为是低质量的。
+如果异常发生，则程序停止。异常用于处理各种类型的错误，这些错误可能在程序执行期间发生，所以要采取适当的行动，
                             
                         </div>
                         <div class="publish-info">
@@ -570,8 +784,10 @@ Ruby 中我们可以通过 Thread 类来创建多线程，Ruby
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Ruby Dir 类和方法Dir 是一个表示用于给出操作系统中目录中的文件名的目录流。Dir 类也拥有与目录相关的操作，比如通配符文件名匹配、改变工作目录等。
+                                Ruby Dir 类和方法
+Dir 是一个表示用于给出操作系统中目录中的文件名的目录流。Dir 类也拥有与目录相关的操作，比如通配符文件名匹配、改变工作目录等。
 类方法
+
 
 
 序号
@@ -581,218 +797,7 @@ Ruby 中我们可以通过 Thread 类来创建多线程，Ruby
 
 
 1
-Dir[pat] Dir:
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/ruby/" class="post-category" target="_blank">
-                                    ruby
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/ruby/" target="_blank">
-                            <span class="chip bg-color">ruby</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/09/09/ruby-21/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="ruby  Ruby File 类和方法">
-                            
-                            <span class="card-title">ruby  Ruby File 类和方法</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                File 表示一个连接到普通文件的 stdio 对象。open 为普通文件返回该类的一个实例。
-类方法
-
-
-序号
-方法 &amp; 描述
-
-
-
-
-1
-File::atime( path)  返回 path 的最后访问时间。
-
-
-2
-File
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/ruby/" class="post-category" target="_blank">
-                                    ruby
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/ruby/" target="_blank">
-                            <span class="chip bg-color">ruby</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/09/09/ruby-20/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="ruby File">
-                            
-                            <span class="card-title">ruby File</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                Ruby 文件的输入与输出Ruby 提供了一整套 I/O 相关的方法，在内核（Kernel）模块中实现。所有的 I/O 方法派生自 IO 类。
-类 IO 提供了所有基础的方法，比如 read、 write、 gets、 puts、 read
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/ruby/" class="post-category" target="_blank">
-                                    ruby
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/ruby/" target="_blank">
-                            <span class="chip bg-color">ruby</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/09/09/ruby-19/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="ruby 迭代器">
-                            
-                            <span class="card-title">ruby 迭代器</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                Ruby 迭代器简单来说：迭代(iterate)指的是重复做相同的事，所以迭代器(iterator)就是用来重复多次相同的事。
-迭代器是集合支持的方法。存储一组数据成员的对象称为集合。在 Ruby 中，数组(Array)和哈希(Hash)可
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/ruby/" class="post-category" target="_blank">
-                                    ruby
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/ruby/" target="_blank">
-                            <span class="chip bg-color">ruby</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/09/09/ruby-18/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="ruby Range">
-                            
-                            <span class="card-title">ruby Range</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                Ruby 范围（Range）范围（Range）无处不在：a 到 z、 0 到 9、等等。Ruby 支持范围，并允许我们以不同的方式使用范围：
-
-作为序列的范围
-作为条件的范围
-作为间隔的范围
-
-作为序列的范围范围的第一个也是最常见的用途是表
+Dir[pat] Di
                             
                         </div>
                         <div class="publish-info">
@@ -841,7 +846,7 @@ File
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">7 / 12</div>
+            <div class="center-align b-text-gray">7 / 13</div>
         </div>
         <div class="col s6 m4 l4">
             
@@ -865,7 +870,7 @@ File
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

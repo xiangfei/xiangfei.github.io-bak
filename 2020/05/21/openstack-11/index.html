@@ -5,10 +5,12 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="openstack stein 高可用安装horizon, openstack,opennebula">
-    <meta name="description" content="controller01安装包[root@controller01 ~]# yum install openstack-dashboard -y
+    <meta name="description" content="controller01
+安装包
+[root@controller01 ~]# yum install openstack-dashboard -y
 
 
-修改文件 /etc/openstack-dashboard/local_settingsO">
+修改文件 /etc/openstack-dashboard/local_setting">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -432,7 +434,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        125
+                        126
                     </div>
                     
 
@@ -455,61 +457,66 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="controller01"><a href="#controller01" class="headerlink" title="controller01"></a>controller01</h3><h4 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install openstack-dashboard -y</span>
+                <h3 id="controller01">controller01</h3>
+<h4 id="安装包">安装包</h4>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# yum install openstack-dashboard -y
 
 </code></pre>
-<h4 id="修改文件-etc-openstack-dashboard-local-settings"><a href="#修改文件-etc-openstack-dashboard-local-settings" class="headerlink" title="修改文件 /etc/openstack-dashboard/local_settings"></a>修改文件 <strong>/etc/openstack-dashboard/local_settings</strong></h4><pre class=" language-bash"><code class="language-bash">OPENSTACK_HOST <span class="token operator">=</span> <span class="token string">"controller"</span>
-ALLOWED_HOSTS <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'one.example.com'</span>, <span class="token string">'two.example.com'</span> , <span class="token string">'*'</span><span class="token punctuation">]</span>
+<h4 id="修改文件-etc-openstack-dashboard-local-settings">修改文件 <strong>/etc/openstack-dashboard/local_settings</strong></h4>
+<pre class=" language-language-bash"><code class="language-language-bash">OPENSTACK_HOST = "controller"
+ALLOWED_HOSTS = ['one.example.com', 'two.example.com' , '*']
 
 
 
 
-SESSION_ENGINE <span class="token operator">=</span> <span class="token string">'django.contrib.sessions.backends.cache'</span>
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
-CACHES <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token string">'default'</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
-         <span class="token string">'BACKEND'</span><span class="token keyword">:</span> <span class="token string">'django.core.cache.backends.memcached.MemcachedCache'</span>,
-         <span class="token string">'LOCATION'</span><span class="token keyword">:</span> <span class="token string">'controller01:11211,controller02:11211,controller03:11211'</span>,
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-
-OPENSTACK_KEYSTONE_URL <span class="token operator">=</span> <span class="token string">"http://%s:5000/v3"</span> % OPENSTACK_HOST
-
-OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT <span class="token operator">=</span> True
+CACHES = {
+    'default': {
+         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+         'LOCATION': 'controller01:11211,controller02:11211,controller03:11211',
+    }
+}
 
 
-OPENSTACK_API_VERSIONS <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token string">"identity"</span><span class="token keyword">:</span> 3,
-    <span class="token string">"image"</span><span class="token keyword">:</span> 2,
-    <span class="token string">"volume"</span><span class="token keyword">:</span> 3,
-<span class="token punctuation">}</span>
+OPENSTACK_KEYSTONE_URL = "http://%s:5000/v3" % OPENSTACK_HOST
 
-OPENSTACK_KEYSTONE_DEFAULT_DOMAIN <span class="token operator">=</span> <span class="token string">"Default"</span>
+OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
 
-OPENSTACK_KEYSTONE_DEFAULT_ROLE <span class="token operator">=</span> <span class="token string">"user"</span>
 
-OPENSTACK_NEUTRON_NETWORK <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">..</span>.
-    <span class="token string">'enable_router'</span><span class="token keyword">:</span> False,
-    <span class="token string">'enable_quotas'</span><span class="token keyword">:</span> False,
-    <span class="token string">'enable_distributed_router'</span><span class="token keyword">:</span> False,
-    <span class="token string">'enable_ha_router'</span><span class="token keyword">:</span> False,
-    <span class="token string">'enable_lb'</span><span class="token keyword">:</span> False,
-    <span class="token string">'enable_firewall'</span><span class="token keyword">:</span> False,
-    <span class="token string">'enable_vpn'</span><span class="token keyword">:</span> False,
-    <span class="token string">'enable_fip_topology_check'</span><span class="token keyword">:</span> False,
-<span class="token punctuation">}</span>
+OPENSTACK_API_VERSIONS = {
+    "identity": 3,
+    "image": 2,
+    "volume": 3,
+}
 
-TIME_ZONE <span class="token operator">=</span> <span class="token string">"Asia/Shanghai"</span>
+OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = "Default"
 
-</code></pre>
-<h4 id="修改配置文件-etc-httpd-conf-d-openstack-dashboard-conf"><a href="#修改配置文件-etc-httpd-conf-d-openstack-dashboard-conf" class="headerlink" title="修改配置文件  /etc/httpd/conf.d/openstack-dashboard.conf"></a>修改配置文件  <strong>/etc/httpd/conf.d/openstack-dashboard.conf</strong></h4><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#不存在 在加 ,当前版本不存在</span>
-WSGIApplicationGroup %<span class="token punctuation">{</span>GLOBAL<span class="token punctuation">}</span>
+OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
 
+OPENSTACK_NEUTRON_NETWORK = {
+    ...
+    'enable_router': False,
+    'enable_quotas': False,
+    'enable_distributed_router': False,
+    'enable_ha_router': False,
+    'enable_lb': False,
+    'enable_firewall': False,
+    'enable_vpn': False,
+    'enable_fip_topology_check': False,
+}
+
+TIME_ZONE = "Asia/Shanghai"
 
 </code></pre>
-<h4 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl restart httpd.service memcached.service</span>
+<h4 id="修改配置文件-etc-httpd-conf-d-openstack-dashboard-conf">修改配置文件  <strong>/etc/httpd/conf.d/openstack-dashboard.conf</strong></h4>
+<pre class=" language-language-bash"><code class="language-language-bash">#不存在 在加 ,当前版本不存在
+WSGIApplicationGroup %{GLOBAL}
+
+
+</code></pre>
+<h4 id="重启">重启</h4>
+<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# systemctl restart httpd.service memcached.service
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
@@ -693,8 +700,10 @@ WSGIApplicationGroup %<span class="token punctuation">{</span>GLOBAL<span class=
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">rails 心跳日志实现rails agent  每3秒钟 同步一次 hearheatdef agent_env
-  JSON.load(Diplomat::Kv.get("devops/automationtesting-backend-</div>
+                    <div class="summary block-with-text">rails 心跳日志实现
+rails agent  每3秒钟 同步一次 hearheat
+def agent_env
+  JSON.load(Diplomat::Kv.get("devops/automationtesting-backen</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-13
@@ -739,10 +748,14 @@ WSGIApplicationGroup %<span class="token punctuation">{</span>GLOBAL<span class=
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">ovn 准备gateway node   ovn-central
+                    <div class="summary block-with-text">ovn 准备
+gateway node   ovn-central
 database node
 compute node ovn-host
-controler 01安装neutron数据库MariaDB [(none)]> CREATE DA</div>
+controler 01
+安装neutron
+数据库
+MariaDB [(none)]> CREAT</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-21
@@ -920,7 +933,7 @@ controler 01安装neutron数据库MariaDB [(none)]> CREATE DA</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

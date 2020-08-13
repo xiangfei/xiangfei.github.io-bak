@@ -5,8 +5,10 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="Ruby Dir 类和方法, openstack,opennebula">
-    <meta name="description" content="Ruby Dir 类和方法Dir 是一个表示用于给出操作系统中目录中的文件名的目录流。Dir 类也拥有与目录相关的操作，比如通配符文件名匹配、改变工作目录等。
+    <meta name="description" content="Ruby Dir 类和方法
+Dir 是一个表示用于给出操作系统中目录中的文件名的目录流。Dir 类也拥有与目录相关的操作，比如通配符文件名匹配、改变工作目录等。
 类方法
+
 
 
 序号
@@ -16,7 +18,7 @@
 
 
 1
-Dir[pat] Dir:">
+Dir[pat] Di">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -440,7 +442,7 @@ Dir[pat] Dir:">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        568
+                        562
                     </div>
                     
 
@@ -463,8 +465,10 @@ Dir[pat] Dir:">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-Dir-类和方法"><a href="#Ruby-Dir-类和方法" class="headerlink" title="Ruby Dir 类和方法"></a>Ruby Dir 类和方法</h3><p>Dir 是一个表示用于给出操作系统中目录中的文件名的目录流。Dir 类也拥有与目录相关的操作，比如通配符文件名匹配、改变工作目录等。</p>
-<h4 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h4><table>
+                <h3 id="Ruby-Dir-类和方法">Ruby Dir 类和方法</h3>
+<p>Dir 是一个表示用于给出操作系统中目录中的文件名的目录流。Dir 类也拥有与目录相关的操作，比如通配符文件名匹配、改变工作目录等。</p>
+<h4 id="类方法">类方法</h4>
+<table>
 <thead>
 <tr>
 <th style="text-align:center">序号</th>
@@ -474,7 +478,7 @@ Dir[pat] Dir:">
 <tbody>
 <tr>
 <td style="text-align:center">1</td>
-<td style="text-align:center">Dir[pat] Dir::glob( pat)  <br>返回一个数组，包含与指定的通配符模式 pat 匹配的文件名：<br><em> - 匹配包含 null 字符串的任意字符串<br>** - 递归地匹配任意字符串<br>? - 匹配任意单个字符<br>[…] - 匹配封闭字符中的任意一个<br>{a,b…} - 匹配字符串中的任意一个<br>Dir[“foo.</em>“] # 匹配 “foo.c”、 “foo.rb” 等等<br>Dir[“foo.?”] # 匹配 “foo.c”、 “foo.h” 等等<br></td>
+<td style="text-align:center">Dir[pat] Dir::glob( pat)  <br>返回一个数组，包含与指定的通配符模式 pat 匹配的文件名：<br>* - 匹配包含 null 字符串的任意字符串<br>** - 递归地匹配任意字符串<br>? - 匹配任意单个字符<br>[…] - 匹配封闭字符中的任意一个<br>{a,b…} - 匹配字符串中的任意一个<br>Dir[“foo.*”] # 匹配 “foo.c”、 “foo.rb” 等等<br>Dir[“foo.?”] # 匹配 “foo.c”、 “foo.h” 等等<br></td>
 </tr>
 <tr>
 <td style="text-align:center">2</td>
@@ -494,7 +498,7 @@ Dir[pat] Dir:">
 </tr>
 <tr>
 <td style="text-align:center">6</td>
-<td style="text-align:center">Dir::foreach( path) { &#166;     f&#166;     …} 为 path 指定的目录中的每个文件执行一次块。</td>
+<td style="text-align:center">Dir::foreach( path) { ¦	 f¦	 …} 为 path 指定的目录中的每个文件执行一次块。</td>
 </tr>
 <tr>
 <td style="text-align:center">7</td>
@@ -506,7 +510,7 @@ Dir[pat] Dir:">
 </tr>
 <tr>
 <td style="text-align:center">9</td>
-<td style="text-align:center">Dir::new( path) Dir::open( path) Dir::open( path) { &#166;     dir &#166;     …} 返回 path 的新目录对象。如果 open 给出一个块，则新目录对象会传到该块，块会在终止前关闭目录对象。</td>
+<td style="text-align:center">Dir::new( path) Dir::open( path) Dir::open( path) { ¦	 dir ¦	 …} 返回 path 的新目录对象。如果 open 给出一个块，则新目录对象会传到该块，块会在终止前关闭目录对象。</td>
 </tr>
 <tr>
 <td style="text-align:center">10</td>
@@ -518,7 +522,8 @@ Dir[pat] Dir:">
 </tr>
 </tbody>
 </table>
-<h4 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h4><p>假设 d 是 Dir 类的一个实例：</p>
+<h4 id="实例方法">实例方法</h4>
+<p>假设 d 是 Dir 类的一个实例：</p>
 <table>
 <thead>
 <tr>
@@ -533,7 +538,7 @@ Dir[pat] Dir:">
 </tr>
 <tr>
 <td style="text-align:center">2</td>
-<td style="text-align:center">d.each { &#166;     f &#166;     …} 为 d 中的每一个条目执行一次块。</td>
+<td style="text-align:center">d.each { ¦	 f ¦	 …} 为 d 中的每一个条目执行一次块。</td>
 </tr>
 <tr>
 <td style="text-align:center">3</td>
@@ -747,8 +752,9 @@ Dir[pat] Dir:">
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 异常异常和执行总是被联系在一起。如果您打开一个不存在的文件，且没有恰当地处理这种情况，那么您的程序则被认为是低质量的。
-如果异常发生，则程序停止。异常用于处理各种类型的错误，这些错误可能在程序执行期间发生，所以要采取适当的行动，而</div>
+                    <div class="summary block-with-text">Ruby 异常
+异常和执行总是被联系在一起。如果您打开一个不存在的文件，且没有恰当地处理这种情况，那么您的程序则被认为是低质量的。
+如果异常发生，则程序停止。异常用于处理各种类型的错误，这些错误可能在程序执行期间发生，所以要采取适当的行动，</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -795,20 +801,9 @@ Dir[pat] Dir:">
                 <div class="card-content article-content">
                     <div class="summary block-with-text">File 表示一个连接到普通文件的 stdio 对象。open 为普通文件返回该类的一个实例。
 类方法
-
-
-序号
-方法 &amp; 描述
-
-
-
-
-1
-File::atime( path)  返回 path 的最后访问时间。
-
-
-2
-File</div>
+|序号|	方法 &amp; 描述
+|:–:|:-- :|
+|1|	File::atime( path)  返回 path 的最后访问时间</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -986,7 +981,7 @@ File</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

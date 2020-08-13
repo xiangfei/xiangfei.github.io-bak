@@ -5,7 +5,9 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="k8s 开发, openstack,opennebula">
-    <meta name="description" content="Kubernetes 开发参考文档Kubernetes  API 接口文档https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/  
+    <meta name="description" content="Kubernetes 开发参考文档
+Kubernetes  API 接口文档
+https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/
 v1.10 为 Kube">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -430,7 +432,7 @@ v1.10 为 Kube">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        746
+                        749
                     </div>
                     
 
@@ -453,33 +455,40 @@ v1.10 为 Kube">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Kubernetes-开发参考文档"><a href="#Kubernetes-开发参考文档" class="headerlink" title="Kubernetes 开发参考文档"></a>Kubernetes 开发参考文档</h1><h2 id="Kubernetes-API-接口文档"><a href="#Kubernetes-API-接口文档" class="headerlink" title="Kubernetes  API 接口文档"></a>Kubernetes  API 接口文档</h2><p><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/" target="_blank" rel="noopener">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/</a>  </p>
-<p>v1.10 为 Kubernetes 版本号，不同版本号的 API 接口可能有所不同，具体实现参照当前 Kubernetes 平台版本。  </p>
-<h2 id="kubernetes-client-python-参考实现"><a href="#kubernetes-client-python-参考实现" class="headerlink" title="kubernetes-client  python 参考实现"></a>kubernetes-client  python 参考实现</h2><p><a href="https://github.com/kubernetes-client/python" target="_blank" rel="noopener">https://github.com/kubernetes-client/python</a>  </p>
-<h1 id="Kubernetes-对接自动化运维平台一期功能愿望清单"><a href="#Kubernetes-对接自动化运维平台一期功能愿望清单" class="headerlink" title="Kubernetes 对接自动化运维平台一期功能愿望清单"></a>Kubernetes 对接自动化运维平台一期功能愿望清单</h1><h2 id="自动化运维平台（Kubernetes-功能点）——初稿-XMIND地址"><a href="#自动化运维平台（Kubernetes-功能点）——初稿-XMIND地址" class="headerlink" title="自动化运维平台（Kubernetes 功能点）——初稿  XMIND地址"></a>自动化运维平台（Kubernetes 功能点）——初稿  <a href="/medias/img/platform-feature.xmind">XMIND地址</a></h2><p><img src="/medias/img/platform-feature.png" alt>  </p>
-<h4 id="python-demo"><a href="#python-demo" class="headerlink" title="python demo"></a>python demo</h4><pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> kubernetes <span class="token keyword">import</span> client<span class="token punctuation">,</span> config
+                <h1>Kubernetes 开发参考文档</h1>
+<h2 id="Kubernetes-API-接口文档">Kubernetes  API 接口文档</h2>
+<p><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/" target="_blank" rel="noopener">https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/</a></p>
+<p>v1.10 为 Kubernetes 版本号，不同版本号的 API 接口可能有所不同，具体实现参照当前 Kubernetes 平台版本。</p>
+<h2 id="kubernetes-client-python-参考实现">kubernetes-client  python 参考实现</h2>
+<p><a href="https://github.com/kubernetes-client/python" target="_blank" rel="noopener">https://github.com/kubernetes-client/python</a></p>
+<h1>Kubernetes 对接自动化运维平台一期功能愿望清单</h1>
+<h2 id="自动化运维平台（Kubernetes-功能点）——初稿-XMIND地址">自动化运维平台（Kubernetes 功能点）——初稿  <a href="/medias/img/platform-feature.xmind">XMIND地址</a></h2>
+<p><img src="/medias/img/platform-feature.png" alt></p>
+<h4 id="python-demo">python demo</h4>
+<pre class=" language-language-python"><code class="language-language-python">from kubernetes import client, config
 
-<span class="token comment" spellcheck="true">#这边载入包含授权信息的 config 文件</span>
-config<span class="token punctuation">.</span>load_kube_config<span class="token punctuation">(</span>config_file<span class="token operator">=</span><span class="token string">"/Users/shenlx/.kube/config"</span><span class="token punctuation">)</span>
+#这边载入包含授权信息的 config 文件
+config.load_kube_config(config_file="/Users/shenlx/.kube/config")
 
-v1 <span class="token operator">=</span> client<span class="token punctuation">.</span>CoreV1Api<span class="token punctuation">(</span><span class="token punctuation">)</span>
+v1 = client.CoreV1Api()
 
-t<span class="token operator">=</span>v1<span class="token punctuation">.</span>list_namespaced_pod<span class="token punctuation">(</span>namespace<span class="token operator">=</span><span class="token string">"default"</span><span class="token punctuation">)</span>
-pods_all_namespaces <span class="token operator">=</span> v1<span class="token punctuation">.</span>list_pod_for_all_namespaces<span class="token punctuation">(</span>watch<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-deployments_all_namespaces <span class="token operator">=</span> client<span class="token punctuation">.</span>ExtensionsV1beta1DeploymentCondition
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"------------kubectl get pods --all-namespaces------------"</span><span class="token punctuation">)</span>
-<span class="token keyword">for</span> i <span class="token keyword">in</span> t<span class="token punctuation">.</span>items<span class="token punctuation">:</span>
-<span class="token comment" spellcheck="true">#for i in pods_all_namespaces.items:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">.</span>status<span class="token punctuation">.</span>host_ip <span class="token punctuation">,</span> i<span class="token punctuation">.</span>status<span class="token punctuation">.</span>pod_ip<span class="token punctuation">,</span> i<span class="token punctuation">.</span>metadata<span class="token punctuation">.</span>namespace<span class="token punctuation">,</span> i<span class="token punctuation">.</span>metadata<span class="token punctuation">.</span>name<span class="token punctuation">,</span>i<span class="token punctuation">.</span>status<span class="token punctuation">.</span>phase<span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+t=v1.list_namespaced_pod(namespace="default")
+pods_all_namespaces = v1.list_pod_for_all_namespaces(watch=False)
+deployments_all_namespaces = client.ExtensionsV1beta1DeploymentCondition
+print("------------kubectl get pods --all-namespaces------------")
+for i in t.items:
+#for i in pods_all_namespaces.items:
+    print(i.status.host_ip , i.status.pod_ip, i.metadata.namespace, i.metadata.name,i.status.phase)
+'''
 namespace_all=v1.list_namespace()
 print("------------kubectl get namespaces------------")
 for i in namespace_all.items:
     print(i.metadata.name)
-'''</span>
+'''
 
 </code></pre>
-<h4 id="yaml-examples"><a href="#yaml-examples" class="headerlink" title="yaml examples"></a>yaml examples</h4><pre><code>apiVersion: v1
+<h4 id="yaml-examples">yaml examples</h4>
+<pre><code>apiVersion: v1
 kind: ConfigMap
 metadata:
   name: demo-config
@@ -653,7 +662,9 @@ spec:
       type: log
 
 
-</code></pre><h4 id="docker-file"><a href="#docker-file" class="headerlink" title="docker file"></a>docker file</h4><pre><code>FROM registry-docker.jcgroup.com.cn/public/centos:jdk1.8.0_171
+</code></pre>
+<h4 id="docker-file">docker file</h4>
+<pre><code>FROM registry-docker.jcgroup.com.cn/public/centos:jdk1.8.0_171
 MAINTAINER jcgroup
 ENV TZ Asia/Shanghai
 ADD start.sh /home/jcy/start.sh
@@ -671,7 +682,8 @@ ENTRYPOINT [&quot;su&quot;,&quot;-&quot;,&quot;jcy&quot;,&quot;-c&quot;,&quot;/h
 
 #!/bin/bash
 /usr/local/java/bin/java -jar -Xms512m -Xmx1024m  /home/jcy/*.jar
-</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -854,6 +866,7 @@ ENTRYPOINT [&quot;su&quot;,&quot;-&quot;,&quot;jcy&quot;,&quot;-c&quot;,&quot;/h
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">说明
+
 查找get 改成post
 
 #!/usr/bin/python 
@@ -865,7 +878,7 @@ Created on 2018年5月2日
 
 @author: xiangfei
 '''
-from rest_</div>
+from rest</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-25
@@ -910,9 +923,10 @@ from rest_</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">firewalld 配置firewall-cmd --set-default-zone=public
+                    <div class="summary block-with-text">firewalld 配置
+firewall-cmd --set-default-zone=public
 firewall-cmd --zone=public --add-port=80/tcp --permanent
-firewall-cmd</div>
+firewall-cm</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-25
@@ -1090,7 +1104,7 @@ firewall-cmd</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">80k</span>
+                <span class="white-color">85k</span>
             
 
             

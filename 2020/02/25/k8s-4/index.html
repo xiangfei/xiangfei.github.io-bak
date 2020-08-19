@@ -5,17 +5,13 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="k8s 基础介绍, openstack,opennebula">
-    <meta name="description" content="K8S简介
-K8S官网
-
-http://kubernetes.io/
+    <meta name="description" content="K8S简介K8S官网
+http://kubernetes.io/  
 
 K8S官方指导文档
-
-http://kubernetes.io/docs/user-guide/
+http://kubernetes.io/docs/user-guide/  
 
 Google docker registry
-
 gcr.io/goo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -440,7 +436,7 @@ gcr.io/goo">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        726
+                        720
                     </div>
                     
 
@@ -463,82 +459,50 @@ gcr.io/goo">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1>K8S简介</h1>
-<h3 id="K8S官网">K8S官网</h3>
-<blockquote>
-<p><a href="http://kubernetes.io/" target="_blank" rel="noopener">http://kubernetes.io/</a></p>
+                <h1 id="K8S简介"><a href="#K8S简介" class="headerlink" title="K8S简介"></a>K8S简介</h1><h3 id="K8S官网"><a href="#K8S官网" class="headerlink" title="K8S官网"></a>K8S官网</h3><blockquote>
+<p><a href="http://kubernetes.io/" target="_blank" rel="noopener">http://kubernetes.io/</a>  </p>
 </blockquote>
-<h3 id="K8S官方指导文档">K8S官方指导文档</h3>
-<blockquote>
-<p><a href="http://kubernetes.io/docs/user-guide/" target="_blank" rel="noopener">http://kubernetes.io/docs/user-guide/</a></p>
+<h3 id="K8S官方指导文档"><a href="#K8S官方指导文档" class="headerlink" title="K8S官方指导文档"></a>K8S官方指导文档</h3><blockquote>
+<p><a href="http://kubernetes.io/docs/user-guide/" target="_blank" rel="noopener">http://kubernetes.io/docs/user-guide/</a>  </p>
 </blockquote>
-<h3 id="Google-docker-registry">Google docker registry</h3>
-<blockquote>
-<p><a href="http://gcr.io/google_containers/" target="_blank" rel="noopener">gcr.io/google_containers/</a><br>
-备注：GWF的缘故国内不能直接访问，下载相关镜像需要翻墙或者其它方式下载后转存。</p>
+<h3 id="Google-docker-registry"><a href="#Google-docker-registry" class="headerlink" title="Google docker registry"></a>Google docker registry</h3><blockquote>
+<p>gcr.io/google_containers/<br> 备注：GWF的缘故国内不能直接访问，下载相关镜像需要翻墙或者其它方式下载后转存。  </p>
 </blockquote>
-<h3 id="K8S下载（latest-release）">K8S下载（latest release）</h3>
-<blockquote>
-<p><a href="https://github.com/kubernetes/kubernetes/releases" target="_blank" rel="noopener">https://github.com/kubernetes/kubernetes/releases</a><br>
-备注：github会把一些比较大的数据文件放在AWS公有云，因GWF部分AWS的访问将不可用。</p>
+<h3 id="K8S下载（latest-release）"><a href="#K8S下载（latest-release）" class="headerlink" title="K8S下载（latest release）"></a>K8S下载（latest release）</h3><blockquote>
+<p><a href="https://github.com/kubernetes/kubernetes/releases" target="_blank" rel="noopener">https://github.com/kubernetes/kubernetes/releases</a><br> 备注：github会把一些比较大的数据文件放在AWS公有云，因GWF部分AWS的访问将不可用。  </p>
 </blockquote>
-<h1>K8S安装</h1>
-<p>备注：所有安装基于CENTOS7 AMD64</p>
-<h3 id="下载最新release后-所需要的核心二进制应用包括：">下载最新release后,所需要的核心二进制应用包括：</h3>
-<ol>
-<li>K8S平台管理接口</li>
-</ol>
+<h1 id="K8S安装"><a href="#K8S安装" class="headerlink" title="K8S安装"></a>K8S安装</h1><p> 备注：所有安装基于CENTOS7 AMD64  </p>
+<h3 id="下载最新release后-所需要的核心二进制应用包括："><a href="#下载最新release后-所需要的核心二进制应用包括：" class="headerlink" title="下载最新release后,所需要的核心二进制应用包括："></a>下载最新release后,所需要的核心二进制应用包括：</h3><ol>
+<li><p>K8S平台管理接口</p>
 <pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kube-apiserver
-</code></pre>
-<ol start="6">
-<li>K8S平台CLI交互工具，用以进行部署、删除、回滚等操作</li>
-</ol>
+</code></pre></li>
+<li><p>K8S平台CLI交互工具，用以进行部署、删除、回滚等操作</p>
 <pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kubectl
-</code></pre>
-<ol start="4">
-<li>负责node的管理，基本所有操作都靠它</li>
-</ol>
+</code></pre></li>
+<li><p>负责node的管理，基本所有操作都靠它</p>
 <pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kubelet
-</code></pre>
-<ol start="5">
-<li>每个node里的container都在一个私有网络中，kube-proxy的作用就是做一个反向代理，让访问者访问这个node的时候，可以转发到内部对应的container。</li>
-</ol>
+</code></pre></li>
+<li><p>每个node里的container都在一个私有网络中，kube-proxy的作用就是做一个反向代理，让访问者访问这个node的时候，可以转发到内部对应的container。</p>
 <pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kube-proxy
-</code></pre>
-<ol start="2">
-<li>k8s调度器，容器的启动、迁移、扩容缩减时候，选择哪个node，就看它了</li>
-</ol>
+</code></pre></li>
+<li><p>k8s调度器，容器的启动、迁移、扩容缩减时候，选择哪个node，就看它了  </p>
 <pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kube-scheduler
-</code></pre>
-<ol start="3">
-<li>k8s对node的控制行为，比如怎么去调用node启动一个容器</li>
-</ol>
+</code></pre></li>
+<li><p>k8s对node的控制行为，比如怎么去调用node启动一个容器</p>
 <pre><code>kubernetes/server/kubernetes-server-linux-amd64.tar.gz/server/bin/kube-controller-manager
-</code></pre>
-<h3 id="Master-节点需要启动的应用：">Master 节点需要启动的应用：</h3>
-<h5 id="kube-apiserver">kube-apiserver</h5>
-<pre><code>nohup kube-apiserver --insecure-bind-address=0.0.0.0 --insecure-port=8080 --cors_allowed_origins=.* --etcd_servers=http://172.16.249.130:4001 --v=1 --logtostderr=false --log_dir=/var/log/k8s/apiserver --service-cluster-ip-range=172.17.200.0/24 &gt; kube-apiserver.log &amp;
-</code></pre>
-<p>备注:端口和etcd接口地址请根据实际情况填写，service-cluster-ip-range 为定义后期部署service所规定的网段，当然也可以不设置，那样会默认从falnnel设置的子网里面随机取值。</p>
-<h5 id="kube-scheduler">kube-scheduler</h5>
-<pre><code>nohup kube-scheduler --master=172.16.249.130:8080 --v=1 --logtostderr=false --log_dir=/var/log/k8s/scheduler &gt; kube-scheduler.log &amp;
-</code></pre>
-<p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
-<h5 id="kube-controller-manager">kube-controller-manager</h5>
-<pre><code>nohup kube-controller-manager --master=172.16.249.130:8080 --enable-hostpath-provisioner=false --v=1 --logtostderr=false --log_dir=/var/log/k8s/controller-manager &gt; kube-controller-manager.log &amp;
-</code></pre>
-<p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
-<h3 id="node-节点需要启动的应用：">node 节点需要启动的应用：</h3>
-<h5 id="kubelet">kubelet</h5>
-<pre><code>nohup kubelet --address=0.0.0.0 --port=10250 --cluster_dns=172.17.100.100 --cluster_domain=cluster.local --v=1 --log_dir=/var/log/k8s/kubelet --hostname_override=172.16.249.129 --api_servers=http://172.16.249.130:8080 --logtostderr=false &gt; kubelet.log &amp;
-</code></pre>
-<p>备注：其中hostname_override为改node节点地址，api_servers需要填写部署 kube-apiserver 应用的master节点的地址和端口，cluster_dns在部署kube-dns服务时会用到（参见<a href="yaml/kube-system">kube-system</a>）。</p>
-<h5 id="kube-proxy">kube-proxy</h5>
-<pre><code>nohup kube-proxy --master=172.16.249.130:8080 --log_dir=/var/log/k8s/proxy --v=1 --logtostderr=false &gt; kube-proxy.log &amp;
-</code></pre>
-<p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
-<h1>K8S各模块功能图</h1>
-<p><img src="/medias/img/k8s3.png" alt="k8s3"></p>
+</code></pre></li>
+</ol>
+<h3 id="Master-节点需要启动的应用："><a href="#Master-节点需要启动的应用：" class="headerlink" title="Master 节点需要启动的应用："></a>Master 节点需要启动的应用：</h3><h5 id="kube-apiserver"><a href="#kube-apiserver" class="headerlink" title="kube-apiserver"></a>kube-apiserver</h5><pre><code>nohup kube-apiserver --insecure-bind-address=0.0.0.0 --insecure-port=8080 --cors_allowed_origins=.* --etcd_servers=http://172.16.249.130:4001 --v=1 --logtostderr=false --log_dir=/var/log/k8s/apiserver --service-cluster-ip-range=172.17.200.0/24 &gt; kube-apiserver.log &amp;
+</code></pre><p>备注:端口和etcd接口地址请根据实际情况填写，service-cluster-ip-range 为定义后期部署service所规定的网段，当然也可以不设置，那样会默认从falnnel设置的子网里面随机取值。  </p>
+<h5 id="kube-scheduler"><a href="#kube-scheduler" class="headerlink" title="kube-scheduler"></a>kube-scheduler</h5><pre><code>nohup kube-scheduler --master=172.16.249.130:8080 --v=1 --logtostderr=false --log_dir=/var/log/k8s/scheduler &gt; kube-scheduler.log &amp;
+</code></pre><p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
+<h5 id="kube-controller-manager"><a href="#kube-controller-manager" class="headerlink" title="kube-controller-manager"></a>kube-controller-manager</h5><pre><code>nohup kube-controller-manager --master=172.16.249.130:8080 --enable-hostpath-provisioner=false --v=1 --logtostderr=false --log_dir=/var/log/k8s/controller-manager &gt; kube-controller-manager.log &amp;
+</code></pre><p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
+<h3 id="node-节点需要启动的应用："><a href="#node-节点需要启动的应用：" class="headerlink" title="node 节点需要启动的应用："></a>node 节点需要启动的应用：</h3><h5 id="kubelet"><a href="#kubelet" class="headerlink" title="kubelet"></a>kubelet</h5><pre><code>nohup kubelet --address=0.0.0.0 --port=10250 --cluster_dns=172.17.100.100 --cluster_domain=cluster.local --v=1 --log_dir=/var/log/k8s/kubelet --hostname_override=172.16.249.129 --api_servers=http://172.16.249.130:8080 --logtostderr=false &gt; kubelet.log &amp;
+</code></pre><p>备注：其中hostname_override为改node节点地址，api_servers需要填写部署 kube-apiserver 应用的master节点的地址和端口，cluster_dns在部署kube-dns服务时会用到（参见<a href="yaml/kube-system">kube-system</a>）。  </p>
+<h5 id="kube-proxy"><a href="#kube-proxy" class="headerlink" title="kube-proxy"></a>kube-proxy</h5><pre><code>nohup kube-proxy --master=172.16.249.130:8080 --log_dir=/var/log/k8s/proxy --v=1 --logtostderr=false &gt; kube-proxy.log &amp;
+</code></pre><p>备注：master需要填写部署 kube-apiserver 应用的master节点的地址和端口。</p>
+<h1 id="K8S各模块功能图"><a href="#K8S各模块功能图" class="headerlink" title="K8S各模块功能图"></a>K8S各模块功能图</h1><p><img src="/medias/img/k8s3.png" alt="k8s3"></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
@@ -721,14 +685,11 @@ gcr.io/goo">
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">一、Docker 安装部署
-查看Liunx内核版本
-uname -a
+                    <div class="summary block-with-text">一、Docker 安装部署查看Liunx内核版本uname -a  
 
-Docker requires a 64-bit OS and version 3.10 or higher of the Linux kernel.
+Docker requires a 64-bit OS and version 3.10 or higher of the Linux kernel.  
 
-安装扩展源
-s</div>
+安装扩展源</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-25
@@ -773,16 +734,13 @@ s</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">一、flannel简介
-flannel官网
-
-https://coreos.com/flannel/
+                    <div class="summary block-with-text">一、flannel简介flannel官网
+https://coreos.com/flannel/  
 
 flannel官方文档
+https://coreos.com/flannel/docs/latest/  
 
-https://coreos.com/flannel/docs/latest/
-
-flannel github</div>
+flannel githu</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-25
@@ -960,7 +918,7 @@ flannel github</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

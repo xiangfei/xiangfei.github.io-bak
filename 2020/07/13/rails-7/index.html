@@ -5,10 +5,8 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="rails  controller heartbeat 实现, openstack,opennebula">
-    <meta name="description" content="rails 心跳日志实现
-rails agent  每3秒钟 同步一次 hearheat
-def agent_env
-  JSON.load(Diplomat::Kv.get(&#34;devops/automationtesting-backen">
+    <meta name="description" content="rails 心跳日志实现rails agent  每3秒钟 同步一次 hearheatdef agent_env
+  JSON.load(Diplomat::Kv.get(&#34;devops/automationtesting-backend-">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -432,14 +430,14 @@ def agent_env
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        306
+                        338
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -455,101 +453,96 @@ def agent_env
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="rails-心跳日志实现">rails 心跳日志实现</h3>
-<h4 id="rails-agent-每3秒钟-同步一次-hearheat">rails agent  每3秒钟 同步一次 hearheat</h4>
-<pre class=" language-language-ruby"><code class="language-language-ruby">def agent_env
-  JSON.load(Diplomat::Kv.get("devops/automationtesting-backend-agent"))["env"]
-end
+                <h3 id="rails-心跳日志实现"><a href="#rails-心跳日志实现" class="headerlink" title="rails 心跳日志实现"></a>rails 心跳日志实现</h3><h4 id="rails-agent-每3秒钟-同步一次-hearheat"><a href="#rails-agent-每3秒钟-同步一次-hearheat" class="headerlink" title="rails agent  每3秒钟 同步一次 hearheat"></a>rails agent  每3秒钟 同步一次 hearheat</h4><pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">def</span> agent_env
+  <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token constant">Diplomat</span><span class="token punctuation">:</span><span class="token symbol">:Kv</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"devops/automationtesting-backend-agent"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">"env"</span><span class="token punctuation">]</span>
+<span class="token keyword">end</span>
 
-def agent_threads
-  threads = TestWorker.class_variable_get :@@awifi_test_threads
-  threaddata = []
-  threads.each do |thread|
-    threaddata << { name: thread[:name], idle: thread[:idle] }
-  end
-end
+<span class="token keyword">def</span> agent_threads
+  threads <span class="token operator">=</span> <span class="token constant">TestWorker</span><span class="token punctuation">.</span>class_variable_get <span class="token punctuation">:</span><span class="token variable">@@awifi_test_threads</span>
+  threaddata <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  threads<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>thread<span class="token operator">|</span>
+    threaddata <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> thread<span class="token punctuation">[</span><span class="token symbol">:name</span><span class="token punctuation">]</span><span class="token punctuation">,</span> idle<span class="token punctuation">:</span> thread<span class="token punctuation">[</span><span class="token symbol">:idle</span><span class="token punctuation">]</span> <span class="token punctuation">}</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
 
-class RemoteSync
-  def self.sync
-    t = Thread.new do
-      loop do
-        begin
-          data = Api::NodeController.info
-          node = Node.new data
-          node.sync
-          sleep 1
-        rescue => e
-          sleep 1
-          Rails.logger.info "sync node info failed  #{e.backtrace}"
-        end
-      end
-    end
-    #at_exit do
-    #  Rails.logger.info "stop sync thread "
-    #  t.kill
-    #end
-  end
-end
+<span class="token keyword">class</span> <span class="token class-name">RemoteSync</span>
+  <span class="token keyword">def</span> <span class="token keyword">self</span><span class="token punctuation">.</span>sync
+    t <span class="token operator">=</span> <span class="token builtin">Thread</span><span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">do</span>
+      loop <span class="token keyword">do</span>
+        <span class="token keyword">begin</span>
+          data <span class="token operator">=</span> <span class="token constant">Api</span><span class="token punctuation">:</span><span class="token symbol">:NodeController</span><span class="token punctuation">.</span>info
+          node <span class="token operator">=</span> <span class="token constant">Node</span><span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">data</span>
+          node<span class="token punctuation">.</span>sync
+          sleep <span class="token number">1</span>
+        <span class="token keyword">rescue</span> <span class="token operator">=</span><span class="token operator">></span> e
+          sleep <span class="token number">1</span>
+          <span class="token constant">Rails</span><span class="token punctuation">.</span>logger<span class="token punctuation">.</span>info <span class="token string">"sync node info failed  <span class="token interpolation"><span class="token delimiter tag">#{</span>e<span class="token punctuation">.</span>backtrace<span class="token delimiter tag">}</span></span>"</span>
+        <span class="token keyword">end</span>
+      <span class="token keyword">end</span>
+    <span class="token keyword">end</span>
+    <span class="token comment" spellcheck="true">#at_exit do</span>
+    <span class="token comment" spellcheck="true">#  Rails.logger.info "stop sync thread "</span>
+    <span class="token comment" spellcheck="true">#  t.kill</span>
+    <span class="token comment" spellcheck="true">#end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
 
-if defined?(Rails::Server)
-  Rails.logger.info "sync node to remote master  info only on server node"
-  RemoteSync.sync
-end
+<span class="token keyword">if</span> <span class="token keyword">defined</span><span class="token operator">?</span><span class="token punctuation">(</span><span class="token constant">Rails</span><span class="token punctuation">:</span><span class="token symbol">:Server</span><span class="token punctuation">)</span>
+  <span class="token constant">Rails</span><span class="token punctuation">.</span>logger<span class="token punctuation">.</span>info <span class="token string">"sync node to remote master  info only on server node"</span>
+  <span class="token constant">RemoteSync</span><span class="token punctuation">.</span>sync
+<span class="token keyword">end</span>
 
 
 </code></pre>
-<h4 id="rails-controller-记录同步信息到redis">rails controller 记录同步信息到redis</h4>
-<h4 id="rails-controller-listen-redis-key-expire-event">rails controller  listen redis  key expire event</h4>
-<pre class=" language-language-ruby"><code class="language-language-ruby">Rails.logger.info "server mode needs a thread to watch agent node online or not"
+<h4 id="rails-controller-记录同步信息到redis"><a href="#rails-controller-记录同步信息到redis" class="headerlink" title="rails controller 记录同步信息到redis"></a>rails controller 记录同步信息到redis</h4><h4 id="rails-controller-listen-redis-key-expire-event"><a href="#rails-controller-listen-redis-key-expire-event" class="headerlink" title="rails controller  listen redis  key expire event"></a>rails controller  listen redis  key expire event</h4><pre class=" language-ruby"><code class="language-ruby"><span class="token constant">Rails</span><span class="token punctuation">.</span>logger<span class="token punctuation">.</span>info <span class="token string">"server mode needs a thread to watch agent node online or not"</span>
 
-def monitor_redis_expirekey
-  redis = V3::CaseNodesController.node_redis
-  redis.config :set, "notify-keyspace-events", "Ex"
-  client = redis.instance_variable_get "@client"
-  Rails.logger.info "db xxxxxxxx  #{client.db}"
-  redis.psubscribe("__keyevent@#{client.db}__:expired") do |on|
-    on.pmessage do |pattern, channel, key|
-      # add to do stuff if needed
-      if key.match /xxx___(.*)___xxx/
-        Rails.logger.info " #{$1} node expire "
-        V3::CaseReport.where(:status => "RUNNING").where(:agent_node_ip => $1).find_each do |report|
-          report.update status: "ERROR", exec_status: "ERROR"
-          report.report_consoles.create! message: "执行中断", status: "ERROR", detail: "master 检查 #{$1} offline ", finish: true
-        end
+<span class="token keyword">def</span> monitor_redis_expirekey
+  redis <span class="token operator">=</span> <span class="token constant">V3</span><span class="token punctuation">:</span><span class="token symbol">:CaseNodesController</span><span class="token punctuation">.</span>node_redis
+  redis<span class="token punctuation">.</span>config <span class="token symbol">:set</span><span class="token punctuation">,</span> <span class="token string">"notify-keyspace-events"</span><span class="token punctuation">,</span> <span class="token string">"Ex"</span>
+  client <span class="token operator">=</span> redis<span class="token punctuation">.</span>instance_variable_get <span class="token string">"@client"</span>
+  <span class="token constant">Rails</span><span class="token punctuation">.</span>logger<span class="token punctuation">.</span>info <span class="token string">"db xxxxxxxx  <span class="token interpolation"><span class="token delimiter tag">#{</span>client<span class="token punctuation">.</span>db<span class="token delimiter tag">}</span></span>"</span>
+  redis<span class="token punctuation">.</span><span class="token function">psubscribe</span><span class="token punctuation">(</span><span class="token string">"__keyevent@<span class="token interpolation"><span class="token delimiter tag">#{</span>client<span class="token punctuation">.</span>db<span class="token delimiter tag">}</span></span>__:expired"</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>on<span class="token operator">|</span>
+    on<span class="token punctuation">.</span>pmessage <span class="token keyword">do</span> <span class="token operator">|</span>pattern<span class="token punctuation">,</span> channel<span class="token punctuation">,</span> key<span class="token operator">|</span>
+      <span class="token comment" spellcheck="true"># add to do stuff if needed</span>
+      <span class="token keyword">if</span> key<span class="token punctuation">.</span>match <span class="token regex">/xxx___(.*)___xxx/</span>
+        <span class="token constant">Rails</span><span class="token punctuation">.</span>logger<span class="token punctuation">.</span>info <span class="token string">" <span class="token interpolation"><span class="token delimiter tag">#{</span>$<span class="token number">1</span><span class="token delimiter tag">}</span></span> node expire "</span>
+        <span class="token constant">V3</span><span class="token punctuation">:</span><span class="token symbol">:CaseReport</span><span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token symbol">:status</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"RUNNING"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token symbol">:agent_node_ip</span> <span class="token operator">=</span><span class="token operator">></span> $<span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>find_each <span class="token keyword">do</span> <span class="token operator">|</span>report<span class="token operator">|</span>
+          report<span class="token punctuation">.</span>update status<span class="token punctuation">:</span> <span class="token string">"ERROR"</span><span class="token punctuation">,</span> exec_status<span class="token punctuation">:</span> <span class="token string">"ERROR"</span>
+          report<span class="token punctuation">.</span>report_consoles<span class="token punctuation">.</span>create<span class="token operator">!</span> message<span class="token punctuation">:</span> <span class="token string">"执行中断"</span><span class="token punctuation">,</span> status<span class="token punctuation">:</span> <span class="token string">"ERROR"</span><span class="token punctuation">,</span> detail<span class="token punctuation">:</span> <span class="token string">"master 检查 <span class="token interpolation"><span class="token delimiter tag">#{</span>$<span class="token number">1</span><span class="token delimiter tag">}</span></span> offline "</span><span class="token punctuation">,</span> finish<span class="token punctuation">:</span> <span class="token keyword">true</span>
+        <span class="token keyword">end</span>
 
-        V3::ProjectDeploy.where(:status => "pending").where(:agent_node_ip => $1).find_each do |deploy|
-          deploy.update status: "failed"
-          deploy.consoles.create! message: "部署中断", status: "ERROR", detail: "master 检查 #{$1} offline ", finish: true
-        end
-      end
-    end
-  end
-end
+        <span class="token constant">V3</span><span class="token punctuation">:</span><span class="token symbol">:ProjectDeploy</span><span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token symbol">:status</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"pending"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token symbol">:agent_node_ip</span> <span class="token operator">=</span><span class="token operator">></span> $<span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>find_each <span class="token keyword">do</span> <span class="token operator">|</span>deploy<span class="token operator">|</span>
+          deploy<span class="token punctuation">.</span>update status<span class="token punctuation">:</span> <span class="token string">"failed"</span>
+          deploy<span class="token punctuation">.</span>consoles<span class="token punctuation">.</span>create<span class="token operator">!</span> message<span class="token punctuation">:</span> <span class="token string">"部署中断"</span><span class="token punctuation">,</span> status<span class="token punctuation">:</span> <span class="token string">"ERROR"</span><span class="token punctuation">,</span> detail<span class="token punctuation">:</span> <span class="token string">"master 检查 <span class="token interpolation"><span class="token delimiter tag">#{</span>$<span class="token number">1</span><span class="token delimiter tag">}</span></span> offline "</span><span class="token punctuation">,</span> finish<span class="token punctuation">:</span> <span class="token keyword">true</span>
+        <span class="token keyword">end</span>
+      <span class="token keyword">end</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
 
-if defined?(Rails::Server)
-  Thread.new do
-    Rails.logger.info "expire key"
+<span class="token keyword">if</span> <span class="token keyword">defined</span><span class="token operator">?</span><span class="token punctuation">(</span><span class="token constant">Rails</span><span class="token punctuation">:</span><span class="token symbol">:Server</span><span class="token punctuation">)</span>
+  <span class="token builtin">Thread</span><span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">do</span>
+    <span class="token constant">Rails</span><span class="token punctuation">.</span>logger<span class="token punctuation">.</span>info <span class="token string">"expire key"</span>
     monitor_redis_expirekey
-  end
-end
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
 
 
 </code></pre>
-<h4 id="配置rails-log-不显示-sync-data">配置rails log ,不显示 sync data</h4>
-<ul>
+<h4 id="配置rails-log-不显示-sync-data"><a href="#配置rails-log-不显示-sync-data" class="headerlink" title="配置rails log ,不显示 sync data"></a>配置rails log ,不显示 sync data</h4><ul>
 <li>gem ‘silencer’</li>
 </ul>
-<pre class=" language-language-ruby"><code class="language-language-ruby">require 'silencer/logger'
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string">'silencer/logger'</span>
 
-Rails.application.configure do
-  config.middleware.swap(
-    Rails::Rack::Logger, 
-    Silencer::Logger, 
-    config.log_tags,
-    get: [%r{^/api/health$}],
-    post: [%r{^/api/v3/case_nodes$}]
-  )
-end
+<span class="token constant">Rails</span><span class="token punctuation">.</span>application<span class="token punctuation">.</span>configure <span class="token keyword">do</span>
+  config<span class="token punctuation">.</span>middleware<span class="token punctuation">.</span><span class="token function">swap</span><span class="token punctuation">(</span>
+    <span class="token constant">Rails</span><span class="token punctuation">:</span><span class="token symbol">:Rack</span><span class="token punctuation">:</span><span class="token symbol">:Logger</span><span class="token punctuation">,</span> 
+    <span class="token constant">Silencer</span><span class="token punctuation">:</span><span class="token symbol">:Logger</span><span class="token punctuation">,</span> 
+    config<span class="token punctuation">.</span>log_tags<span class="token punctuation">,</span>
+    get<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token regex">%r{^/api/health$}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    post<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token regex">%r{^/api/v3/case_nodes$}</span><span class="token punctuation">]</span>
+  <span class="token punctuation">)</span>
+<span class="token keyword">end</span>
 
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -734,11 +727,10 @@ end
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">node js deploy 报错
-[root@autotest-ruby-agent myblog]# hexo d
+                    <div class="summary block-with-text">node js deploy 报错[root@autotest-ruby-agent myblog]# hexo d
 INFO  Deploying: git
 INFO  Clearing .deploy_git folder...
-IN</div>
+INF</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-16
@@ -783,12 +775,10 @@ IN</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">controller01
-安装包
-[root@controller01 ~]# yum install openstack-dashboard -y
+                    <div class="summary block-with-text">controller01安装包[root@controller01 ~]# yum install openstack-dashboard -y
 
 
-修改文件 /etc/openstack-dashboard/local_setting</div>
+修改文件 /etc/openstack-dashboard/local_settingsO</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-21
@@ -966,7 +956,7 @@ IN</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

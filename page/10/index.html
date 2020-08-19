@@ -317,30 +317,75 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2019/05/22/ruby-1/">
+                    <a href="/2019/08/23/ruby-3/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="ruby 第一个程序">
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="ruby 数据类型">
                             
-                            <span class="card-title">ruby 第一个程序</span>
+                            <span class="card-title">ruby 数据类型</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                交互式ruby
+                                Ruby 数据类型数值类型(Number)整型(Integer)
+整型分两种，如果在31位以内（四字节），那为Fixnum实例。如果超过，即为Bignum实例。
 
-irb
+整数范围从 -230 到 230-1，在这个范围内的整数是类 Fixnum 
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-23
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/ruby/" class="post-category" target="_blank">
+                                    ruby
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
-[root@autotest-ruby-agent ~]# irb
-2.4.5 :001 &gt; 
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/ruby/" target="_blank">
+                            <span class="chip bg-color">ruby</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/05/22/ruby-2/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="ruby 语法基础">
+                            
+                            <span class="card-title">ruby 语法基础</span>
+                        </div>
+                    </a>
 
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Ruby 语法
+让我们编写一个简单的 Ruby 程序。所有的 Ruby 文件扩展名都是 .rb。所以，把下面的源代码放在 test.rb 文件中。
 
-最简单的ruby程序
+#!/usr/bin/ruby -w
 
-2.4.5 :001 &gt; puts &quot;hello world&qu
+puts &quot;Hello, Ruby!&q
                             
                         </div>
                         <div class="publish-info">
@@ -387,12 +432,64 @@ irb
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                安装
-安装rvm
-在线安装
+                                安装安装rvm在线安装
+gpg –keyserver hkp://keys.gnupg.net –recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://ge
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-22
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/ruby/" class="post-category" target="_blank">
+                                    ruby
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-curl -sSL https
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/ruby/" target="_blank">
+                            <span class="chip bg-color">ruby</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/05/22/ruby-1/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="ruby 第一个程序">
+                            
+                            <span class="card-title">ruby 第一个程序</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                交互式ruby
+irb
+
+[root@autotest-ruby-agent ~]# irb
+2.4.5 :001 &gt; 
+
+最简单的ruby程序
+
+2.4.5 :001 &gt; puts &quot;hello world&quot
                             
                         </div>
                         <div class="publish-info">
@@ -439,12 +536,10 @@ curl -sSL https
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                spirent 流量测试
-spirent 主流程
-
+                                spirent 流量测试spirent 主流程
 step up a communication between your pc and your spirent testcenter chassis
 prepare DUT/SUT
-co
+conn
                             
                         </div>
                         <div class="publish-info">
@@ -496,7 +591,6 @@ co
                         <div class="summary block-with-text">
                             
                                 nginx 配置
-
 proxy_set_header Connection ‘’;
 proxy_buffering off;
 proxy_cache off;
@@ -614,10 +708,9 @@ yum -y install haproxy keepalived
                         <div class="summary block-with-text">
                             
                                 hosts
-
 192.168.224.181 controller1  terminaldevice-1
 192.168.224.182 controller2  terminaldevice-2
-192.168.224.183 contr
+192.168.224.183 contro
                             
                         </div>
                         <div class="publish-info">
@@ -673,10 +766,9 @@ yum -y install haproxy keepalived
                         <div class="summary block-with-text">
                             
                                 机器准备 (centos7)
-
 192.168.224.181 controller1  terminaldevice-1
 192.168.224.182 controller2  terminaldevice-2
-192.168.224.
+192.168.224.1
                             
                         </div>
                         <div class="publish-info">
@@ -728,14 +820,11 @@ yum -y install haproxy keepalived
                         <div class="summary block-with-text">
                             
                                 准备
+192.168.224.181    controller1 
+192.168.224.182   controller2 
+192.168.224.183   controller3 
 
-192.168.224.181    controller1
-192.168.224.182   controller2
-192.168.224.183   controller3
-
-yum 源
-# 163源测试,找不到wsrep
-
+yum 源# 163源测试,找不到wsrep
                             
                         </div>
                         <div class="publish-info">
@@ -752,114 +841,6 @@ yum 源
                                 
                                 <a href="/categories/openstack/mariadb/" class="post-category" target="_blank">
                                     mariadb
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/ops/" target="_blank">
-                            <span class="chip bg-color">ops</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/04/19/ops-2/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="opentsdb api使用常见问题">
-                            
-                            <span class="card-title">opentsdb api使用常见问题</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                openstsdb使用问题
-opentsdb api 查找lastdata 返回空
-
-解决方法
-
-opentsdb.conf
-
-tsd.core.auto_create_metrics = true
-tsd.core.meta.enable
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-19
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/opentsdb/" class="post-category" target="_blank">
-                                    opentsdb
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/ops/" target="_blank">
-                            <span class="chip bg-color">ops</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/04/18/ops-1/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="zookeeper 集群安装">
-                            
-                            <span class="card-title">zookeeper 集群安装</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                准备
-
-server1  192.168.213.58
-server2  192.168.213.59
-server3  192.168.213.65
-
-1. github download https://github.com/apach
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-18
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/zookeeper/" class="post-category" target="_blank">
-                                    zookeeper
                                 </a>
                                 
                                 
@@ -920,7 +901,7 @@ server3  192.168.213.65
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

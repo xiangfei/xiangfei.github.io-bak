@@ -317,6 +317,109 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2019/04/04/opennebula-12/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="opennebula marketplace">
+                            
+                            <span class="card-title">opennebula marketplace</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                public
+默认安装
+
+privateSystems marketplacecat market.conf
+NAME = PrivateMarket
+MARKET_MAD = one
+ENDPOINT = &quot;http://pri
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/opennebula/" class="post-category" target="_blank">
+                                    opennebula
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/opennebula/" target="_blank">
+                            <span class="chip bg-color">opennebula</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/04/04/opennebula-11/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="opennebula 虚拟机管理">
+                            
+                            <span class="card-title">opennebula 虚拟机管理</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                image需要安装one-context
+Set Up the Virtual Machine TemplateCONTEXT = [
+    TOKEN = &quot;YES&quot;,
+    NETWORK = &quot;YES
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/opennebula/" class="post-category" target="_blank">
+                                    opennebula
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/opennebula/" target="_blank">
+                            <span class="chip bg-color">opennebula</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2019/04/04/opennebula-10/">
                         <div class="card-image">
                             
@@ -331,14 +434,12 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         <div class="summary block-with-text">
                             
                                 disk类型
-
 os ,可以启动的镜像
 cd-rom , read only data 通常是iso文件
 datalock, 数据文件, 通常是empty drive
 
 file类型
-
-kernel A plain file to be u
+kernel A plain file to be use
                             
                         </div>
                         <div class="publish-info">
@@ -385,16 +486,15 @@ kernel A plain file to be u
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                常用配置
-桥接
-cat private.txt
+                                常用配置桥接cat private.txt
 NAME    = &quot;bridged_net&quot;
 VN_MAD  = &quot;fw&quot;
 BRIDGE  = vbr1
 
 # 网桥需要手动配置
 
-#ebtables
+#ebtables 
+
                             
                         </div>
                         <div class="publish-info">
@@ -441,12 +541,10 @@ BRIDGE  = vbr1
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                User
-Adding and Deleting Users
-oneuser create otheradmin password
+                                UserAdding and Deleting Usersoneuser create otheradmin password
 oneuser chgrp otheradmin oneadmin
 
-oneuser create publ
+oneuser create public
                             
                         </div>
                         <div class="publish-info">
@@ -493,14 +591,11 @@ oneuser create publ
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                创建,删除主机
-onehost create host01 --im kvm --vm kvm
+                                创建,删除主机onehost create host01 --im kvm --vm kvm
 onehost delete host01
 
-
-Showing and Listing Hosts
-onehost list
-onehost s
+Showing and Listing Hostsonehost list
+onehost show
                             
                         </div>
                         <div class="publish-info">
@@ -548,14 +643,12 @@ onehost s
                         <div class="summary block-with-text">
                             
                                 views
-
 Admin view
 Group Admin view
 Cloud view
 User view
 
-5.8 定义 /etc/one/sunstone-views/{kvm,vcenter,mixed}
-vi /etc/one/
+5.8 定义 /etc/one/sunstone-views/{kvm,vcenter,mixed}vi /etc/one/su
                             
                         </div>
                         <div class="publish-info">
@@ -603,19 +696,17 @@ vi /etc/one/
                         <div class="summary block-with-text">
                             
                                 流程
-
 CLI/API Authentication
-
 Built-in User/Password
 LDAP
 SSH
 
 Sunstone Authentication
-
 Built-in User/Password
 LDAP
 SSH
-X5
+X509
+
                             
                         </div>
                         <div class="publish-info">
@@ -662,15 +753,13 @@ X5
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                file system
-Datastore Layout
-/var/lib/one/datastores
+                                file systemDatastore Layout/var/lib/one/datastores
 |-- 0/
 |   |-- 0/
 |   |   |-- disk.0
 |   |   `-- disk.1
 |   |-- 2/
-
+| 
                             
                         </div>
                         <div class="publish-info">
@@ -718,136 +807,13 @@ Datastore Layout
                         <div class="summary block-with-text">
                             
                                 准备
-
-前台需要至少三台机器
-192.168.150.1 leader
-192.168.150.2 follower
-192.168.150.3 follower
-Sunstone (with or without Apache/Passe
+前台需要至少三台机器192.168.150.1 leader192.168.150.2 follower192.168.150.3 follower
+Sunstone (with or without Apache/Passenger
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/opennebula/" class="post-category" target="_blank">
-                                    opennebula
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/opennebula/" target="_blank">
-                            <span class="chip bg-color">opennebula</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/04/03/opennebula-2/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="opennebula 网络配置">
-                            
-                            <span class="card-title">opennebula 网络配置</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                8021q网络配置
-
-配置和liux vxlan类似
-
-
-ifcfg-eth0.192
-ip link add link eth0 name eth0.8 type vlan id 8
-ip -d link show eth0.8
-需要内核
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-03
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/opennebula/" class="post-category" target="_blank">
-                                    opennebula
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/opennebula/" target="_blank">
-                            <span class="chip bg-color">opennebula</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/04/03/opennebula-1/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="opennebula安装">
-                            
-                            <span class="card-title">opennebula安装</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                准备
-
-
-os centos7
-
-
-
-存储 ceph
-数据库 mysql
-虚拟化 kvm
-网络划分 192.168.0.0/16(业务)
-
-控制节点安装
-ip 192.168.20.2
-
-
-SELinux on CentOS/RHEL 7
-
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-03
                             </span>
                             <span class="publish-author">
                                 
@@ -915,7 +881,7 @@ SELinux on CentOS/RHEL 7
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

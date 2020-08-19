@@ -6,12 +6,11 @@
     <meta charset="utf-8">
     <meta name="keywords" content="ruby  块, openstack,opennebula">
     <meta name="description" content="Ruby 块
-
 块由大量的代码组成。
 您需要给块取个名称。
 块中的代码总是包含在大括号 {} 内。
 块总是从与其具有相同名称的函数调用。这意味着如果您的块名称为 test，那么您要使用函数 test 来调用这个块。
-您可以使用 yield ">
+您可以使用 yield 语">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -458,8 +457,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-块">Ruby 块</h3>
-<ul>
+                <h3 id="Ruby-块"><a href="#Ruby-块" class="headerlink" title="Ruby 块"></a>Ruby 块</h3><ul>
 <li>块由大量的代码组成。</li>
 <li>您需要给块取个名称。</li>
 <li>块中的代码总是包含在大括号 {} 内。</li>
@@ -472,14 +470,12 @@
    statement2
    ..........
 }
-</code></pre>
-<p>在这里，您将学到如何使用一个简单的 yield 语句来调用块。您也将学到如何使用带有参数的 yield 语句来调用块。在实例中，您将看到这两种类型的 yield 语句。</p>
-<h3 id="yield-语句">yield 语句</h3>
-<p>让我们看一个 yield 语句的实例：</p>
+</code></pre><p>在这里，您将学到如何使用一个简单的 yield 语句来调用块。您也将学到如何使用带有参数的 yield 语句来调用块。在实例中，您将看到这两种类型的 yield 语句。</p>
+<h3 id="yield-语句"><a href="#yield-语句" class="headerlink" title="yield 语句"></a>yield 语句</h3><p>让我们看一个 yield 语句的实例：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
- 
+
 def test
    puts &quot;在 test 方法内&quot;
    yield
@@ -487,19 +483,15 @@ def test
    yield
 end
 test {puts &quot;你在块内&quot;}
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>在 test 方法内<br>
-你在块内<br>
-你又回到了 test 方法内<br>
-你在块内</p>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>在 test 方法内<br>你在块内<br>你又回到了 test 方法内<br>你在块内</p>
 </blockquote>
 </div></div>
 <p>您也可以传递带有参数的 yield 语句。下面是一个实例：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
- 
+
 def test
    yield 5
    puts &quot;在 test 方法内&quot;
@@ -507,75 +499,62 @@ def test
 end
 test {|i| puts &quot;你在块 #{i} 内&quot;}
 
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>你在块 5 内<br>
-在 test 方法内<br>
-你在块 100 内</p>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>你在块 5 内<br>在 test 方法内<br>你在块 100 内</p>
 </blockquote>
 </div></div>
 <p>在这里，yield 语句后跟着参数。您甚至可以传递多个参数。在块中，您可以在两个竖线之间放置一个变量来接受参数。因此，在上面的代码中，yield 5 语句向 test 块传递值 5 作为参数。</p>
 <p>现在，看下面的语句：</p>
 <pre><code>test {|i| puts &quot;你在块 #{i} 内&quot;}
-</code></pre>
-<p>在这里，值 5 会在变量 i 中收到。现在，观察下面的 puts 语句：</p>
+</code></pre><p>在这里，值 5 会在变量 i 中收到。现在，观察下面的 puts 语句：</p>
 <pre><code>puts &quot;你在块 #{i} 内&quot;
-</code></pre>
-<p>这个 puts 语句的输出是：</p>
+</code></pre><p>这个 puts 语句的输出是：</p>
 <p><code>你在块5 内</code></p>
 <p>如果您想要传递多个参数，那么 yield 语句如下所示：</p>
 <p><code>yield a, b</code></p>
 <p>此时，块如下所示：</p>
 <p><code>test {|a, b| statement}</code></p>
 <p>参数使用逗号分隔。</p>
-<h3 id="块和方法">块和方法</h3>
-<p>您已经看到块和方法之间是如何相互关联的。您通常使用 yield 语句从与其具有相同名称的方法调用块。因此，代码如下所示：</p>
+<h3 id="块和方法"><a href="#块和方法" class="headerlink" title="块和方法"></a>块和方法</h3><p>您已经看到块和方法之间是如何相互关联的。您通常使用 yield 语句从与其具有相同名称的方法调用块。因此，代码如下所示：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
- 
+
 def test
   yield
 end
 test{ puts &quot;Hello world&quot;}
-</code></pre>
-<p>本实例是实现块的最简单的方式。您使用 yield 语句调用 test 块。</p>
+</code></pre><p>本实例是实现块的最简单的方式。您使用 yield 语句调用 test 块。</p>
 <p>但是如果方法的最后一个参数前带有 &amp;，那么您可以向该方法传递一个块，且这个块可被赋给最后一个参数。如果 * 和 &amp; 同时出现在参数列表中，&amp; 应放在后面。</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
- 
+
 def test(&amp;block)
    block.call
 end
 test { puts &quot;Hello World!&quot;}
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
 <p>Hello World!</p>
 </blockquote>
 </div></div>
-<h3 id="BEGIN-和-END-块">BEGIN 和 END 块</h3>
-<p>每个 Ruby 源文件可以声明当文件被加载时要运行的代码块（BEGIN 块），以及程序完成执行后要运行的代码块（END 块）。</p>
+<h3 id="BEGIN-和-END-块"><a href="#BEGIN-和-END-块" class="headerlink" title="BEGIN 和 END 块"></a>BEGIN 和 END 块</h3><p>每个 Ruby 源文件可以声明当文件被加载时要运行的代码块（BEGIN 块），以及程序完成执行后要运行的代码块（END 块）。</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
- 
+
 BEGIN { 
   # BEGIN 代码块
   puts &quot;BEGIN 代码块&quot;
 } 
- 
+
 END { 
   # END 代码块
   puts &quot;END 代码块&quot;
 }
   # MAIN 代码块
 puts &quot;MAIN 代码块&quot;
-</code></pre>
-<p>一个程序可以包含多个 BEGIN 和 END 块。BEGIN 块按照它们出现的顺序执行。END 块按照它们出现的相反顺序执行。当执行时，</p>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>BEGIN 代码块<br>
-MAIN 代码块<br>
-END 代码块</p>
+</code></pre><p>一个程序可以包含多个 BEGIN 和 END 块。BEGIN 块按照它们出现的顺序执行。END 块按照它们出现的相反顺序执行。当执行时，<br><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>BEGIN 代码块<br>MAIN 代码块<br>END 代码块</p>
 </blockquote>
-</div></div>
+</div></div></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
@@ -758,13 +737,12 @@ END 代码块</p>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 模块（Module）
-模块（Module）是一种把方法、类和常量组合在一起的方式。模块（Module）为您提供了两大好处。
+                    <div class="summary block-with-text">Ruby 模块（Module）模块（Module）是一种把方法、类和常量组合在一起的方式。模块（Module）为您提供了两大好处。
 
 模块提供了一个命名空间和避免名字冲突。
 模块实现了 mixin 装置。
 
-模块（Module）定义了一个</div>
+模块（Module）定义了一个命</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -810,10 +788,9 @@ END 代码块</p>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">Ruby 方法
-
 Ruby 方法与其他编程语言中的函数类似。Ruby 方法用于捆绑一个或多个重复的语句到一个单元中。
 方法名应以小写字母开头。如果您以大写字母作为方法名的开头，Ruby 可能会把它当作常量，从而导致不正确地解析调用。
-方法应</div>
+方法应在</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-05
@@ -991,7 +968,7 @@ Ruby 方法与其他编程语言中的函数类似。Ruby 方法用于捆绑一�
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

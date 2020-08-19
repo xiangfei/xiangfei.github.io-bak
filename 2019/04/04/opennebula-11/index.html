@@ -5,13 +5,10 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula 虚拟机管理, openstack,opennebula">
-    <meta name="description" content="image
-需要安装one-context
-
-Set Up the Virtual Machine Template
-CONTEXT = [
+    <meta name="description" content="image需要安装one-context
+Set Up the Virtual Machine TemplateCONTEXT = [
     TOKEN = &amp;quot;YES&amp;quot;,
-    NETWORK = &amp;quot;">
+    NETWORK = &amp;quot;YES">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -435,7 +432,7 @@ CONTEXT = [
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        148
+                        143
                     </div>
                     
 
@@ -458,57 +455,44 @@ CONTEXT = [
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="image">image</h3>
-<pre><code>需要安装one-context
-</code></pre>
-<h3 id="Set-Up-the-Virtual-Machine-Template">Set Up the Virtual Machine Template</h3>
-<pre><code>CONTEXT = [
+                <h3 id="image"><a href="#image" class="headerlink" title="image"></a>image</h3><pre><code>需要安装one-context
+</code></pre><h3 id="Set-Up-the-Virtual-Machine-Template"><a href="#Set-Up-the-Virtual-Machine-Template" class="headerlink" title="Set Up the Virtual Machine Template"></a>Set Up the Virtual Machine Template</h3><pre><code>CONTEXT = [
     TOKEN = &quot;YES&quot;,
     NETWORK = &quot;YES&quot;,
     SSH_PUBLIC_KEY = &quot;$USER[SSH_PUBLIC_KEY]&quot;,
     START_SCRIPT = &quot;yum install -y ntpdate&quot;
 ]
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ul>
 <li>Set OneGate token and onegate information in the context</li>
-</ul>
-</blockquote>
-<ul>
 <li>Add network configuration to the Virtual Machine</li>
 <li>Enable login into the Virtual Machine using ssh with the value of the user’s parameter SSH_PUBLIC_KEY</li>
 <li>On Virtual Machine boot execute the command yum install -y ntpdate</li>
 </ul>
-<h3 id="OneGate-Token">OneGate Token</h3>
-<ul>
-<li>Token: vm rest 接口认证</li>
-</ul>
-<blockquote>
+</blockquote>
+<h3 id="OneGate-Token"><a href="#OneGate-Token" class="headerlink" title="OneGate Token"></a>OneGate Token</h3><ul>
+<li>Token: vm rest 接口认证<blockquote>
 <p>需要在oned.conf 配置endpoint</p>
 </blockquote>
-<h3 id="Network-Configuration">Network Configuration</h3>
-<pre><code>CONTEXT = [
+</li>
+</ul>
+<h3 id="Network-Configuration"><a href="#Network-Configuration" class="headerlink" title="Network Configuration"></a>Network Configuration</h3><pre><code>CONTEXT = [
   NIC = [ NETWORK = &quot;Network&quot;, IP = 10.0.0.153 ]
 ]
-</code></pre>
-<h3 id="User-Credentials">User Credentials</h3>
-<pre><code>ssh-keygen 
+</code></pre><h3 id="User-Credentials"><a href="#User-Credentials" class="headerlink" title="User Credentials"></a>User Credentials</h3><pre><code>ssh-keygen 
 手动在template copy公钥 or
 CONTEXT = [
   SSH_PUBLIC_KEY=&quot;ssh-rsa MYPUBLICKEY...&quot;
 ]
 
-</code></pre>
-<h3 id="Execute-Scripts-on-Boot">Execute Scripts on Boot</h3>
-<pre><code>CONTEXT = [
+</code></pre><h3 id="Execute-Scripts-on-Boot"><a href="#Execute-Scripts-on-Boot" class="headerlink" title="Execute Scripts on Boot"></a>Execute Scripts on Boot</h3><pre><code>CONTEXT = [
     START_SCRIPT = &quot;#!/bin/bash
 yum update
 yum install -y ntpdate
 ntpdate 0.pool.ntp.org&quot;
 ]
 
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -691,15 +675,12 @@ ntpdate 0.pool.ntp.org&quot;
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">public
-
 默认安装
 
-private
-Systems marketplace
-cat market.conf
+privateSystems marketplacecat market.conf
 NAME = PrivateMarket
 MARKET_MAD = one
-ENDPOINT = &quot;http://</div>
+ENDPOINT = &quot;http://pri</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -745,14 +726,12 @@ ENDPOINT = &quot;http://</div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">disk类型
-
 os ,可以启动的镜像
 cd-rom , read only data 通常是iso文件
 datalock, 数据文件, 通常是empty drive
 
 file类型
-
-kernel A plain file to be u</div>
+kernel A plain file to be use</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -930,7 +909,7 @@ kernel A plain file to be u</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

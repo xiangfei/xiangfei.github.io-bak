@@ -5,8 +5,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="karafka group 多次消费, openstack,opennebula">
-    <meta name="description" content="consumer group 多次消费
-#config.client_id = &#34;teamwork_manage_#{ENV[&#34;HOSTNAME&#34;]}&#34;
+    <meta name="description" content="consumer group 多次消费#config.client_id = &#34;teamwork_manage_#{ENV[&#34;HOSTNAME&#34;]}&#34;
 config.client_id = &#34;devops_server&#34;
 
 
@@ -457,9 +456,8 @@ config.client_id = &#34;devops_server&#34;
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="consumer-group-多次消费">consumer group 多次消费</h3>
-<pre class=" language-language-ruby"><code class="language-language-ruby">#config.client_id = "teamwork_manage_#{ENV["HOSTNAME"]}"
-config.client_id = "devops_server"
+                <h3 id="consumer-group-多次消费"><a href="#consumer-group-多次消费" class="headerlink" title="consumer group 多次消费"></a>consumer group 多次消费</h3><pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#config.client_id = "teamwork_manage_#{ENV["HOSTNAME"]}"</span>
+config<span class="token punctuation">.</span>client_id <span class="token operator">=</span> <span class="token string">"devops_server"</span>
 
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -645,15 +643,15 @@ config.client_id = "devops_server"
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
-class KarafkaApp < Karafka::App
+class KarafkaApp &lt; Karafka::App
   setup do |config|
     config.batch_fetching = true  #批量获取一次处理
- 
+
   end
 
 end
 
-class Col</div>
+class C</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-09
@@ -698,9 +696,7 @@ class Col</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">kafka
-现象
-I, [2019-10-09T11:23:08.506232 #9611]  INFO -- : Inline processing of topic data-monitor with 1 messages took 2</div>
+                    <div class="summary block-with-text">kafka现象I, [2019-10-09T11:23:08.506232 #9611]  INFO -- : Inline processing of topic data-monitor with 1 messages took 265</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-09
@@ -878,7 +874,7 @@ I, [2019-10-09T11:23:08.506232 #9611]  INFO -- : Inline processing of topic data
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

@@ -5,12 +5,10 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula 用户权限, openstack,opennebula">
-    <meta name="description" content="User
-Adding and Deleting Users
-oneuser create otheradmin password
+    <meta name="description" content="UserAdding and Deleting Usersoneuser create otheradmin password
 oneuser chgrp otheradmin oneadmin
 
-oneuser create publ">
+oneuser create public">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -434,7 +432,7 @@ oneuser create publ">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        132
+                        122
                     </div>
                     
 
@@ -457,9 +455,7 @@ oneuser create publ">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="User">User</h2>
-<h3 id="Adding-and-Deleting-Users">Adding and Deleting Users</h3>
-<pre><code>oneuser create otheradmin password
+                <h2 id="User"><a href="#User" class="headerlink" title="User"></a>User</h2><h3 id="Adding-and-Deleting-Users"><a href="#Adding-and-Deleting-Users" class="headerlink" title="Adding and Deleting Users"></a>Adding and Deleting Users</h3><pre><code>oneuser create otheradmin password
 oneuser chgrp otheradmin oneadmin
 
 oneuser create publicuser password
@@ -470,43 +466,23 @@ oneuser chauth serveruser server_cipher
 
 oneuser delete server_cipher
 
-</code></pre>
-<h3 id="token">token</h3>
-<pre><code>oneuser token-create
+</code></pre><h3 id="token"><a href="#token" class="headerlink" title="token"></a>token</h3><pre><code>oneuser token-create
 oneuser token-set --token b6
 export ONE_AUTH=/var/lib/one/.one/5ad20d96-964a-4e09-b550-9c29855e6457.token; export ONE_EGID=-1
 oneuser token-delete b6
-</code></pre>
-<h2 id="Group">Group</h2>
-<h3 id="add">add</h3>
-<pre><code>onegroup create &quot;new group&quot;
+</code></pre><h2 id="Group"><a href="#Group" class="headerlink" title="Group"></a>Group</h2><h3 id="add"><a href="#add" class="headerlink" title="add"></a>add</h3><pre><code>onegroup create &quot;new group&quot;
 
-</code></pre>
-<h3 id="add-user">add user</h3>
-<pre><code>oneuser chgrp -v regularuser &quot;new group&quot;
+</code></pre><h3 id="add-user"><a href="#add-user" class="headerlink" title="add user"></a>add user</h3><pre><code>oneuser chgrp -v regularuser &quot;new group&quot;
 
-</code></pre>
-<h3 id="manage-Virtual-Machine-Templates-images-service-instance">manage Virtual Machine Templates ,images, service, instance</h3>
-<pre><code>在sunstone 页面直接操作
-</code></pre>
-<h2 id="permission">permission</h2>
-<h3 id></h3>
+</code></pre><h3 id="manage-Virtual-Machine-Templates-images-service-instance"><a href="#manage-Virtual-Machine-Templates-images-service-instance" class="headerlink" title="manage Virtual Machine Templates ,images, service, instance"></a>manage Virtual Machine Templates ,images, service, instance</h3><pre><code>在sunstone 页面直接操作
+</code></pre><h2 id="permission"><a href="#permission" class="headerlink" title="permission"></a>permission</h2><p>###</p>
 <pre><code>onetemplate chmod 0 607 -v
-</code></pre>
-<h2 id="ACL">ACL</h2>
-<h3 id="创建">创建</h3>
-<pre><code>oneacl create &quot;@106 IMAGE/#31 USE&quot;
-</code></pre>
-<h2 id="quota">quota</h2>
-<h3 id="创建-2">创建</h3>
-<pre><code>oneuser batchquota userA,userB,35
+</code></pre><h2 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><pre><code>oneacl create &quot;@106 IMAGE/#31 USE&quot;
+</code></pre><h2 id="quota"><a href="#quota" class="headerlink" title="quota"></a>quota</h2><h3 id="创建-1"><a href="#创建-1" class="headerlink" title="创建"></a>创建</h3><pre><code>oneuser batchquota userA,userB,35
 onegroup batchquota 100..104
 oneuser defaultquota
-</code></pre>
-<h2 id="account">account</h2>
-<pre><code>oneacct -s 05/01 -e 06/01
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><h2 id="account"><a href="#account" class="headerlink" title="account"></a>account</h2><pre><code>oneacct -s 05/01 -e 06/01
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -688,16 +664,15 @@ oneuser defaultquota
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">常用配置
-桥接
-cat private.txt
+                    <div class="summary block-with-text">常用配置桥接cat private.txt
 NAME    = &quot;bridged_net&quot;
 VN_MAD  = &quot;fw&quot;
 BRIDGE  = vbr1
 
 # 网桥需要手动配置
 
-#ebtables</div>
+#ebtables 
+</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -742,14 +717,11 @@ BRIDGE  = vbr1
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">创建,删除主机
-onehost create host01 --im kvm --vm kvm
+                    <div class="summary block-with-text">创建,删除主机onehost create host01 --im kvm --vm kvm
 onehost delete host01
 
-
-Showing and Listing Hosts
-onehost list
-onehost s</div>
+Showing and Listing Hostsonehost list
+onehost show</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -927,7 +899,7 @@ onehost s</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

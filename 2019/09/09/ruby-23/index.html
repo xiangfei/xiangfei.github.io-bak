@@ -5,9 +5,8 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="ruby 异常, openstack,opennebula">
-    <meta name="description" content="Ruby 异常
-异常和执行总是被联系在一起。如果您打开一个不存在的文件，且没有恰当地处理这种情况，那么您的程序则被认为是低质量的。
-如果异常发生，则程序停止。异常用于处理各种类型的错误，这些错误可能在程序执行期间发生，所以要采取适当的行动，">
+    <meta name="description" content="Ruby 异常异常和执行总是被联系在一起。如果您打开一个不存在的文件，且没有恰当地处理这种情况，那么您的程序则被认为是低质量的。
+如果异常发生，则程序停止。异常用于处理各种类型的错误，这些错误可能在程序执行期间发生，所以要采取适当的行动，而">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -454,30 +453,28 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-异常">Ruby 异常</h3>
-<p>异常和执行总是被联系在一起。如果您打开一个不存在的文件，且没有恰当地处理这种情况，那么您的程序则被认为是低质量的。</p>
+                <h3 id="Ruby-异常"><a href="#Ruby-异常" class="headerlink" title="Ruby 异常"></a>Ruby 异常</h3><p>异常和执行总是被联系在一起。如果您打开一个不存在的文件，且没有恰当地处理这种情况，那么您的程序则被认为是低质量的。</p>
 <p>如果异常发生，则程序停止。异常用于处理各种类型的错误，这些错误可能在程序执行期间发生，所以要采取适当的行动，而不至于让程序完全停止。</p>
 <p>Ruby 提供了一个完美的处理异常的机制。我们可以在 begin/end 块中附上可能抛出异常的代码，并使用 rescue 子句告诉 Ruby 完美要处理的异常类型。</p>
 <p><strong>语法</strong></p>
 <pre><code>begin #开始
- 
+
  raise.. #抛出异常
- 
+
 rescue [ExceptionType = StandardException] #捕获指定类型的异常默认值是 StandardException
  $! #表示异常信息
  $@ #表示异常出现的代码位置
 else #其余异常
  ..
 ensure #不管有没有异常，进入该代码块
- 
+
 end #结束
-</code></pre>
-<p>从 begin 到 rescue 中的一切是受保护的。如果代码块执行期间发生了异常，控制会传到 rescue 和 end 之间的块。</p>
+</code></pre><p>从 begin 到 rescue 中的一切是受保护的。如果代码块执行期间发生了异常，控制会传到 rescue 和 end 之间的块。</p>
 <p>对于 begin 块中的每个 rescue 子句，Ruby 把抛出的异常与每个参数进行轮流比较。如果 rescue 子句中命名的异常与当前抛出的异常类型相同，或者是该异常的父类，则匹配成功。</p>
 <p>如果异常不匹配所有指定的错误类型，我们可以在所有的 rescue 子句后使用一个 else 子句。</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
- 
+
 begin
    file = open(&quot;/unexistant_file&quot;)
    if file
@@ -487,11 +484,9 @@ rescue
       file = STDIN
 end
 print file, &quot;==&quot;, STDIN, &quot;\n&quot;
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><p><code>#&lt;IO:0xb7d16f84&gt;==#&lt;IO:0xb7d16f84&gt;</code></p>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><p><code>#&lt;IO:0xb7d16f84&gt;==#&lt;IO:0xb7d16f84&gt;</code></p>
 </div></div>
-<h4 id="使用-retry-语句">使用 retry 语句</h4>
-<p>您可以使用 rescue 块捕获异常，然后使用 retry 语句从开头开始执行 begin 块。</p>
+<h4 id="使用-retry-语句"><a href="#使用-retry-语句" class="headerlink" title="使用 retry 语句"></a>使用 retry 语句</h4><p>您可以使用 rescue 块捕获异常，然后使用 retry 语句从开头开始执行 begin 块。</p>
 <p><strong>语法</strong></p>
 <pre><code>begin
     # 这段代码抛出的异常将被下面的 rescue 子句捕获
@@ -499,10 +494,9 @@ rescue
     # 这个块将捕获所有类型的异常
     retry  # 这将把控制移到 begin 的开头
 end
-</code></pre>
-<p><strong>实例</strong></p>
+</code></pre><p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
- 
+
 begin
    file = open(&quot;/unexistant_file&quot;)
    if file
@@ -512,8 +506,7 @@ rescue
    fname = &quot;existant_file&quot;
    retry
 end
-</code></pre>
-<p>以下是处理流程：</p>
+</code></pre><p>以下是处理流程：</p>
 <p>打开时发生异常。</p>
 <ul>
 <li>跳到 rescue。fname 被重新赋值。</li>
@@ -521,61 +514,50 @@ end
 <li>这次文件成功打开。</li>
 <li>继续基本的过程。</li>
 </ul>
-<p>__注意：__如果被重新命名的文件不存在，本实例代码会无限尝试。所以异常处理时，谨慎使用 retry。</p>
-<h4 id="使用-raise-语句">使用 raise 语句</h4>
-<p>您可以使用 raise 语句抛出异常。下面的方法在调用时抛出异常。它的第二个消息将被输出。</p>
+<p><strong>注意：</strong>如果被重新命名的文件不存在，本实例代码会无限尝试。所以异常处理时，谨慎使用 retry。</p>
+<h4 id="使用-raise-语句"><a href="#使用-raise-语句" class="headerlink" title="使用 raise 语句"></a>使用 raise 语句</h4><p>您可以使用 raise 语句抛出异常。下面的方法在调用时抛出异常。它的第二个消息将被输出。</p>
 <p><strong>语法</strong></p>
 <pre><code>raise 
-</code></pre>
-<p>或</p>
+</code></pre><p>或</p>
 <pre><code>raise &quot;Error Message&quot; 
-</code></pre>
-<p>或</p>
+</code></pre><p>或</p>
 <pre><code>raise ExceptionType, &quot;Error Message&quot;
-</code></pre>
-<p>或</p>
+</code></pre><p>或</p>
 <pre><code>raise ExceptionType, &quot;Error Message&quot; condition
-</code></pre>
-<p>第一种形式简单地重新抛出当前异常（如果没有当前异常则抛出一个 RuntimeError）。这用在传入异常之前需要解释异常的异常处理程序中。</p>
+</code></pre><p>第一种形式简单地重新抛出当前异常（如果没有当前异常则抛出一个 RuntimeError）。这用在传入异常之前需要解释异常的异常处理程序中。</p>
 <p>第二种形式创建一个新的 RuntimeError 异常，设置它的消息为给定的字符串。该异常之后抛出到调用堆栈。</p>
 <p>第三种形式使用第一个参数创建一个异常，然后设置相关的消息为第二个参数。</p>
 <p>第四种形式与第三种形式类似，您可以添加任何额外的条件语句（比如 unless）来抛出异常。</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
- 
+
 begin  
-    puts 'I am before the raise.'  
-    raise 'An error has occurred.'  
-    puts 'I am after the raise.'  
+    puts &#39;I am before the raise.&#39;  
+    raise &#39;An error has occurred.&#39;  
+    puts &#39;I am after the raise.&#39;  
 rescue  
-    puts 'I am rescued.'  
+    puts &#39;I am rescued.&#39;  
 end  
-puts 'I am after the begin block.'
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>I am before the raise.<br>
-I am rescued.<br>
-I am after the begin block.</p>
+puts &#39;I am after the begin block.&#39;
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>I am before the raise.<br>I am rescued.<br>I am after the begin block.  </p>
 </blockquote>
 </div></div>
 <p>另一个演示 raise 用法的实例：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
- 
+
 begin  
-  raise 'A test exception.'  
+  raise &#39;A test exception.&#39;  
 rescue Exception =&gt; e  
   puts e.message  
   puts e.backtrace.inspect  
 end
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>A test exception.<br>
-[“main.rb:4”]</p>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>A test exception.<br>[“main.rb:4”]</p>
 </blockquote>
 </div></div>
-<h4 id="使用-ensure-语句">使用 ensure 语句</h4>
-<p>有时候，无论是否抛出异常，您需要保证一些处理在代码块结束时完成。例如，您可能在进入时打开了一个文件，当您退出块时，您需要确保关闭文件。</p>
+<h4 id="使用-ensure-语句"><a href="#使用-ensure-语句" class="headerlink" title="使用 ensure 语句"></a>使用 ensure 语句</h4><p>有时候，无论是否抛出异常，您需要保证一些处理在代码块结束时完成。例如，您可能在进入时打开了一个文件，当您退出块时，您需要确保关闭文件。</p>
 <p>ensure 子句做的就是这个。ensure 放在最后一个 rescue 子句后，并包含一个块终止时总是执行的代码块。它与块是否正常退出、是否抛出并处理异常、是否因一个未捕获的异常而终止，这些都没关系，ensure 块始终都会运行。</p>
 <p><strong>语法</strong></p>
 <pre><code>begin 
@@ -587,25 +569,20 @@ ensure
    #.. 最后确保执行
    #.. 这总是会执行
 end
-</code></pre>
-<p><strong>实例</strong></p>
+</code></pre><p><strong>实例</strong></p>
 <pre><code>begin
-  raise 'A test exception.'
+  raise &#39;A test exception.&#39;
 rescue Exception =&gt; e
   puts e.message
   puts e.backtrace.inspect
 ensure
   puts &quot;Ensuring execution&quot;
 end
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>A test exception.<br>
-[“main.rb:4”]<br>
-Ensuring execution</p>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>A test exception.<br>[“main.rb:4”]<br>Ensuring execution</p>
 </blockquote>
 </div></div>
-<h4 id="使用-else-语句">使用 else 语句</h4>
-<p>如果提供了 else 子句，它一般是放置在 rescue 子句之后，任意 ensure 之前。</p>
+<h4 id="使用-else-语句"><a href="#使用-else-语句" class="headerlink" title="使用 else 语句"></a>使用 else 语句</h4><p>如果提供了 else 子句，它一般是放置在 rescue 子句之后，任意 ensure 之前。</p>
 <p>else 子句的主体只有在代码主体没有抛出异常时执行。</p>
 <p><strong>语法</strong></p>
 <pre><code>begin 
@@ -619,11 +596,10 @@ ensure
    #.. 最后确保执行
    #.. 这总是会执行
 end
-</code></pre>
-<p><strong>实例</strong></p>
+</code></pre><p><strong>实例</strong></p>
 <pre><code>begin
- # 抛出 'A test exception.'
- puts &quot;I'm not raising exception&quot;
+ # 抛出 &#39;A test exception.&#39;
+ puts &quot;I&#39;m not raising exception&quot;
 rescue Exception =&gt; e
   puts e.message
   puts e.backtrace.inspect
@@ -632,16 +608,12 @@ else
 ensure
   puts &quot;Ensuring execution&quot;
 end
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>I’m not raising exception<br>
-Congratulations-- no errors!<br>
-Ensuring execution</p>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>I’m not raising exception<br>Congratulations– no errors!<br>Ensuring execution</p>
 </blockquote>
 </div></div>
 <p>使用 $! 变量可以捕获抛出的错误消息。</p>
-<h4 id="Catch-和-Throw">Catch 和 Throw</h4>
-<p>raise 和 rescue 的异常机制能在发生错误时放弃执行，有时候需要在正常处理时跳出一些深层嵌套的结构。此时 catch 和 throw 就派上用场了。</p>
+<h4 id="Catch-和-Throw"><a href="#Catch-和-Throw" class="headerlink" title="Catch 和 Throw"></a>Catch 和 Throw</h4><p>raise 和 rescue 的异常机制能在发生错误时放弃执行，有时候需要在正常处理时跳出一些深层嵌套的结构。此时 catch 和 throw 就派上用场了。</p>
 <p>catch 定义了一个使用给定的名称（可以是 Symbol 或 String）作为标签的块。块会正常执行直到遇到一个 throw。</p>
 <p><strong>语法</strong></p>
 <pre><code>throw :lablename
@@ -649,15 +621,13 @@ Ensuring execution</p>
 catch :lablename do
 #.. 在遇到一个 throw 后匹配将被执行的 catch
 end
-</code></pre>
-<p>或</p>
+</code></pre><p>或</p>
 <pre><code>throw :lablename condition
 #.. 这不会被执行
 catch :lablename do
 #.. 在遇到一个 throw 后匹配将被执行的 catch
 end
-</code></pre>
-<p><strong>实例</strong></p>
+</code></pre><p><strong>实例</strong></p>
 <p>下面的实例中，如果用户键入 ‘!’ 回应任何提示，使用一个 throw 终止与用户的交互。</p>
 <p><strong>实例</strong></p>
 <pre><code>def promptAndGet(prompt)
@@ -666,7 +636,7 @@ end
    throw :quitRequested if res == &quot;!&quot;
    return res
 end
- 
+
 catch :quitRequested do
    name = promptAndGet(&quot;Name: &quot;)
    age = promptAndGet(&quot;Age: &quot;)
@@ -675,16 +645,11 @@ catch :quitRequested do
    # 处理信息
 end
 promptAndGet(&quot;Name:&quot;)
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>Name: Ruby on Rails<br>
-Age: 3<br>
-Sex: !<br>
-Name:Just Ruby</p>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>Name: Ruby on Rails<br>Age: 3<br>Sex: !<br>Name:Just Ruby</p>
 </blockquote>
 </div></div>
-<h4 id="类-Exception">类 Exception</h4>
-<p>Ruby 的标准类和模块抛出异常。所有的异常类组成一个层次，包括顶部的 Exception 类在内。下一层是七种不同的类型：</p>
+<h4 id="类-Exception"><a href="#类-Exception" class="headerlink" title="类 Exception"></a>类 Exception</h4><p>Ruby 的标准类和模块抛出异常。所有的异常类组成一个层次，包括顶部的 Exception 类在内。下一层是七种不同的类型：</p>
 <ul>
 <li>Interrupt</li>
 <li>NoMemoryError</li>
@@ -704,8 +669,7 @@ Name:Just Ruby</p>
    end
 end
 
-</code></pre>
-<p>现在，看下面的实例，将用到上面的异常：</p>
+</code></pre><p>现在，看下面的实例，将用到上面的异常：</p>
 <p><strong>实例</strong></p>
 <pre><code>File.open(path, &quot;w&quot;) do |file|
 begin
@@ -715,8 +679,7 @@ rescue
     raise FileSaveError.new($!)
 end
 end
-</code></pre>
-<p>在这里，最重要的一行是 raise FileSaveError.new($!)。我们调用 raise 来示意异常已经发生，把它传给 FileSaveError 的一个新的实例，由于特定的异常引起数据写入失败。</p>
+</code></pre><p>在这里，最重要的一行是 raise FileSaveError.new($!)。我们调用 raise 来示意异常已经发生，把它传给 FileSaveError 的一个新的实例，由于特定的异常引起数据写入失败。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
@@ -899,8 +862,7 @@ end
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 面向对象
-Ruby 是纯面向对象的语言，Ruby 中的一切都是以对象的形式出现。Ruby 中的每个值都是一个对象，即使是最原始的东西：字符串、数字，甚至连 true 和 false 都是对象。类本身也是一个对象，是 Class 类</div>
+                    <div class="summary block-with-text">Ruby 面向对象Ruby 是纯面向对象的语言，Ruby 中的一切都是以对象的形式出现。Ruby 中的每个值都是一个对象，即使是最原始的东西：字符串、数字，甚至连 true 和 false 都是对象。类本身也是一个对象，是 Class 类的</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -945,10 +907,8 @@ Ruby 是纯面向对象的语言，Ruby 中的一切都是以对象的形式出�
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby Dir 类和方法
-Dir 是一个表示用于给出操作系统中目录中的文件名的目录流。Dir 类也拥有与目录相关的操作，比如通配符文件名匹配、改变工作目录等。
+                    <div class="summary block-with-text">Ruby Dir 类和方法Dir 是一个表示用于给出操作系统中目录中的文件名的目录流。Dir 类也拥有与目录相关的操作，比如通配符文件名匹配、改变工作目录等。
 类方法
-
 
 
 序号
@@ -958,7 +918,7 @@ Dir 是一个表示用于给出操作系统中目录中的文件名的目录流�
 
 
 1
-Dir[pat] Di</div>
+Dir[pat] Dir:</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -1136,7 +1096,7 @@ Dir[pat] Di</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

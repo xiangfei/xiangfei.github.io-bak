@@ -6,12 +6,8 @@
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula高可用, openstack,opennebula">
     <meta name="description" content="准备
-
-前台需要至少三台机器
-192.168.150.1 leader
-192.168.150.2 follower
-192.168.150.3 follower
-Sunstone (with or without Apache/Passe">
+前台需要至少三台机器192.168.150.1 leader192.168.150.2 follower192.168.150.3 follower
+Sunstone (with or without Apache/Passenger">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -435,7 +431,7 @@ Sunstone (with or without Apache/Passe">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        269
+                        267
                     </div>
                     
 
@@ -458,51 +454,37 @@ Sunstone (with or without Apache/Passe">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="准备">准备</h4>
-<ol>
-<li>前台需要至少三台机器<br>
-192.168.150.1 leader<br>
-192.168.150.2 follower<br>
-192.168.150.3 follower</li>
+                <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><ol>
+<li>前台需要至少三台机器<br>192.168.150.1 leader<br>192.168.150.2 follower<br>192.168.150.3 follower</li>
 <li>Sunstone (with or without Apache/Passenger) running on all the nodes</li>
 <li>后台共享存储 Shared datastores must be mounted on all the nodes</li>
 <li>数据库高可用 ,mysql galera</li>
 </ol>
-<h4 id="配置">配置</h4>
-<ol>
-<li>192.168.150.1 add zone<br>
-onezone server-add 0 --name server-0 --rpc <a href="http://192.168.150.1:2633/RPC2" target="_blank" rel="noopener">http://192.168.150.1:2633/RPC2</a></li>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><ol>
+<li>192.168.150.1 add zone<br>  onezone server-add 0 –name server-0 –rpc <a href="http://192.168.150.1:2633/RPC2" target="_blank" rel="noopener">http://192.168.150.1:2633/RPC2</a></li>
 <li>192.168.150.1 修改zone</li>
 </ol>
 <pre><code>FEDERATION = [
-	MODE          = &quot;STANDALONE&quot;,
-	ZONE_ID       = 0,
-	SERVER_ID     = 0, # changed from -1 to 0 (as 0 is the server id)
-	MASTER_ONED   = &quot;&quot;
+    MODE          = &quot;STANDALONE&quot;,
+    ZONE_ID       = 0,
+    SERVER_ID     = 0, # changed from -1 to 0 (as 0 is the server id)
+    MASTER_ONED   = &quot;&quot;
 ]
-</code></pre>
-<ol start="3">
+</code></pre><ol start="3">
 <li>192.168.150.2 / 192.168.150.3 修改 zone</li>
 </ol>
 <pre><code>FEDERATION = [
-	    MODE          = &quot;STANDALONE&quot;,
-	    ZONE_ID       = 0,
-	    SERVER_ID     = 1, # changed from -1 to 0 (as 0 is the server id)
-	    MASTER_ONED   = &quot;&quot;
+        MODE          = &quot;STANDALONE&quot;,
+        ZONE_ID       = 0,
+        SERVER_ID     = 1, # changed from -1 to 0 (as 0 is the server id)
+        MASTER_ONED   = &quot;&quot;
 ]
-</code></pre>
-<ol start="4">
-<li>192.168.150.1 add zone</li>
-</ol>
-<pre><code>onezone server-add 0 --name server-1 --rpc http://192.168.150.2:2633/RPC2
+</code></pre><ol start="4">
+<li>192.168.150.1 add zone  <pre><code>onezone server-add 0 --name server-1 --rpc http://192.168.150.2:2633/RPC2
 onezone server-add 0 --name server-2 --rpc http://192.168.150.3:2633/RPC2
-</code></pre>
-<ol start="5">
-<li>数据库高可用</li>
-</ol>
-<pre><code>mysql galera
-</code></pre>
-<ol start="6">
+</code></pre></li>
+<li>数据库高可用<pre><code>mysql galera
+</code></pre></li>
 <li>使用vip (optional)</li>
 </ol>
 <pre><code># Executed when a server transits from follower-&gt;leader
@@ -516,13 +498,11 @@ RAFT_FOLLOWER_HOOK = [
     ARGUMENTS = &quot;follower eth0 10.3.3.2/24&quot;
 ]
 #也可用pacemaker + corosync 实现(4.x的方式)
-</code></pre>
-<blockquote>
-<p>删除zone</p>
+</code></pre><blockquote>
+<p>删除zone </p>
 </blockquote>
 <pre><code>onezone server-del  0 server-1
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -704,15 +684,13 @@ RAFT_FOLLOWER_HOOK = [
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">file system
-Datastore Layout
-/var/lib/one/datastores
+                    <div class="summary block-with-text">file systemDatastore Layout/var/lib/one/datastores
 |-- 0/
 |   |-- 0/
 |   |   |-- disk.0
 |   |   `-- disk.1
 |   |-- 2/
-</div>
+| </div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -758,14 +736,11 @@ Datastore Layout
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">8021q网络配置
-
 配置和liux vxlan类似
-
 
 ifcfg-eth0.192
 ip link add link eth0 name eth0.8 type vlan id 8
-ip -d link show eth0.8
-需要内核</div>
+ip -d link show eth0.8需要内核支持8</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-03
@@ -943,7 +918,7 @@ ip -d link show eth0.8
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

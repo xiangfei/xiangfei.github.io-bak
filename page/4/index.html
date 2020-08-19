@@ -317,6 +317,103 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2020/04/15/openstack-1/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="openstack IDC 问题 网络">
+                            
+                            <span class="card-title">openstack IDC 问题 网络</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                br-aux 网络问题不能访问外网 , 内部ip互通
+
+br-aux 网卡 off line重启网卡,失败，去机房换网线
+
+&lt;46>Apr 13 17:55:41 controller01 horizon_access - - - [
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-15
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/openstack/" class="post-category" target="_blank">
+                                    openstack
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/openstack/" target="_blank">
+                            <span class="chip bg-color">openstack</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/09/rails-6/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="rails api 文档">
+                            
+                            <span class="card-title">rails api 文档</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                创建markdown文档扩展rails apipie
+
+rails apipie
+
+app/doc
+module BaseDoc
+  include Apipie::DSL::Concern
+  extend Apipie::DSL::Co
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/rails/" class="post-category" target="_blank">
+                                    rails
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2020/04/09/karafka-5/">
                         <div class="card-image">
                             
@@ -330,12 +427,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                现象
-客户端处理,突然member 下线
-原因
-代码问题batch处理queue过多, 单条处理时间长, 被踢下线
+                                现象客户端处理,突然member 下线
+原因代码问题batch处理queue过多, 单条处理时间长, 被踢下线
 解决方式
-
 优化代码
 
 
@@ -381,18 +475,19 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         <div class="summary block-with-text">
                             
                                 sidekiq
-
 官方没有实现的方法
 k8s 直接重启容器
 虚拟器 重启应用
 
-虚拟机重启的方式 GOD
 
+
+虚拟机重启的方式 GOD
 god 监听consul ,发现字段变化重启
 consul挂机,连接失败,跳过
+
+
 扩展PollCondition test 方法
 
-r
                             
                         </div>
                         <div class="publish-info">
@@ -431,8 +526,7 @@ r
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                metadata server
-curl http://169.254.169.254/latest/meta-data/local-ipv4
+                                metadata servercurl http://169.254.169.254/latest/meta-data/local-ipv4
 
 
 
@@ -482,14 +576,12 @@ curl http://169.254.169.254/latest/meta-data/local-ipv4
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                ruby  zookeeper 配置
-require 'zk'
+                                ruby  zookeeper 配置require 'zk'
 
 zk = ZK.new("127.0.0.1:2181,127.0.0.1:2281,127.0.0.1:2381")
 
 
-karafka 配置
-    kafk_conn 
+karafka 配置    kafk_conn = 
                             
                         </div>
                         <div class="publish-info">
@@ -531,7 +623,6 @@ karafka 配置
                                 {% plantuml %}
     Bob->Alice : hello
 {% endplantuml %}
-
 
 
 
@@ -581,13 +672,11 @@ karafka 配置
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                reload
-gem reload
-require "zeitwerk"
+                                reloadgem reloadrequire "zeitwerk"
 @loader = Zeitwerk::Loader.for_gem
 @loader.enable_reloading
 @loader.setup
-def reloa
+def reload!
                             
                         </div>
                         <div class="publish-info">
@@ -635,15 +724,13 @@ def reloa
                         <div class="summary block-with-text">
                             
                                 puma 内存高
-
 puma 操作系统内存占用, 但会复用已经申请过的内存. 所以会随着每分钟请求量的增加导致内存不断上升. 如果超出某个极限, 则有可能导致内存爆掉
 
 解决方法
-
 手动kill  worker
 
 
-手动kill puma会
+手动kill puma会自动
                             
                         </div>
                         <div class="publish-info">
@@ -690,123 +777,7 @@ puma 操作系统内存占用, 但会复用已经申请过的内存. 所以会�
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                ksm 内存压缩
-zRAM means Virtual Swap Compressed in RAM
-swap 使用
-
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-05
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/kvm/" class="post-category" target="_blank">
-                                    kvm
-                                </a>
-                                
-                                <a href="/categories/kvm/centos/" class="post-category" target="_blank">
-                                    centos
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/centos/" target="_blank">
-                            <span class="chip bg-color">centos</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/05/centos-1/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="centos IO 调优">
-                            
-                            <span class="card-title">centos IO 调优</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                I/O 调度算法调优
-
-Linux I/O调度器（Linux I/O Scheduler）Linux内核中的一个组成部分，它介于通用块层和块设备驱动程序之间，用户可以通过调整这个调度器来优化系统性能。
-
-I/O调度的4种算法
-
-
-CFQ（完
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-05
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/kvm/" class="post-category" target="_blank">
-                                    kvm
-                                </a>
-                                
-                                <a href="/categories/kvm/centos/" class="post-category" target="_blank">
-                                    centos
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/centos/" target="_blank">
-                            <span class="chip bg-color">centos</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/05/centos/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="centos Affinity">
-                            
-                            <span class="card-title">centos Affinity</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                centos cpu Affinity
-
-将程序绑定到cpu运行 , kvm libvirt 模板有设置的方法
-softaffinity仅是一个建议,如果不可避免,调度器还是会把进程调度到其它的CPU上
-hardaffinity是调度器必须
+                                ksm 内存压缩zRAM means Virtual Swap Compressed in RAMswap 使用
                             
                         </div>
                         <div class="publish-info">
@@ -883,7 +854,7 @@ hardaffinity是调度器必须
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

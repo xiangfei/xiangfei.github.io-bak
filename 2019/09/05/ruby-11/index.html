@@ -6,10 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="ruby 方法, openstack,opennebula">
     <meta name="description" content="Ruby 方法
-
 Ruby 方法与其他编程语言中的函数类似。Ruby 方法用于捆绑一个或多个重复的语句到一个单元中。
 方法名应以小写字母开头。如果您以大写字母作为方法名的开头，Ruby 可能会把它当作常量，从而导致不正确地解析调用。
-方法应">
+方法应在">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -456,97 +455,79 @@ Ruby 方法与其他编程语言中的函数类似。Ruby 方法用于捆绑一�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-方法">Ruby 方法</h3>
-<ul>
+                <h3 id="Ruby-方法"><a href="#Ruby-方法" class="headerlink" title="Ruby 方法"></a>Ruby 方法</h3><ul>
 <li>Ruby 方法与其他编程语言中的函数类似。Ruby 方法用于捆绑一个或多个重复的语句到一个单元中。</li>
 <li>方法名应以小写字母开头。如果您以大写字母作为方法名的开头，Ruby 可能会把它当作常量，从而导致不正确地解析调用。</li>
 <li>方法应在调用之前定义，否则 Ruby 会产生未定义的方法调用异常。</li>
 </ul>
 <blockquote>
 <p>语法</p>
-</blockquote>
 <pre><code>def method_name [( [arg [= default]]...[, * arg [, &amp;expr ]])]
    expr..
 end
-</code></pre>
+</code></pre></blockquote>
 <p>所以，您可以定义一个简单的方法，如下所示：</p>
 <pre><code>def method_name 
    expr..
 end
-</code></pre>
-<p>您可以定义一个接受参数的方法，如下所示：</p>
+</code></pre><p>您可以定义一个接受参数的方法，如下所示：</p>
 <pre><code>def method_name (var1, var2)
    expr..
 end
-</code></pre>
-<p>您可以为参数设置默认值，如果方法调用时未传递必需的参数则使用默认值：</p>
+</code></pre><p>您可以为参数设置默认值，如果方法调用时未传递必需的参数则使用默认值：</p>
 <pre><code>def method_name (var1=value1, var2=value2)
    expr..
 end
-</code></pre>
-<p>当您要调用方法时，只需要使用方法名即可，如下所示：</p>
+</code></pre><p>当您要调用方法时，只需要使用方法名即可，如下所示：</p>
 <pre><code>method_name
-</code></pre>
-<p>但是，当您调用带参数的方法时，您在写方法名时还要带上参数，例如：</p>
+</code></pre><p>但是，当您调用带参数的方法时，您在写方法名时还要带上参数，例如：</p>
 <pre><code>method_name 25, 30
-</code></pre>
-<p>使用带参数方法最大的缺点是调用方法时需要记住参数个数。例如，如果您向一个接受三个参数的方法只传递了两个参数，Ruby 会显示错误。</p>
+</code></pre><p>使用带参数方法最大的缺点是调用方法时需要记住参数个数。例如，如果您向一个接受三个参数的方法只传递了两个参数，Ruby 会显示错误。</p>
 <blockquote>
 <p>实例</p>
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
- 
+
 def test(a1=&quot;Ruby&quot;, a2=&quot;Perl&quot;)
    puts &quot;编程语言为 #{a1}&quot;
    puts &quot;编程语言为 #{a2}&quot;
 end
 test &quot;C&quot;, &quot;C++&quot;
 test
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>编程语言为 C<br>
-编程语言为 C++<br>
-编程语言为 Ruby<br>
-编程语言为 Perl</p>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>编程语言为 C<br>编程语言为 C++<br>编程语言为 Ruby<br>编程语言为 Perl</p>
 </blockquote>
 </div></div>
-<h3 id="从方法返回值">从方法返回值</h3>
-<p>Ruby 中的每个方法默认都会返回一个值。这个返回的值是最后一个语句的值。例如：</p>
+<h3 id="从方法返回值"><a href="#从方法返回值" class="headerlink" title="从方法返回值"></a>从方法返回值</h3><p>Ruby 中的每个方法默认都会返回一个值。这个返回的值是最后一个语句的值。例如：</p>
 <blockquote>
 <p>实例</p>
-</blockquote>
 <pre><code>def test
    i = 100
    j = 10
    k = 0
 end
-</code></pre>
-<p>在调用这个方法时，将返回最后一个声明的变量 k。</p>
-<h3 id="Ruby-return-语句">Ruby return 语句</h3>
-<p>Ruby 中的 return 语句用于从 Ruby 方法中返回一个或多个值。</p>
+</code></pre><p>在调用这个方法时，将返回最后一个声明的变量 k。</p>
+</blockquote>
+<h3 id="Ruby-return-语句"><a href="#Ruby-return-语句" class="headerlink" title="Ruby return 语句"></a>Ruby return 语句</h3><p>Ruby 中的 return 语句用于从 Ruby 方法中返回一个或多个值。</p>
 <blockquote>
 <p>语法</p>
-</blockquote>
-<pre><code>  return [expr[`,&quot;'&quot; expr...]]
-</code></pre>
+<pre><code>  return [expr[`,&quot;&#39;&quot; expr...]]
+</code></pre></blockquote>
 <p>如果给出超过两个的表达式，包含这些值的数组将是返回值。如果未给出表达式，nil 将是返回值。</p>
 <p>实例</p>
 <pre><code>return
-</code></pre>
-<p>或</p>
+</code></pre><p>或</p>
 <pre><code>return 12
-</code></pre>
-<p>或</p>
+</code></pre><p>或</p>
 <pre><code>return 1,2,3
-</code></pre>
-<p>看看下面的实例：</p>
+</code></pre><p>看看下面的实例：</p>
 <blockquote>
 <p>实例</p>
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
- 
+
 def test
    i = 100
    j = 200
@@ -555,21 +536,17 @@ return i, j, k
 end
 var = test
 puts var
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>100<br>
-200<br>
-300</p>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>100<br>200<br>300</p>
 </blockquote>
 </div></div>
-<h3 id="可变数量的参数">可变数量的参数</h3>
-<p>假设您声明了一个带有两个参数的方法，当您调用该方法时，您同时还需要传递两个参数。</p>
+<h3 id="可变数量的参数"><a href="#可变数量的参数" class="headerlink" title="可变数量的参数"></a>可变数量的参数</h3><p>假设您声明了一个带有两个参数的方法，当您调用该方法时，您同时还需要传递两个参数。</p>
 <blockquote>
 <p>实例</p>
 </blockquote>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
- 
+
 def sample (*test)
    puts &quot;参数个数为 #{test.length}&quot;
    for i in 0...test.length
@@ -578,22 +555,11 @@ def sample (*test)
 end
 sample &quot;Zara&quot;, &quot;6&quot;, &quot;F&quot;
 sample &quot;Mac&quot;, &quot;36&quot;, &quot;M&quot;, &quot;MCA&quot;
-</code></pre>
-<p>在这段代码中，您已经声明了一个方法 sample，接受一个参数 test。但是，这个参数是一个变量参数。这意味着参数可以带有不同数量的变量。</p>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>参数个数为 3<br>
-参数值为 Zara<br>
-参数值为 6<br>
-参数值为 F<br>
-参数个数为 4<br>
-参数值为 Mac<br>
-参数值为 36<br>
-参数值为 M<br>
-参数值为 MCA</p>
+</code></pre><p>在这段代码中，您已经声明了一个方法 sample，接受一个参数 test。但是，这个参数是一个变量参数。这意味着参数可以带有不同数量的变量。<br><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>参数个数为 3<br>参数值为 Zara<br>参数值为 6<br>参数值为 F<br>参数个数为 4<br>参数值为 Mac<br>参数值为 36<br>参数值为 M<br>参数值为 MCA</p>
 </blockquote>
-</div></div>
-<h3 id="类方法">类方法</h3>
-<ul>
+</div></div></p>
+<h3 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h3><ul>
 <li>当方法定义在类的外部，方法默认标记为 private。另一方面，如果方法定义在类中的，则默认标记为 public。</li>
 <li>方法默认的可见性和 private 标记可通过模块（Module）的 public 或 private 改变。</li>
 <li>当你想要访问类的方法时，您首先需要实例化类。然后，使用对象，您可以访问类的任何成员。</li>
@@ -605,37 +571,28 @@ sample &quot;Mac&quot;, &quot;36&quot;, &quot;M&quot;, &quot;MCA&quot;
    def Accounts.return_date
    end
 end
-</code></pre>
-<p>我们已经知道方法 return_date 是如何声明的。它是通过在类名后跟着一个点号，点号后跟着方法名来声明的。您可以直接访问类方法，如下所示：</p>
+</code></pre><p>我们已经知道方法 return_date 是如何声明的。它是通过在类名后跟着一个点号，点号后跟着方法名来声明的。您可以直接访问类方法，如下所示：</p>
 <pre><code>Accounts.return_date
-</code></pre>
-<p>如需访问该方法，您不需要创建类 Accounts 的对象。</p>
+</code></pre><p>如需访问该方法，您不需要创建类 Accounts 的对象。</p>
 <hr>
-<h3 id="Ruby-alias-语句">Ruby alias 语句</h3>
-<p>这个语句用于为方法或全局变量起别名。别名不能在方法主体内定义。即使方法被重写，方法的别名也保持方法的当前定义。</p>
+<h3 id="Ruby-alias-语句"><a href="#Ruby-alias-语句" class="headerlink" title="Ruby alias 语句"></a>Ruby alias 语句</h3><p>这个语句用于为方法或全局变量起别名。别名不能在方法主体内定义。即使方法被重写，方法的别名也保持方法的当前定义。</p>
 <p>为编号的全局变量（$1, $2,…）起别名是被禁止的。重写内置的全局变量可能会导致严重的问题。</p>
 <blockquote>
 <p>语法</p>
-</blockquote>
 <pre><code>alias 方法名 方法名
 alias 全局变量 全局变量
-</code></pre>
+</code></pre></blockquote>
 <p>实例</p>
 <pre><code>alias foo bar
 alias $MATCH $&amp;
-</code></pre>
-<p>在这里，我们已经为 bar 定义了别名为 foo，为 $&amp; 定义了别名为 $MATCH。</p>
-<h3 id="Ruby-undef-语句">Ruby undef 语句</h3>
-<p>这个语句用于取消方法定义。undef 不能出现在方法主体内。</p>
+</code></pre><p>在这里，我们已经为 bar 定义了别名为 foo，为 $&amp; 定义了别名为 $MATCH。</p>
+<h3 id="Ruby-undef-语句"><a href="#Ruby-undef-语句" class="headerlink" title="Ruby undef 语句"></a>Ruby undef 语句</h3><p>这个语句用于取消方法定义。undef 不能出现在方法主体内。</p>
 <p>通过使用 undef 和 alias，类的接口可以从父类独立修改，但请注意，在自身内部方法调用时，它可能会破坏程序。</p>
 <pre><code>undef 方法名
-</code></pre>
-<blockquote>
-<p>实例<br>
-下面的实例取消名为 bar的方法定义：</p>
-</blockquote>
+</code></pre><blockquote>
+<p>实例<br>下面的实例取消名为 bar的方法定义：</p>
 <pre><code>undef bar
-</code></pre>
+</code></pre></blockquote>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
@@ -819,12 +776,11 @@ alias $MATCH $&amp;
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">Ruby 块
-
 块由大量的代码组成。
 您需要给块取个名称。
 块中的代码总是包含在大括号 {} 内。
 块总是从与其具有相同名称的函数调用。这意味着如果您的块名称为 test，那么您要使用函数 test 来调用这个块。
-您可以使用 yield </div>
+您可以使用 yield 语</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -869,13 +825,10 @@ alias $MATCH $&amp;
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 循环
-Ruby 中的循环用于执行相同的代码块若干次。本章节将详细介绍 Ruby 支持的所有循环语句。
+                    <div class="summary block-with-text">Ruby 循环Ruby 中的循环用于执行相同的代码块若干次。本章节将详细介绍 Ruby 支持的所有循环语句。
 
 Ruby while 语句
-
 语法
-
 while conditional [do]
    code
 end
@@ -883,8 +836,7 @@ end
 或者
 
 语法
-
-</div>
+whil</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-05
@@ -1062,7 +1014,7 @@ end
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

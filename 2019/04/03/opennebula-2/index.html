@@ -6,14 +6,11 @@
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula 网络配置, openstack,opennebula">
     <meta name="description" content="8021q网络配置
-
 配置和liux vxlan类似
-
 
 ifcfg-eth0.192
 ip link add link eth0 name eth0.8 type vlan id 8
-ip -d link show eth0.8
-需要内核">
+ip -d link show eth0.8需要内核支持8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -437,7 +434,7 @@ ip -d link show eth0.8
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        567
+                        559
                     </div>
                     
 
@@ -460,17 +457,12 @@ ip -d link show eth0.8
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="8021q网络配置">8021q网络配置</h3>
-<blockquote>
+                <h3 id="8021q网络配置"><a href="#8021q网络配置" class="headerlink" title="8021q网络配置"></a>8021q网络配置</h3><blockquote>
 <p>配置和liux vxlan类似</p>
-</blockquote>
 <ul>
 <li>ifcfg-eth0.192</li>
 <li>ip link add link eth0 name eth0.8 type vlan id 8</li>
-<li>ip -d link show eth0.8<br>
-需要内核支持802.1q协议</li>
-</ul>
-<pre><code>[root@master ~]# modinfo 8021q
+<li>ip -d link show eth0.8<br>需要内核支持802.1q协议<pre><code>[root@master ~]# modinfo 8021q
 filename:       /lib/modules/3.10.0-862.14.4.el7.x86_64/kernel/net/8021q/8021q.ko.xz
 version:        1.8
 license:        GPL
@@ -484,25 +476,21 @@ vermagic:       3.10.0-862.14.4.el7.x86_64 SMP mod_unload modversions
 signer:         CentOS Linux kernel signing key
 sig_key:        E4:A1:B6:8F:46:8A:CA:5C:22:84:50:53:18:FD:9D:AD:72:4B:13:03
 sig_hashalgo:   sha256
-</code></pre>
-<h3 id="ovs-网络配置">ovs 网络配置</h3>
-<h1>opennebula 需要手动配置</h1>
-<ol>
-<li>安装ovs<br>
-yum install centos-release-openstack-rocky<br>
-yum install openvswitch</li>
-<li>ovs网桥,增加开机自动启动</li>
-</ol>
-<ul>
-<li>eth0 配置<pre class=" language-language-DEVICE=eth0"><code class="language-language-DEVICE=eth0">ONBOOT=yes
+</code></pre></li>
+</ul>
+</blockquote>
+<h3 id="ovs-网络配置"><a href="#ovs-网络配置" class="headerlink" title="ovs 网络配置"></a>ovs 网络配置</h3><h1 id="opennebula-需要手动配置"><a href="#opennebula-需要手动配置" class="headerlink" title="opennebula 需要手动配置"></a>opennebula 需要手动配置</h1><ol>
+<li>安装ovs<br>yum install centos-release-openstack-rocky<br>yum install openvswitch</li>
+<li>ovs网桥,增加开机自动启动<ul>
+<li>eth0 配置<pre class=" language-DEVICE=eth0"><code class="language-DEVICE=eth0">ONBOOT=yes
 DEVICETYPE=ovs
 TYPE=OVSPort
 OVS_BRIDGE=ovsbridge0
 BOOTPROTO=none
-HOTPLUG=no```
+HOTPLUG=no
 </code></pre>
 </li>
-<li>gre  配置<pre class=" language-language-DEVICE=ovs-gre0"><code class="language-language-DEVICE=ovs-gre0">ONBOOT=yes
+<li>gre  配置<pre class=" language-DEVICE=ovs-gre0"><code class="language-DEVICE=ovs-gre0">ONBOOT=yes
 DEVICETYPE=ovs
 TYPE=OVSTunnel
 OVS_BRIDGE=ovsbridge0
@@ -510,32 +498,32 @@ OVS_TUNNEL_TYPE=gre
 OVS_TUNNEL_OPTIONS="options:remote_ip=A.B.C.D"
 </code></pre>
 </li>
-<li>vxlan 配置<pre class=" language-language-DEVICE=ovs-gre0"><code class="language-language-DEVICE=ovs-gre0">ONBOOT=yes
+<li>vxlan 配置<pre class=" language-DEVICE=ovs-gre0"><code class="language-DEVICE=ovs-gre0">ONBOOT=yes
 DEVICETYPE=ovs
 TYPE=OVSTunnel
 OVS_BRIDGE=ovsbridge0
 OVS_TUNNEL_TYPE=vxlan
-OVS_TUNNEL_OPTIONS="options:remote_ip=A.B.C.D"```
+OVS_TUNNEL_OPTIONS="options:remote_ip=A.B.C.D"
 </code></pre>
 </li>
-<li>patch  配置<pre class=" language-language-DEVICE=patch-ovs-0"><code class="language-language-DEVICE=patch-ovs-0">ONBOOT=yes
+<li>patch  配置<pre class=" language-DEVICE=patch-ovs-0"><code class="language-DEVICE=patch-ovs-0">ONBOOT=yes
 DEVICETYPE=ovs
 TYPE=OVSPatchPort
 OVS_BRIDGE=ovsbridge0
-OVS_PATCH_PEER=patch-ovs-1```
+OVS_PATCH_PEER=patch-ovs-1
 </code></pre>
 </li>
-<li>bound 配置<pre class=" language-language-DEVICE=bond0"><code class="language-language-DEVICE=bond0">ONBOOT=yes
+<li>bound 配置<pre class=" language-DEVICE=bond0"><code class="language-DEVICE=bond0">ONBOOT=yes
 DEVICETYPE=ovs
 TYPE=OVSBond
 OVS_BRIDGE=ovsbridge0
 BOOTPROTO=none
 BOND_IFACES="gige-1b-0 gige-1b-1 gige-21-0 gige-21-1"
 OVS_OPTIONS="bond_mode=balance-tcp lacp=active"
-HOTPLUG=no```
+HOTPLUG=no
 </code></pre>
 </li>
-<li>tag 配置<pre class=" language-language-DEVICE=vlan100"><code class="language-language-DEVICE=vlan100">ONBOOT=yes
+<li>tag 配置<pre class=" language-DEVICE=vlan100"><code class="language-DEVICE=vlan100">ONBOOT=yes
 DEVICETYPE=ovs
 TYPE=OVSIntPort
 BOOTPROTO=static
@@ -544,58 +532,45 @@ NETMASK=X.Y.Z.0
 OVS_BRIDGE=ovsbridge0
 OVS_OPTIONS="tag=100"
 OVS_EXTRA="set Interface $DEVICE external-ids:iface-id=$(hostname -s)-$DEVICE-vif"
-HOTPLUG=no```
+HOTPLUG=no
 </code></pre>
 </li>
-<li>common<pre class=" language-language-DEVICE=intbr0"><code class="language-language-DEVICE=intbr0">ONBOOT=yes
+<li>common<pre class=" language-DEVICE=intbr0"><code class="language-DEVICE=intbr0">ONBOOT=yes
 DEVICETYPE=ovs
 TYPE=OVSIntPort
 OVS_BRIDGE=ovsbridge0
 BOOTPROTO=static
 IPADDR=A.B.C.D
 NETMASK=X.Y.Z.0
-HOTPLUG=no```
-
-
+HOTPLUG=no
 </code></pre>
 </li>
 </ul>
-<blockquote>
-<p>需要内核支持ovs,最好升级到最新的内核<br>
-vxlan gre ,需要打开端口<br>
-临时配置</p>
-<blockquote>
-<p>ovs-vsctl add-br ovs01<br>
-ovs-vsctl add-port ovs01 eth2 tag=100<br>
-ovs-vsctl add-port ovs01 vxlan0 tag=100 – set interface vxlan0 type=vxlan options:key=100 options:remote_ip=172.16.100.2<br>
-ovs-vsctl add-port ovs01 vxlan0 tag=100 – set interface vxlan0 type=gre options:key=100 options:remote_ip=172.16.100.2<br>
-ovs-vsctl add-port ovs01 vxlan0 tag=100 – set interface type=internal</p>
-</blockquote>
-</blockquote>
-<h3 id="linux-vxlan网络配置">linux vxlan网络配置</h3>
-<blockquote>
-<p>sunstone 选择vxlan 网络,br可以不用写, vlan id 做网络隔离,指定物理网卡<br>
-需要linux 内核支持vxlan</p>
-</blockquote>
-<h3 id="linux-bridge-网络配置">linux bridge 网络配置</h3>
-<ol>
-<li>centos 配置bridge网桥</li>
+</li>
 </ol>
+<blockquote>
+<p>需要内核支持ovs,最好升级到最新的内核<br>vxlan gre ,需要打开端口<br>临时配置</p>
+<blockquote>
+<p>ovs-vsctl add-br ovs01<br>ovs-vsctl add-port ovs01 eth2 tag=100<br>ovs-vsctl add-port ovs01 vxlan0 tag=100 – set interface vxlan0 type=vxlan options:key=100 options:remote_ip=172.16.100.2<br>ovs-vsctl add-port ovs01 vxlan0 tag=100 – set interface vxlan0 type=gre options:key=100 options:remote_ip=172.16.100.2<br>ovs-vsctl add-port ovs01 vxlan0 tag=100 – set interface type=internal</p>
+</blockquote>
+</blockquote>
+<h3 id="linux-vxlan网络配置"><a href="#linux-vxlan网络配置" class="headerlink" title="linux vxlan网络配置"></a>linux vxlan网络配置</h3><blockquote>
+<p>sunstone 选择vxlan 网络,br可以不用写, vlan id 做网络隔离,指定物理网卡<br>需要linux 内核支持vxlan</p>
+</blockquote>
+<h3 id="linux-bridge-网络配置"><a href="#linux-bridge-网络配置" class="headerlink" title="linux bridge 网络配置"></a>linux bridge 网络配置</h3><ol>
+<li><p>centos 配置bridge网桥</p>
 <ul>
-<li>配置网卡</li>
-</ul>
-<pre><code>```
-</code></pre>
-<p>vim /etc/sysconfig/network-scripts/ifcfg-enp8s0<br>
-TYPE=Ethernet<br>
-DEVICE=enp8s0<br>
-NAME=enp8s0<br>
-BOOTPROTO=none<br>
-ONBOOT=yes<br>
-BRIDGE=br0<br>
-```</p>
-<ul>
-<li>配置网桥<pre><code>vim /etc/sysconfig/network-scripts/ifcfg-br0
+<li><p>配置网卡</p>
+<pre><code>vim /etc/sysconfig/network-scripts/ifcfg-enp8s0 
+TYPE=Ethernet
+DEVICE=enp8s0
+NAME=enp8s0
+BOOTPROTO=none
+ONBOOT=yes
+BRIDGE=br0
+</code></pre></li>
+<li><p>配置网桥</p>
+<pre><code>vim /etc/sysconfig/network-scripts/ifcfg-br0
 TYPE=Bridge
 DEVICE=br0
 BOOTPROTO=static
@@ -604,13 +579,13 @@ IPADDR=192.168.1.200
 NETMASK=255.255.255.0
 GATEWAY=192.168.1.1
 DNS1=114.114.114.114
-</code></pre>
-</li>
+</code></pre></li>
 </ul>
 <blockquote>
-<p>sunstone 选择网络bridge,DNS,network mask,gateway 现有网络存在,没有使用dnsmasq<br>
-linux 内核不需要升级</p>
+<p>sunstone 选择网络bridge,DNS,network mask,gateway 现有网络存在,没有使用dnsmasq<br>linux 内核不需要升级</p>
 </blockquote>
+</li>
+</ol>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
@@ -794,12 +769,8 @@ linux 内核不需要升级</p>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">准备
-
-前台需要至少三台机器
-192.168.150.1 leader
-192.168.150.2 follower
-192.168.150.3 follower
-Sunstone (with or without Apache/Passe</div>
+前台需要至少三台机器192.168.150.1 leader192.168.150.2 follower192.168.150.3 follower
+Sunstone (with or without Apache/Passenger</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -846,22 +817,20 @@ Sunstone (with or without Apache/Passe</div>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">准备
 
-
 os centos7
-
-
-
 存储 ceph
 数据库 mysql
 虚拟化 kvm
-网络划分 192.168.0.0/16(业务)
+网络划分 192.168.0.0/16(业务) 
 
-控制节点安装
-ip 192.168.20.2
+
+控制节点安装ip 192.168.20.2
 
 
 SELinux on CentOS/RHEL 7
-</div>
+
+
+v</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-03
@@ -1039,7 +1008,7 @@ SELinux on CentOS/RHEL 7
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

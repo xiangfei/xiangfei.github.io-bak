@@ -5,9 +5,8 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="openstack ussuri centos8 高可用安装 rabbitmq cluster, openstack,opennebula">
-    <meta name="description" content="all  controller nodes
-[root@controller03 ~]#  yum install rabbitmq-server -y
-[root@controller03 ~]#  systemctl enable ra">
+    <meta name="description" content="all  controller nodes[root@controller03 ~]#  yum install rabbitmq-server -y
+[root@controller03 ~]#  systemctl enable rab">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -462,21 +461,16 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="all-controller-nodes">all  controller nodes</h3>
-<pre><code>[root@controller03 ~]#  yum install rabbitmq-server -y
+                <h3 id="all-controller-nodes"><a href="#all-controller-nodes" class="headerlink" title="all  controller nodes"></a>all  controller nodes</h3><pre><code>[root@controller03 ~]#  yum install rabbitmq-server -y
 [root@controller03 ~]#  systemctl enable rabbitmq-server.service
 
-</code></pre>
-<h3 id="controller01-执行">controller01 执行</h3>
-<pre><code>[root@controller01 ~]# service rabbitmq-server start   # 启动完成生成文件 /var/lib/rabbitmq/.erlang.cookie
+</code></pre><h3 id="controller01-执行"><a href="#controller01-执行" class="headerlink" title="controller01 执行"></a>controller01 执行</h3><pre><code>[root@controller01 ~]# service rabbitmq-server start   # 启动完成生成文件 /var/lib/rabbitmq/.erlang.cookie
 # copy文件到controller02 , controller03
 
 [root@controller01 ~]# scp /var/lib/rabbitmq/.erlang.cookie root@controller03:/var/lib/rabbitmq/.erlang.cookie
 
-</code></pre>
-<h1>controller02 ,controller03 执行</h1>
-<ul>
-<li>修改文件权限</li>
+</code></pre><h1 id="controller02-controller03-执行"><a href="#controller02-controller03-执行" class="headerlink" title="controller02 ,controller03 执行"></a>controller02 ,controller03 执行</h1><ul>
+<li>修改文件权限 </li>
 </ul>
 <pre><code>[root@controller02 ~]# chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
 [root@controller02 ~]# chmod 400 /var/lib/rabbitmq/.erlang.cookie
@@ -489,11 +483,9 @@
 [root@controller03 ~]#  rabbitmqctl join_cluster --ram rabbit@controller01
 
 
-</code></pre>
-<h3 id="检查">检查</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# rabbitmqctl cluster_status
-[root@controller01 ~]# rabbitmqctl cluster_status
-Cluster status of node rabbit@controller01 ...
+</code></pre><h3 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rabbitmqctl cluster_status</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rabbitmqctl cluster_status</span>
+Cluster status of node rabbit@controller01 <span class="token punctuation">..</span>.
 Basics
 
 Cluster name: rabbit@controller01
@@ -521,20 +513,20 @@ rabbit@controller03: RabbitMQ 3.8.3 on Erlang 22.3.4.1
 
 Alarms
 
-(none)
+<span class="token punctuation">(</span>none<span class="token punctuation">)</span>
 
 Network Partitions
 
-(none)
+<span class="token punctuation">(</span>none<span class="token punctuation">)</span>
 
 Listeners
 
-Node: rabbit@controller01, interface: [::], port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
-Node: rabbit@controller01, interface: [::], port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
-Node: rabbit@controller02, interface: [::], port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
-Node: rabbit@controller02, interface: [::], port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
-Node: rabbit@controller03, interface: [::], port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
-Node: rabbit@controller03, interface: [::], port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
+Node: rabbit@controller01, interface: <span class="token punctuation">[</span>::<span class="token punctuation">]</span>, port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
+Node: rabbit@controller01, interface: <span class="token punctuation">[</span>::<span class="token punctuation">]</span>, port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
+Node: rabbit@controller02, interface: <span class="token punctuation">[</span>::<span class="token punctuation">]</span>, port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
+Node: rabbit@controller02, interface: <span class="token punctuation">[</span>::<span class="token punctuation">]</span>, port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
+Node: rabbit@controller03, interface: <span class="token punctuation">[</span>::<span class="token punctuation">]</span>, port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
+Node: rabbit@controller03, interface: <span class="token punctuation">[</span>::<span class="token punctuation">]</span>, port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
 
 Feature flags
 
@@ -544,17 +536,15 @@ Flag: virtual_host_metadata, state: enabled
 
 
 
-## 以后service  rabbitmq-server restart
+<span class="token comment" spellcheck="true">## 以后service  rabbitmq-server restart</span>
 </code></pre>
-<h3 id="创建用户-配置权限">创建用户,配置权限</h3>
-<pre><code>[root@controller01 ~]#  rabbitmqctl add_user openstack openstack
+<h3 id="创建用户-配置权限"><a href="#创建用户-配置权限" class="headerlink" title="创建用户,配置权限"></a>创建用户,配置权限</h3><pre><code>[root@controller01 ~]#  rabbitmqctl add_user openstack openstack
 Creating user &quot;openstack&quot;
 [root@controller01 ~]# rabbitmqctl set_permissions openstack &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;
 Setting permissions for user &quot;openstack&quot; in vhost &quot;/&quot;
 
 
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -737,12 +727,11 @@ Setting permissions for user &quot;openstack&quot; in vhost &quot;/&quot;
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">memache 安装
-
 安装
 
 ## all nodes执行
 [root@controller02 ~]# yum install memcached python3-memcached -y
-[root@controller02 ~]# </div>
+[root@controller02 ~]# s</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-17
@@ -796,16 +785,14 @@ Setting permissions for user &quot;openstack&quot; in vhost &quot;/&quot;
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">准备 管理网段
-
 10.10.102.191 controller1
 10.10.102.192 controller2
 10.10.102.193 controller3
 
 在控制节点运行
-
 安装mariadb all node
 
-[ro</div>
+[root</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-17
@@ -991,7 +978,7 @@ Setting permissions for user &quot;openstack&quot; in vhost &quot;/&quot;
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

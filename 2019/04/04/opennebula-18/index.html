@@ -5,11 +5,8 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula 公有云扩展, openstack,opennebula">
-    <meta name="description" content="Add provider
- onehost create remote_provider im_provider vmm_provider
-
-Adding the Information Manager
-vi /etc/one/oned.c">
+    <meta name="description" content="Add provider onehost create remote_provider im_provider vmm_provider
+Adding the Information Managervi /etc/one/oned.conf">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -433,7 +430,7 @@ vi /etc/one/oned.c">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        78
+                        76
                     </div>
                     
 
@@ -456,33 +453,24 @@ vi /etc/one/oned.c">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="Add-provider">Add provider</h4>
-<pre><code> onehost create remote_provider im_provider vmm_provider
-</code></pre>
-<h4 id="Adding-the-Information-Manager">Adding the Information Manager</h4>
-<pre><code>vi /etc/one/oned.conf
+                <h4 id="Add-provider"><a href="#Add-provider" class="headerlink" title="Add provider"></a>Add provider</h4><pre><code> onehost create remote_provider im_provider vmm_provider
+</code></pre><h4 id="Adding-the-Information-Manager"><a href="#Adding-the-Information-Manager" class="headerlink" title="Adding the Information Manager"></a>Adding the Information Manager</h4><pre><code>vi /etc/one/oned.conf
 
 IM_MAD = [
       name       = &quot;im_provider&quot;,
       executable = &quot;one_im_sh&quot;,
       arguments  = &quot;-t 1 -r 0 provider_name&quot; ]
-</code></pre>
-<h4 id="Populating-the-Probes">Populating the Probes</h4>
-<pre><code>/var/lib/one/remotes/im/&lt;provider_name&gt;.d
+</code></pre><h4 id="Populating-the-Probes"><a href="#Populating-the-Probes" class="headerlink" title="Populating the Probes"></a>Populating the Probes</h4><pre><code>/var/lib/one/remotes/im/&lt;provider_name&gt;.d
 
-</code></pre>
-<h3 id="Adding-the-Virtual-Machine-Manager">Adding the Virtual Machine Manager</h3>
-<pre><code>VM_MAD = [
+</code></pre><h3 id="Adding-the-Virtual-Machine-Manager"><a href="#Adding-the-Virtual-Machine-Manager" class="headerlink" title="Adding the Virtual Machine Manager"></a>Adding the Virtual Machine Manager</h3><pre><code>VM_MAD = [
     name       = &quot;vmm_provider&quot;,
     executable = &quot;one_vmm_sh&quot;,
     arguments  = &quot;-t 15 -r 0 provider_name&quot;,
     type       = &quot;xml&quot; ]
-</code></pre>
-<h3 id></h3>
+</code></pre><p>###</p>
 <pre><code>/var/lib/one/remotes/vmm/provier_name implement
 
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -654,32 +642,28 @@ IM_MAD = [
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/04/15/ops/">
+                <a href="/2019/04/04/opennebula-19/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="小幺鸡安装">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="opennebula 第三方接口,rest api">
                         
-                        <span class="card-title">小幺鸡安装</span>
+                        <span class="card-title">opennebula 第三方接口,rest api</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">安装
-
-下载war包(https://github.com/zhoujingjie/xiaoyaoji/releases)
-安装JDK7, tomcat7
-
-git clone https://github.com/zhoujingjie/</div>
+                    <div class="summary block-with-text">ruby xml prcrequire &#39;xmlrpc/client&#39;
+server = XMLRPC::Client.new(&quot;opennebulaserver&quot;, &quot;/RPC2&quot;,</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-15
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/xiaoyaoji/" class="post-category" target="_blank">
-                                    xiaoyaoji
+                            <a href="/categories/opennebula/" class="post-category" target="_blank">
+                                    opennebula
                                 </a>
                             
                             
@@ -689,8 +673,8 @@ git clone https://github.com/zhoujingjie/</div>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ops/" target="_blank">
-                        <span class="chip bg-color">ops</span>
+                    <a href="/tags/opennebula/" target="_blank">
+                        <span class="chip bg-color">opennebula</span>
                     </a>
                     
                 </div>
@@ -704,22 +688,20 @@ git clone https://github.com/zhoujingjie/</div>
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/04/opennebula-16/">
+                <a href="/2019/04/04/opennebula-14/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="opennebula 源码编译">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="opennebula datacenter federation">
                         
-                        <span class="card-title">opennebula 源码编译</span>
+                        <span class="card-title">opennebula datacenter federation</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">dependency
-
-g++ compiler (&gt;= 4.0)
-xmlrpc-c development libraries (&gt;= 1.06)
-scons build tool (&gt;= 0.98)
-sqlite3 d</div>
+                    <div class="summary block-with-text">Configure the OpenNebula Federation Master Zonevi /etc/one/oned.conf
+onezone update 0
+FEDERATION = [
+    MODE    = &quot</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -897,7 +879,7 @@ sqlite3 d</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

@@ -317,6 +317,120 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2019/04/03/opennebula-2/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="opennebula 网络配置">
+                            
+                            <span class="card-title">opennebula 网络配置</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                8021q网络配置
+配置和liux vxlan类似
+
+ifcfg-eth0.192
+ip link add link eth0 name eth0.8 type vlan id 8
+ip -d link show eth0.8需要内核支持8
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-03
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/opennebula/" class="post-category" target="_blank">
+                                    opennebula
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/opennebula/" target="_blank">
+                            <span class="chip bg-color">opennebula</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/04/03/opennebula-1/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="opennebula安装">
+                            
+                            <span class="card-title">opennebula安装</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                准备
+
+os centos7
+存储 ceph
+数据库 mysql
+虚拟化 kvm
+网络划分 192.168.0.0/16(业务) 
+
+
+控制节点安装ip 192.168.20.2
+
+
+SELinux on CentOS/RHEL 7
+
+
+v
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-03
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/opennebula/" class="post-category" target="_blank">
+                                    opennebula
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/opennebula/" target="_blank">
+                            <span class="chip bg-color">opennebula</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2019/04/03/opennebula/">
                         <div class="card-image">
                             
@@ -330,9 +444,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                准备
-版本选择
-
+                                准备版本选择
 
 lxd 支持
 自动网卡选择
@@ -343,11 +455,11 @@ os支持
 如果需要lxd功能,需要5.8或者使用 addon-lxdone ,如果使用centos安装,建议使用4.x版本
 虚拟化选择
 
-
 kvm
 lxd
 docker
-xe
+xen
+v
                             
                         </div>
                         <div class="publish-info">
@@ -419,7 +531,7 @@ xe
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

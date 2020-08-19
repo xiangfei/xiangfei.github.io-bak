@@ -7,9 +7,20 @@
     <meta name="keywords" content="ruby  Ruby File 类和方法, openstack,opennebula">
     <meta name="description" content="File 表示一个连接到普通文件的 stdio 对象。open 为普通文件返回该类的一个实例。
 类方法
-|序号|	方法 &amp;amp; 描述
-|:–:|:-- :|
-|1|	File::atime( path)  返回 path 的最后访问时间">
+
+
+序号
+方法 &amp;amp; 描述
+
+
+
+
+1
+File::atime( path)  返回 path 的最后访问时间。
+
+
+2
+File">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -457,56 +468,197 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>File 表示一个连接到普通文件的 stdio 对象。open 为普通文件返回该类的一个实例。</p>
-<h3 id="类方法">类方法</h3>
-<p>|序号|	方法 &amp; 描述<br>
-|:–:|:-- :|<br>
-|1|	File::atime( path)  返回 path 的最后访问时间。<br>
-|2|	File::basename( path[, suffix]) 返回 path 末尾的文件名。如果指定了 suffix，则它会从文件名末尾被删除。例如：File.basename(&quot;/home/users/bin/ruby.exe&quot;) #=&gt; “ruby.exe”<br>
-|3|	File::blockdev?( path) 如果 path 是一个块设备，则返回 true。<br>
-|4|	File::chardev?( path) 如果 path 是一个字符设备，则返回 true。<br>
-|5|	File::chmod( mode, path…)改变指定文件的权限模式。<br>
-|6|	File::chown( owner, group, path…)改变指定文件的所有者和所属组。<br>
-|7|	File::ctime( path) 返回 path 的最后一个 inode 更改时间。<br>
-|8|	File::delete( path…)File::unlink( path…)删除指定的文件。<br>
-|9|	File::directory?( path)如果 path 是一个目录，则返回 true。<br>
-|10|	File::dirname( path)返回 path 的目录部分，不包括最后的文件名。<br>
-|11|	File::executable?( path)如果 path 是可执行的，则返回 true。<br>
-|12|	File::executable_real?( path)如果 path 通过真正的用户权限是可执行的，则返回 true。<br>
-|13|	File::exist?( path)如果 path 存在，则返回 true。<br>
-|14|	File::expand_path( path[, dir])返回 path 的绝对路径，扩展 ~ 为进程所有者的主目录，~user 为用户的主目录。相对路径是相对于 dir 指定的目录，如果 dir 被省略则相对于当前工作目录。<br>
-|15|	File::file?( path)如果 path 是一个普通文件，则返回 true。<br>
-|16|	File::ftype( path) 返回下列其中一个字符串，表示文件类型：file - 普通文件directory - 目录characterSpecial - 字符特殊文件blockSpecial - 块特殊文件fifo - 命名管道（FIFO）link - 符号链接socket - Socket unknown - 未知的文件类型<br>
-|17|	File::grpowned?( path)如果 path 由用户的所属组所有，则返回 true。<br>
-|18|	File::join( item…)返回一个字符串，由指定的项连接在一起，并使用 File::Separator 进行分隔例如：File::join(&quot;&quot;, “home”, “usrs”, “bin”) # =&gt; “/home/usrs/bin”<br>
-|18|	File::link( old, new)创建一个到文件 old 的硬链接。<br>
-|19|	File::lstat( path) 与 stat 相同，但是它返回自身符号链接上的信息，而不是所指向的文件。<br>
-|20|	File::mtime( path)返回 path 的最后一次修改时间。<br>
-|21|	File::new( path[, mode=“r”]) File::open( path[, mode=“r”])File::open( path[, mode=“r”]) {¦	f ¦	 …}打开文件。如果指定了块，则通过传递新文件作为参数来执行块。当块退出时，文件会自动关闭。这些方法有别于 Kernel.open，即使 path 是以 ¦	 开头，后续的字符串也不会作为命令运行。<br>
-|22|	File::owned?( path)如果 path 由有效的用户所有，则返回 true。<br>
-|23|	File::pipe?( path)如果 path 是一个管道，则返回 true。<br>
-|24|	File::readable?( path)如果 path 是可读的，则返回 true。<br>
-|25|	File::readable_real?( path)如果 path 通过真正的用户权限是可读的，则返回 true。<br>
-|25|	File::readlink( path) 返回 path 所指向的文件。<br>
-|26|	File::rename( old, new)改变文件名 old 为 new。<br>
-|27|	File::setgid?( path) 如果设置了 path 的 set-group-id 权限位，则返回 true。<br>
-|28|	File::setuid?( path) 如果设置了 path 的 set-user-id 权限位，则返回 true。<br>
-|29|	File::size( path) 返回 path 的文件大小。<br>
-|30|	File::size?( path) 返回 path 的文件大小，如果为 0 则返回 nil。<br>
-|31|	File::socket?( path)如果 path 是一个 socket，则返回 true。<br>
-|32|	File::split( path)返回一个数组，包含 path 的内容，path 被分成 File::dirname(path) 和 File::basename(path)。<br>
-|33|	File::stat( path) 返回 path 上带有信息的 File::Stat 对象。<br>
-|34 |	File::sticky?( path) 如果设置了 path 的 sticky 位，则返回 true。<br>
-|35|	File::symlink( old, new) 创建一个指向文件 old 的符号链接。<br>
-|36|	File::symlink?( path) 如果 path 是一个符号链接，则返回 true。<br>
-|37|	File::truncate( path, len) 截断指定的文件为 len 字节。<br>
-|38|	File::unlink( path…) 删除 path 给定的文件。<br>
-|39|	File::umask([ mask]) 如果未指定参数，则为该进程返回当前的 umask。如果指定了一个参数，则设置了 umask，并返回旧的 umask。<br>
-|40|	File::utime( atime, mtime, path…)改变指定文件的访问和修改时间。<br>
-|41|	File::writable?( path)如果 path 是可写的，则返回 true。<br>
-|42|	File::writable_real?( path)如果 path 通过真正的用户权限是可写的，则返回 true。<br>
-|43|	File::zero?( path)如果 path 的文件大小是 0，则返回 true。</p>
-<h4 id="实例方法">实例方法</h4>
-<p>假设 f 是 File 类的一个实例：</p>
+<h3 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th>方法 &amp; 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>File::atime( path)  返回 path 的最后访问时间。</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>File::basename( path[, suffix]) 返回 path 末尾的文件名。如果指定了 suffix，则它会从文件名末尾被删除。例如：File.basename(“/home/users/bin/ruby.exe”) #=&gt; “ruby.exe”</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>File::blockdev?( path) 如果 path 是一个块设备，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>File::chardev?( path) 如果 path 是一个字符设备，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>File::chmod( mode, path…)改变指定文件的权限模式。</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>File::chown( owner, group, path…)改变指定文件的所有者和所属组。</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td>File::ctime( path) 返回 path 的最后一个 inode 更改时间。</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td>File::delete( path…)File::unlink( path…)删除指定的文件。</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td>File::directory?( path)如果 path 是一个目录，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td>File::dirname( path)返回 path 的目录部分，不包括最后的文件名。</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td>File::executable?( path)如果 path 是可执行的，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td>File::executable_real?( path)如果 path 通过真正的用户权限是可执行的，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td>File::exist?( path)如果 path 存在，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td>File::expand_path( path[, dir])返回 path 的绝对路径，扩展 ~ 为进程所有者的主目录，~user 为用户的主目录。相对路径是相对于 dir 指定的目录，如果 dir 被省略则相对于当前工作目录。</td>
+</tr>
+<tr>
+<td style="text-align:center">15</td>
+<td>File::file?( path)如果 path 是一个普通文件，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">16</td>
+<td>File::ftype( path) 返回下列其中一个字符串，表示文件类型：file - 普通文件directory - 目录characterSpecial - 字符特殊文件blockSpecial - 块特殊文件fifo - 命名管道（FIFO）link - 符号链接socket - Socket unknown - 未知的文件类型</td>
+</tr>
+<tr>
+<td style="text-align:center">17</td>
+<td>File::grpowned?( path)如果 path 由用户的所属组所有，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">18</td>
+<td>File::join( item…)返回一个字符串，由指定的项连接在一起，并使用 File::Separator 进行分隔例如：File::join(“”, “home”, “usrs”, “bin”) # =&gt; “/home/usrs/bin”</td>
+</tr>
+<tr>
+<td style="text-align:center">18</td>
+<td>File::link( old, new)创建一个到文件 old 的硬链接。</td>
+</tr>
+<tr>
+<td style="text-align:center">19</td>
+<td>File::lstat( path) 与 stat 相同，但是它返回自身符号链接上的信息，而不是所指向的文件。</td>
+</tr>
+<tr>
+<td style="text-align:center">20</td>
+<td>File::mtime( path)返回 path 的最后一次修改时间。</td>
+</tr>
+<tr>
+<td style="text-align:center">21</td>
+<td>File::new( path[, mode=”r”]) File::open( path[, mode=”r”])File::open( path[, mode=”r”]) {&#166;    f &#166;     …}打开文件。如果指定了块，则通过传递新文件作为参数来执行块。当块退出时，文件会自动关闭。这些方法有别于 Kernel.open，即使 path 是以 &#166;     开头，后续的字符串也不会作为命令运行。</td>
+</tr>
+<tr>
+<td style="text-align:center">22</td>
+<td>File::owned?( path)如果 path 由有效的用户所有，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">23</td>
+<td>File::pipe?( path)如果 path 是一个管道，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">24</td>
+<td>File::readable?( path)如果 path 是可读的，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">25</td>
+<td>File::readable_real?( path)如果 path 通过真正的用户权限是可读的，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">25</td>
+<td>File::readlink( path) 返回 path 所指向的文件。</td>
+</tr>
+<tr>
+<td style="text-align:center">26</td>
+<td>File::rename( old, new)改变文件名 old 为 new。</td>
+</tr>
+<tr>
+<td style="text-align:center">27</td>
+<td>File::setgid?( path) 如果设置了 path 的 set-group-id 权限位，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">28</td>
+<td>File::setuid?( path) 如果设置了 path 的 set-user-id 权限位，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">29</td>
+<td>File::size( path) 返回 path 的文件大小。</td>
+</tr>
+<tr>
+<td style="text-align:center">30</td>
+<td>File::size?( path) 返回 path 的文件大小，如果为 0 则返回 nil。</td>
+</tr>
+<tr>
+<td style="text-align:center">31</td>
+<td>File::socket?( path)如果 path 是一个 socket，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">32</td>
+<td>File::split( path)返回一个数组，包含 path 的内容，path 被分成 File::dirname(path) 和 File::basename(path)。</td>
+</tr>
+<tr>
+<td style="text-align:center">33</td>
+<td>File::stat( path) 返回 path 上带有信息的 File::Stat 对象。</td>
+</tr>
+<tr>
+<td style="text-align:center">34</td>
+<td>File::sticky?( path) 如果设置了 path 的 sticky 位，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">35</td>
+<td>File::symlink( old, new) 创建一个指向文件 old 的符号链接。</td>
+</tr>
+<tr>
+<td style="text-align:center">36</td>
+<td>File::symlink?( path) 如果 path 是一个符号链接，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">37</td>
+<td>File::truncate( path, len) 截断指定的文件为 len 字节。</td>
+</tr>
+<tr>
+<td style="text-align:center">38</td>
+<td>File::unlink( path…) 删除 path 给定的文件。</td>
+</tr>
+<tr>
+<td style="text-align:center">39</td>
+<td>File::umask([ mask]) 如果未指定参数，则为该进程返回当前的 umask。如果指定了一个参数，则设置了 umask，并返回旧的 umask。</td>
+</tr>
+<tr>
+<td style="text-align:center">40</td>
+<td>File::utime( atime, mtime, path…)改变指定文件的访问和修改时间。</td>
+</tr>
+<tr>
+<td style="text-align:center">41</td>
+<td>File::writable?( path)如果 path 是可写的，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">42</td>
+<td>File::writable_real?( path)如果 path 通过真正的用户权限是可写的，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center">43</td>
+<td>File::zero?( path)如果 path 的文件大小是 0，则返回 true。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h4><p>假设 f 是 File 类的一个实例：</p>
 <table>
 <thead>
 <tr>
@@ -549,7 +701,7 @@
 </tr>
 <tr>
 <td style="text-align:center">9</td>
-<td style="text-align:center">f.reopen( path[, mode=“r”])重新打开文件。</td>
+<td style="text-align:center">f.reopen( path[, mode=”r”])重新打开文件。</td>
 </tr>
 <tr>
 <td style="text-align:center">10</td>
@@ -739,10 +891,8 @@
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby Dir 类和方法
-Dir 是一个表示用于给出操作系统中目录中的文件名的目录流。Dir 类也拥有与目录相关的操作，比如通配符文件名匹配、改变工作目录等。
+                    <div class="summary block-with-text">Ruby Dir 类和方法Dir 是一个表示用于给出操作系统中目录中的文件名的目录流。Dir 类也拥有与目录相关的操作，比如通配符文件名匹配、改变工作目录等。
 类方法
-
 
 
 序号
@@ -752,7 +902,7 @@ Dir 是一个表示用于给出操作系统中目录中的文件名的目录流�
 
 
 1
-Dir[pat] Di</div>
+Dir[pat] Dir:</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -797,9 +947,8 @@ Dir[pat] Di</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 文件的输入与输出
-Ruby 提供了一整套 I/O 相关的方法，在内核（Kernel）模块中实现。所有的 I/O 方法派生自 IO 类。
-类 IO 提供了所有基础的方法，比如 read、 write、 gets、 puts、 rea</div>
+                    <div class="summary block-with-text">Ruby 文件的输入与输出Ruby 提供了一整套 I/O 相关的方法，在内核（Kernel）模块中实现。所有的 I/O 方法派生自 IO 类。
+类 IO 提供了所有基础的方法，比如 read、 write、 gets、 puts、 read</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -977,7 +1126,7 @@ Ruby 提供了一整套 I/O 相关的方法，在内核（Kernel）模块中实�
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

@@ -5,15 +5,13 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula存储, openstack,opennebula">
-    <meta name="description" content="file system
-Datastore Layout
-/var/lib/one/datastores
+    <meta name="description" content="file systemDatastore Layout/var/lib/one/datastores
 |-- 0/
 |   |-- 0/
 |   |   |-- disk.0
 |   |   `-- disk.1
 |   |-- 2/
-">
+| ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -437,14 +435,14 @@ Datastore Layout
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        673
+                        683
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        4 分
                     </div>
                     
                 
@@ -460,9 +458,7 @@ Datastore Layout
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="file-system">file system</h3>
-<h4 id="Datastore-Layout">Datastore Layout</h4>
-<pre><code>/var/lib/one/datastores
+                <h3 id="file-system"><a href="#file-system" class="headerlink" title="file system"></a>file system</h3><h4 id="Datastore-Layout"><a href="#Datastore-Layout" class="headerlink" title="Datastore Layout"></a>Datastore Layout</h4><pre><code>/var/lib/one/datastores
 |-- 0/
 |   |-- 0/
 |   |   |-- disk.0
@@ -478,32 +474,24 @@ Datastore Layout
     `-- d0e0df1fb8cfa88311ea54dfbcfc4b0c
 0 存放 虚拟机
 1 存放镜像
-</code></pre>
-<blockquote>
-<p>如果需要修改默认路径,</p>
-</blockquote>
+</code></pre><blockquote>
+<p>如果需要修改默认路径, </p>
 <pre><code>vi /etc/one/oned.conf
 DATASTORE_LOCATION = &quot;new location&quot;
-</code></pre>
-<h4 id="Shared-Qcow2-Transfer-Mode">Shared &amp; Qcow2 Transfer Mode</h4>
-<p><img src="/medias/opennebula/fs_shared.png" alt></p>
+</code></pre></blockquote>
+<h4 id="Shared-amp-Qcow2-Transfer-Mode"><a href="#Shared-amp-Qcow2-Transfer-Mode" class="headerlink" title="Shared &amp; Qcow2 Transfer Mode"></a>Shared &amp; Qcow2 Transfer Mode</h4><p><img src="/medias/opennebula/fs_shared.png" alt></p>
 <ol>
 <li>需要挂载共享存储</li>
 <li>如果只是mount一个disk, disk可能出现瓶颈</li>
 </ol>
-<h4 id="SSH-Transfer-Mode">SSH Transfer Mode</h4>
-<p><img src="/medias/opennebula/fs_ssh.png" alt></p>
+<h4 id="SSH-Transfer-Mode"><a href="#SSH-Transfer-Mode" class="headerlink" title="SSH Transfer Mode"></a>SSH Transfer Mode</h4><p><img src="/medias/opennebula/fs_ssh.png" alt></p>
 <ol>
 <li>启动先ssh copy image 在启动</li>
 </ol>
-<h3 id="raw-device-mapping">raw device mapping</h3>
-<h3 id="ceph">ceph</h3>
-<ol>
-<li>
-<p>版本 nautilus</p>
+<h3 id="raw-device-mapping"><a href="#raw-device-mapping" class="headerlink" title="raw device mapping"></a>raw device mapping</h3><h3 id="ceph"><a href="#ceph" class="headerlink" title="ceph"></a>ceph</h3><ol>
+<li><p>版本 nautilus</p>
 </li>
-<li>
-<p>安装</p>
+<li><p>安装</p>
 </li>
 </ol>
 <pre><code>cat &lt;&lt; EOM &gt; /etc/yum.repos.d/ceph.repo
@@ -548,15 +536,14 @@ ceph-deploy mgr create node2 node3
 ceph-deploy rgw create node1
 [client]
 rgw frontends = civetweb port=80
-</code></pre>
-<ol start="3">
+</code></pre><ol start="3">
 <li>配置</li>
 </ol>
 <pre><code>controller node
 ceph osd pool create one 128
 ceph osd lspools
-ceph auth get-or-create client.libvirt mon 'profile rbd' osd 'profile rbd pool=one'
-#ceph 版本升级需要run ceph auth caps client.libvirt mon 'profile rbd' osd 'profile rbd pool=one'
+ceph auth get-or-create client.libvirt mon &#39;profile rbd&#39; osd &#39;profile rbd pool=one&#39;
+#ceph 版本升级需要run ceph auth caps client.libvirt mon &#39;profile rbd&#39; osd &#39;profile rbd pool=one&#39;
 ceph auth get-key client.libvirt | tee client.libvirt.key
 ceph auth get client.libvirt -o ceph.client.libvirt.keyring
 ceph.conf
@@ -568,9 +555,9 @@ scp client.libvirt.key oneadmin@node:
 UUID=`uuidgen`; echo $UUID
 c7bdeabf-5f2a-4094-9413-58c6a9590980
 cat &gt; secret.xml &lt;&lt;EOF
-&lt;secret ephemeral='no' private='no'&gt;
+&lt;secret ephemeral=&#39;no&#39; private=&#39;no&#39;&gt;
   &lt;uuid&gt;$UUID&lt;/uuid&gt;
-  &lt;usage type='ceph'&gt;
+  &lt;usage type=&#39;ceph&#39;&gt;
           &lt;name&gt;client.libvirt secret&lt;/name&gt;
   &lt;/usage&gt;
 &lt;/secret&gt;
@@ -584,9 +571,7 @@ rm client.libvirt.key
 ssh oneadmin@node
 rbd ls -p one --id libvirt
 
-</code></pre>
-<h3 id="iscsi-libvirt">iscsi libvirt</h3>
-<pre><code>server 
+</code></pre><h3 id="iscsi-libvirt"><a href="#iscsi-libvirt" class="headerlink" title="iscsi libvirt"></a>iscsi libvirt</h3><pre><code>server 
 yum -y install scsi-target-utils
 dd if=/dev/zero of=storage.img bs=1M count=2000
 &lt;target iqn.2010-10.org.opennebula:storage&gt;
@@ -612,12 +597,8 @@ iscsiadm  -m node   -T iqn.2010-10.org.opennebula:storage -p 192.168.5.170:3260 
 iscsiadm  -m node   -T iqn.2010-10.org.opennebula:storage -p 192.168.5.170:3260   --logout
 
 
-</code></pre>
-<h3 id="lvm">lvm</h3>
-<p><img src="/medias/opennebula/fs_shared.png" alt><br>
-未测试</p>
-<h3 id="The-Kernels-Files-Datastore">The Kernels &amp; Files Datastore</h3>
-<p>RESTRICTED_DIRS, 如果写错会到帐instance创建失败</p>
+</code></pre><h3 id="lvm"><a href="#lvm" class="headerlink" title="lvm"></a>lvm</h3><p><img src="/medias/opennebula/fs_shared.png" alt><br>未测试</p>
+<h3 id="The-Kernels-amp-Files-Datastore"><a href="#The-Kernels-amp-Files-Datastore" class="headerlink" title="The Kernels &amp; Files Datastore"></a>The Kernels &amp; Files Datastore</h3><p>RESTRICTED_DIRS, 如果写错会到帐instance创建失败</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
@@ -801,19 +782,17 @@ iscsiadm  -m node   -T iqn.2010-10.org.opennebula:storage -p 192.168.5.170:3260 
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">流程
-
 CLI/API Authentication
-
 Built-in User/Password
 LDAP
 SSH
 
 Sunstone Authentication
-
 Built-in User/Password
 LDAP
 SSH
-X5</div>
+X509
+</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -859,12 +838,8 @@ X5</div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">准备
-
-前台需要至少三台机器
-192.168.150.1 leader
-192.168.150.2 follower
-192.168.150.3 follower
-Sunstone (with or without Apache/Passe</div>
+前台需要至少三台机器192.168.150.1 leader192.168.150.2 follower192.168.150.3 follower
+Sunstone (with or without Apache/Passenger</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -1042,7 +1017,7 @@ Sunstone (with or without Apache/Passe</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

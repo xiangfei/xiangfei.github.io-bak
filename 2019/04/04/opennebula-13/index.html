@@ -5,14 +5,13 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula public cloud, openstack,opennebula">
-    <meta name="description" content="AWS
-/etc/one/ec2_driver.conf
+    <meta name="description" content="AWS/etc/one/ec2_driver.conf
 proxy_uri:
 state_wait_timeout_seconds: 300
 instance_types:
     c1.medium:
     cpu: 2
-    me">
+    mem">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -436,7 +435,7 @@ instance_types:
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        382
+                        388
                     </div>
                     
 
@@ -459,8 +458,7 @@ instance_types:
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="AWS">AWS</h3>
-<pre><code>/etc/one/ec2_driver.conf
+                <h3 id="AWS"><a href="#AWS" class="headerlink" title="AWS"></a>AWS</h3><pre><code>/etc/one/ec2_driver.conf
 proxy_uri:
 state_wait_timeout_seconds: 300
 instance_types:
@@ -473,9 +471,9 @@ onehost create ec2 -t ec2 --im ec2 --vm ec2
 
 
 
-echo 'EC2_ACCESS = &quot;xXxXXxx&quot;' &gt;  ec2host.tpl
-echo 'EC2_SECRET = &quot;xXXxxXx&quot;' &gt;&gt; ec2host.tpl
-echo 'REGION_NAME= &quot;xXXxxXx&quot;' &gt;&gt; ec2host.tpl
+echo &#39;EC2_ACCESS = &quot;xXxXXxx&quot;&#39; &gt;  ec2host.tpl
+echo &#39;EC2_SECRET = &quot;xXXxxXx&quot;&#39; &gt;&gt; ec2host.tpl
+echo &#39;REGION_NAME= &quot;xXXxxXx&quot;&#39; &gt;&gt; ec2host.tpl
 
 onehost create ec2 -t ec2 ec2host.tpl --im ec2 --vm ec2
 
@@ -494,12 +492,10 @@ PUBLIC_CLOUD = [ TYPE=&quot;EC2&quot;,
                  INSTANCETYPE=m1.small]
 
 #Add this if you want to use only EC2 cloud
-#SCHED_REQUIREMENTS = 'HOSTNAME = &quot;ec2&quot;'
+#SCHED_REQUIREMENTS = &#39;HOSTNAME = &quot;ec2&quot;&#39;
 
 
-</code></pre>
-<h3 id="AZURE">AZURE</h3>
-<pre><code>IM_MAD = [
+</code></pre><h3 id="AZURE"><a href="#AZURE" class="headerlink" title="AZURE"></a>AZURE</h3><pre><code>IM_MAD = [
       name       = &quot;az&quot;,
       executable = &quot;one_im_sh&quot;,
       arguments  = &quot;-c -t 1 -r 0 az&quot; ]
@@ -529,9 +525,7 @@ PUBLIC_CLOUD = [
   TCP_ENDPOINTS=&quot;80&quot;,
   SSHPORT=2222
 ]
-</code></pre>
-<h1>opennebula</h1>
-<pre><code>enable
+</code></pre><h1 id="opennebula"><a href="#opennebula" class="headerlink" title="opennebula"></a>opennebula</h1><pre><code>enable
 IM_MAD = [
     NAME          = &quot;one&quot;,
     SUNSTONE_NAME = &quot;OpenNebula&quot;,
@@ -575,8 +569,7 @@ PUBLIC_CLOUD = [
 CONTEXT=[
     NETWORK=&quot;yes&quot;
 ]
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -758,11 +751,10 @@ CONTEXT=[
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Configure the OpenNebula Federation Master Zone
-vi /etc/one/oned.conf
+                    <div class="summary block-with-text">Configure the OpenNebula Federation Master Zonevi /etc/one/oned.conf
 onezone update 0
 FEDERATION = [
-    MODE    = &quo</div>
+    MODE    = &quot</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -808,15 +800,12 @@ FEDERATION = [
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">public
-
 默认安装
 
-private
-Systems marketplace
-cat market.conf
+privateSystems marketplacecat market.conf
 NAME = PrivateMarket
 MARKET_MAD = one
-ENDPOINT = &quot;http://</div>
+ENDPOINT = &quot;http://pri</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -994,7 +983,7 @@ ENDPOINT = &quot;http://</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="keywords" content="rails consul 微服务 (配置下发), openstack,opennebula">
     <meta name="description" content="实现思路
-
 和服务发现一致
 console , puma  方法需要扩展
 
@@ -15,7 +14,7 @@ class AsyncConsul
   include Concurrent::Async
 
   CACHE ||= Concurrent::Hash.new
- ">
+  ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -462,49 +461,48 @@ class AsyncConsul
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="实现思路">实现思路</h3>
-<ul>
+                <h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><ul>
 <li>和服务发现一致</li>
 <li>console , puma  方法需要扩展</li>
 </ul>
-<pre class=" language-language-ruby"><code class="language-language-ruby">
-class AsyncConsul
-  include Concurrent::Async
+<pre class=" language-ruby"><code class="language-ruby">
+<span class="token keyword">class</span> <span class="token class-name">AsyncConsul</span>
+  include <span class="token constant">Concurrent</span><span class="token punctuation">:</span><span class="token symbol">:Async</span>
 
-  CACHE ||= Concurrent::Hash.new
-  SERVICE_CACHE ||= Concurrent::Map.new
-  def reload_const
-    loop do
-      begin
-        Timeout::timeout 2 do
-          config = JSON.load Diplomat::Kv.get("xxx") # your key ,value
-          database = config["database"]
-          redis = config["redis"]
+  <span class="token constant">CACHE</span> <span class="token operator">||</span><span class="token operator">=</span> <span class="token constant">Concurrent</span><span class="token punctuation">:</span><span class="token symbol">:Hash</span><span class="token punctuation">.</span><span class="token keyword">new</span>
+  <span class="token class-name">SERVICE_CACHE</span> <span class="token operator">||</span><span class="token operator">=</span> <span class="token constant">Concurrent</span><span class="token punctuation">:</span><span class="token symbol">:Map</span><span class="token punctuation">.</span><span class="token keyword">new</span>
+  <span class="token class-name">def</span> reload_const
+    loop <span class="token keyword">do</span>
+      <span class="token keyword">begin</span>
+        <span class="token constant">Timeout</span><span class="token punctuation">:</span><span class="token symbol">:timeout</span> <span class="token number">2</span> <span class="token keyword">do</span>
+          config <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span>load <span class="token constant">Diplomat</span><span class="token punctuation">:</span><span class="token symbol">:Kv</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"xxx"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># your key ,value</span>
+          database <span class="token operator">=</span> config<span class="token punctuation">[</span><span class="token string">"database"</span><span class="token punctuation">]</span>
+          redis <span class="token operator">=</span> config<span class="token punctuation">[</span><span class="token string">"redis"</span><span class="token punctuation">]</span>
           reset_database database
           reset_redisconfig redis
-        end
-      rescue => e
-      end
-      sleep 2
-    end
-  end
+        <span class="token keyword">end</span>
+      <span class="token keyword">rescue</span> <span class="token operator">=</span><span class="token operator">></span> e
+      <span class="token keyword">end</span>
+      sleep <span class="token number">2</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
 
-  def reset_database(database)
-    CACHE["database"] ||= database
-    if CACHE["database"] != database
-      CACHE["database"] = database
-      ActiveRecord::Base.establish_connection database
-    end
-  end
+  <span class="token keyword">def</span> <span class="token function">reset_database</span><span class="token punctuation">(</span>database<span class="token punctuation">)</span>
+    <span class="token constant">CACHE</span><span class="token punctuation">[</span><span class="token string">"database"</span><span class="token punctuation">]</span> <span class="token operator">||</span><span class="token operator">=</span> database
+    <span class="token keyword">if</span> <span class="token constant">CACHE</span><span class="token punctuation">[</span><span class="token string">"database"</span><span class="token punctuation">]</span> <span class="token operator">!=</span> database
+      <span class="token constant">CACHE</span><span class="token punctuation">[</span><span class="token string">"database"</span><span class="token punctuation">]</span> <span class="token operator">=</span> database
+      <span class="token constant">ActiveRecord</span><span class="token punctuation">:</span><span class="token symbol">:Base</span><span class="token punctuation">.</span>establish_connection database
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
 
-  def reset_redisconfig(ldap)
-    CACHE["redis"] ||= ldap
-    if CACHE["redis"] != ldap
-      CACHE["redis"] = ldap
-      #LDAP_CONFIG.merge! ldap
-    end
-  end
-end
+  <span class="token keyword">def</span> <span class="token function">reset_redisconfig</span><span class="token punctuation">(</span>ldap<span class="token punctuation">)</span>
+    <span class="token constant">CACHE</span><span class="token punctuation">[</span><span class="token string">"redis"</span><span class="token punctuation">]</span> <span class="token operator">||</span><span class="token operator">=</span> ldap
+    <span class="token keyword">if</span> <span class="token constant">CACHE</span><span class="token punctuation">[</span><span class="token string">"redis"</span><span class="token punctuation">]</span> <span class="token operator">!=</span> ldap
+      <span class="token constant">CACHE</span><span class="token punctuation">[</span><span class="token string">"redis"</span><span class="token punctuation">]</span> <span class="token operator">=</span> ldap
+      <span class="token comment" spellcheck="true">#LDAP_CONFIG.merge! ldap</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
 
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -689,17 +687,13 @@ end
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">一、docker简介
-docker 官网
-
-https://www.docker.com/
+                    <div class="summary block-with-text">一、docker简介docker 官网
+https://www.docker.com/  
 
 docker 官方文档
-
-https://docs.docker.com/
+https://docs.docker.com/  
 
 官方docker hub
-
 https://hub.docker.c</div>
                     <div class="publish-info">
                         <span class="publish-date">
@@ -746,21 +740,17 @@ https://hub.docker.c</div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">实现思路
-
 每隔2秒查看consul ui 有没注册服务
-
 consul 没有watch 方法
 
 
-在控制台启动
-
+在控制台启动 
 console sope
 
 
 puma 启动
-
 on_worker_boot watch
-打开 workers ENV.fe</div>
+打开 workers ENV.fetch</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-24
@@ -938,7 +928,7 @@ on_worker_boot watch
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

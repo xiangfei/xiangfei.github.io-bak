@@ -5,13 +5,11 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="openstack IDC 问题 网络, openstack,opennebula">
-    <meta name="description" content="br-aux 网络问题
-不能访问外网 , 内部ip互通
+    <meta name="description" content="br-aux 网络问题不能访问外网 , 内部ip互通
 
-br-aux 网卡 off line
-重启网卡,失败，去机房换网线
+br-aux 网卡 off line重启网卡,失败，去机房换网线
 
-Apr 13 17:55:41 controller01 horizon_access - - - [13/Ap">
+&amp;lt;46&gt;Apr 13 17:55:41 controller01 horizon_access - - - [">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -435,7 +433,7 @@ Apr 13 17:55:41 controller01 horizon_access - - - [13/Ap">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        209
+                        221
                     </div>
                     
 
@@ -458,27 +456,23 @@ Apr 13 17:55:41 controller01 horizon_access - - - [13/Ap">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="br-aux-网络问题">br-aux 网络问题</h4>
-<p>不能访问外网 , 内部ip互通</p>
+                <h4 id="br-aux-网络问题"><a href="#br-aux-网络问题" class="headerlink" title="br-aux 网络问题"></a>br-aux 网络问题</h4><p>不能访问外网 , 内部ip互通</p>
 <blockquote>
-<p>br-aux 网卡 off line<br>
-重启网卡,失败，去机房换网线</p>
+<p>br-aux 网卡 off line<br>重启网卡,失败，去机房换网线</p>
 </blockquote>
-<pre class=" language-language-bash"><code class="language-language-bash"><46>Apr 13 17:55:41 controller01 horizon_access - - - [13/Apr/2020:17:55:34 +0800] "OPTIONS / HTTP/1.0" 301 240 194 "-" "-"
-<46>Apr 13 17:55:41 controller01 horizon_access - - - [13/Apr/2020:17:55:36 +0800] "OPTIONS / HTTP/1.0" 301 240 187 "-" "-"
-<46>Apr 13 17:55:41 controller01 horizon_access - - - [13/Apr/2020:17:55:38 +0800] "OPTIONS / HTTP/1.0" 301 240 191 "-" "-"
-<46>Apr 13 17:55:41 controller01 horizon_access - - - [13/Apr/2020:17:55:40 +0800] "OPTIONS / HTTP/1.0" 301 240 164 "-" "-"
-<6>Apr 13 17:55:42 controller01 kernel: [96277.132056] tg3 0000:02:00.1 eno4: Link is down
-<6>Apr 13 17:55:42 controller01 kernel: [96277.132179] br-aux: port 1(eno4) entered disabled state
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>46<span class="token operator">></span>Apr 13 17:55:41 controller01 horizon_access - - - <span class="token punctuation">[</span>13/Apr/2020:17:55:34 +0800<span class="token punctuation">]</span> <span class="token string">"OPTIONS / HTTP/1.0"</span> 301 240 194 <span class="token string">"-"</span> <span class="token string">"-"</span>
+<span class="token operator">&lt;</span>46<span class="token operator">></span>Apr 13 17:55:41 controller01 horizon_access - - - <span class="token punctuation">[</span>13/Apr/2020:17:55:36 +0800<span class="token punctuation">]</span> <span class="token string">"OPTIONS / HTTP/1.0"</span> 301 240 187 <span class="token string">"-"</span> <span class="token string">"-"</span>
+<span class="token operator">&lt;</span>46<span class="token operator">></span>Apr 13 17:55:41 controller01 horizon_access - - - <span class="token punctuation">[</span>13/Apr/2020:17:55:38 +0800<span class="token punctuation">]</span> <span class="token string">"OPTIONS / HTTP/1.0"</span> 301 240 191 <span class="token string">"-"</span> <span class="token string">"-"</span>
+<span class="token operator">&lt;</span>46<span class="token operator">></span>Apr 13 17:55:41 controller01 horizon_access - - - <span class="token punctuation">[</span>13/Apr/2020:17:55:40 +0800<span class="token punctuation">]</span> <span class="token string">"OPTIONS / HTTP/1.0"</span> 301 240 164 <span class="token string">"-"</span> <span class="token string">"-"</span>
+<span class="token operator">&lt;</span>6<span class="token operator">></span>Apr 13 17:55:42 controller01 kernel: <span class="token punctuation">[</span>96277.132056<span class="token punctuation">]</span> tg3 0000:02:00.1 eno4: Link is down
+<span class="token operator">&lt;</span>6<span class="token operator">></span>Apr 13 17:55:42 controller01 kernel: <span class="token punctuation">[</span>96277.132179<span class="token punctuation">]</span> br-aux: port 1<span class="token punctuation">(</span>eno4<span class="token punctuation">)</span> entered disabled state
 
 </code></pre>
-<h4 id="compute00-dhcp-异常">compute00 dhcp 异常</h4>
-<p>compute00 内网ip 不能分配到floating ip , 其他compute节点可以</p>
+<h4 id="compute00-dhcp-异常"><a href="#compute00-dhcp-异常" class="headerlink" title="compute00 dhcp 异常"></a>compute00 dhcp 异常</h4><p>compute00 内网ip 不能分配到floating ip , 其他compute节点可以</p>
 <blockquote>
 <p>compute00 交换机上联口， 网卡插错</p>
 </blockquote>
-<h4 id="vip-访问失败">vip 访问失败</h4>
-<p>可以telnet物理 ip port   , vip telnet 报错</p>
+<h4 id="vip-访问失败"><a href="#vip-访问失败" class="headerlink" title="vip 访问失败"></a>vip 访问失败</h4><p>可以telnet物理 ip port   , vip telnet 报错</p>
 <blockquote>
 <p>packemaker 导致，停止pacemaker</p>
 </blockquote>
@@ -666,14 +660,11 @@ Apr 13 17:55:41 controller01 horizon_access - - - [13/Ap">
                 <div class="card-content article-content">
                     <div class="summary block-with-text">mount 存储 一直pending
 
-br-aux 网络异常，cinder-volume 进程报错
-vip 不能访问
+br-aux 网络异常，cinder-volume 进程报错vip 不能访问
 
 存储disk 找不不到
 
-detach
-手动创建snapshot ，导出存储
-lvscan 发现inactive ，e</div>
+detach手动创建snapshot ，导出存储lvscan 发现inactive ，enab</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-15
@@ -718,15 +709,14 @@ lvscan 发现inactive ，e</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">创建markdown文档
-扩展rails apipie
+                    <div class="summary block-with-text">创建markdown文档扩展rails apipie
 
 rails apipie
 
 app/doc
 module BaseDoc
   include Apipie::DSL::Concern
-  extend Apipie::DSL::C</div>
+  extend Apipie::DSL::Co</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-09
@@ -896,7 +886,7 @@ module BaseDoc
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

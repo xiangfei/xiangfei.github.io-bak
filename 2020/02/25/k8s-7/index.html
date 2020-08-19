@@ -5,10 +5,9 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="k8s 额外配置, openstack,opennebula">
-    <meta name="description" content="firewalld 配置
-firewall-cmd --set-default-zone=public
+    <meta name="description" content="firewalld 配置firewall-cmd --set-default-zone=public
 firewall-cmd --zone=public --add-port=80/tcp --permanent
-firewall-cm">
+firewall-cmd">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -432,7 +431,7 @@ firewall-cm">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        429
+                        443
                     </div>
                     
 
@@ -455,35 +454,28 @@ firewall-cm">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1>firewalld 配置</h1>
-<pre><code>firewall-cmd --set-default-zone=public
+                <h1 id="firewalld-配置"><a href="#firewalld-配置" class="headerlink" title="firewalld 配置"></a>firewalld 配置</h1><pre><code>firewall-cmd --set-default-zone=public
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 firewall-cmd --zone=public --add-port=443/tcp --permanent
 firewall-cmd --zone=public --add-port=22/tcp --permanent
-firewall-cmd --permanent --zone=public --add-rich-rule 'rule family=ipv4 source address=10.0.34.0/24 port port=0-50000 protocol=tcp accept'
-firewall-cmd --permanent --zone=public --add-rich-rule 'rule family=ipv4 source address=172.17.0.0/16 port port=0-50000 protocol=tcp accept'
-firewall-cmd --permanent --zone=public --add-rich-rule 'rule family=ipv4 source address=10.0.34.0/24 port port=0-50000 protocol=udp accept'
-firewall-cmd --permanent --zone=public --add-rich-rule 'rule family=ipv4 source address=172.17.0.0/16 port port=0-50000 protocol=udp accept'
-firewall-cmd --permanent --zone=public --add-rich-rule 'rule family=ipv4 source address=10.0.0.0/8 port port=8080 protocol=tcp accept' //仅限 master
+firewall-cmd --permanent --zone=public --add-rich-rule &#39;rule family=ipv4 source address=10.0.34.0/24 port port=0-50000 protocol=tcp accept&#39;
+firewall-cmd --permanent --zone=public --add-rich-rule &#39;rule family=ipv4 source address=172.17.0.0/16 port port=0-50000 protocol=tcp accept&#39;
+firewall-cmd --permanent --zone=public --add-rich-rule &#39;rule family=ipv4 source address=10.0.34.0/24 port port=0-50000 protocol=udp accept&#39;
+firewall-cmd --permanent --zone=public --add-rich-rule &#39;rule family=ipv4 source address=172.17.0.0/16 port port=0-50000 protocol=udp accept&#39;
+firewall-cmd --permanent --zone=public --add-rich-rule &#39;rule family=ipv4 source address=10.0.0.0/8 port port=8080 protocol=tcp accept&#39; //仅限 master
 firewall-cmd --reload
 iptables -D FORWARD -j REJECT --reject-with icmp-host-prohibited
 iptables -A FORWARD -i ens160 -j ACCEPT
 iptables -A FORWARD -i flannel.1 -j ACCEPT
 iptables -A FORWARD -j REJECT --reject-with icmp-host-prohibited
-</code></pre>
-<h1>/lib/systemd/system/docker.service 增加参数</h1>
-<pre><code>EnvironmentFile=-/run/flannel/docker
+</code></pre><h1 id="lib-systemd-system-docker-service-增加参数"><a href="#lib-systemd-system-docker-service-增加参数" class="headerlink" title="/lib/systemd/system/docker.service 增加参数"></a>/lib/systemd/system/docker.service 增加参数</h1><pre><code>EnvironmentFile=-/run/flannel/docker
 DOCKER_OPT_BIP
 DOCKER_OPT_IPMASQ
 DOCKER_OPT_MTU
 DOCKER_NETWORK_OPTIONS
-</code></pre>
-<h1>/etc/sysconfig/docker 增加参数</h1>
-<pre><code>OPTIONS='--selinux-enabled --log-driver json-file --log-opt max-size=100m --log-opt max-file=3 --graph=&quot;/data/docker&quot; --signature-verification=false'
-INSECURE_REGISTRY=' --insecure-registry registry.docker.easybao.com'
-</code></pre>
-<h1>批量管理</h1>
-<pre><code>echo &quot;nameserver 10.100.246.10&quot; &gt;&gt; /etc/resolv.conf
+</code></pre><h1 id="etc-sysconfig-docker-增加参数"><a href="#etc-sysconfig-docker-增加参数" class="headerlink" title="/etc/sysconfig/docker 增加参数"></a>/etc/sysconfig/docker 增加参数</h1><pre><code>OPTIONS=&#39;--selinux-enabled --log-driver json-file --log-opt max-size=100m --log-opt max-file=3 --graph=&quot;/data/docker&quot; --signature-verification=false&#39;
+INSECURE_REGISTRY=&#39; --insecure-registry registry.docker.easybao.com&#39;
+</code></pre><h1 id="批量管理"><a href="#批量管理" class="headerlink" title="批量管理"></a>批量管理</h1><pre><code>echo &quot;nameserver 10.100.246.10&quot; &gt;&gt; /etc/resolv.conf
 echo &quot;10.0.34.23 registry.docker.easybao.com &quot; &gt;&gt; /etc/hosts
 yum install -y docker flannel socat conntrack-tools
 rpm -ivh  kubernetes-client-1.7.3-1.el7.x86_64.rpm kubernetes-node-1.7.3-1.el7.x86_64.rpm
@@ -506,8 +498,7 @@ systemctl enable kubelet
 systemctl start kube-proxy
 systemctl enable kubelet
 systemctl start kube-proxy
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -689,9 +680,7 @@ systemctl start kube-proxy
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Kubernetes 开发参考文档
-Kubernetes  API 接口文档
-https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/
+                    <div class="summary block-with-text">Kubernetes 开发参考文档Kubernetes  API 接口文档https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/  
 v1.10 为 Kube</div>
                     <div class="publish-info">
                         <span class="publish-date">
@@ -737,9 +726,8 @@ v1.10 为 Kube</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">概念
-Docker: 根据[Docker基础介绍] (Docker基础介绍.md) 内部分说明，可以理解为把一个个应用程序以及它运行所需要的基础环境进行打包并运行的工具。
-images(镜像): 应用程序以及它运行所需要的基础环境构成的pa</div>
+                    <div class="summary block-with-text">概念Docker: 根据[Docker基础介绍] (Docker基础介绍.md) 内部分说明，可以理解为把一个个应用程序以及它运行所需要的基础环境进行打包并运行的工具。  
+images(镜像): 应用程序以及它运行所需要的基础环境构成的p</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-25
@@ -917,7 +905,7 @@ images(镜像): 应用程序以及它运行所需要的基础环境构成的pa</
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

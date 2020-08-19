@@ -5,9 +5,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula sunstone development, openstack,opennebula">
-    <meta name="description" content="前端
-准备
-requirejs allows you to define blocks of functionality in different modules/files and then load and reuse them in ">
+    <meta name="description" content="前端准备requirejs allows you to define blocks of functionality in different modules/files and then load and reuse them in ot">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -431,7 +429,7 @@ requirejs allows you to define blocks of functionality in different modules/file
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        141
+                        157
                     </div>
                     
 
@@ -454,9 +452,7 @@ requirejs allows you to define blocks of functionality in different modules/file
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="前端">前端</h3>
-<h4 id="准备">准备</h4>
-<pre><code>requirejs allows you to define blocks of functionality in different modules/files and then load and reuse them in other modules
+                <h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><pre><code>requirejs allows you to define blocks of functionality in different modules/files and then load and reuse them in other modules
 npm install -g requirejs
 
 Handlebars #模板
@@ -466,18 +462,16 @@ handlerbar for requirejs
 sudo npm install -g bower
 sudo npm install -g grunt
 sudo npm install -g grunt-cli
-</code></pre>
-<h4 id="Adding-Custom-Tabs">Adding Custom Tabs</h4>
-<pre><code>app/main.js
+</code></pre><h4 id="Adding-Custom-Tabs"><a href="#Adding-Custom-Tabs" class="headerlink" title="Adding Custom Tabs"></a>Adding Custom Tabs</h4><pre><code>app/main.js
 
 shim: {
-  'app': {
+  &#39;app&#39;: {
     deps: [
-      'tabs/provision-tab',
-      'tabs/dashboard-tab',
-      'tabs/system-tab',
+      &#39;tabs/provision-tab&#39;,
+      &#39;tabs/dashboard-tab&#39;,
+      &#39;tabs/system-tab&#39;,
       ...
-      'tabs/mycustom-tab'
+      &#39;tabs/mycustom-tab&#39;
     ]
   },
 
@@ -489,34 +483,28 @@ enabled_tabs:
   ...
   - mycustom-tab
 
-</code></pre>
-<h3 id="后台">后台</h3>
-<h4 id="routes-配置">routes 配置</h4>
-<pre><code>/usr/lib/one/sunstone/routes , add route folder
+</code></pre><h3 id="后台"><a href="#后台" class="headerlink" title="后台"></a>后台</h3><h4 id="routes-配置"><a href="#routes-配置" class="headerlink" title="routes 配置"></a>routes 配置</h4><pre><code>/usr/lib/one/sunstone/routes , add route folder
 /etc/one/sunstone-server.conf
 :routes:
     - custom
     - other
-</code></pre>
-<h4 id="Creating-Sunstone-Server-Plugins">Creating Sunstone Server Plugins</h4>
-<pre><code>get '/myplugin/myresource/:id' do
+</code></pre><h4 id="Creating-Sunstone-Server-Plugins"><a href="#Creating-Sunstone-Server-Plugins" class="headerlink" title="Creating Sunstone Server Plugins"></a>Creating Sunstone Server Plugins</h4><pre><code>get &#39;/myplugin/myresource/:id&#39; do
     resource_id = params[:id]
     # code...
 end
 
-post '/myplugin/myresource' do
+post &#39;/myplugin/myresource&#39; do
     # code
 end
 
-put '/myplugin/myresource/:id' do
+put &#39;/myplugin/myresource/:id&#39; do
     # code
 end
 
-del '/myplugin/myresource/:id' do
+del &#39;/myplugin/myresource/:id&#39; do
     # code
 end
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -688,30 +676,31 @@ end
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/04/04/opennebula-19/">
+                <a href="/2019/04/15/ops/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="opennebula 第三方接口,rest api">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="小幺鸡安装">
                         
-                        <span class="card-title">opennebula 第三方接口,rest api</span>
+                        <span class="card-title">小幺鸡安装</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">ruby xml prc
-require 'xmlrpc/client'
-server = XMLRPC::Client.new(&quot;opennebulaserver&quot;, &quot;/RPC2&quot;, 2633)
-</div>
+                    <div class="summary block-with-text">安装
+下载war包(https://github.com/zhoujingjie/xiaoyaoji/releases)
+安装JDK7, tomcat7
+
+git clone https://github.com/zhoujingjie/x</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-15
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/opennebula/" class="post-category" target="_blank">
-                                    opennebula
+                            <a href="/categories/xiaoyaoji/" class="post-category" target="_blank">
+                                    xiaoyaoji
                                 </a>
                             
                             
@@ -721,8 +710,8 @@ server = XMLRPC::Client.new(&quot;opennebulaserver&quot;, &quot;/RPC2&quot;, 263
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/opennebula/" target="_blank">
-                        <span class="chip bg-color">opennebula</span>
+                    <a href="/tags/ops/" target="_blank">
+                        <span class="chip bg-color">ops</span>
                     </a>
                     
                 </div>
@@ -736,21 +725,21 @@ server = XMLRPC::Client.new(&quot;opennebulaserver&quot;, &quot;/RPC2&quot;, 263
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/04/opennebula-14/">
+                <a href="/2019/04/04/opennebula-16/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="opennebula datacenter federation">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="opennebula 源码编译">
                         
-                        <span class="card-title">opennebula datacenter federation</span>
+                        <span class="card-title">opennebula 源码编译</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Configure the OpenNebula Federation Master Zone
-vi /etc/one/oned.conf
-onezone update 0
-FEDERATION = [
-    MODE    = &quo</div>
+                    <div class="summary block-with-text">dependency
+g++ compiler (&gt;= 4.0)
+xmlrpc-c development libraries (&gt;= 1.06)
+scons build tool (&gt;= 0.98)
+sqlite3 de</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -928,7 +917,7 @@ FEDERATION = [
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

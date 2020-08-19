@@ -5,12 +5,11 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="Ruby 类案例, openstack,opennebula">
-    <meta name="description" content="Ruby 类案例
-面将创建一个名为 Customer 的 Ruby 类，声明两个方法：
-
+    <meta name="description" content="Ruby 类案例面将创建一个名为 Customer 的 Ruby 类，声明两个方法：
 display_details：该方法用于显示客户的详细信息。
 total_no_of_customers：该方法用于显示在系统中创建的客户总数量。
-">
+
+实">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -434,7 +433,7 @@ total_no_of_customers：该方法用于显示在系统中创建的客户总数�
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        672
+                        665
                     </div>
                     
 
@@ -457,15 +456,13 @@ total_no_of_customers：该方法用于显示在系统中创建的客户总数�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-类案例">Ruby 类案例</h3>
-<h4 id="面将创建一个名为-Customer-的-Ruby-类，声明两个方法：">面将创建一个名为 Customer 的 Ruby 类，声明两个方法：</h4>
-<ul>
+                <h3 id="Ruby-类案例"><a href="#Ruby-类案例" class="headerlink" title="Ruby 类案例"></a>Ruby 类案例</h3><h4 id="面将创建一个名为-Customer-的-Ruby-类，声明两个方法："><a href="#面将创建一个名为-Customer-的-Ruby-类，声明两个方法：" class="headerlink" title="面将创建一个名为 Customer 的 Ruby 类，声明两个方法："></a>面将创建一个名为 Customer 的 Ruby 类，声明两个方法：</h4><ul>
 <li>display_details：该方法用于显示客户的详细信息。</li>
 <li>total_no_of_customers：该方法用于显示在系统中创建的客户总数量。</li>
 </ul>
 <p>实例</p>
 <pre><code>#!/usr/bin/ruby
- 
+
 class Customer
    @@no_of_customers=0
    def initialize(id, name, addr)
@@ -483,8 +480,7 @@ class Customer
        puts &quot;Total number of customers: #@@no_of_customers&quot;
     end
 end
-</code></pre>
-<p>display_details 方法包含了三个 puts 语句，显示了客户 ID、客户名字和客户地址。其中，puts 语句：</p>
+</code></pre><p>display_details 方法包含了三个 puts 语句，显示了客户 ID、客户名字和客户地址。其中，puts 语句：</p>
 <blockquote>
 <p>puts “Customer id #@cust_id”</p>
 </blockquote>
@@ -494,21 +490,17 @@ end
 <p>现在创建两个客户，如下所示：</p>
 <pre><code>cust1=Customer.new(&quot;1&quot;, &quot;John&quot;, &quot;Wisdom Apartments, Ludhiya&quot;)
 cust2=Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khandala&quot;)
-</code></pre>
-<p>在这里，我们创建了 Customer 类的两个对象，cust1 和 cust2，并向 new 方法传递必要的参数。当 initialize 方法被调用时，对象的必要属性被初始化。</p>
+</code></pre><p>在这里，我们创建了 Customer 类的两个对象，cust1 和 cust2，并向 new 方法传递必要的参数。当 initialize 方法被调用时，对象的必要属性被初始化。</p>
 <p>一旦对象被创建，您需要使用两个对象来调用类的方法。如果您想要调用方法或任何数据成员，您可以编写代码，如下所示：</p>
 <pre><code>cust1.display_details()
 cust1.total_no_of_customers()
-</code></pre>
-<p>对象名称后总是跟着一个点号，接着是方法名称或数据成员。我们已经看到如何使用 cust1 对象调用两个方法。使用 cust2 对象，您也可以调用两个方法，如下所示：</p>
+</code></pre><p>对象名称后总是跟着一个点号，接着是方法名称或数据成员。我们已经看到如何使用 cust1 对象调用两个方法。使用 cust2 对象，您也可以调用两个方法，如下所示：</p>
 <pre><code>cust2.display_details()
 cust2.total_no_of_customers()
-</code></pre>
-<h4 id="保存并执行代码">保存并执行代码</h4>
-<p>现在，把所有的源代码放在 main.rb 文件中，如下所示：</p>
+</code></pre><h4 id="保存并执行代码"><a href="#保存并执行代码" class="headerlink" title="保存并执行代码"></a>保存并执行代码</h4><p>现在，把所有的源代码放在 main.rb 文件中，如下所示：</p>
 <p>实例</p>
 <pre><code>#!/usr/bin/ruby
- 
+
 class Customer
    @@no_of_customers=0
    def initialize(id, name, addr)
@@ -536,19 +528,10 @@ cust1.display_details()
 cust1.total_no_of_customers()
 cust2.display_details()
 cust2.total_no_of_customers()
-</code></pre>
-<p>运行程序，如下所示：</p>
+</code></pre><p>运行程序，如下所示：</p>
 <pre><code>$ ruby main.rb
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>Customer id 1<br>
-Customer name John<br>
-Customer address Wisdom Apartments, Ludhiya<br>
-Total number of customers: 1<br>
-Customer id 2<br>
-Customer name Poul<br>
-Customer address New Empire road, Khandala<br>
-Total number of customers: 2</p>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>Customer id 1<br>Customer name John<br>Customer address Wisdom Apartments, Ludhiya<br>Total number of customers: 1<br>Customer id 2<br>Customer name Poul<br>Customer address New Empire road, Khandala<br>Total number of customers: 2</p>
 </blockquote>
 </div></div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -733,13 +716,12 @@ Total number of customers: 2</p>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 变量
-变量是持有可被任何程序使用的任何数据的存储位置。
+                    <div class="summary block-with-text">Ruby 变量变量是持有可被任何程序使用的任何数据的存储位置。
 Ruby 支持五种类型的变量。
 
 一般小写字母、下划线开头：变量（Variable）。
 $开头：全局变量（Global variable）。
-@开头：实例变量（Instanc</div>
+@开头：实例变量（Instance</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-23
@@ -784,15 +766,14 @@ $开头：全局变量（Global variable）。
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 类和对象
-Ruby 是一种完美的面向对象编程语言。面向对象编程语言的特性包括：
+                    <div class="summary block-with-text">Ruby 类和对象Ruby 是一种完美的面向对象编程语言。面向对象编程语言的特性包括：
 
 数据封装
 数据抽象
 多态性
 继承
 
-一个面向对象的程序，涉及到的类和对象。类是个别对象创建的蓝图。在面向对象的术语中，您的自行车是自行车类的一个实例</div>
+一个面向对象的程序，涉及到的类和对象。类是个别对象创建的蓝图。在面向对象的术语中，您的自行车是自行车类的一个实例。</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-23
@@ -970,7 +951,7 @@ Ruby 是一种完美的面向对象编程语言。面向对象编程语言的特
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

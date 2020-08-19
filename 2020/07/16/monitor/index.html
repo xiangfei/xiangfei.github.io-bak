@@ -6,10 +6,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="mysql 监控, openstack,opennebula">
     <meta name="description" content="常见的mysql监控指标
-
-tps
-
-MariaDB [(none)]&gt; show global status where variable_name in (&#39;com_insert&#39; , &#39;com_delete&#39; , &#39;com_updat">
+tps MariaDB [(none)]&gt; show global status where variable_name in (&#39;com_insert&#39; , &#39;com_delete&#39; , &#39;com_update&#39;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -441,7 +438,7 @@ MariaDB [(none)]&gt; show global status where variable_name in (&#39;com_insert&
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        213
+                        217
                     </div>
                     
 
@@ -464,58 +461,45 @@ MariaDB [(none)]&gt; show global status where variable_name in (&#39;com_insert&
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="常见的mysql监控指标">常见的mysql监控指标</h2>
-<ul>
-<li>tps</li>
-</ul>
-<pre class=" language-language-mysql"><code class="language-language-mysql">MariaDB [(none)]> show global status where variable_name in ('com_insert' , 'com_delete' , 'com_update', 'uptime');
+                <h2 id="常见的mysql监控指标"><a href="#常见的mysql监控指标" class="headerlink" title="常见的mysql监控指标"></a>常见的mysql监控指标</h2><ul>
+<li>tps <pre class=" language-mysql"><code class="language-mysql">MariaDB [(none)]> show global status where variable_name in ('com_insert' , 'com_delete' , 'com_update', 'uptime');
 </code></pre>
 <blockquote>
-<p>事务数TC ≈’com_insert’ , ‘com_delete’ , ‘com_update’<br>
-TPS  ≈ (TC2 -TC1) / (uptime2 - uptime1)<br>
-uptime 数据库运行时间</p>
+<p>事务数TC ≈’com_insert’ , ‘com_delete’ , ‘com_update’<br>TPS  ≈ (TC2 -TC1) / (uptime2 - uptime1)<br>uptime 数据库运行时间</p>
 </blockquote>
-<ul>
-<li>
-<p>qps</p>
-<pre><code>MariaDB [(none)]&gt; show global status where variable_name in ('Queries', 'uptime');
-</code></pre>
-<blockquote>
+</li>
+<li><p>qps</p>
+<pre><code>MariaDB [(none)]&gt; show global status where variable_name in (&#39;Queries&#39;, &#39;uptime&#39;);
+</code></pre><blockquote>
 <p>QPS = (Queries2 -Queries1) / (uptime2 - uptime1)</p>
 </blockquote>
 </li>
-<li>
-<p>max_connection ,connection</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql"> MariaDB [(none)]> show global status like 'Threads_connected'; --当前连接数
+<li><p>max_connection ,connection</p>
+<pre class=" language-mysql"><code class="language-mysql"> MariaDB [(none)]> show global status like 'Threads_connected'; --当前连接数
  MariaDB [(none)]> show global status like 'max_connections';  --最大连接数
 
 </code></pre>
-</li>
-</ul>
 <blockquote>
 <p>可以做一个百分比告警</p>
 </blockquote>
-<ul>
-<li>
-<p>并发数</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">MariaDB [(none)]> show global status like 'Threads_running';
-</code></pre>
-</li>
-<li>
-<p>缓存命中率</p>
 </li>
 </ul>
-<pre class=" language-language-mysql"><code class="language-language-mysql"> MariaDB [(none)]> show global status like 'innodb_buffer_pool_read_requests';  -- innodb缓冲池查询总数：
- MariaDB [(none)]> show global status like 'innodb_buffer_pool_reads';  --  innodb从磁盘查询数：
+<ul>
+<li><p>并发数</p>
+<pre class=" language-mysql"><code class="language-mysql">MariaDB [(none)]> show global status like 'Threads_running';
+</code></pre>
+</li>
+<li><p>缓存命中率</p>
+<pre class=" language-mysql"><code class="language-mysql">MariaDB [(none)]> show global status like 'innodb_buffer_pool_read_requests';  -- innodb缓冲池查询总数：
+MariaDB [(none)]> show global status like 'innodb_buffer_pool_reads';  --  innodb从磁盘查询数：
 
 </code></pre>
 <blockquote>
-<p>生产中配置报警阈值：(innodb_buffer_pool_read_requests - innodb_buffer_pool_reads) / innodb_buffer_pool_read_requests &gt; 0.95</p>
+<p>生产中配置报警阈值：(innodb_buffer_pool_read_requests - innodb_buffer_pool_reads) / innodb_buffer_pool_read_requests &gt; 0.95 </p>
 </blockquote>
-<ul>
-<li>
-<p>慢查询Slow_queries</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">MariaDB [(none)]>  show status like 'Slow_queries';
+</li>
+<li><p>慢查询Slow_queries</p>
+<pre class=" language-mysql"><code class="language-mysql">MariaDB [(none)]>  show status like 'Slow_queries';
 </code></pre>
 <blockquote>
 <p>超过该值（–long-query-time）的查询数量，或没有使用索引查询数量。对于全部查询会有小的冲突。如果该值增长，表明系统有性能问题</p>
@@ -705,8 +689,7 @@ uptime 数据库运行时间</p>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">主要监控指标
-
-consumer lag
+consumer lag  
 
 </div>
                     <div class="publish-info">
@@ -761,11 +744,10 @@ consumer lag
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">node js deploy 报错
-[root@autotest-ruby-agent myblog]# hexo d
+                    <div class="summary block-with-text">node js deploy 报错[root@autotest-ruby-agent myblog]# hexo d
 INFO  Deploying: git
 INFO  Clearing .deploy_git folder...
-IN</div>
+INF</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-16
@@ -943,7 +925,7 @@ IN</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

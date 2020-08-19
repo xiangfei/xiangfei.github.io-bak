@@ -5,15 +5,13 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="opentsdb api使用常见问题, openstack,opennebula">
-    <meta name="description" content="openstsdb使用问题
-opentsdb api 查找lastdata 返回空
-
+    <meta name="description" content="openstsdb使用问题opentsdb api 查找lastdata 返回空
 解决方法
 
 opentsdb.conf
 
 tsd.core.auto_create_metrics = true
-tsd.core.meta.enable">
+tsd.core.meta.enable_r">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -437,7 +435,7 @@ tsd.core.meta.enable">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        103
+                        102
                     </div>
                     
 
@@ -460,9 +458,7 @@ tsd.core.meta.enable">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="openstsdb使用问题">openstsdb使用问题</h3>
-<h4 id="opentsdb-api-查找lastdata-返回空">opentsdb api 查找lastdata 返回空</h4>
-<pre><code>
+                <h3 id="openstsdb使用问题"><a href="#openstsdb使用问题" class="headerlink" title="openstsdb使用问题"></a>openstsdb使用问题</h3><h4 id="opentsdb-api-查找lastdata-返回空"><a href="#opentsdb-api-查找lastdata-返回空" class="headerlink" title="opentsdb api 查找lastdata 返回空"></a>opentsdb api 查找lastdata 返回空</h4><pre><code>
 解决方法
 
 opentsdb.conf
@@ -471,14 +467,12 @@ tsd.core.auto_create_metrics = true
 tsd.core.meta.enable_realtime_ts = true
 tsd.core.meta.enable_tsuid_tracking = true
 tsd.core.meta.enable_realtime_uid = true
-tsd.core.meta.enable_tsuid_incrementing = true	
+tsd.core.meta.enable_tsuid_incrementing = true    
 
 同步数据
 tsdb  uid  metasync
 
-</code></pre>
-<h4 id="opentsdb-api-查找提示用重复数据">opentsdb api 查找提示用重复数据</h4>
-<pre><code>fsck --full-scan --threads=8 --fix --resolve-duplicates --compact
+</code></pre><h4 id="opentsdb-api-查找提示用重复数据"><a href="#opentsdb-api-查找提示用重复数据" class="headerlink" title="opentsdb api 查找提示用重复数据"></a>opentsdb api 查找提示用重复数据</h4><pre><code>fsck --full-scan --threads=8 --fix --resolve-duplicates --compact
 
 查询api  
 
@@ -496,8 +490,7 @@ tsdb  uid  metasync
     }
 
 
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -680,14 +673,11 @@ tsdb  uid  metasync
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">准备
+192.168.224.181    controller1 
+192.168.224.182   controller2 
+192.168.224.183   controller3 
 
-192.168.224.181    controller1
-192.168.224.182   controller2
-192.168.224.183   controller3
-
-yum 源
-# 163源测试,找不到wsrep
-</div>
+yum 源# 163源测试,找不到wsrep</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-19
@@ -737,12 +727,11 @@ yum 源
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">准备
-
 server1  192.168.213.58
 server2  192.168.213.59
 server3  192.168.213.65
 
-1. github download https://github.com/apach</div>
+1. github download https://github.com/apache</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-18
@@ -920,7 +909,7 @@ server3  192.168.213.65
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

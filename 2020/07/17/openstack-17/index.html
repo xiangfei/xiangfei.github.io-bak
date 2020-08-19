@@ -6,15 +6,12 @@
     <meta charset="utf-8">
     <meta name="keywords" content="openstack ussuri centos8 高可用安装 keystone, openstack,opennebula">
     <meta name="description" content="创建vip
-
-用来安装, 手动创建vip
+用来安装, 手动创建vip  
 
 [root@controller01 ~]# ip address add dev ens5 10.10.102.190/24
 
 
-controller01 操作
-初始化数据库
-[root@con">
+controller01 操作初始化数据库[root@cont">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -446,7 +443,7 @@ controller01 操作
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        536
+                        554
                     </div>
                     
 
@@ -469,94 +466,81 @@ controller01 操作
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="创建vip">创建vip</h2>
-<ul>
-<li>用来安装, 手动创建vip</li>
+                <h2 id="创建vip"><a href="#创建vip" class="headerlink" title="创建vip"></a>创建vip</h2><ul>
+<li>用来安装, 手动创建vip  </li>
 </ul>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# ip address add dev ens5 10.10.102.190/24
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ip address add dev ens5 10.10.102.190/24</span>
 
 </code></pre>
-<h2 id="controller01-操作">controller01 操作</h2>
-<h3 id="初始化数据库">初始化数据库</h3>
-<pre><code>[root@controller01 ~]#  mysql -u root
+<h2 id="controller01-操作"><a href="#controller01-操作" class="headerlink" title="controller01 操作"></a>controller01 操作</h2><h3 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h3><pre><code>[root@controller01 ~]#  mysql -u root
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 11
 Server version: 10.3.17-MariaDB MariaDB Server
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
 
 MariaDB [(none)]&gt;  CREATE DATABASE keystone;
 Query OK, 1 row affected (0.008 sec)
 
-MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost'  IDENTIFIED BY 'keystone';
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON keystone.* TO &#39;keystone&#39;@&#39;localhost&#39;  IDENTIFIED BY &#39;keystone&#39;;
 Query OK, 0 rows affected (0.088 sec)
 
-MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%'   IDENTIFIED BY 'keystone';
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON keystone.* TO &#39;keystone&#39;@&#39;%&#39;   IDENTIFIED BY &#39;keystone&#39;;
 Query OK, 0 rows affected (0.102 sec)
 
 MariaDB [(none)]&gt; exit
 
-</code></pre>
-<h3 id="安装keystone">安装keystone</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]#  yum -y install openstack-keystone httpd  python3-mod_wsgi 
+</code></pre><h3 id="安装keystone"><a href="#安装keystone" class="headerlink" title="安装keystone"></a>安装keystone</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  yum -y install openstack-keystone httpd  python3-mod_wsgi </span>
 
-#修改配置
-[root@controller01 ~]# vim /etc/keystone/keystone.conf
+<span class="token comment" spellcheck="true">#修改配置</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim /etc/keystone/keystone.conf</span>
 
-[database]
-# ...
-connection = mysql+pymysql://keystone:keystone@controller/keystone
-[token]
-# ...
-provider = fernet
+<span class="token punctuation">[</span>database<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+connection <span class="token operator">=</span> mysql+pymysql://keystone:keystone@controller/keystone
+<span class="token punctuation">[</span>token<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+provider <span class="token operator">=</span> fernet
 
 </code></pre>
-<h3 id="同步数据">同步数据</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# su -s /bin/sh -c "keystone-manage db_sync" keystone
+<h3 id="同步数据"><a href="#同步数据" class="headerlink" title="同步数据"></a>同步数据</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># su -s /bin/sh -c "keystone-manage db_sync" keystone</span>
 </code></pre>
-<h3 id="初始化key仓库">初始化key仓库</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
-[root@controller01 ~]# keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
+<h3 id="初始化key仓库"><a href="#初始化key仓库" class="headerlink" title="初始化key仓库"></a>初始化key仓库</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># keystone-manage credential_setup --keystone-user keystone --keystone-group keystone</span>
 
 
 
 </code></pre>
-<h3 id="boot-认证">boot 认证</h3>
-<pre><code>[root@controller01 ~]# keystone-manage bootstrap --bootstrap-password admin  --bootstrap-admin-url http://controller:5000/v3/  --bootstrap-internal-url http://controller:5000/v3/   --bootstrap-public-url http://controller:5000/v3/ --bootstrap-region-id RegionOne
+<h3 id="boot-认证"><a href="#boot-认证" class="headerlink" title="boot 认证"></a>boot 认证</h3><pre><code>[root@controller01 ~]# keystone-manage bootstrap --bootstrap-password admin  --bootstrap-admin-url http://controller:5000/v3/  --bootstrap-internal-url http://controller:5000/v3/   --bootstrap-public-url http://controller:5000/v3/ --bootstrap-region-id RegionOne
+
+</code></pre><h3 id="配置apache-服务器"><a href="#配置apache-服务器" class="headerlink" title="配置apache 服务器"></a>配置apache 服务器</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim  /etc/httpd/conf/httpd.conf</span>
+<span class="token comment" spellcheck="true">#修改ServerName</span>
+ServerName controller <span class="token comment" spellcheck="true">#不存在需要增加 , controller 为虚拟ip</span>
+
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/</span>
 
 </code></pre>
-<h3 id="配置apache-服务器">配置apache 服务器</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# vim  /etc/httpd/conf/httpd.conf
-#修改ServerName
-ServerName controller #不存在需要增加 , controller 为虚拟ip
-
-[root@controller01 ~]# ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/
-
-</code></pre>
-<h3 id="启动-httpd">启动 httpd</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]#  systemctl enable httpd.service
+<h3 id="启动-httpd"><a href="#启动-httpd" class="headerlink" title="启动 httpd"></a>启动 httpd</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  systemctl enable httpd.service</span>
 Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
-[root@controller01 ~]#  systemctl start httpd.service
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  systemctl start httpd.service</span>
 
 </code></pre>
-<h3 id="创建adminrc">创建adminrc</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">
-[root@controller01 ~]# cat adminrc
-export OS_USERNAME=admin
-export OS_PASSWORD=admin
-export OS_PROJECT_NAME=admin
-export OS_USER_DOMAIN_NAME=Default
-export OS_PROJECT_DOMAIN_NAME=Default
-export OS_AUTH_URL=http://controller:5000/v3
-export OS_IDENTITY_API_VERSION=3
+<h3 id="创建adminrc"><a href="#创建adminrc" class="headerlink" title="创建adminrc"></a>创建adminrc</h3><pre class=" language-bash"><code class="language-bash">
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat adminrc</span>
+<span class="token function">export</span> OS_USERNAME<span class="token operator">=</span>admin
+<span class="token function">export</span> OS_PASSWORD<span class="token operator">=</span>admin
+<span class="token function">export</span> OS_PROJECT_NAME<span class="token operator">=</span>admin
+<span class="token function">export</span> OS_USER_DOMAIN_NAME<span class="token operator">=</span>Default
+<span class="token function">export</span> OS_PROJECT_DOMAIN_NAME<span class="token operator">=</span>Default
+<span class="token function">export</span> OS_AUTH_URL<span class="token operator">=</span>http://controller:5000/v3
+<span class="token function">export</span> OS_IDENTITY_API_VERSION<span class="token operator">=</span>3
 
 
 
 </code></pre>
-<h3 id="验证是否安装成功">验证是否安装成功</h3>
-<pre><code>
+<h3 id="验证是否安装成功"><a href="#验证是否安装成功" class="headerlink" title="验证是否安装成功"></a>验证是否安装成功</h3><pre><code>
 [root@controller01 ~]# openstack endpoint list
 +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------+
 | ID                               | Region    | Service Name | Service Type | Enabled | Interface | URL                        |
@@ -567,13 +551,10 @@ export OS_IDENTITY_API_VERSION=3
 +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------+
 
 
-</code></pre>
-<h2 id="controller02-controller03-安装配置">controller02 , controller03 安装配置</h2>
-<ul>
+</code></pre><h2 id="controller02-controller03-安装配置"><a href="#controller02-controller03-安装配置" class="headerlink" title="controller02 , controller03 安装配置"></a>controller02 , controller03 安装配置</h2><ul>
 <li>controller01一样, 不需要执行初始化数据库操作，其他的操作都要执行</li>
 </ul>
-<h2 id="高可用测试">高可用测试</h2>
-<pre><code>
+<h2 id="高可用测试"><a href="#高可用测试" class="headerlink" title="高可用测试"></a>高可用测试</h2><pre><code>
 vip controller01 漂移到 controller02
 [root@controller02 ~]#  ip address add dev ens5 10.10.102.190/24
 [root@controller01 ~]#  ip address  delete dev  ens5 10.10.102.190/24
@@ -589,8 +570,7 @@ vip controller01 漂移到 controller02
 
 # id 相同
 
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -772,11 +752,9 @@ vip controller01 漂移到 controller02
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">controller01
-环境准备
-初始化数据库
-[root@controller01 ~]# mysql -u root
-Welcome to the MariaDB monitor.  Commands end with ; or \g</div>
+                    <div class="summary block-with-text">controller01环境准备初始化数据库[root@controller01 ~]# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Y</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
@@ -830,12 +808,11 @@ Welcome to the MariaDB monitor.  Commands end with ; or \g</div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">memache 安装
-
 安装
 
 ## all nodes执行
 [root@controller02 ~]# yum install memcached python3-memcached -y
-[root@controller02 ~]# </div>
+[root@controller02 ~]# s</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-17
@@ -1021,7 +998,7 @@ Welcome to the MariaDB monitor.  Commands end with ; or \g</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

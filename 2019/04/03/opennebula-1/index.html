@@ -7,22 +7,20 @@
     <meta name="keywords" content="opennebula安装, openstack,opennebula">
     <meta name="description" content="准备
 
-
 os centos7
-
-
-
 存储 ceph
 数据库 mysql
 虚拟化 kvm
-网络划分 192.168.0.0/16(业务)
+网络划分 192.168.0.0/16(业务) 
 
-控制节点安装
-ip 192.168.20.2
+
+控制节点安装ip 192.168.20.2
 
 
 SELinux on CentOS/RHEL 7
-">
+
+
+v">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -446,7 +444,7 @@ SELinux on CentOS/RHEL 7
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        436
+                        440
                     </div>
                     
 
@@ -469,20 +467,16 @@ SELinux on CentOS/RHEL 7
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="准备">准备</h4>
-<blockquote>
+                <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><blockquote>
 <ol>
 <li>os centos7</li>
-</ol>
-</blockquote>
-<ol start="2">
 <li>存储 ceph</li>
 <li>数据库 mysql</li>
 <li>虚拟化 kvm</li>
-<li>网络划分 192.168.0.0/16(业务)</li>
+<li>网络划分 192.168.0.0/16(业务) </li>
 </ol>
-<h4 id="控制节点安装">控制节点安装</h4>
-<p>ip 192.168.20.2</p>
+</blockquote>
+<h4 id="控制节点安装"><a href="#控制节点安装" class="headerlink" title="控制节点安装"></a>控制节点安装</h4><p>ip 192.168.20.2</p>
 <blockquote>
 <ol>
 <li>SELinux on CentOS/RHEL 7</li>
@@ -492,31 +486,27 @@ SELinux on CentOS/RHEL 7
 SELINUX=disabled
 systemctl disable firewalld
 service firewalld stop
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="2">
 <li>Add OpenNebula Repositories</li>
 </ol>
 </blockquote>
 <pre><code>rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="3">
 <li>Installing the Software</li>
 </ol>
 </blockquote>
 <pre><code>yum install epel-release
 yum install opennebula-server opennebula-sunstone opennebula-ruby opennebula-gate opennebula-flow
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="4">
 <li>Ruby Runtime Installation</li>
 </ol>
 </blockquote>
 <pre><code>#root运行
 /usr/share/one/install_gems
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="5">
 <li>Enabling MySQL/MariaDB</li>
 </ol>
@@ -527,7 +517,7 @@ systemctl enable mariadb.service
 systemctl start mariadb.service
 mysql_secure_installation #设置密码
 mysql&gt; create databases oneadmin;
-mysql&gt; GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY '&lt;thepassword&gt;';
+mysql&gt; GRANT ALL PRIVILEGES ON opennebula.* TO &#39;oneadmin&#39; IDENTIFIED BY &#39;&lt;thepassword&gt;&#39;;
 vi /etc/my.cnf.d/openstack.cnf 
 [mysqld]
 bind-address = 0.0.0.0 修改bind address
@@ -538,8 +528,7 @@ DB = [ backend = &quot;mysql&quot;,
        user    = &quot;oneadmin&quot;,
        passwd  = &quot;&lt;thepassword&gt;&quot;,
        db_name = &quot;opennebula&quot; ]
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="6">
 <li>Starting OpenNebula</li>
 </ol>
@@ -550,17 +539,14 @@ systemctl start opennebula
 systemctl start opennebula-sunstone
 systemctl enable opennebula-sunstone
 systemctl enable opennebula-sunstone
-</code></pre>
-<h4 id="计算节点安装-KVM">计算节点安装(KVM)</h4>
-<p>ip 192.168.20.3</p>
+</code></pre><h4 id="计算节点安装-KVM"><a href="#计算节点安装-KVM" class="headerlink" title="计算节点安装(KVM)"></a>计算节点安装(KVM)</h4><p>ip 192.168.20.3</p>
 <blockquote>
 <ol>
 <li>Add OpenNebula Repositories</li>
 </ol>
 </blockquote>
 <pre><code>参考控制节点做法
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="2">
 <li>Installing the Software</li>
 </ol>
@@ -568,15 +554,13 @@ systemctl enable opennebula-sunstone
 <pre><code>yum install centos-release-qemu-ev
 yum install qemu-kvm-ev
 systemctl restart libvirtd
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="3">
 <li>SELinux on CentOS/RHEL 7</li>
 </ol>
 </blockquote>
 <pre><code>参考控制节点做法
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="4">
 <li>Configure Passwordless SSH</li>
 </ol>
@@ -585,8 +569,7 @@ systemctl restart libvirtd
 ssh-keygen
 ssh-keyscan &lt;frontend&gt; &lt;node1&gt; &lt;node2&gt; &lt;node3&gt; ... &gt;&gt; /var/lib/one/.ssh/known_hosts
 scp -rp /var/lib/one/.ssh &lt;node1&gt;:/var/lib/one/
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="5">
 <li>Networking Configuration</li>
 </ol>
@@ -600,30 +583,26 @@ ovs-vsctl add-port br0 eth0
 ifconfig br0 192.168.1.2/24 up
 ip route add default via 192.168.1.254
 
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="6">
 <li>Storage Configuration</li>
 </ol>
 </blockquote>
 <pre><code>直接使用filesystem存储
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="7">
 <li>Adding a Host to OpenNebula</li>
 </ol>
 </blockquote>
 <pre><code>onehost create &lt;node01&gt; -i kvm -v kvm
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <ol start="8">
 <li>Import Currently Running VMs</li>
 </ol>
 </blockquote>
 <pre><code>instance不能以one-*开头
 one host importvm &lt;hostid&gt; &lt;name&gt;
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -806,14 +785,11 @@ one host importvm &lt;hostid&gt; &lt;name&gt;
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">8021q网络配置
-
 配置和liux vxlan类似
-
 
 ifcfg-eth0.192
 ip link add link eth0 name eth0.8 type vlan id 8
-ip -d link show eth0.8
-需要内核</div>
+ip -d link show eth0.8需要内核支持8</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-03
@@ -858,9 +834,7 @@ ip -d link show eth0.8
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">准备
-版本选择
-
+                    <div class="summary block-with-text">准备版本选择
 
 lxd 支持
 自动网卡选择
@@ -871,11 +845,11 @@ os支持
 如果需要lxd功能,需要5.8或者使用 addon-lxdone ,如果使用centos安装,建议使用4.x版本
 虚拟化选择
 
-
 kvm
 lxd
 docker
-xe</div>
+xen
+v</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-03
@@ -1053,7 +1027,7 @@ xe</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

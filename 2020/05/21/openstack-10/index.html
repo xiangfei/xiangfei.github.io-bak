@@ -5,14 +5,10 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="openstack  stein 高可用安装neutron(ovn), openstack,opennebula">
-    <meta name="description" content="ovn 准备
-gateway node   ovn-central
+    <meta name="description" content="ovn 准备gateway node   ovn-central
 database node
 compute node ovn-host
-controler 01
-安装neutron
-数据库
-MariaDB [(none)]&gt; CREAT">
+controler 01安装neutron数据库MariaDB [(none)]&gt; CREATE DA">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -443,7 +439,7 @@ MariaDB [(none)]&gt; CREAT">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        9 分
+                        8 分
                     </div>
                     
                 
@@ -459,328 +455,306 @@ MariaDB [(none)]&gt; CREAT">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="ovn-准备">ovn 准备</h2>
-<p>gateway node   ovn-central</p>
+                <h2 id="ovn-准备"><a href="#ovn-准备" class="headerlink" title="ovn 准备"></a>ovn 准备</h2><p>gateway node   ovn-central</p>
 <p>database node</p>
 <p>compute node ovn-host</p>
-<h2 id="controler-01">controler 01</h2>
-<h3 id="安装neutron">安装neutron</h3>
-<h4 id="数据库">数据库</h4>
-<pre class=" language-language-bash"><code class="language-language-bash">MariaDB [(none)]> CREATE DATABASE neutron;
-Query OK, 1 row affected (0.006 sec)
+<h2 id="controler-01"><a href="#controler-01" class="headerlink" title="controler 01"></a>controler 01</h2><h3 id="安装neutron"><a href="#安装neutron" class="headerlink" title="安装neutron"></a>安装neutron</h3><h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><pre class=" language-bash"><code class="language-bash">MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> CREATE DATABASE neutron<span class="token punctuation">;</span>
+Query OK, 1 row affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost'  IDENTIFIED BY  'neutron';
-Query OK, 0 rows affected (0.007 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> GRANT ALL PRIVILEGES ON neutron.* TO <span class="token string">'neutron'</span>@<span class="token string">'localhost'</span>  IDENTIFIED BY  <span class="token string">'neutron'</span><span class="token punctuation">;</span>
+Query OK, 0 rows affected <span class="token punctuation">(</span>0.007 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]>  GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%'  IDENTIFIED BY  'neutron';
-Query OK, 0 rows affected (0.006 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span>  GRANT ALL PRIVILEGES ON neutron.* TO <span class="token string">'neutron'</span>@<span class="token string">'%'</span>  IDENTIFIED BY  <span class="token string">'neutron'</span><span class="token punctuation">;</span>
+Query OK, 0 rows affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> exit
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> <span class="token keyword">exit</span>
 
 
 </code></pre>
-<h4 id="创建service-endpoint">创建service endpoint</h4>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]#  openstack user create --domain default --password-prompt neutron
+<h4 id="创建service-endpoint"><a href="#创建service-endpoint" class="headerlink" title="创建service endpoint"></a>创建service endpoint</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  openstack user create --domain default --password-prompt neutron</span>
 User Password:
 Repeat User Password:
 +---------------------+----------------------------------+
-| Field               | Value                            |
+<span class="token operator">|</span> Field               <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +---------------------+----------------------------------+
-| domain_id           | default                          |
-| enabled             | True                             |
-| id                  | e019ae46781445b9b0a99bed55dcebe7 |
-| name                | neutron                          |
-| options             | {}                               |
-| password_expires_at | None                             |
+<span class="token operator">|</span> domain_id           <span class="token operator">|</span> default                          <span class="token operator">|</span>
+<span class="token operator">|</span> enabled             <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>                  <span class="token operator">|</span> e019ae46781445b9b0a99bed55dcebe7 <span class="token operator">|</span>
+<span class="token operator">|</span> name                <span class="token operator">|</span> neutron                          <span class="token operator">|</span>
+<span class="token operator">|</span> options             <span class="token operator">|</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>                               <span class="token operator">|</span>
+<span class="token operator">|</span> password_expires_at <span class="token operator">|</span> None                             <span class="token operator">|</span>
 +---------------------+----------------------------------+
-[root@controller01 ~]# openstack role add --project service --user neutron admin
-[root@controller01 ~]#  openstack service create --name neutron \
->   --description "OpenStack Networking" network
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack role add --project service --user neutron admin</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  openstack service create --name neutron \</span>
+<span class="token operator">></span>   --description <span class="token string">"OpenStack Networking"</span> network
 
 +-------------+----------------------------------+
-| Field       | Value                            |
+<span class="token operator">|</span> Field       <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +-------------+----------------------------------+
-| description | OpenStack Networking             |
-| enabled     | True                             |
-| id          | 488c02fc43fb41a2a573cb1ea3beeed0 |
-| name        | neutron                          |
-| type        | network                          |
+<span class="token operator">|</span> description <span class="token operator">|</span> OpenStack Networking             <span class="token operator">|</span>
+<span class="token operator">|</span> enabled     <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>          <span class="token operator">|</span> 488c02fc43fb41a2a573cb1ea3beeed0 <span class="token operator">|</span>
+<span class="token operator">|</span> name        <span class="token operator">|</span> neutron                          <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">type</span>        <span class="token operator">|</span> network                          <span class="token operator">|</span>
 +-------------+----------------------------------+
-[root@controller01 ~]# 
-[root@controller01 ~]# openstack endpoint create --region RegionOne \
->   network public http://controller:9696
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint create --region RegionOne \</span>
+<span class="token operator">></span>   network public http://controller:9696
 +--------------+----------------------------------+
-| Field        | Value                            |
+<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +--------------+----------------------------------+
-| enabled      | True                             |
-| id           | 96c74ccbd7e74e468784ad38a7b5dcb8 |
-| interface    | public                           |
-| region       | RegionOne                        |
-| region_id    | RegionOne                        |
-| service_id   | 488c02fc43fb41a2a573cb1ea3beeed0 |
-| service_name | neutron                          |
-| service_type | network                          |
-| url          | http://controller:9696           |
+<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> 96c74ccbd7e74e468784ad38a7b5dcb8 <span class="token operator">|</span>
+<span class="token operator">|</span> interface    <span class="token operator">|</span> public                           <span class="token operator">|</span>
+<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> service_id   <span class="token operator">|</span> 488c02fc43fb41a2a573cb1ea3beeed0 <span class="token operator">|</span>
+<span class="token operator">|</span> service_name <span class="token operator">|</span> neutron                          <span class="token operator">|</span>
+<span class="token operator">|</span> service_type <span class="token operator">|</span> network                          <span class="token operator">|</span>
+<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:9696           <span class="token operator">|</span>
 +--------------+----------------------------------+
-[root@controller01 ~]# openstack endpoint create --region RegionOne \
->   network internal http://controller:9696
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint create --region RegionOne \</span>
+<span class="token operator">></span>   network internal http://controller:9696
 +--------------+----------------------------------+
-| Field        | Value                            |
+<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +--------------+----------------------------------+
-| enabled      | True                             |
-| id           | fe9f7fbdcd114224ac07f8c103d35ad8 |
-| interface    | internal                         |
-| region       | RegionOne                        |
-| region_id    | RegionOne                        |
-| service_id   | 488c02fc43fb41a2a573cb1ea3beeed0 |
-| service_name | neutron                          |
-| service_type | network                          |
-| url          | http://controller:9696           |
+<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> fe9f7fbdcd114224ac07f8c103d35ad8 <span class="token operator">|</span>
+<span class="token operator">|</span> interface    <span class="token operator">|</span> internal                         <span class="token operator">|</span>
+<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> service_id   <span class="token operator">|</span> 488c02fc43fb41a2a573cb1ea3beeed0 <span class="token operator">|</span>
+<span class="token operator">|</span> service_name <span class="token operator">|</span> neutron                          <span class="token operator">|</span>
+<span class="token operator">|</span> service_type <span class="token operator">|</span> network                          <span class="token operator">|</span>
+<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:9696           <span class="token operator">|</span>
 +--------------+----------------------------------+
-[root@controller01 ~]# openstack endpoint create --region RegionOne \
->   network admin http://controller:9696
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint create --region RegionOne \</span>
+<span class="token operator">></span>   network admin http://controller:9696
 +--------------+----------------------------------+
-| Field        | Value                            |
+<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +--------------+----------------------------------+
-| enabled      | True                             |
-| id           | d97eb77e74004613ad58bb59afae2ae1 |
-| interface    | admin                            |
-| region       | RegionOne                        |
-| region_id    | RegionOne                        |
-| service_id   | 488c02fc43fb41a2a573cb1ea3beeed0 |
-| service_name | neutron                          |
-| service_type | network                          |
-| url          | http://controller:9696           |
+<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> d97eb77e74004613ad58bb59afae2ae1 <span class="token operator">|</span>
+<span class="token operator">|</span> interface    <span class="token operator">|</span> admin                            <span class="token operator">|</span>
+<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> service_id   <span class="token operator">|</span> 488c02fc43fb41a2a573cb1ea3beeed0 <span class="token operator">|</span>
+<span class="token operator">|</span> service_name <span class="token operator">|</span> neutron                          <span class="token operator">|</span>
+<span class="token operator">|</span> service_type <span class="token operator">|</span> network                          <span class="token operator">|</span>
+<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:9696           <span class="token operator">|</span>
 +--------------+----------------------------------+
 
 
 </code></pre>
-<h4 id="neutron-ovn-安装">neutron ovn 安装</h4>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# yum install openstack-neutron openstack-neutron-ml2   openvswitch-ovn-central openvswitch-ovn-vtep python2-networking-ovn   libibverbs  -y
+<h4 id="neutron-ovn-安装"><a href="#neutron-ovn-安装" class="headerlink" title="neutron ovn 安装"></a>neutron ovn 安装</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install openstack-neutron openstack-neutron-ml2   openvswitch-ovn-central openvswitch-ovn-vtep python2-networking-ovn   libibverbs  -y</span>
 
 </code></pre>
-<h4 id="配置ovn-sb-nb-remote-访问port">配置ovn sb nb remote 访问port</h4>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# systemctl enable openvswitch
-[root@controller01 ~]# systemctl enable ovn-northd
-[root@controller01 ~]#  service ovn-northd start
-[root@controller01 ~]# ovn-nbctl set-connection ptcp:6641:0.0.0.0  -- set connection . inactivity_probe=60000
-[root@controller01 ~]# ovn-sbctl set-connection ptcp:6642:0.0.0.0  -- set connection . inactivity_probe=60000
-[root@controller01 ~]#  ovs-appctl -t ovsdb-server ovsdb-server/add-remote ptcp:6640:0.0.0.0
+<h4 id="配置ovn-sb-nb-remote-访问port"><a href="#配置ovn-sb-nb-remote-访问port" class="headerlink" title="配置ovn sb nb remote 访问port"></a>配置ovn sb nb remote 访问port</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable openvswitch</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable ovn-northd</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  service ovn-northd start</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ovn-nbctl set-connection ptcp:6641:0.0.0.0  -- set connection . inactivity_probe=60000</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ovn-sbctl set-connection ptcp:6642:0.0.0.0  -- set connection . inactivity_probe=60000</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  ovs-appctl -t ovsdb-server ovsdb-server/add-remote ptcp:6640:0.0.0.0</span>
 
 
 </code></pre>
-<h4 id="配置文件修改">配置文件修改</h4>
-<p>__ /etc/neutron/neutron.conf__</p>
-<pre class=" language-language-bash"><code class="language-language-bash">[database]
-# ...
-connection = mysql+pymysql://neutron:neutron@controller/neutron
+<h4 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h4><p>   <strong> /etc/neutron/neutron.conf</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>database<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+connection <span class="token operator">=</span> mysql+pymysql://neutron:neutron@controller/neutron
 
-[DEFAULT]
-# ...
-allow_overlapping_ips = true
-transport_url = rabbit://openstack:openstack@controller
-auth_strategy = keystone
-notify_nova_on_port_status_changes = true
-notify_nova_on_port_data_changes = true
-core_plugin = neutron.plugins.ml2.plugin.Ml2Plugin
-service_plugins = networking_ovn.l3.l3_ovn.OVNL3RouterPlugin
-
-
-[keystone_authtoken]
-# ...
-www_authenticate_uri = http://controller:5000
-auth_url = http://controller:5000
-memcached_servers = controller01:11211,controller02:11211,controller03:11211
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-project_name = service
-username = neutron
-password = neutron
-
-[nova]
-# ...
-auth_url = http://controller:5000
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-region_name = RegionOne
-project_name = service
-username = nova
-password = nova
+<span class="token punctuation">[</span>DEFAULT<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+allow_overlapping_ips <span class="token operator">=</span> <span class="token boolean">true</span>
+transport_url <span class="token operator">=</span> rabbit://openstack:openstack@controller
+auth_strategy <span class="token operator">=</span> keystone
+notify_nova_on_port_status_changes <span class="token operator">=</span> <span class="token boolean">true</span>
+notify_nova_on_port_data_changes <span class="token operator">=</span> <span class="token boolean">true</span>
+core_plugin <span class="token operator">=</span> neutron.plugins.ml2.plugin.Ml2Plugin
+service_plugins <span class="token operator">=</span> networking_ovn.l3.l3_ovn.OVNL3RouterPlugin
 
 
-[oslo_concurrency]
-# ...
-lock_path = /var/lib/neutron/tmp
+<span class="token punctuation">[</span>keystone_authtoken<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+www_authenticate_uri <span class="token operator">=</span> http://controller:5000
+auth_url <span class="token operator">=</span> http://controller:5000
+memcached_servers <span class="token operator">=</span> controller01:11211,controller02:11211,controller03:11211
+auth_type <span class="token operator">=</span> password
+project_domain_name <span class="token operator">=</span> Default
+user_domain_name <span class="token operator">=</span> Default
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+username <span class="token operator">=</span> neutron
+password <span class="token operator">=</span> neutron
+
+<span class="token punctuation">[</span>nova<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+auth_url <span class="token operator">=</span> http://controller:5000
+auth_type <span class="token operator">=</span> password
+project_domain_name <span class="token operator">=</span> Default
+user_domain_name <span class="token operator">=</span> Default
+region_name <span class="token operator">=</span> RegionOne
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+username <span class="token operator">=</span> nova
+password <span class="token operator">=</span> nova
+
+
+<span class="token punctuation">[</span>oslo_concurrency<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+lock_path <span class="token operator">=</span> /var/lib/neutron/tmp
 
 
 
 </code></pre>
-<h4 id="修改配置文件">修改配置文件</h4>
-<p><strong>/etc/neutron/plugins/ml2/ml2_conf.ini</strong></p>
-<pre class=" language-language-bash"><code class="language-language-bash">[ml2]
-...
-mechanism_drivers = ovn
-type_drivers = local,flat,vlan,geneve
-tenant_network_types = geneve
-extension_drivers = port_security
-overlay_ip_version = 4
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><p>  <strong>/etc/neutron/plugins/ml2/ml2_conf.ini</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>ml2<span class="token punctuation">]</span>
+<span class="token punctuation">..</span>.
+mechanism_drivers <span class="token operator">=</span> ovn
+type_drivers <span class="token operator">=</span> local,flat,vlan,geneve
+tenant_network_types <span class="token operator">=</span> geneve
+extension_drivers <span class="token operator">=</span> port_security
+overlay_ip_version <span class="token operator">=</span> 4
 
 
-[ml2_type_geneve]
-...
-vni_ranges = 1:65536
-max_header_size = 38
+<span class="token punctuation">[</span>ml2_type_geneve<span class="token punctuation">]</span>
+<span class="token punctuation">..</span>.
+vni_ranges <span class="token operator">=</span> 1:65536
+max_header_size <span class="token operator">=</span> 38
 
-[securitygroup]
-...
-enable_security_group = true
-
-
-
-[ovn]
-...
-ovn_nb_connection = tcp:192.168.151.170:6641 #vip 
-ovn_sb_connection = tcp:192.168.151.170:6642
-ovn_l3_scheduler = leastloaded   
+<span class="token punctuation">[</span>securitygroup<span class="token punctuation">]</span>
+<span class="token punctuation">..</span>.
+enable_security_group <span class="token operator">=</span> <span class="token boolean">true</span>
 
 
-</code></pre>
-<h4 id="mark-gateway-nodes">mark gateway nodes</h4>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# ovs-vsctl set open . external-ids:ovn-cms-options=enable-chassis-as-gw
 
-</code></pre>
-<h4 id="nova-修改配置">nova 修改配置</h4>
-<p><strong>/etc/nova/nova.conf</strong></p>
-<pre class=" language-language-bash"><code class="language-language-bash">[neutron]
-url = http://controller:9696
-auth_url = http://controller:5000
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-region_name = RegionOne
-project_name = service
-username = neutron
-password = neutron
-service_metadata_proxy = true
-metadata_proxy_shared_secret = METADATA_SECRET  # 暂时没用,看ovn的metadata server 怎么做
+<span class="token punctuation">[</span>ovn<span class="token punctuation">]</span>
+<span class="token punctuation">..</span>.
+ovn_nb_connection <span class="token operator">=</span> tcp:192.168.151.170:6641 <span class="token comment" spellcheck="true">#vip </span>
+ovn_sb_connection <span class="token operator">=</span> tcp:192.168.151.170:6642
+ovn_l3_scheduler <span class="token operator">=</span> leastloaded   
 
 
 </code></pre>
-<h4 id="同步数据">同步数据</h4>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini
-[root@controller01 ~]# su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+<h4 id="mark-gateway-nodes"><a href="#mark-gateway-nodes" class="headerlink" title="mark gateway nodes"></a>mark gateway nodes</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ovs-vsctl set open . external-ids:ovn-cms-options=enable-chassis-as-gw</span>
+
+</code></pre>
+<h4 id="nova-修改配置"><a href="#nova-修改配置" class="headerlink" title="nova 修改配置"></a>nova 修改配置</h4><p>  <strong>/etc/nova/nova.conf</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>neutron<span class="token punctuation">]</span>
+url <span class="token operator">=</span> http://controller:9696
+auth_url <span class="token operator">=</span> http://controller:5000
+auth_type <span class="token operator">=</span> password
+project_domain_name <span class="token operator">=</span> Default
+user_domain_name <span class="token operator">=</span> Default
+region_name <span class="token operator">=</span> RegionOne
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+username <span class="token operator">=</span> neutron
+password <span class="token operator">=</span> neutron
+service_metadata_proxy <span class="token operator">=</span> <span class="token boolean">true</span>
+metadata_proxy_shared_secret <span class="token operator">=</span> METADATA_SECRET  <span class="token comment" spellcheck="true"># 暂时没用,看ovn的metadata server 怎么做</span>
 
 
 </code></pre>
-<h4 id="启动">启动</h4>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# systemctl restart openstack-nova-api.service  openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service
-[root@controller01 ~]# systemctl enable neutron-server.service
-[root@controller01 ~]# systemctl start neutron-server.service
-
-</code></pre>
-<h2 id="controller02-controller03">controller02 , controller03</h2>
-<pre class=" language-language-bash"><code class="language-language-bash">
+<h4 id="同步数据"><a href="#同步数据" class="headerlink" title="同步数据"></a>同步数据</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron</span>
 
 
 </code></pre>
-<h2 id="compute-node">compute node</h2>
-<h4 id="安装-ovn">安装 ovn</h4>
-<pre class=" language-language-bin"><code class="language-language-bin">[root@compute01 ~]# yum install   openvswitch-ovn-host openvswitch-ovn-vtep python2-networking-ovn   python2-networking-ovn-metadata-agent  libibverbs -y
-</code></pre>
-<h4 id="add-neutron-in-nova">add neutron in nova</h4>
-<p><strong>/etc/nova/nova.conf</strong></p>
-<pre class=" language-language-bash"><code class="language-language-bash">
-[neutron]
+<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl restart openstack-nova-api.service  openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable neutron-server.service</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl start neutron-server.service</span>
 
-url = http://controller:9696
-auth_url = http://controller:5000
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-region_name = RegionOne
-project_name = service
-username = neutron
-password = neutron
-service_metadata_proxy = true
-metadata_proxy_shared_secret = METADATA_SECRET
+</code></pre>
+<h2 id="controller02-controller03"><a href="#controller02-controller03" class="headerlink" title="controller02 , controller03"></a>controller02 , controller03</h2><pre class=" language-bash"><code class="language-bash">
+
+
+</code></pre>
+<h2 id="compute-node"><a href="#compute-node" class="headerlink" title="compute node"></a>compute node</h2><h4 id="安装-ovn"><a href="#安装-ovn" class="headerlink" title="安装 ovn"></a>安装 ovn</h4><pre class=" language-bin"><code class="language-bin">[root@compute01 ~]# yum install   openvswitch-ovn-host openvswitch-ovn-vtep python2-networking-ovn   python2-networking-ovn-metadata-agent  libibverbs -y
+</code></pre>
+<h4 id="add-neutron-in-nova"><a href="#add-neutron-in-nova" class="headerlink" title="add neutron in nova"></a>add neutron in nova</h4><p>  <strong>/etc/nova/nova.conf</strong></p>
+<pre class=" language-bash"><code class="language-bash">
+<span class="token punctuation">[</span>neutron<span class="token punctuation">]</span>
+
+url <span class="token operator">=</span> http://controller:9696
+auth_url <span class="token operator">=</span> http://controller:5000
+auth_type <span class="token operator">=</span> password
+project_domain_name <span class="token operator">=</span> Default
+user_domain_name <span class="token operator">=</span> Default
+region_name <span class="token operator">=</span> RegionOne
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+username <span class="token operator">=</span> neutron
+password <span class="token operator">=</span> neutron
+service_metadata_proxy <span class="token operator">=</span> <span class="token boolean">true</span>
+metadata_proxy_shared_secret <span class="token operator">=</span> METADATA_SECRET
 
 
 
 </code></pre>
-<h4 id="启动-2">启动</h4>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@compute01 ~]# systemctl enable openvswitch
+<h4 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable openvswitch</span>
 Created symlink from /etc/systemd/system/multi-user.target.wants/openvswitch.service to /usr/lib/systemd/system/openvswitch.service.
-[root@compute01 ~]# systemctl start openvswitch
-[root@compute01 ~]#  ovs-vsctl set open . external-ids:ovn-remote=tcp:192.168.151.170:6642
-[root@compute01 ~]# ovs-vsctl set open . external-ids:ovn-encap-type=geneve,vxlan
-[root@compute01 ~]# ovs-vsctl set open . external-ids:ovn-encap-ip=192.168.151.74
-[root@compute01 ~]# systemctl enable ovn-controller
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl start openvswitch</span>
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  ovs-vsctl set open . external-ids:ovn-remote=tcp:192.168.151.170:6642</span>
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ovs-vsctl set open . external-ids:ovn-encap-type=geneve,vxlan</span>
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ovs-vsctl set open . external-ids:ovn-encap-ip=192.168.151.74</span>
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable ovn-controller</span>
 Created symlink from /etc/systemd/system/multi-user.target.wants/ovn-controller.service to /usr/lib/systemd/system/ovn-controller.service.
-[root@compute01 ~]# systemctl start ovn-controller
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl start ovn-controller</span>
 
-[root@compute01 ~]# service  systemctl enable networking-ovn-metadata-agent
-The service command supports only basic LSB actions (start, stop, restart, try-restart, reload, force-reload, status). For other actions, please try to use systemctl.
-[root@compute01 ~]# systemctl start networking-ovn-metadata-agent
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># service  systemctl enable networking-ovn-metadata-agent</span>
+The <span class="token function">service</span> <span class="token function">command</span> supports only basic LSB actions <span class="token punctuation">(</span>start, stop, restart, try-restart, reload, force-reload, status<span class="token punctuation">)</span>. For other actions, please try to use systemctl.
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl start networking-ovn-metadata-agent</span>
 
 
 
 </code></pre>
-<h4 id="查看">查看</h4>
-<pre class=" language-language-bash"><code class="language-language-bash">
-[root@controller01 ~]# ovn-sbctl show
-Chassis "b2ed9734-2f21-4fac-b8de-8abf0a265186"
-    hostname: "compute01"
+<h4 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h4><pre class=" language-bash"><code class="language-bash">
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ovn-sbctl show</span>
+Chassis <span class="token string">"b2ed9734-2f21-4fac-b8de-8abf0a265186"</span>
+    hostname: <span class="token string">"compute01"</span>
     Encap vxlan
-        ip: "192.168.151.74"
-        options: {csum="true"}
+        ip: <span class="token string">"192.168.151.74"</span>
+        options: <span class="token punctuation">{</span>csum<span class="token operator">=</span><span class="token string">"true"</span><span class="token punctuation">}</span>
     Encap geneve
-        ip: "192.168.151.74"
-        options: {csum="true"}
-[root@controller01 ~]# ovn-nbctl show
+        ip: <span class="token string">"192.168.151.74"</span>
+        options: <span class="token punctuation">{</span>csum<span class="token operator">=</span><span class="token string">"true"</span><span class="token punctuation">}</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ovn-nbctl show</span>
 
 </code></pre>
-<h2 id="说明">说明</h2>
-<ul>
-<li>ovn远程配置的是vip</li>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>ovn远程配置的是vip </li>
 <li>ovsdb vip 是master , controller ip slave ,配置ovsdb server 同步</li>
 </ul>
-<h2 id="ovn-cluster-配置">ovn cluster 配置</h2>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# /usr/share/openvswitch/scripts/ovn-ctl --db-nb-addr=192.168.151.71  --db-nb-create-insecure-remote=yes         --db-sb-addr=192.168.151.71 --db-sb-create-insecure-remote=yes --db-nb-cluster-local-addr=192.168.151.71         --db-sb-cluster-local-addr=192.168.151.71         --ovn-northd-nb-db=tcp:192.168.151.71:6641,tcp:192.168.151.72:6641,tcp:192.168.151.73:6641         --ovn-northd-sb-db=tcp:192.168.151.71:6642,tcp:192.168.151.72:6642,tcp:192.168.151.73:6642         start_northd
+<h2 id="ovn-cluster-配置"><a href="#ovn-cluster-配置" class="headerlink" title="ovn cluster 配置"></a>ovn cluster 配置</h2><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># /usr/share/openvswitch/scripts/ovn-ctl --db-nb-addr=192.168.151.71  --db-nb-create-insecure-remote=yes         --db-sb-addr=192.168.151.71 --db-sb-create-insecure-remote=yes --db-nb-cluster-local-addr=192.168.151.71         --db-sb-cluster-local-addr=192.168.151.71         --ovn-northd-nb-db=tcp:192.168.151.71:6641,tcp:192.168.151.72:6641,tcp:192.168.151.73:6641         --ovn-northd-sb-db=tcp:192.168.151.71:6642,tcp:192.168.151.72:6642,tcp:192.168.151.73:6642         start_northd</span>
 
-[root@controller02 ml2]# /usr/share/openvswitch/scripts/ovn-ctl --db-nb-addr=192.168.151.72           --db-nb-create-insecure-remote=yes           --db-nb-cluster-local-addr=192.168.151.72           --db-sb-addr=192.168.151.72           --db-sb-create-insecure-remote=yes           --db-sb-cluster-local-addr=192.168.151.72           --db-nb-cluster-remote-addr=192.168.151.71           --db-sb-cluster-remote-addr=192.168.151.71           --ovn-northd-nb-db=tcp:192.168.151.71:6641,tcp:192.168.151.72:6641,tcp:192.168.151.73:6641           --ovn-northd-sb-db=tcp:192.168.151.71:6642,tcp:192.168.151.72:6642,tcp:192.168.151.73:6642           start_northd
-
-
-[root@controller03 ~]# /usr/share/openvswitch/scripts/ovn-ctl --db-nb-addr=192.168.151.73           --db-nb-create-insecure-remote=yes           --db-nb-cluster-local-addr=192.168.151.73           --db-sb-addr=192.168.151.73           --db-sb-create-insecure-remote=yes           --db-sb-cluster-local-addr=192.168.151.73           --db-nb-cluster-remote-addr=192.168.151.71           --db-sb-cluster-remote-addr=192.168.151.71           --ovn-northd-nb-db=tcp:192.168.151.71:6641,tcp:192.168.151.72:6641,tcp:192.168.151.73:6641           --ovn-northd-sb-db=tcp:192.168.151.71:6642,tcp:192.168.151.72:6642,tcp:192.168.151.73:6642           start_northd
+<span class="token punctuation">[</span>root@controller02 ml2<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># /usr/share/openvswitch/scripts/ovn-ctl --db-nb-addr=192.168.151.72           --db-nb-create-insecure-remote=yes           --db-nb-cluster-local-addr=192.168.151.72           --db-sb-addr=192.168.151.72           --db-sb-create-insecure-remote=yes           --db-sb-cluster-local-addr=192.168.151.72           --db-nb-cluster-remote-addr=192.168.151.71           --db-sb-cluster-remote-addr=192.168.151.71           --ovn-northd-nb-db=tcp:192.168.151.71:6641,tcp:192.168.151.72:6641,tcp:192.168.151.73:6641           --ovn-northd-sb-db=tcp:192.168.151.71:6642,tcp:192.168.151.72:6642,tcp:192.168.151.73:6642           start_northd</span>
 
 
-#neutron config
-[ovn]
-#ovn_nb_connection = tcp:192.168.151.170:6641
-#ovn_sb_connection = tcp:192.168.151.170:6642
-ovn_nb_connection = tcp:192.168.151.71:6641,tcp:192.168.151.72:6641,tcp:192.168.151.73:6641
-ovn_sb_connection = tcp:192.168.151.71:6642,tcp:192.168.151.72:6642,tcp:192.168.151.73:6642
-ovn_l3_scheduler = leastloaded
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># /usr/share/openvswitch/scripts/ovn-ctl --db-nb-addr=192.168.151.73           --db-nb-create-insecure-remote=yes           --db-nb-cluster-local-addr=192.168.151.73           --db-sb-addr=192.168.151.73           --db-sb-create-insecure-remote=yes           --db-sb-cluster-local-addr=192.168.151.73           --db-nb-cluster-remote-addr=192.168.151.71           --db-sb-cluster-remote-addr=192.168.151.71           --ovn-northd-nb-db=tcp:192.168.151.71:6641,tcp:192.168.151.72:6641,tcp:192.168.151.73:6641           --ovn-northd-sb-db=tcp:192.168.151.71:6642,tcp:192.168.151.72:6642,tcp:192.168.151.73:6642           start_northd</span>
 
+
+<span class="token comment" spellcheck="true">#neutron config</span>
+<span class="token punctuation">[</span>ovn<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true">#ovn_nb_connection = tcp:192.168.151.170:6641</span>
+<span class="token comment" spellcheck="true">#ovn_sb_connection = tcp:192.168.151.170:6642</span>
+ovn_nb_connection <span class="token operator">=</span> tcp:192.168.151.71:6641,tcp:192.168.151.72:6641,tcp:192.168.151.73:6641
+ovn_sb_connection <span class="token operator">=</span> tcp:192.168.151.71:6642,tcp:192.168.151.72:6642,tcp:192.168.151.73:6642
+ovn_l3_scheduler <span class="token operator">=</span> leastloaded
 
 
 
-[root@compute01 ~]# ovs-vsctl set open . external-ids:ovn-remote=tcp:192.168.151.71:6642,tcp:192.168.151.72:6642,tcp:192.168.151.73:6642
 
-# ss 监听71 6642 port 如果 71 6642 down 会开始监听 72 6642
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ovs-vsctl set open . external-ids:ovn-remote=tcp:192.168.151.71:6642,tcp:192.168.151.72:6642,tcp:192.168.151.73:6642</span>
+
+<span class="token comment" spellcheck="true"># ss 监听71 6642 port 如果 71 6642 down 会开始监听 72 6642</span>
 
 </code></pre>
-<h2 id="ovn-master-slave-配置">ovn master slave 配置</h2>
-<pre class=" language-language-bash"><code class="language-language-bash">
-[root@controller01 ~]# /usr/share/openvswitch/scripts/ovn-ctl  start_northd     --db-sb-sync-from-addr=192.168.151.170     --db-nb-sync-from-addr=192.168.151.170  --db-sb-create-insecure-remote=yes  --db-nb-create-insecure-remote=yes
+<h2 id="ovn-master-slave-配置"><a href="#ovn-master-slave-配置" class="headerlink" title="ovn master slave 配置"></a>ovn master slave 配置</h2><pre class=" language-bash"><code class="language-bash">
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># /usr/share/openvswitch/scripts/ovn-ctl  start_northd     --db-sb-sync-from-addr=192.168.151.170     --db-nb-sync-from-addr=192.168.151.170  --db-sb-create-insecure-remote=yes  --db-nb-create-insecure-remote=yes</span>
 
-[root@controller03 ~]# /usr/share/openvswitch/scripts/ovn-ctl  start_northd     --db-sb-sync-from-addr=192.168.151.170     --db-nb-sync-from-addr=192.168.151.170  --db-sb-create-insecure-remote=yes  --db-nb-create-insecure-remote=yes
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># /usr/share/openvswitch/scripts/ovn-ctl  start_northd     --db-sb-sync-from-addr=192.168.151.170     --db-nb-sync-from-addr=192.168.151.170  --db-sb-create-insecure-remote=yes  --db-nb-create-insecure-remote=yes</span>
 
-[root@controller02 ~]# /usr/share/openvswitch/scripts/ovn-ctl  start_northd     --db-sb-sync-from-addr=192.168.151.170     --db-nb-sync-from-addr=192.168.151.170  --db-sb-create-insecure-remote=yes  --db-nb-create-insecure-remote=yes
+<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># /usr/share/openvswitch/scripts/ovn-ctl  start_northd     --db-sb-sync-from-addr=192.168.151.170     --db-nb-sync-from-addr=192.168.151.170  --db-sb-create-insecure-remote=yes  --db-nb-create-insecure-remote=yes</span>
 
 
-# 配置换成 floating ip 
+<span class="token comment" spellcheck="true"># 配置换成 floating ip </span>
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
@@ -964,12 +938,10 @@ ovn_l3_scheduler = leastloaded
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">controller01
-安装包
-[root@controller01 ~]# yum install openstack-dashboard -y
+                    <div class="summary block-with-text">controller01安装包[root@controller01 ~]# yum install openstack-dashboard -y
 
 
-修改文件 /etc/openstack-dashboard/local_setting</div>
+修改文件 /etc/openstack-dashboard/local_settingsO</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-21
@@ -1014,12 +986,10 @@ ovn_l3_scheduler = leastloaded
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">controller01
-安装数据库
-MariaDB [(none)]> CREATE DATABASE nova_api;
+                    <div class="summary block-with-text">controller01安装数据库MariaDB [(none)]> CREATE DATABASE nova_api;
 Query OK, 1 row affected (0.005 sec)
 
-MariaDB [(none)]> C</div>
+MariaDB [(none)]> CRE</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-21
@@ -1197,7 +1167,7 @@ MariaDB [(none)]> C</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

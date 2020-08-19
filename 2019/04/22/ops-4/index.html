@@ -6,10 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="rabbitmq集群安装, openstack,opennebula">
     <meta name="description" content="机器准备 (centos7)
-
 192.168.224.181 controller1  terminaldevice-1
 192.168.224.182 controller2  terminaldevice-2
-192.168.224.">
+192.168.224.1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -437,7 +436,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        221
+                        226
                     </div>
                     
 
@@ -460,8 +459,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="机器准备-centos7">机器准备 (centos7)</h3>
-<ul>
+                <h3 id="机器准备-centos7"><a href="#机器准备-centos7" class="headerlink" title="机器准备 (centos7)"></a>机器准备 (centos7)</h3><ul>
 <li>192.168.224.181 controller1  terminaldevice-1</li>
 <li>192.168.224.182 controller2  terminaldevice-2</li>
 <li>192.168.224.183 controller3  terminaldevice-3</li>
@@ -494,44 +492,32 @@ rabbitmqctl start_app
 
 
 [root@terminaldevice-1 mysql]#  rabbitmqctl cluster_status
-Cluster status of node 'rabbit@terminaldevice-1' ...
-[{nodes,[{disc,['rabbit@terminaldevice-1']}]},
- {running_nodes,['rabbit@terminaldevice-1']},
+Cluster status of node &#39;rabbit@terminaldevice-1&#39; ...
+[{nodes,[{disc,[&#39;rabbit@terminaldevice-1&#39;]}]},
+ {running_nodes,[&#39;rabbit@terminaldevice-1&#39;]},
  {cluster_name,&lt;&lt;&quot;rabbit@controller1&quot;&gt;&gt;},
  {partitions,[]}]
 ...done.
 
 
-</code></pre>
-<h3 id="RABBITMQ退出集群">RABBITMQ退出集群</h3>
-<h4 id="rabbit-node">rabbit node</h4>
-<ul>
-<li>
-<p>rabbitmqctl stop_app</p>
+</code></pre><h3 id="RABBITMQ退出集群"><a href="#RABBITMQ退出集群" class="headerlink" title="RABBITMQ退出集群"></a>RABBITMQ退出集群</h3><h4 id="rabbit-node"><a href="#rabbit-node" class="headerlink" title="rabbit node"></a>rabbit node</h4><ul>
+<li><p>rabbitmqctl stop_app</p>
 </li>
-<li>
-<p>rabbitmqctl reset</p>
+<li><p>rabbitmqctl reset</p>
 </li>
-<li>
-<p>rabbitmqctl start_app</p>
+<li><p>rabbitmqctl start_app</p>
 </li>
 </ul>
-<h4 id="master-node">master node</h4>
-<ul>
+<h4 id="master-node"><a href="#master-node" class="headerlink" title="master node"></a>master node</h4><ul>
 <li>rabbitmqctl forget_cluster_node rabbit@rabbitmq2</li>
 </ul>
-<h3 id="RABBITMQ集群重启">RABBITMQ集群重启</h3>
-<h4 id="先在一个节点上执行">先在一个节点上执行</h4>
-<ul>
-<li>
-<p>rabbitmqctl force_boot</p>
+<h3 id="RABBITMQ集群重启"><a href="#RABBITMQ集群重启" class="headerlink" title="RABBITMQ集群重启"></a>RABBITMQ集群重启</h3><h4 id="先在一个节点上执行"><a href="#先在一个节点上执行" class="headerlink" title="先在一个节点上执行"></a>先在一个节点上执行</h4><ul>
+<li><p>rabbitmqctl force_boot</p>
 </li>
-<li>
-<p>service rabbitmq-server start</p>
+<li><p>service rabbitmq-server start</p>
 </li>
 </ul>
-<h4 id="在其他节点上执行">在其他节点上执行</h4>
-<ul>
+<h4 id="在其他节点上执行"><a href="#在其他节点上执行" class="headerlink" title="在其他节点上执行"></a>在其他节点上执行</h4><ul>
 <li>service rabbitmq-server start</li>
 </ul>
 <p>#查看cluster状态是否正常（要在所有节点上查询）。</p>
@@ -721,10 +707,9 @@ Cluster status of node 'rabbit@terminaldevice-1' ...
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">hosts
-
 192.168.224.181 controller1  terminaldevice-1
 192.168.224.182 controller2  terminaldevice-2
-192.168.224.183 contr</div>
+192.168.224.183 contro</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-22
@@ -778,14 +763,11 @@ Cluster status of node 'rabbit@terminaldevice-1' ...
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">准备
+192.168.224.181    controller1 
+192.168.224.182   controller2 
+192.168.224.183   controller3 
 
-192.168.224.181    controller1
-192.168.224.182   controller2
-192.168.224.183   controller3
-
-yum 源
-# 163源测试,找不到wsrep
-</div>
+yum 源# 163源测试,找不到wsrep</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-19
@@ -967,7 +949,7 @@ yum 源
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

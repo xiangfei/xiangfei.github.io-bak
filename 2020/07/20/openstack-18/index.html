@@ -5,11 +5,9 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="openstack ussuri centos8 高可用安装 glance, openstack,opennebula">
-    <meta name="description" content="controller01
-环境准备
-初始化数据库
-[root@controller01 ~]# mysql -u root
-Welcome to the MariaDB monitor.  Commands end with ; or \g">
+    <meta name="description" content="controller01环境准备初始化数据库[root@controller01 ~]# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Y">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -441,7 +439,7 @@ Welcome to the MariaDB monitor.  Commands end with ; or \g">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        863
+                        882
                     </div>
                     
 
@@ -464,32 +462,27 @@ Welcome to the MariaDB monitor.  Commands end with ; or \g">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="controller01">controller01</h2>
-<h3 id="环境准备">环境准备</h3>
-<h4 id="初始化数据库">初始化数据库</h4>
-<pre><code>[root@controller01 ~]# mysql -u root
+                <h2 id="controller01"><a href="#controller01" class="headerlink" title="controller01"></a>controller01</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><h4 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h4><pre><code>[root@controller01 ~]# mysql -u root
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 17
 Server version: 10.3.17-MariaDB MariaDB Server
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
 
 MariaDB [(none)]&gt; CREATE DATABASE glance;
 Query OK, 1 row affected (0.082 sec)
 
-MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' IDENTIFIED BY 'glance';
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON glance.* TO &#39;glance&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;glance&#39;;
 Query OK, 0 rows affected (0.053 sec)
 
-MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' IDENTIFIED BY 'glance';
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON glance.* TO &#39;glance&#39;@&#39;%&#39; IDENTIFIED BY &#39;glance&#39;;
 Query OK, 0 rows affected (0.046 sec)
 
 MariaDB [(none)]&gt; 
 
-</code></pre>
-<h4 id="create-project">create project</h4>
-<pre><code>[root@controller01 ~]# source openrc 
+</code></pre><h4 id="create-project"><a href="#create-project" class="headerlink" title="create project"></a>create project</h4><pre><code>[root@controller01 ~]# source openrc 
 [root@controller01 ~]# openstack project create service
 +-------------+----------------------------------+
 | Field       | Value                            |
@@ -506,9 +499,7 @@ MariaDB [(none)]&gt;
 +-------------+----------------------------------+
 
 
-</code></pre>
-<h4 id="create-user">create user</h4>
-<pre><code>[root@controller01 ~]# openstack user create --domain default --password-prompt glance
+</code></pre><h4 id="create-user"><a href="#create-user" class="headerlink" title="create user"></a>create user</h4><pre><code>[root@controller01 ~]# openstack user create --domain default --password-prompt glance
 User Password:
 Repeat User Password:
 +---------------------+----------------------------------+
@@ -525,14 +516,10 @@ Repeat User Password:
 
 # set default user glance
 
-</code></pre>
-<h4 id="Add-the-admin-role-to-the-glance-user-and-service-project">Add the admin role to the glance user and service project</h4>
-<pre><code>[root@controller01 ~]# openstack role add --project service --user glance admin
+</code></pre><h4 id="Add-the-admin-role-to-the-glance-user-and-service-project"><a href="#Add-the-admin-role-to-the-glance-user-and-service-project" class="headerlink" title="Add the admin role to the glance user and service project"></a>Add the admin role to the glance user and service project</h4><pre><code>[root@controller01 ~]# openstack role add --project service --user glance admin
 [root@controller01 ~]# 
 
-</code></pre>
-<h4 id="Create-the-glance-service-entity">Create the glance service entity:</h4>
-<pre><code>[root@controller01 ~]# openstack service create --name glance  --description &quot;OpenStack Image&quot; image
+</code></pre><h4 id="Create-the-glance-service-entity"><a href="#Create-the-glance-service-entity" class="headerlink" title="Create the glance service entity:"></a>Create the glance service entity:</h4><pre><code>[root@controller01 ~]# openstack service create --name glance  --description &quot;OpenStack Image&quot; image
 +-------------+----------------------------------+
 | Field       | Value                            |
 +-------------+----------------------------------+
@@ -544,9 +531,7 @@ Repeat User Password:
 +-------------+----------------------------------+
 [root@controller01 ~]# 
 
-</code></pre>
-<h4 id="Create-the-Image-service-API-endpoints">Create the Image service API endpoints</h4>
-<pre><code>[root@controller01 ~]# openstack endpoint create --region RegionOne image public http://controller:9292
+</code></pre><h4 id="Create-the-Image-service-API-endpoints"><a href="#Create-the-Image-service-API-endpoints" class="headerlink" title="Create the Image service API endpoints"></a>Create the Image service API endpoints</h4><pre><code>[root@controller01 ~]# openstack endpoint create --region RegionOne image public http://controller:9292
 +--------------+----------------------------------+
 | Field        | Value                            |
 +--------------+----------------------------------+
@@ -592,17 +577,12 @@ Repeat User Password:
 
 #### admin internal  public 
 
-</code></pre>
-<blockquote>
+</code></pre><blockquote>
 <p>centos rdo 安装 cli 缺少创建项目</p>
 </blockquote>
-<h3 id="安装glance">安装glance</h3>
-<h4 id="Install-the-packages">Install the packages</h4>
-<pre><code>[root@controller02 ~]# yum install openstack-glance -y
+<h3 id="安装glance"><a href="#安装glance" class="headerlink" title="安装glance"></a>安装glance</h3><h4 id="Install-the-packages"><a href="#Install-the-packages" class="headerlink" title="Install the packages"></a>Install the packages</h4><pre><code>[root@controller02 ~]# yum install openstack-glance -y
 
-</code></pre>
-<h4 id="Edit-the-etc-glance-glance-api-conf">Edit the /etc/glance/glance-api.conf</h4>
-<pre><code>[database]
+</code></pre><h4 id="Edit-the-etc-glance-glance-api-conf"><a href="#Edit-the-etc-glance-glance-api-conf" class="headerlink" title="Edit the /etc/glance/glance-api.conf"></a>Edit the /etc/glance/glance-api.conf</h4><pre><code>[database]
 connection = mysql+pymysql://glance:glance@controller/glance
 
 
@@ -627,13 +607,11 @@ default_store = file
 filesystem_store_datadir = /var/lib/glance/images/
 
 
-</code></pre>
-<h4 id="Populate-the-Image-service-database">Populate the Image service database:</h4>
-<pre><code>[root@controller01 ~]# su -s /bin/sh -c &quot;glance-manage db_sync&quot; glance
+</code></pre><h4 id="Populate-the-Image-service-database"><a href="#Populate-the-Image-service-database" class="headerlink" title="Populate the Image service database:"></a>Populate the Image service database:</h4><pre><code>[root@controller01 ~]# su -s /bin/sh -c &quot;glance-manage db_sync&quot; glance
 INFO  [alembic.runtime.migration] Context impl MySQLImpl.
 INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
 INFO  [alembic.runtime.migration] Running upgrade  -&gt; liberty, liberty initial
-INFO  [alembic.runtime.migration] Running upgrade liberty -&gt; mitaka01, add index on created_at and updated_at columns of 'images' table
+INFO  [alembic.runtime.migration] Running upgrade liberty -&gt; mitaka01, add index on created_at and updated_at columns of &#39;images&#39; table
 INFO  [alembic.runtime.migration] Running upgrade mitaka01 -&gt; mitaka02, update metadef os_nova_server
 INFO  [alembic.runtime.migration] Running upgrade mitaka02 -&gt; ocata_expand01, add visibility to images
 INFO  [alembic.runtime.migration] Running upgrade ocata_expand01 -&gt; pike_expand01, empty expand for symmetry with pike_contract01
@@ -669,16 +647,13 @@ INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
 Database is synced successfully.
 
 
-</code></pre>
-<h4 id="start">start</h4>
-<pre><code>[root@controller01 ~]#  systemctl enable openstack-glance-api.service
+</code></pre><h4 id="start"><a href="#start" class="headerlink" title="start"></a>start</h4><pre><code>[root@controller01 ~]#  systemctl enable openstack-glance-api.service
 Created symlink /etc/systemd/system/multi-user.target.wants/openstack-glance-api.service → /usr/lib/systemd/system/openstack-glance-api.service.
 [root@controller01 ~]# systemctl start openstack-glance-api.service
 [root@controller01 ~]# 
 
 
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -860,9 +835,9 @@ Created symlink /etc/systemd/system/multi-user.target.wants/openstack-glance-api
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">结构
-[root@controller02 ~]# cat /etc/hosts 
-127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</div>
+                    <div class="summary block-with-text">结构[root@controller02 ~]# cat /etc/hosts 
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-06
@@ -924,15 +899,12 @@ Created symlink /etc/systemd/system/multi-user.target.wants/openstack-glance-api
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">创建vip
-
-用来安装, 手动创建vip
+用来安装, 手动创建vip  
 
 [root@controller01 ~]# ip address add dev ens5 10.10.102.190/24
 
 
-controller01 操作
-初始化数据库
-[root@con</div>
+controller01 操作初始化数据库[root@cont</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-17
@@ -1118,7 +1090,7 @@ controller01 操作
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

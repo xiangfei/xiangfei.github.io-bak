@@ -5,8 +5,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="django 分页, openstack,opennebula">
-    <meta name="description" content="post 查找分页
-#!/usr/bin/python 
+    <meta name="description" content="post 查找分页#!/usr/bin/python 
 # -*- coding: utf-8 -*-
 
 
@@ -15,7 +14,7 @@ Created on 2018年5月2日
 
 @author: xiangfei
 &#39;&#39;&#39;
-from rest_framewo">
+from rest_framewor">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -462,106 +461,105 @@ from rest_framewo">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1>post 查找分页</h1>
-<pre class=" language-language-python"><code class="language-language-python">#!/usr/bin/python 
-# -*- coding: utf-8 -*-
+                <h1 id="post-查找分页"><a href="#post-查找分页" class="headerlink" title="post 查找分页"></a>post 查找分页</h1><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/python </span>
+<span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
 
 
-'''
+<span class="token triple-quoted-string string">'''
 Created on 2018年5月2日
 
 @author: xiangfei
-'''
-from rest_framework.pagination import PageNumberPagination
-from rest_framework.response import Response
-from django.core.paginator import InvalidPage
-from django.utils import six
-from rest_framework.exceptions import NotFound
-from rest_framework.pagination import _positive_int
-#默认get查询方式，post不起作用
-class CommonPagination(PageNumberPagination):
-    #默认每页显示的个数
-    page_size = 10
-    #可以动态改变每页显示的个数
-    page_size_query_param = 'page_size'
-    #页码参数
-    page_query_param = 'page'
-    #最多能显示多少页
-    max_page_size = 100
-    
-    def get_paginated_response(self, data):
-        return Response({
-#             'links': {
-#                 'next': self.get_next_link(),
-#                 'previous': self.get_previous_link()
-#             },
-            'page_size':self.page_size,
-            'count': self.page.paginator.count,
-            'data': data
-        })
+'''</span>
+<span class="token keyword">from</span> rest_framework<span class="token punctuation">.</span>pagination <span class="token keyword">import</span> PageNumberPagination
+<span class="token keyword">from</span> rest_framework<span class="token punctuation">.</span>response <span class="token keyword">import</span> Response
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>core<span class="token punctuation">.</span>paginator <span class="token keyword">import</span> InvalidPage
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>utils <span class="token keyword">import</span> six
+<span class="token keyword">from</span> rest_framework<span class="token punctuation">.</span>exceptions <span class="token keyword">import</span> NotFound
+<span class="token keyword">from</span> rest_framework<span class="token punctuation">.</span>pagination <span class="token keyword">import</span> _positive_int
+<span class="token comment" spellcheck="true">#默认get查询方式，post不起作用</span>
+<span class="token keyword">class</span> <span class="token class-name">CommonPagination</span><span class="token punctuation">(</span>PageNumberPagination<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true">#默认每页显示的个数</span>
+    page_size <span class="token operator">=</span> <span class="token number">10</span>
+    <span class="token comment" spellcheck="true">#可以动态改变每页显示的个数</span>
+    page_size_query_param <span class="token operator">=</span> <span class="token string">'page_size'</span>
+    <span class="token comment" spellcheck="true">#页码参数</span>
+    page_query_param <span class="token operator">=</span> <span class="token string">'page'</span>
+    <span class="token comment" spellcheck="true">#最多能显示多少页</span>
+    max_page_size <span class="token operator">=</span> <span class="token number">100</span>
+
+    <span class="token keyword">def</span> <span class="token function">get_paginated_response</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> Response<span class="token punctuation">(</span><span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">#             'links': {</span>
+<span class="token comment" spellcheck="true">#                 'next': self.get_next_link(),</span>
+<span class="token comment" spellcheck="true">#                 'previous': self.get_previous_link()</span>
+<span class="token comment" spellcheck="true">#             },</span>
+            <span class="token string">'page_size'</span><span class="token punctuation">:</span>self<span class="token punctuation">.</span>page_size<span class="token punctuation">,</span>
+            <span class="token string">'count'</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>page<span class="token punctuation">.</span>paginator<span class="token punctuation">.</span>count<span class="token punctuation">,</span>
+            <span class="token string">'data'</span><span class="token punctuation">:</span> data
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
 
-#PageNu
-class ServerPagination(PageNumberPagination):
-    
-    
-    #默认每页显示的个数
-    page_size = 10
-    #可以动态改变每页显示的个数
-    page_size_query_param = 'page_size'
-    #页码参数
-    page_query_param = 'current_page'
+<span class="token comment" spellcheck="true">#PageNu</span>
+<span class="token keyword">class</span> <span class="token class-name">ServerPagination</span><span class="token punctuation">(</span>PageNumberPagination<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+
+    <span class="token comment" spellcheck="true">#默认每页显示的个数</span>
+    page_size <span class="token operator">=</span> <span class="token number">10</span>
+    <span class="token comment" spellcheck="true">#可以动态改变每页显示的个数</span>
+    page_size_query_param <span class="token operator">=</span> <span class="token string">'page_size'</span>
+    <span class="token comment" spellcheck="true">#页码参数</span>
+    page_query_param <span class="token operator">=</span> <span class="token string">'current_page'</span>
 
 
 
-    def get_page_size(self, request):
-        if self.page_size_query_param:
-            try:
-                return _positive_int(
-                    request.data[self.page_size_query_param],
-                    strict=True,
-                    cutoff=self.max_page_size
-                )
-            except (KeyError, ValueError):
-                pass
+    <span class="token keyword">def</span> <span class="token function">get_page_size</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>page_size_query_param<span class="token punctuation">:</span>
+            <span class="token keyword">try</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> _positive_int<span class="token punctuation">(</span>
+                    request<span class="token punctuation">.</span>data<span class="token punctuation">[</span>self<span class="token punctuation">.</span>page_size_query_param<span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    strict<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+                    cutoff<span class="token operator">=</span>self<span class="token punctuation">.</span>max_page_size
+                <span class="token punctuation">)</span>
+            <span class="token keyword">except</span> <span class="token punctuation">(</span>KeyError<span class="token punctuation">,</span> ValueError<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">pass</span>
 
-        return self.page_size
-    def paginate_queryset(self, queryset, request, view=None):
-        """
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>page_size
+    <span class="token keyword">def</span> <span class="token function">paginate_queryset</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> queryset<span class="token punctuation">,</span> request<span class="token punctuation">,</span> view<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
         Paginate a queryset if required, either returning a
         page object, or `None` if pagination is not configured for this view.
-        """
-        page_size = self.get_page_size(request)
-        if not page_size:
-            return None
+        """</span>
+        page_size <span class="token operator">=</span> self<span class="token punctuation">.</span>get_page_size<span class="token punctuation">(</span>request<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token operator">not</span> page_size<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
 
-        paginator = self.django_paginator_class(queryset, page_size)
-        page_number = request.data.get(self.page_query_param, 1)
-        if page_number in self.last_page_strings:
-            page_number = paginator.num_pages
+        paginator <span class="token operator">=</span> self<span class="token punctuation">.</span>django_paginator_class<span class="token punctuation">(</span>queryset<span class="token punctuation">,</span> page_size<span class="token punctuation">)</span>
+        page_number <span class="token operator">=</span> request<span class="token punctuation">.</span>data<span class="token punctuation">.</span>get<span class="token punctuation">(</span>self<span class="token punctuation">.</span>page_query_param<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> page_number <span class="token keyword">in</span> self<span class="token punctuation">.</span>last_page_strings<span class="token punctuation">:</span>
+            page_number <span class="token operator">=</span> paginator<span class="token punctuation">.</span>num_pages
 
-        try:
-            self.page = paginator.page(page_number)
-        except InvalidPage as exc:
-            msg = self.invalid_page_message.format(
-                page_number=page_number, message=six.text_type(exc)
-            )
-            raise NotFound(msg)
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>page <span class="token operator">=</span> paginator<span class="token punctuation">.</span>page<span class="token punctuation">(</span>page_number<span class="token punctuation">)</span>
+        <span class="token keyword">except</span> InvalidPage <span class="token keyword">as</span> exc<span class="token punctuation">:</span>
+            msg <span class="token operator">=</span> self<span class="token punctuation">.</span>invalid_page_message<span class="token punctuation">.</span>format<span class="token punctuation">(</span>
+                page_number<span class="token operator">=</span>page_number<span class="token punctuation">,</span> message<span class="token operator">=</span>six<span class="token punctuation">.</span>text_type<span class="token punctuation">(</span>exc<span class="token punctuation">)</span>
+            <span class="token punctuation">)</span>
+            <span class="token keyword">raise</span> NotFound<span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
 
-        if paginator.num_pages > 1 and self.template is not None:
-            # The browsable API should display pagination controls.
-            self.display_page_controls = True
+        <span class="token keyword">if</span> paginator<span class="token punctuation">.</span>num_pages <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">and</span> self<span class="token punctuation">.</span>template <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># The browsable API should display pagination controls.</span>
+            self<span class="token punctuation">.</span>display_page_controls <span class="token operator">=</span> <span class="token boolean">True</span>
 
-        self.request = request
-        return list(self.page)
+        self<span class="token punctuation">.</span>request <span class="token operator">=</span> request
+        <span class="token keyword">return</span> list<span class="token punctuation">(</span>self<span class="token punctuation">.</span>page<span class="token punctuation">)</span>
 
-    
-    def get_paginated_response(self, data):
-        total = self.page.paginator.count
-        page_size = self.request.data.get(self.page_size_query_param, self.page_size)
-        current_page = self.request.data.get(self.page_query_param , 1)
-        ret = {'code':200,'msg':None,'data':{'msg':data,'total':total,'page_size':page_size,'current_page': current_page }}
-        return Response(ret)
+
+    <span class="token keyword">def</span> <span class="token function">get_paginated_response</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        total <span class="token operator">=</span> self<span class="token punctuation">.</span>page<span class="token punctuation">.</span>paginator<span class="token punctuation">.</span>count
+        page_size <span class="token operator">=</span> self<span class="token punctuation">.</span>request<span class="token punctuation">.</span>data<span class="token punctuation">.</span>get<span class="token punctuation">(</span>self<span class="token punctuation">.</span>page_size_query_param<span class="token punctuation">,</span> self<span class="token punctuation">.</span>page_size<span class="token punctuation">)</span>
+        current_page <span class="token operator">=</span> self<span class="token punctuation">.</span>request<span class="token punctuation">.</span>data<span class="token punctuation">.</span>get<span class="token punctuation">(</span>self<span class="token punctuation">.</span>page_query_param <span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        ret <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'code'</span><span class="token punctuation">:</span><span class="token number">200</span><span class="token punctuation">,</span><span class="token string">'msg'</span><span class="token punctuation">:</span>None<span class="token punctuation">,</span><span class="token string">'data'</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">'msg'</span><span class="token punctuation">:</span>data<span class="token punctuation">,</span><span class="token string">'total'</span><span class="token punctuation">:</span>total<span class="token punctuation">,</span><span class="token string">'page_size'</span><span class="token punctuation">:</span>page_size<span class="token punctuation">,</span><span class="token string">'current_page'</span><span class="token punctuation">:</span> current_page <span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token keyword">return</span> Response<span class="token punctuation">(</span>ret<span class="token punctuation">)</span>
 
 
 </code></pre>
@@ -747,13 +745,13 @@ class ServerPagination(PageNumberPagination):
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">markdown 画图
-{% mermaid %}
+                    <div class="summary block-with-text">markdown 画图{% mermaid %}
 graph TD
 A[Client] --> B[Load Balancer]
 B --> C[Server01]
 B --> D[Server02]
 {% endmermaid %}
+
 
 </div>
                     <div class="publish-info">
@@ -801,7 +799,6 @@ B --> D[Server02]
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">说明
-
 查找get 改成post
 
 #!/usr/bin/python 
@@ -813,7 +810,7 @@ Created on 2018年5月2日
 
 @author: xiangfei
 '''
-from rest</div>
+from rest_</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-25
@@ -991,7 +988,7 @@ from rest</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

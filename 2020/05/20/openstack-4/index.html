@@ -8,7 +8,6 @@
     <meta name="description" content="基本信息
 
 
-
 vip
 管理ip
 存储ip
@@ -28,7 +27,7 @@ centos 7
 
 
 192.168.151.200
-192.168.">
+192.168.1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -475,8 +474,7 @@ centos 7
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1>基本信息</h1>
-<table>
+                <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><table>
 <thead>
 <tr>
 <th>vip</th>
@@ -522,57 +520,51 @@ centos 7
 </tr>
 </tbody>
 </table>
-<h3 id="内核升级-all-node">内核升级(all node)</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@localhost ~]# yum install https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm
-[root@localhost ~]# yum --disablerepo="*" --enablerepo=elrepo-kernel install -y kernel-ml
-[root@localhost ~]# grub2-set-default 0
+<h3 id="内核升级-all-node"><a href="#内核升级-all-node" class="headerlink" title="内核升级(all node)"></a>内核升级(all node)</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm</span>
+<span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum --disablerepo="*" --enablerepo=elrepo-kernel install -y kernel-ml</span>
+<span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># grub2-set-default 0</span>
 
 </code></pre>
-<h3 id="修改hostname-only-controller-node">修改hostname (only controller node)</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">
+<h3 id="修改hostname-only-controller-node"><a href="#修改hostname-only-controller-node" class="headerlink" title="修改hostname (only controller node)"></a>修改hostname (only controller node)</h3><pre class=" language-bash"><code class="language-bash">
 hostnamectl set-hostname controller02  controller03  controller01
 
 
 </code></pre>
-<h3 id="copy公钥-only-controller-node">copy公钥 (only controller node)</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">ssh-keygen # 一直回车
+<h3 id="copy公钥-only-controller-node"><a href="#copy公钥-only-controller-node" class="headerlink" title="copy公钥 (only controller node)"></a>copy公钥 (only controller node)</h3><pre class=" language-bash"><code class="language-bash">ssh-keygen <span class="token comment" spellcheck="true"># 一直回车</span>
 
 ssh-copy-id  root@controller01  root@controller02 root@controller03
 
 </code></pre>
-<h3 id="修改hosts配置-all-node">修改hosts配置(all node)</h3>
-<pre class=" language-language-bash"><code class="language-language-bash"># /etc/hosts
+<h3 id="修改hosts配置-all-node"><a href="#修改hosts配置-all-node" class="headerlink" title="修改hosts配置(all node)"></a>修改hosts配置(all node)</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># /etc/hosts</span>
 192.168.151.71 controller01
 192.168.151.72 controller02
 192.168.151.73 controller03
 192.168.151.170 controller
 
 </code></pre>
-<h3 id="准备安装包-all-node">准备安装包(all node)</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# yum -y install centos-release-openstack-stein
-[root@controller01 ~]# yum upgrade  # 内核如果开始安装会被替换,需要重新替换回去
-[root@controller01 ~]# yum -y install openstack-selinux # 或者关闭防火墙, selinux
-# 本人测试安装selinux 后关闭防火墙
+<h3 id="准备安装包-all-node"><a href="#准备安装包-all-node" class="headerlink" title="准备安装包(all node)"></a>准备安装包(all node)</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y install centos-release-openstack-stein</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum upgrade  # 内核如果开始安装会被替换,需要重新替换回去</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y install openstack-selinux # 或者关闭防火墙, selinux</span>
+<span class="token comment" spellcheck="true"># 本人测试安装selinux 后关闭防火墙</span>
 
-[root@controller01 ~]# service firewalld stop
-[root@controller01 ~]# cat /etc/selinux/config 
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># service firewalld stop</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /etc/selinux/config </span>
 
-# This file controls the state of SELinux on the system.
-# SELINUX= can take one of these three values:
-#     enforcing - SELinux security policy is enforced.
-#     permissive - SELinux prints warnings instead of enforcing.
-#     disabled - No SELinux policy is loaded.
-SELINUX=disabled
-# SELINUXTYPE= can take one of three two values:
-#     targeted - Targeted processes are protected,
-#     minimum - Modification of targeted policy. Only selected processes are protected. 
-#     mls - Multi Level Security protection.
-SELINUXTYPE=targeted 
+<span class="token comment" spellcheck="true"># This file controls the state of SELinux on the system.</span>
+<span class="token comment" spellcheck="true"># SELINUX= can take one of these three values:</span>
+<span class="token comment" spellcheck="true">#     enforcing - SELinux security policy is enforced.</span>
+<span class="token comment" spellcheck="true">#     permissive - SELinux prints warnings instead of enforcing.</span>
+<span class="token comment" spellcheck="true">#     disabled - No SELinux policy is loaded.</span>
+SELINUX<span class="token operator">=</span>disabled
+<span class="token comment" spellcheck="true"># SELINUXTYPE= can take one of three two values:</span>
+<span class="token comment" spellcheck="true">#     targeted - Targeted processes are protected,</span>
+<span class="token comment" spellcheck="true">#     minimum - Modification of targeted policy. Only selected processes are protected. </span>
+<span class="token comment" spellcheck="true">#     mls - Multi Level Security protection.</span>
+SELINUXTYPE<span class="token operator">=</span>targeted 
 
 
 </code></pre>
-<h3 id="安装python-client-controller-node">安装python client(controller node)</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# yum -y install python-openstackclient
+<h3 id="安装python-client-controller-node"><a href="#安装python-client-controller-node" class="headerlink" title="安装python client(controller node)"></a>安装python client(controller node)</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y install python-openstackclient</span>
 
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -757,10 +749,8 @@ SELINUXTYPE=targeted
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">mariadb galera 安装
-controller node 执行
-# controller01 
-[root@controller01 ~]# yum install mariadb mariadb-server python2-P</div>
+                    <div class="summary block-with-text">mariadb galera 安装controller node 执行# controller01 
+[root@controller01 ~]# yum install mariadb mariadb-server python2-PyM</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-20
@@ -805,22 +795,19 @@ controller node 执行
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">ruby collect 内存一直增加
-reason ruby 申请的内存不会释放,需要自己去解决
+                    <div class="summary block-with-text">ruby collect 内存一直增加reason ruby 申请的内存不会释放,需要自己去解决
 
 代码启动过高的线程
 代码可能导致内存泄露
 
 解决方式
 
-
-god  killer
-
+god  killer 
 
 线程换成进程处理
 
 
-require 'timeou</div>
+require 'timeout'</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-16
@@ -998,7 +985,7 @@ require 'timeou</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

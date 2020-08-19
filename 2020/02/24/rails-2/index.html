@@ -6,21 +6,17 @@
     <meta charset="utf-8">
     <meta name="keywords" content="rails consul 微服务(服务发现 , 负载均衡), openstack,opennebula">
     <meta name="description" content="实现思路
-
 每隔2秒查看consul ui 有没注册服务
-
 consul 没有watch 方法
 
 
-在控制台启动
-
+在控制台启动 
 console sope
 
 
 puma 启动
-
 on_worker_boot watch
-打开 workers ENV.fe">
+打开 workers ENV.fetch">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -444,7 +440,7 @@ on_worker_boot watch
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        166
+                        205
                     </div>
                     
 
@@ -467,89 +463,39 @@ on_worker_boot watch
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="实现思路">实现思路</h3>
-<ul>
-<li>每隔2秒查看consul ui 有没注册服务
-<ul>
+                <h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><ul>
+<li>每隔2秒查看consul ui 有没注册服务<ul>
 <li>consul 没有watch 方法</li>
 </ul>
 </li>
-<li>在控制台启动
-<ul>
+<li>在控制台启动 <ul>
 <li>console sope</li>
 </ul>
 </li>
-<li>puma 启动
-<ul>
+<li>puma 启动<ul>
 <li>on_worker_boot watch</li>
-<li>打开 workers ENV.fetch(“WEB_CONCURRENCY”) { 2 }</li>
+<li>打开 workers ENV.fetch(“WEB_CONCURRENCY”) { 2 }  </li>
 </ul>
 </li>
-<li>loadbalance
-<ul>
-<li>在获取到到url 直接round robbin 访问
-<ul>
-<li>其他的访问策略需要自己写代码</li>
+<li>loadbalance<ul>
+<li>在获取到到url 直接round robbin 访问<ul>
+<li>其他的访问策略需要自己写代码<br><code>`</code>ruby<h1 id="console-配置"><a href="#console-配置" class="headerlink" title="console 配置"></a>console 配置</h1>config.after_initialize do<br>require “#{Rails.root}/config/after_initialize/consul_service_discovery.rb”<br>console do<br>  require “#{Rails.root}/config/after_initialize/consul_service_discovery.rb”<h1 id="add-watch-server-code"><a href="#add-watch-server-code" class="headerlink" title="add watch server code"></a>add watch server code</h1>end<br>end</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<pre class=" language-language-ruby"><code class="language-language-ruby"># console 配置
-    config.after_initialize do
-      require "#{Rails.root}/config/after_initialize/consul_service_discovery.rb"
-      console do
-        require "#{Rails.root}/config/after_initialize/consul_service_discovery.rb"
-        # add watch server code  
-      end
-    end
+<h1 id="puma-配置"><a href="#puma-配置" class="headerlink" title="puma 配置"></a>puma 配置</h1><pre><code>on_worker_boot do
+  # add watch server code
 
-# puma 配置
-    on_worker_boot do
-      # add watch server code
-
-    end
-
-class AsyncConsul
-  include Concurrent::Async
-
-  CACHE ||= Concurrent::Hash.new
-  SERVICE_CACHE ||= Concurrent::Map.new
-
-  class << self
-    def get_service_url(servicename )
-      begin
-        result = SERVICE_CACHE[servicename].sample
-        return "#{result[:type]}://#{result[:address]}:#{result[:port]}"
-      rescue => e
-         
-      end
-    end
-  end
-
-  def service_discovery(servicename = "sso-server")
-    loop do
-      begin
-        Timeout::timeout 2 do
-          success_service_list = Diplomat::Health.service(servicename, passing: true)
-          list = []
-          success_service_list.each do |s|
-            address = s.Service["Address"]
-            port = s.Service["Port"]
-            list << { port: port, address: address, type: "http" }
-          end
-          SERVICE_CACHE[servicename] ||= list
-          if SERVICE_CACHE[servicename] != list
-            SERVICE_CACHE[servicename] = list
-          end
-        end
-      rescue => e
-      end
-      sleep 2
-    end
-  end
 end
-</code></pre>
+</code></pre><p>class AsyncConsul<br>  include Concurrent::Async</p>
+<p>  CACHE ||= Concurrent::Hash.new<br>  SERVICE_CACHE ||= Concurrent::Map.new</p>
+<p>  class &lt;&lt; self<br>    def get_service_url(servicename )<br>      begin<br>        result = SERVICE_CACHE[servicename].sample<br>        return “#{result[:type]}://#{result[:address]}:#{result[:port]}”<br>      rescue =&gt; e</p>
+<pre><code>  end
+end
+</code></pre><p>  end</p>
+<p>  def service_discovery(servicename = “sso-server”)<br>    loop do<br>      begin<br>        Timeout::timeout 2 do<br>          success_service_list = Diplomat::Health.service(servicename, passing: true)<br>          list = []<br>          success_service_list.each do |s|<br>            address = s.Service[“Address”]<br>            port = s.Service[“Port”]<br>            list &lt;&lt; { port: port, address: address, type: “http” }<br>          end<br>          SERVICE_CACHE[servicename] ||= list<br>          if SERVICE_CACHE[servicename] != list<br>            SERVICE_CACHE[servicename] = list<br>          end<br>        end<br>      rescue =&gt; e<br>      end<br>      sleep 2<br>    end<br>  end<br>end<br><code>`</code></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
@@ -733,7 +679,6 @@ end
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">实现思路
-
 和服务发现一致
 console , puma  方法需要扩展
 
@@ -742,7 +687,7 @@ class AsyncConsul
   include Concurrent::Async
 
   CACHE ||= Concurrent::Hash.new
- </div>
+  </div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-24
@@ -788,18 +733,15 @@ class AsyncConsul
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">说明
-
 可以在每一天机器安装  consul client, 然后通过脚本去watch
-
 需要在每一台机器安装consul client
 
 
 直接在代码watch service
-
 经过实践证明, 不存在性能瓶颈
 
 
-本文通过在代码watc</div>
+本文通过在代码watch s</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-24
@@ -977,7 +919,7 @@ class AsyncConsul
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

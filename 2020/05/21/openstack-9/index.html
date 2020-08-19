@@ -5,12 +5,10 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="openstack stein 高可用安装(nova), openstack,opennebula">
-    <meta name="description" content="controller01
-安装数据库
-MariaDB [(none)]&gt; CREATE DATABASE nova_api;
+    <meta name="description" content="controller01安装数据库MariaDB [(none)]&gt; CREATE DATABASE nova_api;
 Query OK, 1 row affected (0.005 sec)
 
-MariaDB [(none)]&gt; C">
+MariaDB [(none)]&gt; CRE">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -457,361 +455,343 @@ MariaDB [(none)]&gt; C">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="controller01">controller01</h2>
-<h3 id="安装数据库">安装数据库</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">MariaDB [(none)]> CREATE DATABASE nova_api;
-Query OK, 1 row affected (0.005 sec)
+                <h2 id="controller01"><a href="#controller01" class="headerlink" title="controller01"></a>controller01</h2><h3 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h3><pre class=" language-bash"><code class="language-bash">MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> CREATE DATABASE nova_api<span class="token punctuation">;</span>
+Query OK, 1 row affected <span class="token punctuation">(</span>0.005 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> CREATE DATABASE nova;
-Query OK, 1 row affected (0.006 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> CREATE DATABASE nova<span class="token punctuation">;</span>
+Query OK, 1 row affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]>  CREATE DATABASE nova_cell0;
-Query OK, 1 row affected (0.005 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span>  CREATE DATABASE nova_cell0<span class="token punctuation">;</span>
+Query OK, 1 row affected <span class="token punctuation">(</span>0.005 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost'  IDENTIFIED BY 'nova';
-Query OK, 0 rows affected (0.006 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> GRANT ALL PRIVILEGES ON nova_api.* TO <span class="token string">'nova'</span>@<span class="token string">'localhost'</span>  IDENTIFIED BY <span class="token string">'nova'</span><span class="token punctuation">;</span>
+Query OK, 0 rows affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' IDENTIFIED BY 'nova';
-Query OK, 0 rows affected (0.005 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> GRANT ALL PRIVILEGES ON nova_api.* TO <span class="token string">'nova'</span>@<span class="token string">'%'</span> IDENTIFIED BY <span class="token string">'nova'</span><span class="token punctuation">;</span>
+Query OK, 0 rows affected <span class="token punctuation">(</span>0.005 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost'  IDENTIFIED BY 'nova';
-Query OK, 0 rows affected (0.007 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> GRANT ALL PRIVILEGES ON nova.* TO <span class="token string">'nova'</span>@<span class="token string">'localhost'</span>  IDENTIFIED BY <span class="token string">'nova'</span><span class="token punctuation">;</span>
+Query OK, 0 rows affected <span class="token punctuation">(</span>0.007 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY 'nova';
-Query OK, 0 rows affected (0.005 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> GRANT ALL PRIVILEGES ON nova.* TO <span class="token string">'nova'</span>@<span class="token string">'%'</span> IDENTIFIED BY <span class="token string">'nova'</span><span class="token punctuation">;</span>
+Query OK, 0 rows affected <span class="token punctuation">(</span>0.005 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'localhost' IDENTIFIED BY 'nova';
-Query OK, 0 rows affected (0.005 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> GRANT ALL PRIVILEGES ON nova_cell0.* TO <span class="token string">'nova'</span>@<span class="token string">'localhost'</span> IDENTIFIED BY <span class="token string">'nova'</span><span class="token punctuation">;</span>
+Query OK, 0 rows affected <span class="token punctuation">(</span>0.005 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]>  GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'%' IDENTIFIED BY 'nova';
-Query OK, 0 rows affected (0.005 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span>  GRANT ALL PRIVILEGES ON nova_cell0.* TO <span class="token string">'nova'</span>@<span class="token string">'%'</span> IDENTIFIED BY <span class="token string">'nova'</span><span class="token punctuation">;</span>
+Query OK, 0 rows affected <span class="token punctuation">(</span>0.005 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> 
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> 
 
 
 </code></pre>
-<h3 id="创建service-endpoint-user">创建service endpoint user</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# openstack user create --domain default --password-prompt nova
+<h3 id="创建service-endpoint-user"><a href="#创建service-endpoint-user" class="headerlink" title="创建service endpoint user"></a>创建service endpoint user</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack user create --domain default --password-prompt nova</span>
 User Password:
 Repeat User Password:
 +---------------------+----------------------------------+
-| Field               | Value                            |
+<span class="token operator">|</span> Field               <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +---------------------+----------------------------------+
-| domain_id           | default                          |
-| enabled             | True                             |
-| id                  | 11344c9ddbee42b99c1c69ff0f919d80 |
-| name                | nova                             |
-| options             | {}                               |
-| password_expires_at | None                             |
+<span class="token operator">|</span> domain_id           <span class="token operator">|</span> default                          <span class="token operator">|</span>
+<span class="token operator">|</span> enabled             <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>                  <span class="token operator">|</span> 11344c9ddbee42b99c1c69ff0f919d80 <span class="token operator">|</span>
+<span class="token operator">|</span> name                <span class="token operator">|</span> nova                             <span class="token operator">|</span>
+<span class="token operator">|</span> options             <span class="token operator">|</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>                               <span class="token operator">|</span>
+<span class="token operator">|</span> password_expires_at <span class="token operator">|</span> None                             <span class="token operator">|</span>
 +---------------------+----------------------------------+
-[root@controller01 ~]# openstack role add --project service --user nova admin
-[root@controller01 ~]# openstack service create --name nova \
->   --description "OpenStack Compute" compute
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack role add --project service --user nova admin</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack service create --name nova \</span>
+<span class="token operator">></span>   --description <span class="token string">"OpenStack Compute"</span> compute
 
 +-------------+----------------------------------+
-| Field       | Value                            |
+<span class="token operator">|</span> Field       <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +-------------+----------------------------------+
-| description | OpenStack Compute                |
-| enabled     | True                             |
-| id          | 034397010f37488abbd7c79e2b1d6605 |
-| name        | nova                             |
-| type        | compute                          |
+<span class="token operator">|</span> description <span class="token operator">|</span> OpenStack Compute                <span class="token operator">|</span>
+<span class="token operator">|</span> enabled     <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>          <span class="token operator">|</span> 034397010f37488abbd7c79e2b1d6605 <span class="token operator">|</span>
+<span class="token operator">|</span> name        <span class="token operator">|</span> nova                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">type</span>        <span class="token operator">|</span> compute                          <span class="token operator">|</span>
 +-------------+----------------------------------+
-[root@controller01 ~]# 
-[root@controller01 ~]# openstack endpoint create --region RegionOne \
->   compute public http://controller:8774/v2.1
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint create --region RegionOne \</span>
+<span class="token operator">></span>   compute public http://controller:8774/v2.1
 +--------------+----------------------------------+
-| Field        | Value                            |
+<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +--------------+----------------------------------+
-| enabled      | True                             |
-| id           | 8a1c8cad05944282997dbc386d447a8d |
-| interface    | public                           |
-| region       | RegionOne                        |
-| region_id    | RegionOne                        |
-| service_id   | 034397010f37488abbd7c79e2b1d6605 |
-| service_name | nova                             |
-| service_type | compute                          |
-| url          | http://controller:8774/v2.1      |
+<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> 8a1c8cad05944282997dbc386d447a8d <span class="token operator">|</span>
+<span class="token operator">|</span> interface    <span class="token operator">|</span> public                           <span class="token operator">|</span>
+<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> service_id   <span class="token operator">|</span> 034397010f37488abbd7c79e2b1d6605 <span class="token operator">|</span>
+<span class="token operator">|</span> service_name <span class="token operator">|</span> nova                             <span class="token operator">|</span>
+<span class="token operator">|</span> service_type <span class="token operator">|</span> compute                          <span class="token operator">|</span>
+<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:8774/v2.1      <span class="token operator">|</span>
 +--------------+----------------------------------+
-[root@controller01 ~]# openstack endpoint create --region RegionOne \
->   compute internal http://controller:8774/v2.1
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint create --region RegionOne \</span>
+<span class="token operator">></span>   compute internal http://controller:8774/v2.1
 
 +--------------+----------------------------------+
-| Field        | Value                            |
+<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +--------------+----------------------------------+
-| enabled      | True                             |
-| id           | 160277d666e24100acccadb7c5f73315 |
-| interface    | internal                         |
-| region       | RegionOne                        |
-| region_id    | RegionOne                        |
-| service_id   | 034397010f37488abbd7c79e2b1d6605 |
-| service_name | nova                             |
-| service_type | compute                          |
-| url          | http://controller:8774/v2.1      |
+<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> 160277d666e24100acccadb7c5f73315 <span class="token operator">|</span>
+<span class="token operator">|</span> interface    <span class="token operator">|</span> internal                         <span class="token operator">|</span>
+<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> service_id   <span class="token operator">|</span> 034397010f37488abbd7c79e2b1d6605 <span class="token operator">|</span>
+<span class="token operator">|</span> service_name <span class="token operator">|</span> nova                             <span class="token operator">|</span>
+<span class="token operator">|</span> service_type <span class="token operator">|</span> compute                          <span class="token operator">|</span>
+<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:8774/v2.1      <span class="token operator">|</span>
 +--------------+----------------------------------+
-[root@controller01 ~]# 
-[root@controller01 ~]# openstack endpoint create --region RegionOne \
->   compute admin http://controller:8774/v2.1
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint create --region RegionOne \</span>
+<span class="token operator">></span>   compute admin http://controller:8774/v2.1
 +--------------+----------------------------------+
-| Field        | Value                            |
+<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +--------------+----------------------------------+
-| enabled      | True                             |
-| id           | 59fe7621bf874982b5936ab531ac4b5f |
-| interface    | admin                            |
-| region       | RegionOne                        |
-| region_id    | RegionOne                        |
-| service_id   | 034397010f37488abbd7c79e2b1d6605 |
-| service_name | nova                             |
-| service_type | compute                          |
-| url          | http://controller:8774/v2.1      |
+<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> 59fe7621bf874982b5936ab531ac4b5f <span class="token operator">|</span>
+<span class="token operator">|</span> interface    <span class="token operator">|</span> admin                            <span class="token operator">|</span>
+<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> service_id   <span class="token operator">|</span> 034397010f37488abbd7c79e2b1d6605 <span class="token operator">|</span>
+<span class="token operator">|</span> service_name <span class="token operator">|</span> nova                             <span class="token operator">|</span>
+<span class="token operator">|</span> service_type <span class="token operator">|</span> compute                          <span class="token operator">|</span>
+<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:8774/v2.1      <span class="token operator">|</span>
 +--------------+----------------------------------+
-[root@controller01 ~]# 
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
 
 
 </code></pre>
-<h3 id="安装nova">安装nova</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# yum install openstack-nova-api openstack-nova-conductor   openstack-nova-novncproxy openstack-nova-scheduler -y
+<h3 id="安装nova"><a href="#安装nova" class="headerlink" title="安装nova"></a>安装nova</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install openstack-nova-api openstack-nova-conductor   openstack-nova-novncproxy openstack-nova-scheduler -y</span>
 
 </code></pre>
-<h3 id="修改配置文件">修改配置文件</h3>
-<p>__ /etc/nova/nova.conf__</p>
-<pre class=" language-language-bash"><code class="language-language-bash">[DEFAULT]
-# ...
-enabled_apis = osapi_compute,metadata
-transport_url = rabbit://openstack:openstack@controller
-my_ip = 192.168.151.71 # controller01
-use_neutron = true
-firewall_driver = nova.virt.firewall.NoopFirewallDriver
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>  <strong> /etc/nova/nova.conf</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>DEFAULT<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+enabled_apis <span class="token operator">=</span> osapi_compute,metadata
+transport_url <span class="token operator">=</span> rabbit://openstack:openstack@controller
+my_ip <span class="token operator">=</span> 192.168.151.71 <span class="token comment" spellcheck="true"># controller01</span>
+use_neutron <span class="token operator">=</span> <span class="token boolean">true</span>
+firewall_driver <span class="token operator">=</span> nova.virt.firewall.NoopFirewallDriver
 
-[api_database]
-# ...
-connection = mysql+pymysql://nova:nova@controller/nova_api
+<span class="token punctuation">[</span>api_database<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+connection <span class="token operator">=</span> mysql+pymysql://nova:nova@controller/nova_api
 
-[database]
-# ...
-connection = mysql+pymysql://nova:nova@controller/nova
+<span class="token punctuation">[</span>database<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+connection <span class="token operator">=</span> mysql+pymysql://nova:nova@controller/nova
 
-[api]
-# ...
-auth_strategy = keystone
+<span class="token punctuation">[</span>api<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+auth_strategy <span class="token operator">=</span> keystone
 
-[keystone_authtoken]
-# ...
-auth_url = http://controller:5000/v3
-memcached_servers = controller01:11211,controller02:11211,controller03:11211
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-project_name = service
-username = nova
-password = nova
-
-
-[vnc]
-enabled = true
-# ...
-server_listen = $my_ip
-server_proxyclient_address = $my_ip
+<span class="token punctuation">[</span>keystone_authtoken<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+auth_url <span class="token operator">=</span> http://controller:5000/v3
+memcached_servers <span class="token operator">=</span> controller01:11211,controller02:11211,controller03:11211
+auth_type <span class="token operator">=</span> password
+project_domain_name <span class="token operator">=</span> Default
+user_domain_name <span class="token operator">=</span> Default
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+username <span class="token operator">=</span> nova
+password <span class="token operator">=</span> nova
 
 
-[glance]
-# ...
-api_servers = http://controller:9292
+<span class="token punctuation">[</span>vnc<span class="token punctuation">]</span>
+enabled <span class="token operator">=</span> <span class="token boolean">true</span>
+<span class="token comment" spellcheck="true"># ...</span>
+server_listen <span class="token operator">=</span> <span class="token variable">$my_ip</span>
+server_proxyclient_address <span class="token operator">=</span> <span class="token variable">$my_ip</span>
 
 
-[oslo_concurrency]
-# ...
-lock_path = /var/lib/nova/tmp
+<span class="token punctuation">[</span>glance<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+api_servers <span class="token operator">=</span> http://controller:9292
+
+
+<span class="token punctuation">[</span>oslo_concurrency<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+lock_path <span class="token operator">=</span> /var/lib/nova/tmp
 
 
 
-[placement]
-# ...
-region_name = RegionOne
-project_domain_name = Default
-project_name = service
-auth_type = password
-user_domain_name = Default
-auth_url = http://controller:5000/v3
-username = placement
-password = placement
+<span class="token punctuation">[</span>placement<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+region_name <span class="token operator">=</span> RegionOne
+project_domain_name <span class="token operator">=</span> Default
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+auth_type <span class="token operator">=</span> password
+user_domain_name <span class="token operator">=</span> Default
+auth_url <span class="token operator">=</span> http://controller:5000/v3
+username <span class="token operator">=</span> placement
+password <span class="token operator">=</span> placement
 
 
 </code></pre>
-<h3 id="同步数据">同步数据</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# su -s /bin/sh -c "nova-manage api_db sync" nova
-[root@controller01 ~]# su -s /bin/sh -c "nova-manage cell_v2 map_cell0" nova
-[root@controller01 ~]# su -s /bin/sh -c "nova-manage cell_v2 create_cell --name=cell1 --verbose" nova
-[root@controller01 ~]#  su -s /bin/sh -c "nova-manage db sync" nova
-[root@controller01 ~]# su -s /bin/sh -c "nova-manage cell_v2 list_cells" nova
+<h3 id="同步数据"><a href="#同步数据" class="headerlink" title="同步数据"></a>同步数据</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># su -s /bin/sh -c "nova-manage api_db sync" nova</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># su -s /bin/sh -c "nova-manage cell_v2 map_cell0" nova</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># su -s /bin/sh -c "nova-manage cell_v2 create_cell --name=cell1 --verbose" nova</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  su -s /bin/sh -c "nova-manage db sync" nova</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># su -s /bin/sh -c "nova-manage cell_v2 list_cells" nova</span>
 +-------+--------------------------------------+------------------------------------+-------------------------------------------------+----------+
-|  Name |                 UUID                 |           Transport URL            |               Database Connection               | Disabled |
+<span class="token operator">|</span>  Name <span class="token operator">|</span>                 UUID                 <span class="token operator">|</span>           Transport URL            <span class="token operator">|</span>               Database Connection               <span class="token operator">|</span> Disabled <span class="token operator">|</span>
 +-------+--------------------------------------+------------------------------------+-------------------------------------------------+----------+
-| cell0 | 00000000-0000-0000-0000-000000000000 |               none:/               | mysql+pymysql://nova:****@controller/nova_cell0 |  False   |
-| cell1 | 63a4f248-1e14-48fb-98f6-52434dd926f5 | rabbit://openstack:****@controller |    mysql+pymysql://nova:****@controller/nova    |  False   |
+<span class="token operator">|</span> cell0 <span class="token operator">|</span> 00000000-0000-0000-0000-000000000000 <span class="token operator">|</span>               none:/               <span class="token operator">|</span> mysql+pymysql://nova:****@controller/nova_cell0 <span class="token operator">|</span>  False   <span class="token operator">|</span>
+<span class="token operator">|</span> cell1 <span class="token operator">|</span> 63a4f248-1e14-48fb-98f6-52434dd926f5 <span class="token operator">|</span> rabbit://openstack:****@controller <span class="token operator">|</span>    mysql+pymysql://nova:****@controller/nova    <span class="token operator">|</span>  False   <span class="token operator">|</span>
 +-------+--------------------------------------+------------------------------------+-------------------------------------------------+----------+
 
 </code></pre>
-<h3 id="启动">启动</h3>
-<p><strong>nova-consoleauth</strong> stein版本已经删除了</p>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]#  systemctl enable openstack-nova-api.service  openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service
-[root@controller01 ~]#  systemctl start openstack-nova-api.service  openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>  <strong>nova-consoleauth</strong> stein版本已经删除了</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  systemctl enable openstack-nova-api.service  openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  systemctl start openstack-nova-api.service  openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service</span>
 
 </code></pre>
-<h3 id="ERROR">ERROR</h3>
-<ul>
-<li>OperationalError: (pymysql.err.OperationalError) (1040, u’Too many connections’)
-<ul>
+<h3 id="ERROR"><a href="#ERROR" class="headerlink" title="ERROR"></a>ERROR</h3><ul>
+<li>OperationalError: (pymysql.err.OperationalError) (1040, u’Too many connections’)<ul>
 <li>vim /etc/my.cnf.d/mariadb-server.cnf   [mysqld] max_connections=3000</li>
 </ul>
 </li>
 </ul>
-<h2 id="controller02-controller03">controller02 , controller03</h2>
-<h3 id="安装nova-2">安装nova</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# yum install openstack-nova-api openstack-nova-conductor   openstack-nova-novncproxy openstack-nova-scheduler -y
+<h2 id="controller02-controller03"><a href="#controller02-controller03" class="headerlink" title="controller02 , controller03"></a>controller02 , controller03</h2><h3 id="安装nova-1"><a href="#安装nova-1" class="headerlink" title="安装nova"></a>安装nova</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install openstack-nova-api openstack-nova-conductor   openstack-nova-novncproxy openstack-nova-scheduler -y</span>
 
 </code></pre>
-<h3 id="修改配置文件-2">修改配置文件</h3>
-<p>__ /etc/nova/nova.conf__</p>
-<pre class=" language-language-bash"><code class="language-language-bash">[DEFAULT]
-# ...
-enabled_apis = osapi_compute,metadata
-transport_url = rabbit://openstack:openstack@controller
-my_ip =   192.168.151.72, 192.168.151.73   #controller02 , controller03
-use_neutron = true
-firewall_driver = nova.virt.firewall.NoopFirewallDriver
+<h3 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>  <strong> /etc/nova/nova.conf</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>DEFAULT<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+enabled_apis <span class="token operator">=</span> osapi_compute,metadata
+transport_url <span class="token operator">=</span> rabbit://openstack:openstack@controller
+my_ip <span class="token operator">=</span>   192.168.151.72, 192.168.151.73   <span class="token comment" spellcheck="true">#controller02 , controller03</span>
+use_neutron <span class="token operator">=</span> <span class="token boolean">true</span>
+firewall_driver <span class="token operator">=</span> nova.virt.firewall.NoopFirewallDriver
 
-[api_database]
-# ...
-connection = mysql+pymysql://nova:nova@controller/nova_api
+<span class="token punctuation">[</span>api_database<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+connection <span class="token operator">=</span> mysql+pymysql://nova:nova@controller/nova_api
 
-[database]
-# ...
-connection = mysql+pymysql://nova:nova@controller/nova
+<span class="token punctuation">[</span>database<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+connection <span class="token operator">=</span> mysql+pymysql://nova:nova@controller/nova
 
-[api]
-# ...
-auth_strategy = keystone
+<span class="token punctuation">[</span>api<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+auth_strategy <span class="token operator">=</span> keystone
 
-[keystone_authtoken]
-# ...
-auth_url = http://controller:5000/v3
-memcached_servers = controller01:11211,controller02:11211,controller03:11211
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-project_name = service
-username = nova
-password = nova
-
-
-[vnc]
-enabled = true
-# ...
-server_listen = $my_ip
-server_proxyclient_address = $my_ip
+<span class="token punctuation">[</span>keystone_authtoken<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+auth_url <span class="token operator">=</span> http://controller:5000/v3
+memcached_servers <span class="token operator">=</span> controller01:11211,controller02:11211,controller03:11211
+auth_type <span class="token operator">=</span> password
+project_domain_name <span class="token operator">=</span> Default
+user_domain_name <span class="token operator">=</span> Default
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+username <span class="token operator">=</span> nova
+password <span class="token operator">=</span> nova
 
 
-[glance]
-# ...
-api_servers = http://controller:9292
+<span class="token punctuation">[</span>vnc<span class="token punctuation">]</span>
+enabled <span class="token operator">=</span> <span class="token boolean">true</span>
+<span class="token comment" spellcheck="true"># ...</span>
+server_listen <span class="token operator">=</span> <span class="token variable">$my_ip</span>
+server_proxyclient_address <span class="token operator">=</span> <span class="token variable">$my_ip</span>
 
 
-[oslo_concurrency]
-# ...
-lock_path = /var/lib/nova/tmp
+<span class="token punctuation">[</span>glance<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+api_servers <span class="token operator">=</span> http://controller:9292
+
+
+<span class="token punctuation">[</span>oslo_concurrency<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+lock_path <span class="token operator">=</span> /var/lib/nova/tmp
 
 
 
-[placement]
-# ...
-region_name = RegionOne
-project_domain_name = Default
-project_name = service
-auth_type = password
-user_domain_name = Default
-auth_url = http://controller:5000/v3
-username = placement
-password = placement
+<span class="token punctuation">[</span>placement<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+region_name <span class="token operator">=</span> RegionOne
+project_domain_name <span class="token operator">=</span> Default
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+auth_type <span class="token operator">=</span> password
+user_domain_name <span class="token operator">=</span> Default
+auth_url <span class="token operator">=</span> http://controller:5000/v3
+username <span class="token operator">=</span> placement
+password <span class="token operator">=</span> placement
 
 
 </code></pre>
-<h3 id="启动-2">启动</h3>
-<p><strong>nova-consoleauth</strong> stein版本已经删除了</p>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]#  systemctl enable openstack-nova-api.service  openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service
-[root@controller01 ~]#  systemctl start openstack-nova-api.service  openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service
+<h3 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h3><p>  <strong>nova-consoleauth</strong> stein版本已经删除了</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  systemctl enable openstack-nova-api.service  openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  systemctl start openstack-nova-api.service  openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service</span>
 
 </code></pre>
-<h2 id="compute01">compute01</h2>
-<h3 id="安装-compute-api">安装 compute api</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@compute01 ~]# yum install openstack-nova-compute -y
+<h2 id="compute01"><a href="#compute01" class="headerlink" title="compute01"></a>compute01</h2><h3 id="安装-compute-api"><a href="#安装-compute-api" class="headerlink" title="安装 compute api"></a>安装 compute api</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install openstack-nova-compute -y</span>
 </code></pre>
-<h3 id="修改配置文件-3">修改配置文件</h3>
-<p><strong>/etc/nova/nova.conf</strong></p>
-<pre class=" language-language-bash"><code class="language-language-bash">[DEFAULT]
-# ...
-enabled_apis = osapi_compute,metadata
-transport_url = rabbit://openstack:openstack@controller
-my_ip = 192.168.151.74 # MANAGEMENT_INTERFACE_IP_ADDRESS  , /etc/hosts 设置
-use_neutron = true
-firewall_driver = nova.virt.firewall.NoopFirewallDriver
-[api]
-# ...
-auth_strategy = keystone
+<h3 id="修改配置文件-2"><a href="#修改配置文件-2" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>  <strong>/etc/nova/nova.conf</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>DEFAULT<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+enabled_apis <span class="token operator">=</span> osapi_compute,metadata
+transport_url <span class="token operator">=</span> rabbit://openstack:openstack@controller
+my_ip <span class="token operator">=</span> 192.168.151.74 <span class="token comment" spellcheck="true"># MANAGEMENT_INTERFACE_IP_ADDRESS  , /etc/hosts 设置</span>
+use_neutron <span class="token operator">=</span> <span class="token boolean">true</span>
+firewall_driver <span class="token operator">=</span> nova.virt.firewall.NoopFirewallDriver
+<span class="token punctuation">[</span>api<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+auth_strategy <span class="token operator">=</span> keystone
 
-[keystone_authtoken]
-# ...
-auth_url = http://controller:5000/v3
-memcached_servers = controller01:11211,controller02:11211,controller03:11211
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-project_name = service
-username = nova
-password = nova
+<span class="token punctuation">[</span>keystone_authtoken<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+auth_url <span class="token operator">=</span> http://controller:5000/v3
+memcached_servers <span class="token operator">=</span> controller01:11211,controller02:11211,controller03:11211
+auth_type <span class="token operator">=</span> password
+project_domain_name <span class="token operator">=</span> Default
+user_domain_name <span class="token operator">=</span> Default
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+username <span class="token operator">=</span> nova
+password <span class="token operator">=</span> nova
 
-[vnc]
-# ...
-enabled = true
-server_listen = 0.0.0.0
-server_proxyclient_address = $my_ip
-novncproxy_base_url = http://controller:6080/vnc_auto.html
-
-
-[glance]
-# ...
-api_servers = http://controller:9292
+<span class="token punctuation">[</span>vnc<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+enabled <span class="token operator">=</span> <span class="token boolean">true</span>
+server_listen <span class="token operator">=</span> 0.0.0.0
+server_proxyclient_address <span class="token operator">=</span> <span class="token variable">$my_ip</span>
+novncproxy_base_url <span class="token operator">=</span> http://controller:6080/vnc_auto.html
 
 
-[oslo_concurrency]
-# ...
-lock_path = /var/lib/nova/tmp
-
-[placement]
-# ...
-region_name = RegionOne
-project_domain_name = Default
-project_name = service
-auth_type = password
-user_domain_name = Default
-auth_url = http://controller:5000/v3
-username = placement
-password = placement
+<span class="token punctuation">[</span>glance<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+api_servers <span class="token operator">=</span> http://controller:9292
 
 
-[libvirt]
-# ...
-virt_type = qemu  #  or kvm   ,不支持虚拟化qemu
+<span class="token punctuation">[</span>oslo_concurrency<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+lock_path <span class="token operator">=</span> /var/lib/nova/tmp
+
+<span class="token punctuation">[</span>placement<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+region_name <span class="token operator">=</span> RegionOne
+project_domain_name <span class="token operator">=</span> Default
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+auth_type <span class="token operator">=</span> password
+user_domain_name <span class="token operator">=</span> Default
+auth_url <span class="token operator">=</span> http://controller:5000/v3
+username <span class="token operator">=</span> placement
+password <span class="token operator">=</span> placement
+
+
+<span class="token punctuation">[</span>libvirt<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+virt_type <span class="token operator">=</span> qemu  <span class="token comment" spellcheck="true">#  or kvm   ,不支持虚拟化qemu</span>
 </code></pre>
-<h3 id="启动-3">启动</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@compute01 ~]# systemctl enable libvirtd.service openstack-nova-compute.service
+<h3 id="启动-2"><a href="#启动-2" class="headerlink" title="启动"></a>启动</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable libvirtd.service openstack-nova-compute.service</span>
 Created symlink from /etc/systemd/system/multi-user.target.wants/openstack-nova-compute.service to /usr/lib/systemd/system/openstack-nova-compute.service.
-[root@compute01 ~]#  systemctl start libvirtd.service openstack-nova-compute.service
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  systemctl start libvirtd.service openstack-nova-compute.service</span>
 
 
 </code></pre>
-<h3 id="etc-hosts">/etc/hosts</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@compute01 ~]# cat /etc/hosts
+<h3 id="etc-hosts"><a href="#etc-hosts" class="headerlink" title="/etc/hosts"></a>/etc/hosts</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /etc/hosts</span>
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 192.168.151.71 controller01
@@ -822,42 +802,40 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/openstack-nova-
 
 
 </code></pre>
-<h3 id="add-to-controller">add to controller</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# openstack compute service list --service nova-compute
+<h3 id="add-to-controller"><a href="#add-to-controller" class="headerlink" title="add to controller"></a>add to controller</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack compute service list --service nova-compute</span>
 
-[root@controller01 ~]#  su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova</span>
 Found 2 cell mappings.
 Skipping cell0 since it does not contain hosts.
-Getting computes from cell 'cell1': 63a4f248-1e14-48fb-98f6-52434dd926f5
-Found 0 unmapped computes in cell: 63a4f248-1e14-48fb-98f6-52434dd926f5
-[root@controller01 ~]# openstack compute service list --service nova-compute
+Getting computes from cell <span class="token string">'cell1'</span><span class="token keyword">:</span> 63a4f248-1e14-48fb-98f6-52434dd926f5
+Found 0 unmapped computes <span class="token keyword">in</span> cell: 63a4f248-1e14-48fb-98f6-52434dd926f5
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack compute service list --service nova-compute</span>
 
-[root@controller01 ~]# nova-manage cell_v2 discover_hosts 
-[root@controller01 ~]# openstack compute service list --service nova-compute
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># nova-manage cell_v2 discover_hosts </span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack compute service list --service nova-compute</span>
 
 
 </code></pre>
-<h2 id="error">error</h2>
-<ul>
+<h2 id="error"><a href="#error" class="headerlink" title="error"></a>error</h2><ul>
 <li>unicode error</li>
 </ul>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@compute01 ~]# /usr/bin/nova-compute 
-Traceback (most recent call last):
-  File "/usr/lib64/python2.7/logging/__init__.py", line 851, in emit
-    msg = self.format(record)
-  File "/usr/lib64/python2.7/logging/__init__.py", line 724, in format
-    return fmt.format(record)
-  File "/usr/lib/python2.7/site-packages/oslo_log/formatters.py", line 511, in format
-    return logging.Formatter.format(self, record)
-  File "/usr/lib64/python2.7/logging/__init__.py", line 467, in format
-    s = self._fmt % record.__dict__
-UnicodeDecodeError: 'ascii' codec can't decode byte 0xe8 in position 229: ordinal not in range(128)
-Logged from file log.py, line 203
-[root@compute01 ~]# LANG
--bash: LANG: command not found
-[root@compute01 ~]# export LANG=zh_CN.UTF-8
-[root@compute01 ~]# 
-[root@compute01 ~]# /usr/bin/nova-compute 
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># /usr/bin/nova-compute </span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
+  File <span class="token string">"/usr/lib64/python2.7/logging/__init__.py"</span>, line 851, <span class="token keyword">in</span> emit
+    msg <span class="token operator">=</span> self.format<span class="token punctuation">(</span>record<span class="token punctuation">)</span>
+  File <span class="token string">"/usr/lib64/python2.7/logging/__init__.py"</span>, line 724, <span class="token keyword">in</span> <span class="token function">format</span>
+    <span class="token keyword">return</span> fmt.format<span class="token punctuation">(</span>record<span class="token punctuation">)</span>
+  File <span class="token string">"/usr/lib/python2.7/site-packages/oslo_log/formatters.py"</span>, line 511, <span class="token keyword">in</span> <span class="token function">format</span>
+    <span class="token keyword">return</span> logging.Formatter.format<span class="token punctuation">(</span>self, record<span class="token punctuation">)</span>
+  File <span class="token string">"/usr/lib64/python2.7/logging/__init__.py"</span>, line 467, <span class="token keyword">in</span> <span class="token function">format</span>
+    s <span class="token operator">=</span> self._fmt % record.__dict__
+UnicodeDecodeError: <span class="token string">'ascii'</span> codec can't decode byte 0xe8 <span class="token keyword">in</span> position 229: ordinal not <span class="token keyword">in</span> range<span class="token punctuation">(</span>128<span class="token punctuation">)</span>
+Logged from <span class="token function">file</span> log.py, line 203
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># LANG</span>
+-bash: LANG: <span class="token function">command</span> not found
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># export LANG=zh_CN.UTF-8</span>
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># /usr/bin/nova-compute </span>
 
 
 
@@ -865,14 +843,14 @@ Logged from file log.py, line 203
 <ul>
 <li>boot  error</li>
 </ul>
-<pre class=" language-language-bash"><code class="language-language-bash">  2020-05-22 09:28:56.484 45716 ERROR vif_plug_ovs.ovsdb.impl_vsctl [req-e74f469c-e7bc-4384-9837-817ac34341f5 3c83286e81b846cfb9634474afd33cfd f5d7d248c2d748cb82fc3f8ce871aa75 - default default] Unable to execute ['ovs-vsctl', '--timeout=120', '--oneline', '--format=json', '--db=tcp:127.0.0.1:6640', '--', '--may-exist', 'add-br', u'br-int', '--', 'set', 'Bridge', u'br-int', 'datapath_type=system']. Exception: Unexpected error while running command.
-Command: ovs-vsctl --timeout=120 --oneline --format=json --db=tcp:127.0.0.1:6640 -- --may-exist add-br br-int -- set Bridge br-int datapath_type=system
+<pre class=" language-bash"><code class="language-bash">  2020-05-22 09:28:56.484 45716 ERROR vif_plug_ovs.ovsdb.impl_vsctl <span class="token punctuation">[</span>req-e74f469c-e7bc-4384-9837-817ac34341f5 3c83286e81b846cfb9634474afd33cfd f5d7d248c2d748cb82fc3f8ce871aa75 - default default<span class="token punctuation">]</span> Unable to execute <span class="token punctuation">[</span><span class="token string">'ovs-vsctl'</span>, <span class="token string">'--timeout=120'</span>, <span class="token string">'--oneline'</span>, <span class="token string">'--format=json'</span>, <span class="token string">'--db=tcp:127.0.0.1:6640'</span>, <span class="token string">'--'</span>, <span class="token string">'--may-exist'</span>, <span class="token string">'add-br'</span>, u<span class="token string">'br-int'</span>, <span class="token string">'--'</span>, <span class="token string">'set'</span>, <span class="token string">'Bridge'</span>, u<span class="token string">'br-int'</span>, <span class="token string">'datapath_type=system'</span><span class="token punctuation">]</span>. Exception: Unexpected error <span class="token keyword">while</span> running command.
+Command: ovs-vsctl --timeout<span class="token operator">=</span>120 --oneline --format<span class="token operator">=</span>json --db<span class="token operator">=</span>tcp:127.0.0.1:6640 -- --may-exist add-br br-int -- <span class="token keyword">set</span> Bridge br-int datapath_type<span class="token operator">=</span>system
 Exit code: 1
-Stdout: u''
-Stderr: u'ovs-vsctl: tcp:127.0.0.1:6640: database connection failed (Connection refused)\n': ProcessExecutionError: Unexpected error while running comma
+Stdout: u<span class="token string">''</span>
+Stderr: u<span class="token string">'ovs-vsctl: tcp:127.0.0.1:6640: database connection failed (Connection refused)\n'</span><span class="token keyword">:</span> ProcessExecutionError: Unexpected error <span class="token keyword">while</span> running comma
 
-[root@compute01 ~]# ovs-appctl -t ovsdb-server ovsdb-server/add-remote ptcp:6640:0.0.0.0
- 
+<span class="token punctuation">[</span>root@compute01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ovs-appctl -t ovsdb-server ovsdb-server/add-remote ptcp:6640:0.0.0.0</span>
+
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
@@ -1056,14 +1034,10 @@ Stderr: u'ovs-vsctl: tcp:127.0.0.1:6640: database connection failed (Connection 
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">ovn 准备
-gateway node   ovn-central
+                    <div class="summary block-with-text">ovn 准备gateway node   ovn-central
 database node
 compute node ovn-host
-controler 01
-安装neutron
-数据库
-MariaDB [(none)]> CREAT</div>
+controler 01安装neutron数据库MariaDB [(none)]> CREATE DA</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-21
@@ -1108,11 +1082,9 @@ MariaDB [(none)]> CREAT</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">controller01
-创建数据库
-[root@controller01 ~]# mysql
+                    <div class="summary block-with-text">controller01创建数据库[root@controller01 ~]# mysql
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB</div>
+Your MariaDB c</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-21
@@ -1290,7 +1262,7 @@ Your MariaDB</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

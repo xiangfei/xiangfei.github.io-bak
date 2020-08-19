@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-13T02:16:24.308Z</updated>
+  <updated>2020-08-19T09:18:02.835Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,71 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>hive 3.1.2 高可用安装</title>
+    <link href="http://yoursite.com/2020/08/19/hive/"/>
+    <id>http://yoursite.com/2020/08/19/hive/</id>
+    <published>2020-08-19T06:33:14.000Z</published>
+    <updated>2020-08-19T09:18:02.835Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4
+        
+      
+    
+    </summary>
+    
+      <category term="hive" scheme="http://yoursite.com/categories/hive/"/>
+    
+      <category term="bigdata" scheme="http://yoursite.com/categories/hive/bigdata/"/>
+    
+    
+      <category term="bigdata" scheme="http://yoursite.com/tags/bigdata/"/>
+    
+      <category term="hive" scheme="http://yoursite.com/tags/hive/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>opentsdb 2.4.0 集群安装</title>
+    <link href="http://yoursite.com/2020/08/14/opentsdb/"/>
+    <id>http://yoursite.com/2020/08/14/opentsdb/</id>
+    <published>2020-08-14T00:40:51.000Z</published>
+    <updated>2020-08-19T05:00:46.604Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;准备&quot;&gt;&lt;a href=&quot;#准备&quot; class=&quot;headerlink&quot; title=&quot;准备&quot;&gt;&lt;/a&gt;准备&lt;/h3&gt;&lt;h4 id=&quot;机器&quot;&gt;&lt;a href=&quot;#机器&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="opentsdb" scheme="http://yoursite.com/categories/opentsdb/"/>
+    
+      <category term="bigdata" scheme="http://yoursite.com/categories/opentsdb/bigdata/"/>
+    
+    
+      <category term="bigdata" scheme="http://yoursite.com/tags/bigdata/"/>
+    
+      <category term="opentsdb" scheme="http://yoursite.com/tags/opentsdb/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hbase 2.3 高可用安装</title>
     <link href="http://yoursite.com/2020/08/12/hbase/"/>
     <id>http://yoursite.com/2020/08/12/hbase/</id>
     <published>2020-08-12T07:50:02.000Z</published>
-    <updated>2020-08-13T02:16:24.308Z</updated>
+    <updated>2020-08-19T06:32:57.385Z</updated>
     
     <summary type="html">
     
@@ -89,8 +149,7 @@
       
         
         
-          &lt;h3 id=&quot;结构&quot;&gt;结构&lt;/h3&gt;
-&lt;pre class=&quot; language-language-bash&quot;&gt;&lt;code class=&quot;language-language-bash&quot;&gt;[root@controller02 ~]# cat /etc/hosts
+          &lt;h3 id=&quot;结构&quot;&gt;&lt;a href=&quot;#结构&quot; class=&quot;headerlink&quot; title=&quot;结构&quot;&gt;&lt;/a&gt;结构&lt;/h3&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span
         
       
     
@@ -124,10 +183,7 @@
       
         
         
-          &lt;h2 id=&quot;controller01&quot;&gt;controller01&lt;/h2&gt;
-&lt;h3 id=&quot;环境准备&quot;&gt;环境准备&lt;/h3&gt;
-&lt;h4 id=&quot;初始化数据库&quot;&gt;初始化数据库&lt;/h4&gt;
-&lt;pre&gt;&lt;code&gt;[root@controller01 ~]# mysql -u
+          &lt;h2 id=&quot;controller01&quot;&gt;&lt;a href=&quot;#controller01&quot; class=&quot;headerlink&quot; title=&quot;controller01&quot;&gt;&lt;/a&gt;controller01&lt;/h2&gt;&lt;h3 id=&quot;环境准备&quot;&gt;&lt;a href=&quot;#环境准备&quot;
         
       
     
@@ -157,11 +213,10 @@
       
         
         
-          &lt;h2 id=&quot;创建vip&quot;&gt;创建vip&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;用来安装, 手动创建vip&lt;/li&gt;
+          &lt;h2 id=&quot;创建vip&quot;&gt;&lt;a href=&quot;#创建vip&quot; class=&quot;headerlink&quot; title=&quot;创建vip&quot;&gt;&lt;/a&gt;创建vip&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;用来安装, 手动创建vip  &lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class=&quot; language-language-bash&quot;&gt;&lt;code
+&lt;pre class=&quot;
         
       
     
@@ -191,11 +246,10 @@
       
         
         
-          &lt;h2 id=&quot;memache-安装&quot;&gt;memache 安装&lt;/h2&gt;
-&lt;ul&gt;
+          &lt;h2 id=&quot;memache-安装&quot;&gt;&lt;a href=&quot;#memache-安装&quot; class=&quot;headerlink&quot; title=&quot;memache 安装&quot;&gt;&lt;/a&gt;memache 安装&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;安装&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class=&quot; language-language-bash&quot;&gt;&lt;code class=&quot;language-language-bash&quot;&gt;## all
+&lt;pre class=&quot;
         
       
     
@@ -225,8 +279,7 @@
       
         
         
-          &lt;h3 id=&quot;all-controller-nodes&quot;&gt;all  controller nodes&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;[root@controller03 ~]#  yum install rabbitmq-server
+          &lt;h3 id=&quot;all-controller-nodes&quot;&gt;&lt;a href=&quot;#all-controller-nodes&quot; class=&quot;headerlink&quot; title=&quot;all  controller nodes&quot;&gt;&lt;/a&gt;all  controller
         
       
     
@@ -256,11 +309,8 @@
       
         
         
-          &lt;h2 id=&quot;准备-管理网段&quot;&gt;准备 管理网段&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;10.10.102.191 controller1&lt;/li&gt;
-&lt;li&gt;10.10.102.192 controller2&lt;/li&gt;
-&lt;li&gt;10.10.102.193
+          &lt;h2 id=&quot;准备-管理网段&quot;&gt;&lt;a href=&quot;#准备-管理网段&quot; class=&quot;headerlink&quot; title=&quot;准备 管理网段&quot;&gt;&lt;/a&gt;准备 管理网段&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;10.10.102.191
         
       
     
@@ -290,15 +340,12 @@
       
         
         
-          &lt;h1&gt;基本信息&lt;/h1&gt;
-&lt;table&gt;
+          &lt;h1 id=&quot;基本信息&quot;&gt;&lt;a href=&quot;#基本信息&quot; class=&quot;headerlink&quot; title=&quot;基本信息&quot;&gt;&lt;/a&gt;基本信息&lt;/h1&gt;&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;vip&lt;/th&gt;
 &lt;th&gt;管理ip ens5&lt;/th&gt;
-&lt;th&gt;存储ip ens6&lt;/th&gt;
-&lt;th&gt;外网ip(br-ex ens3)&lt;/th&gt;
-&lt;th&gt;内部ip (br-int
+&lt;th&gt;存储ip
         
       
     
@@ -328,11 +375,8 @@
       
         
         
-          &lt;h2 id=&quot;替换centos-8-源&quot;&gt;替换centos 8 源&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;删除 /etc/yum.repos.d/*.repo 文件&lt;/li&gt;
-&lt;li&gt;下载 centos-8 阿里云mirror&lt;/li&gt;
-&lt;li&gt;&lt;a
+          &lt;h2 id=&quot;替换centos-8-源&quot;&gt;&lt;a href=&quot;#替换centos-8-源&quot; class=&quot;headerlink&quot; title=&quot;替换centos 8 源&quot;&gt;&lt;/a&gt;替换centos 8 源&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;删除
         
       
     
@@ -362,8 +406,7 @@
       
         
         
-          &lt;h3 id=&quot;karafka-使用ruby-kafka-monitor-监控业务状态&quot;&gt;karafka 使用ruby kafka monitor 监控业务状态&lt;/h3&gt;
-&lt;pre class=&quot; language-language-ruby&quot;&gt;&lt;code
+          &lt;h3 id=&quot;karafka-使用ruby-kafka-monitor-监控业务状态&quot;&gt;&lt;a href=&quot;#karafka-使用ruby-kafka-monitor-监控业务状态&quot; class=&quot;headerlink&quot; title=&quot;karafka 使用ruby kafka
         
       
     
@@ -387,11 +430,10 @@
       
         
         
-          &lt;h3 id=&quot;主要监控指标&quot;&gt;主要监控指标&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;consumer lag&lt;/li&gt;
+          &lt;h3 id=&quot;主要监控指标&quot;&gt;&lt;a href=&quot;#主要监控指标&quot; class=&quot;headerlink&quot; title=&quot;主要监控指标&quot;&gt;&lt;/a&gt;主要监控指标&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;consumer lag  &lt;/li&gt;
 &lt;/ul&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/spoiler.css&quot; type=&quot;text/css&quot;&gt;&lt;script
+&lt;link
         
       
     
@@ -421,11 +463,8 @@
       
         
         
-          &lt;h2 id=&quot;常见的mysql监控指标&quot;&gt;常见的mysql监控指标&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;tps&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&quot; language-language-mysql&quot;&gt;&lt;code
+          &lt;h2 id=&quot;常见的mysql监控指标&quot;&gt;&lt;a href=&quot;#常见的mysql监控指标&quot; class=&quot;headerlink&quot; title=&quot;常见的mysql监控指标&quot;&gt;&lt;/a&gt;常见的mysql监控指标&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;tps &lt;pre class=&quot;
         
       
     
@@ -455,8 +494,7 @@
       
         
         
-          &lt;h3 id=&quot;node-js-deploy-报错&quot;&gt;node js deploy 报错&lt;/h3&gt;
-&lt;pre class=&quot; language-language-bash&quot;&gt;&lt;code
+          &lt;h3 id=&quot;node-js-deploy-报错&quot;&gt;&lt;a href=&quot;#node-js-deploy-报错&quot; class=&quot;headerlink&quot; title=&quot;node js deploy 报错&quot;&gt;&lt;/a&gt;node js deploy 报错&lt;/h3&gt;&lt;pre class=&quot;
         
       
     
@@ -482,9 +520,7 @@
       
         
         
-          &lt;h3 id=&quot;rails-心跳日志实现&quot;&gt;rails 心跳日志实现&lt;/h3&gt;
-&lt;h4 id=&quot;rails-agent-每3秒钟-同步一次-hearheat&quot;&gt;rails agent  每3秒钟 同步一次 hearheat&lt;/h4&gt;
-&lt;pre class=&quot;
+          &lt;h3 id=&quot;rails-心跳日志实现&quot;&gt;&lt;a href=&quot;#rails-心跳日志实现&quot; class=&quot;headerlink&quot; title=&quot;rails 心跳日志实现&quot;&gt;&lt;/a&gt;rails 心跳日志实现&lt;/h3&gt;&lt;h4
         
       
     
@@ -510,9 +546,7 @@
       
         
         
-          &lt;h3 id=&quot;controller01&quot;&gt;controller01&lt;/h3&gt;
-&lt;h4 id=&quot;安装包&quot;&gt;安装包&lt;/h4&gt;
-&lt;pre class=&quot; language-language-bash&quot;&gt;&lt;code
+          &lt;h3 id=&quot;controller01&quot;&gt;&lt;a href=&quot;#controller01&quot; class=&quot;headerlink&quot; title=&quot;controller01&quot;&gt;&lt;/a&gt;controller01&lt;/h3&gt;&lt;h4 id=&quot;安装包&quot;&gt;&lt;a href=&quot;#安装包&quot;
         
       
     
@@ -538,11 +572,8 @@
       
         
         
-          &lt;h2 id=&quot;ovn-准备&quot;&gt;ovn 准备&lt;/h2&gt;
-&lt;p&gt;gateway node   ovn-central&lt;/p&gt;
-&lt;p&gt;database node&lt;/p&gt;
-&lt;p&gt;compute node ovn-host&lt;/p&gt;
-&lt;h2
+          &lt;h2 id=&quot;ovn-准备&quot;&gt;&lt;a href=&quot;#ovn-准备&quot; class=&quot;headerlink&quot; title=&quot;ovn 准备&quot;&gt;&lt;/a&gt;ovn 准备&lt;/h2&gt;&lt;p&gt;gateway node   ovn-central&lt;/p&gt;
+&lt;p&gt;database
         
       
     
@@ -568,65 +599,7 @@
       
         
         
-          &lt;h2 id=&quot;controller01&quot;&gt;controller01&lt;/h2&gt;
-&lt;h3 id=&quot;安装数据库&quot;&gt;安装数据库&lt;/h3&gt;
-&lt;pre class=&quot; language-language-bash&quot;&gt;&lt;code
-        
-      
-    
-    </summary>
-    
-      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
-    
-    
-      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>openstack stein 高可用安装(placement)</title>
-    <link href="http://yoursite.com/2020/05/21/openstack-8/"/>
-    <id>http://yoursite.com/2020/05/21/openstack-8/</id>
-    <published>2020-05-21T00:34:50.000Z</published>
-    <updated>2020-05-22T01:20:49.680Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;controller01&quot;&gt;controller01&lt;/h2&gt;
-&lt;h3 id=&quot;创建数据库&quot;&gt;创建数据库&lt;/h3&gt;
-&lt;pre class=&quot; language-language-bash&quot;&gt;&lt;code
-        
-      
-    
-    </summary>
-    
-      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
-    
-    
-      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>openstack stein 高可用安装(glance)</title>
-    <link href="http://yoursite.com/2020/05/20/openstack-7/"/>
-    <id>http://yoursite.com/2020/05/20/openstack-7/</id>
-    <published>2020-05-20T09:02:58.000Z</published>
-    <updated>2020-05-20T10:26:09.484Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;controller01&quot;&gt;controller01&lt;/h2&gt;
-&lt;h3 id=&quot;初始化数据库&quot;&gt;初始化数据库&lt;/h3&gt;
-&lt;pre class=&quot; language-language-bash&quot;&gt;&lt;code
+          &lt;h2 id=&quot;controller01&quot;&gt;&lt;a href=&quot;#controller01&quot; class=&quot;headerlink&quot; title=&quot;controller01&quot;&gt;&lt;/a&gt;controller01&lt;/h2&gt;&lt;h3 id=&quot;安装数据库&quot;&gt;&lt;a href=&quot;#安装数据库&quot;
         
       
     

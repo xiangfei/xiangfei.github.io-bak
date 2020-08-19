@@ -5,11 +5,9 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="openstack stein 高可用安装(glance), openstack,opennebula">
-    <meta name="description" content="controller01
-初始化数据库
-[root@controller01 ~]# mysql -u root 
+    <meta name="description" content="controller01初始化数据库[root@controller01 ~]# mysql -u root 
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Yo">
+Your">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -433,7 +431,7 @@ Yo">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        948
+                        947
                     </div>
                     
 
@@ -456,312 +454,295 @@ Yo">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="controller01">controller01</h2>
-<h3 id="初始化数据库">初始化数据库</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# mysql -u root 
-Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 20
+                <h2 id="controller01"><a href="#controller01" class="headerlink" title="controller01"></a>controller01</h2><h3 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mysql -u root </span>
+Welcome to the MariaDB monitor.  Commands end with <span class="token punctuation">;</span> or \g.
+Your MariaDB connection <span class="token function">id</span> is 20
 Server version: 10.3.10-MariaDB MariaDB Server
 
-Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+Type <span class="token string">'help;'</span> or <span class="token string">'\h'</span> <span class="token keyword">for</span> help. Type <span class="token string">'\c'</span> to <span class="token function">clear</span> the current input statement.
 
-MariaDB [(none)]>  CREATE DATABASE glance;
-Query OK, 1 row affected (0.006 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span>  CREATE DATABASE glance<span class="token punctuation">;</span>
+Query OK, 1 row affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]>  GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' IDENTIFIED BY 'glance';
-Query OK, 0 rows affected (0.006 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span>  GRANT ALL PRIVILEGES ON glance.* TO <span class="token string">'glance'</span>@<span class="token string">'localhost'</span> IDENTIFIED BY <span class="token string">'glance'</span><span class="token punctuation">;</span>
+Query OK, 0 rows affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' IDENTIFIED BY 'glance';
-Query OK, 0 rows affected (0.006 sec)
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> GRANT ALL PRIVILEGES ON glance.* TO <span class="token string">'glance'</span>@<span class="token string">'%'</span> IDENTIFIED BY <span class="token string">'glance'</span><span class="token punctuation">;</span>
+Query OK, 0 rows affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> 
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> 
 
 
 </code></pre>
-<h3 id="创建-服务认证">创建 服务认证</h3>
-<pre class=" language-language-bash"><code class="language-language-bash"># enter glance for password
-[root@controller01 ~]# source adminrc 
-[root@controller01 ~]# openstack user create --domain default --password-prompt glance
+<h3 id="创建-服务认证"><a href="#创建-服务认证" class="headerlink" title="创建 服务认证"></a>创建 服务认证</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># enter glance for password</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># source adminrc </span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack user create --domain default --password-prompt glance</span>
 User Password:
 Repeat User Password:
 +---------------------+----------------------------------+
-| Field               | Value                            |
+<span class="token operator">|</span> Field               <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +---------------------+----------------------------------+
-| domain_id           | default                          |
-| enabled             | True                             |
-| id                  | da19f706c9fa4393ae68f91d6f58edf4 |
-| name                | glance                           |
-| options             | {}                               |
-| password_expires_at | None                             |
+<span class="token operator">|</span> domain_id           <span class="token operator">|</span> default                          <span class="token operator">|</span>
+<span class="token operator">|</span> enabled             <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>                  <span class="token operator">|</span> da19f706c9fa4393ae68f91d6f58edf4 <span class="token operator">|</span>
+<span class="token operator">|</span> name                <span class="token operator">|</span> glance                           <span class="token operator">|</span>
+<span class="token operator">|</span> options             <span class="token operator">|</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>                               <span class="token operator">|</span>
+<span class="token operator">|</span> password_expires_at <span class="token operator">|</span> None                             <span class="token operator">|</span>
 +---------------------+----------------------------------+
-[root@controller01 ~]# 
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
 
-[root@controller01 ~]#  openstack project create service
-[root@controller01 ~]#  openstack role add --project service --user glance admin 
-No project with a name or ID of 'service' exists.
-#  如果不存在 project service 需要手动创建
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  openstack project create service</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  openstack role add --project service --user glance admin </span>
+No project with a name or ID of <span class="token string">'service'</span> exists.
+<span class="token comment" spellcheck="true">#  如果不存在 project service 需要手动创建</span>
 
 
-[root@controller01 ~]# openstack service create --name glance \
->   --description "OpenStack Image" image
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack service create --name glance \</span>
+<span class="token operator">></span>   --description <span class="token string">"OpenStack Image"</span> image
 +-------------+----------------------------------+
-| Field       | Value                            |
+<span class="token operator">|</span> Field       <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +-------------+----------------------------------+
-| description | OpenStack Image                  |
-| enabled     | True                             |
-| id          | ebf8aaebb6b8477caceb2b904ea7a966 |
-| name        | glance                           |
-| type        | image                            |
+<span class="token operator">|</span> description <span class="token operator">|</span> OpenStack Image                  <span class="token operator">|</span>
+<span class="token operator">|</span> enabled     <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>          <span class="token operator">|</span> ebf8aaebb6b8477caceb2b904ea7a966 <span class="token operator">|</span>
+<span class="token operator">|</span> name        <span class="token operator">|</span> glance                           <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">type</span>        <span class="token operator">|</span> image                            <span class="token operator">|</span>
 +-------------+----------------------------------+
-[root@controller01 ~]# openstack endpoint create --region RegionOne \
->   image public http://controller:9292
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint create --region RegionOne \</span>
+<span class="token operator">></span>   image public http://controller:9292
 +--------------+----------------------------------+
-| Field        | Value                            |
+<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +--------------+----------------------------------+
-| enabled      | True                             |
-| id           | e4e8bc80055e4b65bd27f35d026762af |
-| interface    | public                           |
-| region       | RegionOne                        |
-| region_id    | RegionOne                        |
-| service_id   | ebf8aaebb6b8477caceb2b904ea7a966 |
-| service_name | glance                           |
-| service_type | image                            |
-| url          | http://controller:9292           |
+<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> e4e8bc80055e4b65bd27f35d026762af <span class="token operator">|</span>
+<span class="token operator">|</span> interface    <span class="token operator">|</span> public                           <span class="token operator">|</span>
+<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> service_id   <span class="token operator">|</span> ebf8aaebb6b8477caceb2b904ea7a966 <span class="token operator">|</span>
+<span class="token operator">|</span> service_name <span class="token operator">|</span> glance                           <span class="token operator">|</span>
+<span class="token operator">|</span> service_type <span class="token operator">|</span> image                            <span class="token operator">|</span>
+<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:9292           <span class="token operator">|</span>
 +--------------+----------------------------------+
-[root@controller01 ~]#  openstack endpoint create --region RegionOne \
->   image internal http://controller:9292
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  openstack endpoint create --region RegionOne \</span>
+<span class="token operator">></span>   image internal http://controller:9292
 
 +--------------+----------------------------------+
-| Field        | Value                            |
+<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +--------------+----------------------------------+
-| enabled      | True                             |
-| id           | 0fcc8b28920c40ee94250f3f6db6df68 |
-| interface    | internal                         |
-| region       | RegionOne                        |
-| region_id    | RegionOne                        |
-| service_id   | ebf8aaebb6b8477caceb2b904ea7a966 |
-| service_name | glance                           |
-| service_type | image                            |
-| url          | http://controller:9292           |
+<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> 0fcc8b28920c40ee94250f3f6db6df68 <span class="token operator">|</span>
+<span class="token operator">|</span> interface    <span class="token operator">|</span> internal                         <span class="token operator">|</span>
+<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> service_id   <span class="token operator">|</span> ebf8aaebb6b8477caceb2b904ea7a966 <span class="token operator">|</span>
+<span class="token operator">|</span> service_name <span class="token operator">|</span> glance                           <span class="token operator">|</span>
+<span class="token operator">|</span> service_type <span class="token operator">|</span> image                            <span class="token operator">|</span>
+<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:9292           <span class="token operator">|</span>
 +--------------+----------------------------------+
-[root@controller01 ~]# 
-[root@controller01 ~]# openstack endpoint create --region RegionOne \
->   image admin http://controller:9292
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack endpoint create --region RegionOne \</span>
+<span class="token operator">></span>   image admin http://controller:9292
 +--------------+----------------------------------+
-| Field        | Value                            |
+<span class="token operator">|</span> Field        <span class="token operator">|</span> Value                            <span class="token operator">|</span>
 +--------------+----------------------------------+
-| enabled      | True                             |
-| id           | 69ed03fee23b48eab6c6b10dc8e31226 |
-| interface    | admin                            |
-| region       | RegionOne                        |
-| region_id    | RegionOne                        |
-| service_id   | ebf8aaebb6b8477caceb2b904ea7a966 |
-| service_name | glance                           |
-| service_type | image                            |
-| url          | http://controller:9292           |
+<span class="token operator">|</span> enabled      <span class="token operator">|</span> True                             <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token function">id</span>           <span class="token operator">|</span> 69ed03fee23b48eab6c6b10dc8e31226 <span class="token operator">|</span>
+<span class="token operator">|</span> interface    <span class="token operator">|</span> admin                            <span class="token operator">|</span>
+<span class="token operator">|</span> region       <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> region_id    <span class="token operator">|</span> RegionOne                        <span class="token operator">|</span>
+<span class="token operator">|</span> service_id   <span class="token operator">|</span> ebf8aaebb6b8477caceb2b904ea7a966 <span class="token operator">|</span>
+<span class="token operator">|</span> service_name <span class="token operator">|</span> glance                           <span class="token operator">|</span>
+<span class="token operator">|</span> service_type <span class="token operator">|</span> image                            <span class="token operator">|</span>
+<span class="token operator">|</span> url          <span class="token operator">|</span> http://controller:9292           <span class="token operator">|</span>
 +--------------+----------------------------------+
 
 
 </code></pre>
-<h3 id="glance-安装">glance 安装</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# yum install openstack-glance -y
+<h3 id="glance-安装"><a href="#glance-安装" class="headerlink" title="glance 安装"></a>glance 安装</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install openstack-glance -y</span>
 
 </code></pre>
-<h3 id="修改配置文件-I">修改配置文件 I</h3>
-<p><strong>/etc/glance/glance-api.conf</strong></p>
-<pre class=" language-language-bash"><code class="language-language-bash">[database]
-# ...
-connection = mysql+pymysql://glance:glance@controller/glance
+<h3 id="修改配置文件-I"><a href="#修改配置文件-I" class="headerlink" title="修改配置文件 I"></a>修改配置文件 I</h3><p>  <strong>/etc/glance/glance-api.conf</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>database<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+connection <span class="token operator">=</span> mysql+pymysql://glance:glance@controller/glance
 
-# ...
-www_authenticate_uri  = http://controller:5000
-auth_url = http://controller:5000
-memcached_servers = controller01:11211,controller02:11211,controller03:11211
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-project_name = service
-username = glance
-password = glance
-
-
-[paste_deploy]
-# ...
-flavor = keystone
+<span class="token comment" spellcheck="true"># ...</span>
+www_authenticate_uri  <span class="token operator">=</span> http://controller:5000
+auth_url <span class="token operator">=</span> http://controller:5000
+memcached_servers <span class="token operator">=</span> controller01:11211,controller02:11211,controller03:11211
+auth_type <span class="token operator">=</span> password
+project_domain_name <span class="token operator">=</span> Default
+user_domain_name <span class="token operator">=</span> Default
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+username <span class="token operator">=</span> glance
+password <span class="token operator">=</span> glance
 
 
-[glance_store]
-# ...
-stores = file,http
-default_store = file
-filesystem_store_datadir = /var/lib/glance/images/
+<span class="token punctuation">[</span>paste_deploy<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+flavor <span class="token operator">=</span> keystone
+
+
+<span class="token punctuation">[</span>glance_store<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+stores <span class="token operator">=</span> file,http
+default_store <span class="token operator">=</span> <span class="token function">file</span>
+filesystem_store_datadir <span class="token operator">=</span> /var/lib/glance/images/
 
 
 
 </code></pre>
-<h3 id="修改配置文件-II">修改配置文件 II</h3>
-<p><strong>/etc/glance/glance-registry.conf</strong></p>
-<pre class=" language-language-bash"><code class="language-language-bash">[database]
-# ...
-connection = mysql+pymysql://glance:glance@controller/glance
+<h3 id="修改配置文件-II"><a href="#修改配置文件-II" class="headerlink" title="修改配置文件 II"></a>修改配置文件 II</h3><p>  <strong>/etc/glance/glance-registry.conf</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>database<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+connection <span class="token operator">=</span> mysql+pymysql://glance:glance@controller/glance
 
 
-[keystone_authtoken]
-# ...
-www_authenticate_uri = http://controller:5000
-auth_url = http://controller:5000
-memcached_servers = controller01:11211,controller02:11211,controller03:11211
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-project_name = service
-username = glance
-password = glance
+<span class="token punctuation">[</span>keystone_authtoken<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+www_authenticate_uri <span class="token operator">=</span> http://controller:5000
+auth_url <span class="token operator">=</span> http://controller:5000
+memcached_servers <span class="token operator">=</span> controller01:11211,controller02:11211,controller03:11211
+auth_type <span class="token operator">=</span> password
+project_domain_name <span class="token operator">=</span> Default
+user_domain_name <span class="token operator">=</span> Default
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+username <span class="token operator">=</span> glance
+password <span class="token operator">=</span> glance
 
-[paste_deploy]
-# ...
-flavor = keystone
+<span class="token punctuation">[</span>paste_deploy<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+flavor <span class="token operator">=</span> keystone
 
 </code></pre>
-<h3 id="同步数据">同步数据</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# su -s /bin/sh -c "glance-manage db_sync" glance
+<h3 id="同步数据"><a href="#同步数据" class="headerlink" title="同步数据"></a>同步数据</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># su -s /bin/sh -c "glance-manage db_sync" glance</span>
 
 
 </code></pre>
-<h3 id="启动">启动</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">
-[root@controller01 ~]# systemctl enable openstack-glance-api.service \
->   openstack-glance-registry.service
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre class=" language-bash"><code class="language-bash">
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable openstack-glance-api.service \</span>
+<span class="token operator">></span>   openstack-glance-registry.service
 Created symlink from /etc/systemd/system/multi-user.target.wants/openstack-glance-api.service to /usr/lib/systemd/system/openstack-glance-api.service.
 Created symlink from /etc/systemd/system/multi-user.target.wants/openstack-glance-registry.service to /usr/lib/systemd/system/openstack-glance-registry.service.
-[root@controller01 ~]# systemctl start openstack-glance-api.service \
->   openstack-glance-registry.service
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl start openstack-glance-api.service \</span>
+<span class="token operator">></span>   openstack-glance-registry.service
 
 </code></pre>
-<h2 id="controller02-controller03">controller02  controller03</h2>
-<h3 id="glance-安装-2">glance 安装</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# yum install openstack-glance -y
+<h2 id="controller02-controller03"><a href="#controller02-controller03" class="headerlink" title="controller02  controller03"></a>controller02  controller03</h2><h3 id="glance-安装-1"><a href="#glance-安装-1" class="headerlink" title="glance 安装"></a>glance 安装</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install openstack-glance -y</span>
 
 </code></pre>
-<h3 id="修改配置文件-I-2">修改配置文件 I</h3>
-<p><strong>/etc/glance/glance-api.conf</strong></p>
-<pre class=" language-language-bash"><code class="language-language-bash">[database]
-# ...
-connection = mysql+pymysql://glance:glance@controller/glance
+<h3 id="修改配置文件-I-1"><a href="#修改配置文件-I-1" class="headerlink" title="修改配置文件 I"></a>修改配置文件 I</h3><p>  <strong>/etc/glance/glance-api.conf</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>database<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+connection <span class="token operator">=</span> mysql+pymysql://glance:glance@controller/glance
 
-# ...
-www_authenticate_uri  = http://controller:5000
-auth_url = http://controller:5000
-memcached_servers = controller01:11211,controller02:11211,controller03:11211
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-project_name = service
-username = glance
-password = glance
-
-
-[paste_deploy]
-# ...
-flavor = keystone
+<span class="token comment" spellcheck="true"># ...</span>
+www_authenticate_uri  <span class="token operator">=</span> http://controller:5000
+auth_url <span class="token operator">=</span> http://controller:5000
+memcached_servers <span class="token operator">=</span> controller01:11211,controller02:11211,controller03:11211
+auth_type <span class="token operator">=</span> password
+project_domain_name <span class="token operator">=</span> Default
+user_domain_name <span class="token operator">=</span> Default
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+username <span class="token operator">=</span> glance
+password <span class="token operator">=</span> glance
 
 
-[glance_store]
-# ...
-stores = file,http
-default_store = file
-filesystem_store_datadir = /var/lib/glance/images/
+<span class="token punctuation">[</span>paste_deploy<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+flavor <span class="token operator">=</span> keystone
+
+
+<span class="token punctuation">[</span>glance_store<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+stores <span class="token operator">=</span> file,http
+default_store <span class="token operator">=</span> <span class="token function">file</span>
+filesystem_store_datadir <span class="token operator">=</span> /var/lib/glance/images/
 
 
 
 </code></pre>
-<h3 id="修改配置文件-II-2">修改配置文件 II</h3>
-<p><strong>/etc/glance/glance-registry.conf</strong></p>
-<pre class=" language-language-bash"><code class="language-language-bash">[database]
-# ...
-connection = mysql+pymysql://glance:glance@controller/glance
+<h3 id="修改配置文件-II-1"><a href="#修改配置文件-II-1" class="headerlink" title="修改配置文件 II"></a>修改配置文件 II</h3><p>  <strong>/etc/glance/glance-registry.conf</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>database<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+connection <span class="token operator">=</span> mysql+pymysql://glance:glance@controller/glance
 
 
-[keystone_authtoken]
-# ...
-www_authenticate_uri = http://controller:5000
-auth_url = http://controller:5000
-memcached_servers = controller01:11211,controller02:11211,controller03:11211
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-project_name = service
-username = glance
-password = glance
+<span class="token punctuation">[</span>keystone_authtoken<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+www_authenticate_uri <span class="token operator">=</span> http://controller:5000
+auth_url <span class="token operator">=</span> http://controller:5000
+memcached_servers <span class="token operator">=</span> controller01:11211,controller02:11211,controller03:11211
+auth_type <span class="token operator">=</span> password
+project_domain_name <span class="token operator">=</span> Default
+user_domain_name <span class="token operator">=</span> Default
+project_name <span class="token operator">=</span> <span class="token function">service</span>
+username <span class="token operator">=</span> glance
+password <span class="token operator">=</span> glance
 
-[paste_deploy]
-# ...
-flavor = keystone
+<span class="token punctuation">[</span>paste_deploy<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># ...</span>
+flavor <span class="token operator">=</span> keystone
 
 </code></pre>
-<h3 id="启动-2">启动</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">
-[root@controller01 ~]# systemctl enable openstack-glance-api.service \
->   openstack-glance-registry.service
+<h3 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h3><pre class=" language-bash"><code class="language-bash">
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable openstack-glance-api.service \</span>
+<span class="token operator">></span>   openstack-glance-registry.service
 Created symlink from /etc/systemd/system/multi-user.target.wants/openstack-glance-api.service to /usr/lib/systemd/system/openstack-glance-api.service.
 Created symlink from /etc/systemd/system/multi-user.target.wants/openstack-glance-registry.service to /usr/lib/systemd/system/openstack-glance-registry.service.
-[root@controller01 ~]# systemctl start openstack-glance-api.service \
->   openstack-glance-registry.service
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl start openstack-glance-api.service \</span>
+<span class="token operator">></span>   openstack-glance-registry.service
 
 </code></pre>
-<h2 id="vip-测试">vip 测试</h2>
-<pre class=" language-language-bash"><code class="language-language-bash"># 准备upload image 
-[root@controller01 ~]# openstack image create "cirros"   --file cirros-0.5.1-x86_64-disk.img    --disk-format qcow2  --container-format bare  --public  
+<h2 id="vip-测试"><a href="#vip-测试" class="headerlink" title="vip 测试"></a>vip 测试</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 准备upload image </span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack image create "cirros"   --file cirros-0.5.1-x86_64-disk.img    --disk-format qcow2  --container-format bare  --public  </span>
 
-[root@controller01 ~]# openstack image list
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack image list</span>
 +--------------------------------------+--------+--------+
-| ID                                   | Name   | Status |
+<span class="token operator">|</span> ID                                   <span class="token operator">|</span> Name   <span class="token operator">|</span> Status <span class="token operator">|</span>
 +--------------------------------------+--------+--------+
-| aa06441f-024b-46ef-96c7-d7a9b6459363 | cirros | active |
+<span class="token operator">|</span> aa06441f-024b-46ef-96c7-d7a9b6459363 <span class="token operator">|</span> cirros <span class="token operator">|</span> active <span class="token operator">|</span>
 +--------------------------------------+--------+--------+
 
-# 本地存储
+<span class="token comment" spellcheck="true"># 本地存储</span>
 
-[root@controller01 ~]# ll /var/lib/glance/images/
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ll /var/lib/glance/images/</span>
 total 15956
 -rw-r----- 1 glance glance 16338944 May 20 18:15 aa06441f-024b-46ef-96c7-d7a9b6459363
 
 
-#切换vip
+<span class="token comment" spellcheck="true">#切换vip</span>
 
-[root@controller02 ~]#  ip address add   192.168.151.170/24 dev  ens37
-[root@controller01 ~]#  ip address delete   192.168.151.170/24 dev  ens37
+<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  ip address add   192.168.151.170/24 dev  ens37</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  ip address delete   192.168.151.170/24 dev  ens37</span>
 
-[root@controller01 ~]# openstack image create "cirros-2"   --file cirros-0.5.1-x86_64-disk.img    --disk-format qcow2  --container-format bare  --public  
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack image create "cirros-2"   --file cirros-0.5.1-x86_64-disk.img    --disk-format qcow2  --container-format bare  --public  </span>
 
 
-[root@controller01 ~]# openstack image list
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># openstack image list</span>
 +--------------------------------------+----------+--------+
-| ID                                   | Name     | Status |
+<span class="token operator">|</span> ID                                   <span class="token operator">|</span> Name     <span class="token operator">|</span> Status <span class="token operator">|</span>
 +--------------------------------------+----------+--------+
-| aa06441f-024b-46ef-96c7-d7a9b6459363 | cirros   | active |
-| 6c8e4250-ead4-42b9-ba92-e8210df2c65a | cirros-2 | active |
+<span class="token operator">|</span> aa06441f-024b-46ef-96c7-d7a9b6459363 <span class="token operator">|</span> cirros   <span class="token operator">|</span> active <span class="token operator">|</span>
+<span class="token operator">|</span> 6c8e4250-ead4-42b9-ba92-e8210df2c65a <span class="token operator">|</span> cirros-2 <span class="token operator">|</span> active <span class="token operator">|</span>
 +--------------------------------------+----------+--------+
 
-[root@controller02 ~]# ll /var/lib/glance/images/
+<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ll /var/lib/glance/images/</span>
 total 15956
 -rw-r----- 1 glance glance 16338944 May 20 18:18 6c8e4250-ead4-42b9-ba92-e8210df2c65a
 
-# image上传到了controller02
+<span class="token comment" spellcheck="true"># image上传到了controller02</span>
 
 
 </code></pre>
-<h2 id="高可用">高可用</h2>
-<ul>
-<li>存储
-<ul>
+<h2 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h2><ul>
+<li>存储<ul>
 <li>ceph ,共享disk, rsync都可以实现</li>
 </ul>
 </li>
-<li>数据
-<ul>
+<li>数据<ul>
 <li>数据库已经实现</li>
 </ul>
 </li>
@@ -951,11 +932,9 @@ total 15956
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">controller01
-创建数据库
-[root@controller01 ~]# mysql
+                    <div class="summary block-with-text">controller01创建数据库[root@controller01 ~]# mysql
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB</div>
+Your MariaDB c</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-21
@@ -1000,12 +979,10 @@ Your MariaDB</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">controller01 执行
-创建vip 只是用来测试,haproxy pcs 需要以后修改
-[root@controller01 ~]# ip address add 192.168.151.170/24 dev  ens37
+                    <div class="summary block-with-text">controller01 执行创建vip 只是用来测试,haproxy pcs 需要以后修改[root@controller01 ~]# ip address add 192.168.151.170/24 dev  ens37
 
 
-数据</div>
+数据库准</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-20
@@ -1183,7 +1160,7 @@ Your MariaDB</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

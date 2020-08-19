@@ -5,22 +5,19 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="ruby  agent 内存增长, openstack,opennebula">
-    <meta name="description" content="ruby collect 内存一直增加
-reason ruby 申请的内存不会释放,需要自己去解决
+    <meta name="description" content="ruby collect 内存一直增加reason ruby 申请的内存不会释放,需要自己去解决
 
 代码启动过高的线程
 代码可能导致内存泄露
 
 解决方式
 
-
-god  killer
-
+god  killer 
 
 线程换成进程处理
 
 
-require &#39;timeou">
+require &#39;timeout&#39;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -467,41 +464,38 @@ require &#39;timeou">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="ruby-collect-内存一直增加">ruby collect 内存一直增加</h4>
-<p>reason ruby 申请的内存不会释放,需要自己去解决</p>
+                <h4 id="ruby-collect-内存一直增加"><a href="#ruby-collect-内存一直增加" class="headerlink" title="ruby collect 内存一直增加"></a>ruby collect 内存一直增加</h4><p>reason ruby 申请的内存不会释放,需要自己去解决</p>
 <ul>
 <li>代码启动过高的线程</li>
 <li>代码可能导致内存泄露</li>
 </ul>
 <p>解决方式</p>
 <ol>
-<li>
-<p>god  killer</p>
+<li><p>god  killer </p>
 </li>
-<li>
-<p>线程换成进程处理</p>
+<li><p>线程换成进程处理</p>
 </li>
 </ol>
-<pre class=" language-language-ruby"><code class="language-language-ruby">require 'timeout'
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string">'timeout'</span>
 
-servers.each do |server|
-    pid = fork do
-        puts "Forking #{server}."
-        output = "doing stuff here"
+servers<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>server<span class="token operator">|</span>
+    pid <span class="token operator">=</span> fork <span class="token keyword">do</span>
+        puts <span class="token string">"Forking <span class="token interpolation"><span class="token delimiter tag">#{</span>server<span class="token delimiter tag">}</span></span>."</span>
+        output <span class="token operator">=</span> <span class="token string">"doing stuff here"</span>
         puts output
-    end
+    <span class="token keyword">end</span>
 
-    begin
-        Timeout.timeout(20) do
-            Process.wait
-        end
-    rescue Timeout::Error
-        Process.kill 9, pid
-        # collect status so it doesn't stick around as zombie process
-        Process.wait pid
-    end
-    puts "#{server} child exited, pid = #{pid}"
-end
+    <span class="token keyword">begin</span>
+        <span class="token constant">Timeout</span><span class="token punctuation">.</span><span class="token function">timeout</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token keyword">do</span>
+            <span class="token constant">Process</span><span class="token punctuation">.</span>wait
+        <span class="token keyword">end</span>
+    <span class="token keyword">rescue</span> <span class="token constant">Timeout</span><span class="token punctuation">:</span><span class="token symbol">:Error</span>
+        <span class="token constant">Process</span><span class="token punctuation">.</span>kill <span class="token number">9</span><span class="token punctuation">,</span> pid
+        <span class="token comment" spellcheck="true"># collect status so it doesn't stick around as zombie process</span>
+        <span class="token constant">Process</span><span class="token punctuation">.</span>wait pid
+    <span class="token keyword">end</span>
+    puts <span class="token string">"<span class="token interpolation"><span class="token delimiter tag">#{</span>server<span class="token delimiter tag">}</span></span> child exited, pid = <span class="token interpolation"><span class="token delimiter tag">#{</span>pid<span class="token delimiter tag">}</span></span>"</span>
+<span class="token keyword">end</span>
 
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -689,7 +683,6 @@ end
                     <div class="summary block-with-text">基本信息
 
 
-
 vip
 管理ip
 存储ip
@@ -709,7 +702,7 @@ centos 7
 
 
 192.168.151.200
-192.168.</div>
+192.168.1</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-20
@@ -937,7 +930,7 @@ def print_memory_usage
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

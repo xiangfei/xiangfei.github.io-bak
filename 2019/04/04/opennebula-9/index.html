@@ -5,16 +5,15 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula 网络管理, openstack,opennebula">
-    <meta name="description" content="常用配置
-桥接
-cat private.txt
+    <meta name="description" content="常用配置桥接cat private.txt
 NAME    = &amp;quot;bridged_net&amp;quot;
 VN_MAD  = &amp;quot;fw&amp;quot;
 BRIDGE  = vbr1
 
 # 网桥需要手动配置
 
-#ebtables">
+#ebtables 
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -438,7 +437,7 @@ BRIDGE  = vbr1
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        466
+                        467
                     </div>
                     
 
@@ -461,9 +460,7 @@ BRIDGE  = vbr1
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="常用配置">常用配置</h3>
-<h4 id="桥接">桥接</h4>
-<pre><code>cat private.txt
+                <h3 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h3><h4 id="桥接"><a href="#桥接" class="headerlink" title="桥接"></a>桥接</h4><pre><code>cat private.txt
 NAME    = &quot;bridged_net&quot;
 VN_MAD  = &quot;fw&quot;
 BRIDGE  = vbr1
@@ -472,14 +469,12 @@ BRIDGE  = vbr1
 
 #ebtables 
 
-# Drop packets that don't match the network's MAC Address
+# Drop packets that don&#39;t match the network&#39;s MAC Address
 -s ! &lt;mac_address&gt;/ff:ff:ff:ff:ff:0 -o &lt;tap_device&gt; -j DROP
 # Prevent MAC spoofing
 -s ! &lt;mac_address&gt; -i &lt;tap_device&gt; -j DROP
 
-</code></pre>
-<h4 id="8021q">8021q</h4>
-<pre><code>NAME    = &quot;Private&quot;
+</code></pre><h4 id="8021q"><a href="#8021q" class="headerlink" title="8021q"></a>8021q</h4><pre><code>NAME    = &quot;Private&quot;
 VN_MAD  = &quot;802.1Q&quot;
 PHYDEV  = &quot;eth0&quot;
 
@@ -498,25 +493,19 @@ OUTBOUND_PEAK_KB = &quot;2048&quot;
 
 DESCRIPTION = &quot;A private network for VM inter-communication&quot;
 
-</code></pre>
-<h4 id="vxlan">vxlan</h4>
-<pre><code>NAME    = &quot;vxlan_net&quot;
+</code></pre><h4 id="vxlan"><a href="#vxlan" class="headerlink" title="vxlan"></a>vxlan</h4><pre><code>NAME    = &quot;vxlan_net&quot;
 VN_MAD  = &quot;vxlan&quot;
 PHYDEV  = &quot;eth0&quot;
 VLAN_ID = 50        # optional
 BRIDGE  = &quot;vxlan50&quot; # optional
 #在centos测试，多租户隔离不起作用?
-</code></pre>
-<h4 id="openvswitch">openvswitch</h4>
-<pre><code>NAME    = &quot;ovswitch_net&quot;
+</code></pre><h4 id="openvswitch"><a href="#openvswitch" class="headerlink" title="openvswitch"></a>openvswitch</h4><pre><code>NAME    = &quot;ovswitch_net&quot;
 VN_MAD  = &quot;ovswitch&quot;
 BRIDGE  = vbr1
 VLAN_ID = 50 # optional
 
 #VLAN ID 做多租户网络隔离 ,桥接需要strip vlan id
-</code></pre>
-<h3 id="常用命令">常用命令</h3>
-<pre><code>onevnet create config.file
+</code></pre><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><pre><code>onevnet create config.file
 
 onevnet delete  name_or_id
 
@@ -530,9 +519,7 @@ onevnet rmar Private 2
 #Hold and Release Leases
 onevnet hold &quot;Private Network&quot; 10.0.0.120
 
-</code></pre>
-<h3 id="定义路由器">定义路由器</h3>
-<pre><code>onemarketapp export 'alpine-vrouter (KVM)' vrouter_alpine --datastore default --vmname vrouter_alpine
+</code></pre><h3 id="定义路由器"><a href="#定义路由器" class="headerlink" title="定义路由器"></a>定义路由器</h3><pre><code>onemarketapp export &#39;alpine-vrouter (KVM)&#39; vrouter_alpine --datastore default --vmname vrouter_alpine
 
 cat myvr.txt
 NAME = my-vr
@@ -547,9 +534,7 @@ NIC = [
 
 $ onevrouter create myvr.txt
 
-</code></pre>
-<h3 id="定义安全组">定义安全组</h3>
-<pre><code>  $ cat ./sg.txt
+</code></pre><h3 id="定义安全组"><a href="#定义安全组" class="headerlink" title="定义安全组"></a>定义安全组</h3><pre><code>  $ cat ./sg.txt
 
   NAME = test
 
@@ -575,13 +560,8 @@ $ onevrouter create myvr.txt
 #默认允许全部通过
 
 
-</code></pre>
-<h3 id="定义防火墙">定义防火墙</h3>
-<pre><code>vyos ,marketplace 提供的kvm image下载不了,需要手动安装
-</code></pre>
-<p>参考 <a href="https://opennebula.org/create-a-context-ready-vyos-image-for-opennebula" target="_blank" rel="noopener">文章</a><br>
-<img src="/medias/opennebula/Captura-de-pantalla-de-2015-05-04-180522.png" alt><br>
-<img src="/medias/opennebula/Captura-de-pantalla-de-2015-05-04-201849.png" alt></p>
+</code></pre><h3 id="定义防火墙"><a href="#定义防火墙" class="headerlink" title="定义防火墙"></a>定义防火墙</h3><pre><code>vyos ,marketplace 提供的kvm image下载不了,需要手动安装
+</code></pre><p>参考 <a href="https://opennebula.org/create-a-context-ready-vyos-image-for-opennebula" target="_blank" rel="noopener">文章</a><br><img src="/medias/opennebula/Captura-de-pantalla-de-2015-05-04-180522.png" alt><br><img src="/medias/opennebula/Captura-de-pantalla-de-2015-05-04-201849.png" alt></p>
 <pre><code>#只是一个demo 
 git clone https://github.com/n40lab/vyos-onecontext.git
 cd vyos-onecontext
@@ -592,8 +572,7 @@ sudo mv /tmp/vyatta-postconfig-bootup.script /opt/vyatta/etc/config/scripts/vyat
 sudo mv /tmp/vyatta-vmcontext.sh /opt/vyatta/sbin/
 delete service ssh
 delete interfaces ethernet eth0
-</code></pre>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+</code></pre><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
             <hr/>
 
@@ -776,14 +755,12 @@ delete interfaces ethernet eth0
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">disk类型
-
 os ,可以启动的镜像
 cd-rom , read only data 通常是iso文件
 datalock, 数据文件, 通常是empty drive
 
 file类型
-
-kernel A plain file to be u</div>
+kernel A plain file to be use</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -828,12 +805,10 @@ kernel A plain file to be u</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">User
-Adding and Deleting Users
-oneuser create otheradmin password
+                    <div class="summary block-with-text">UserAdding and Deleting Usersoneuser create otheradmin password
 oneuser chgrp otheradmin oneadmin
 
-oneuser create publ</div>
+oneuser create public</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -1011,7 +986,7 @@ oneuser create publ</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

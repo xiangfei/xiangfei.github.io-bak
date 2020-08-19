@@ -456,7 +456,7 @@ hado">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        628
+                        651
                     </div>
                     
 
@@ -614,6 +614,15 @@ export HBASE_MANAGES_ZK=false
 </ul>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoop-cluster-2 bin<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat restart_web.sh </span>
 <span class="token function">nohup</span> ./hbase rest start -p 4444 2<span class="token operator">></span><span class="token operator">&amp;</span>1 <span class="token operator">></span>/dev/null<span class="token operator">&amp;</span>
+
+</code></pre>
+<ul>
+<li>启动thrift2</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoop-cluster-2 bin<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat restart_thrift.sh</span>
+<span class="token function">nohup</span> ./hbase thrift2  start -p 9090 2<span class="token operator">></span><span class="token operator">&amp;</span>1 <span class="token operator">></span>/dev/null<span class="token operator">&amp;</span>
+
+
 
 </code></pre>
 <blockquote>
@@ -802,18 +811,17 @@ hbase(main):004:0&gt;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/08/12/hbase/">
+                <a href="/2020/08/14/opentsdb/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="hbase 2.3 高可用安装">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="opentsdb 2.4.0 集群安装">
                         
-                        <span class="card-title">hbase 2.3 高可用安装</span>
+                        <span class="card-title">opentsdb 2.4.0 集群安装</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -838,18 +846,18 @@ centos 7
 192.168.226.65
 hado</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-12
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-14
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/hbase/" class="post-category" target="_blank">
-                                    hbase
+                            <a href="/categories/opentsdb/" class="post-category" target="_blank">
+                                    opentsdb
                                 </a>
                             
-                            <a href="/categories/hbase/bigdata/" class="post-category" target="_blank">
+                            <a href="/categories/opentsdb/bigdata/" class="post-category" target="_blank">
                                     bigdata
                                 </a>
                             
@@ -857,16 +865,15 @@ hado</div>
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hbase/" target="_blank">
-                        <span class="chip bg-color">hbase</span>
-                    </a>
-                    
                     <a href="/tags/bigdata/" target="_blank">
                         <span class="chip bg-color">bigdata</span>
+                    </a>
+                    
+                    <a href="/tags/opentsdb/" target="_blank">
+                        <span class="chip bg-color">opentsdb</span>
                     </a>
                     
                 </div>
@@ -1095,7 +1102,7 @@ hado</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

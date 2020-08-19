@@ -5,13 +5,12 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="ruby  Module, openstack,opennebula">
-    <meta name="description" content="Ruby 模块（Module）
-模块（Module）是一种把方法、类和常量组合在一起的方式。模块（Module）为您提供了两大好处。
+    <meta name="description" content="Ruby 模块（Module）模块（Module）是一种把方法、类和常量组合在一起的方式。模块（Module）为您提供了两大好处。
 
 模块提供了一个命名空间和避免名字冲突。
 模块实现了 mixin 装置。
 
-模块（Module）定义了一个">
+模块（Module）定义了一个命">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -458,14 +457,12 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-模块（Module）">Ruby 模块（Module）</h3>
-<p><strong>模块（Module）是一种把方法、类和常量组合在一起的方式。模块（Module）为您提供了两大好处。</strong></p>
+                <h3 id="Ruby-模块（Module）"><a href="#Ruby-模块（Module）" class="headerlink" title="Ruby 模块（Module）"></a>Ruby 模块（Module）</h3><p><strong>模块（Module）是一种把方法、类和常量组合在一起的方式。模块（Module）为您提供了两大好处。</strong></p>
 <ul>
 <li>模块提供了一个命名空间和避免名字冲突。</li>
 <li>模块实现了 mixin 装置。</li>
 </ul>
-<p><strong>模块（Module）定义了一个命名空间，相当于一个沙盒，在里边您的方法和常量不会与其他地方的方法常量冲突。</strong><br>
-<strong>模块类似与类，但有一下不同：</strong></p>
+<p><strong>模块（Module）定义了一个命名空间，相当于一个沙盒，在里边您的方法和常量不会与其他地方的方法常量冲突。</strong><br><strong>模块类似与类，但有一下不同：</strong></p>
 <ul>
 <li>模块不能实例化</li>
 <li>模块没有子类</li>
@@ -477,14 +474,13 @@
    statement2
    ...........
 end
-</code></pre>
-<p>模块常量命名与类常量命名类似，以大写字母开头。方法定义看起来也相似：模块方法定义与类方法定义类似。</p>
+</code></pre><p>模块常量命名与类常量命名类似，以大写字母开头。方法定义看起来也相似：模块方法定义与类方法定义类似。</p>
 <p>通过类方法，您可以在类方法名称前面放置模块名称和一个点号来调用模块方法，您可以使用模块名称和两个冒号来引用一个常量。</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
- 
+
 # 定义在 trig.rb 文件中的模块
- 
+
 module Trig
    PI = 3.141592654
    def Trig.sin(x)
@@ -495,13 +491,12 @@ module Trig
    end
 end
 
-</code></pre>
-<p>我们可以定义多个函数名称相同但是功能不同的模块：</p>
+</code></pre><p>我们可以定义多个函数名称相同但是功能不同的模块：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
- 
+
 # 定义在 moral.rb 文件中的模块
- 
+
 module Moral
    VERY_BAD = 0
    BAD = 1
@@ -509,33 +504,27 @@ module Moral
    # ...
    end
 end
-</code></pre>
-<p>就像类方法，当您在模块中定义一个方法时，您可以指定在模块名称后跟着一个点号，点号后跟着方法名。</p>
+</code></pre><p>就像类方法，当您在模块中定义一个方法时，您可以指定在模块名称后跟着一个点号，点号后跟着方法名。</p>
 <hr>
-<h3 id="Ruby-require-语句">Ruby require 语句</h3>
-<p>require 语句类似于 C 和 C++ 中的 include 语句以及 Java 中的 import 语句。如果一个第三方的程序想要使用任何已定义的模块，则可以简单地使用 Ruby require 语句来加载模块文件：</p>
+<h3 id="Ruby-require-语句"><a href="#Ruby-require-语句" class="headerlink" title="Ruby require 语句"></a>Ruby require 语句</h3><p>require 语句类似于 C 和 C++ 中的 include 语句以及 Java 中的 import 语句。如果一个第三方的程序想要使用任何已定义的模块，则可以简单地使用 Ruby require 语句来加载模块文件：</p>
 <p><strong>语法</strong></p>
 <p><code>require filename</code></p>
 <p>在这里，文件扩展名 .rb 不是必需的。</p>
 <p><strong>实例</strong></p>
-<pre><code>$LOAD_PATH &lt;&lt; '.'
- 
-require 'trig.rb'
-require 'moral'
- 
+<pre><code>$LOAD_PATH &lt;&lt; &#39;.&#39;
+
+require &#39;trig.rb&#39;
+require &#39;moral&#39;
+
 y = Trig.sin(Trig::PI/4)
 wrongdoing = Moral.sin(Moral::VERY_BAD)
-</code></pre>
-<p>在这里，我们使用 <strong>$LOAD_PATH &lt;&lt; ‘.’</strong> 让 Ruby 知道必须在当前目录中搜索被引用的文件。如果您不想使用 <strong>$LOAD_PATH</strong>，那么您可以使用 <strong>require_relative</strong> 来从一个相对目录引用文件。</p>
+</code></pre><p>在这里，我们使用 <strong>$LOAD_PATH &lt;&lt; ‘.’</strong> 让 Ruby 知道必须在当前目录中搜索被引用的文件。如果您不想使用 <strong>$LOAD_PATH</strong>，那么您可以使用 <strong>require_relative</strong> 来从一个相对目录引用文件。</p>
 <p><code>注意：在这里，文件包含相同的函数名称。所以，这会在引用调用程序时导致代码模糊，但是模块避免了这种代码模糊，而且我们可以使用模块的名称调用适当的函数。</code></p>
-<h3 id="Ruby-include-语句">Ruby include 语句</h3>
-<p>您可以在类中嵌入模块。为了在类中嵌入模块，您可以在类中使用 include 语句：</p>
+<h3 id="Ruby-include-语句"><a href="#Ruby-include-语句" class="headerlink" title="Ruby include 语句"></a>Ruby include 语句</h3><p>您可以在类中嵌入模块。为了在类中嵌入模块，您可以在类中使用 include 语句：</p>
 <p><strong>语法</strong></p>
 <pre><code>include modulename
-</code></pre>
-<p>如果模块是定义在一个单独的文件中，那么在嵌入模块之前就需要使用 require 语句引用该文件。</p>
-<p><strong>实例</strong><br>
-假设下面的模块写在 support.rb 文件中。</p>
+</code></pre><p>如果模块是定义在一个单独的文件中，那么在嵌入模块之前就需要使用 require 语句引用该文件。</p>
+<p><strong>实例</strong><br>假设下面的模块写在 support.rb 文件中。</p>
 <pre><code>module Week
    FIRST_DAY = &quot;Sunday&quot;
    def Week.weeks_in_month
@@ -545,13 +534,12 @@ wrongdoing = Moral.sin(Moral::VERY_BAD)
       puts &quot;You have 52 weeks in a year&quot;
    end
 end
-</code></pre>
-<p>现在，您可以在类中引用该模块，如下所示：</p>
+</code></pre><p>现在，您可以在类中引用该模块，如下所示：</p>
 <p><strong>实例</strong></p>
 <pre><code>#!/usr/bin/ruby
-$LOAD_PATH &lt;&lt; '.'
+$LOAD_PATH &lt;&lt; &#39;.&#39;
 require &quot;support&quot;
- 
+
 class Decade
 include Week
    no_of_yrs=10
@@ -566,17 +554,11 @@ puts Week::FIRST_DAY
 Week.weeks_in_month
 Week.weeks_in_year
 d1.no_of_months
-</code></pre>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>Sunday<br>
-You have four weeks in a month<br>
-You have 52 weeks in a year<br>
-Sunday<br>
-120</p>
+</code></pre><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>Sunday<br>You have four weeks in a month<br>You have 52 weeks in a year<br>Sunday<br>120</p>
 </blockquote>
 </div></div>
-<h3 id="Ruby-中的-Mixins">Ruby 中的 Mixins</h3>
-<p>当一个类可以从多个父类继承类的特性时，该类显示为多重继承。</p>
+<h3 id="Ruby-中的-Mixins"><a href="#Ruby-中的-Mixins" class="headerlink" title="Ruby 中的 Mixins"></a>Ruby 中的 Mixins</h3><p>当一个类可以从多个父类继承类的特性时，该类显示为多重继承。</p>
 <p>Ruby 不直接支持多重继承，但是 Ruby 的模块（Module）有另一个神奇的功能。它几乎消除了多重继承的需要，提供了一种名为 mixin 的装置。</p>
 <p>Ruby 没有真正实现多重继承机制，而是采用成为mixin技术作为替代品。将模块include到类定义中，模块中的方法就mix进了类中。</p>
 <p>让我们看看下面的示例代码，深入了解 mixin：</p>
@@ -593,22 +575,21 @@ module B
    def b2
    end
 end
- 
+
 class Sample
 include A
 include B
    def s1
    end
 end
- 
+
 samp=Sample.new
 samp.a1
 samp.a2
 samp.b1
 samp.b2
 samp.s1
-</code></pre>
-<ul>
+</code></pre><ul>
 <li>模块 A 由方法 a1 和 a2 组成。</li>
 <li>模块 B 由方法 b1 和 b2 组成。</li>
 <li>类 Sample 包含了模块 A 和 B。</li>
@@ -798,15 +779,12 @@ samp.s1
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">Ruby 字符串（String）
-
-
 Ruby 中的 String 对象用于存储或操作一个或多个字节的序列。
 
+Ruby 字符串分为单引号字符串（’）和双引号字符串（”），区别在于双引号字符串能够支持更多的转义字符。
 
-Ruby 字符串分为单引号字符串（’）和双引号字符串（&quot;），区别在于双引号字符串能够支持更多的转义字符。
 
-
-单引号</div>
+单引号字符串最简单的字</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -852,12 +830,11 @@ Ruby 字符串分为单引号字符串（’）和双引号字符串（&quot;）
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">Ruby 块
-
 块由大量的代码组成。
 您需要给块取个名称。
 块中的代码总是包含在大括号 {} 内。
 块总是从与其具有相同名称的函数调用。这意味着如果您的块名称为 test，那么您要使用函数 test 来调用这个块。
-您可以使用 yield </div>
+您可以使用 yield 语</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
@@ -1035,7 +1012,7 @@ Ruby 字符串分为单引号字符串（’）和双引号字符串（&quot;）
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

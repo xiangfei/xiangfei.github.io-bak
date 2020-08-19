@@ -6,8 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="python3 元编程, openstack,opennebula">
     <meta name="description" content="概述
+Python元编程有两种方法，一是采用类似“装饰器”的工具对基本元素（例如函数、类、类型）内审和对其进行实时创建和修改，二是运用类型”元类”的方式对类实例的创建过程进行修改，甚至于允许重新设计Python面对对象编程范式的实现
 
-Python元编程有两种方法，一是采用类似“装饰器”的工具对基本元素（例如函数、类、类型）内审和对其进行实时创建和修改，二是运用类型&amp;quot;元类&amp;quot;的方式对类实例的创建过程进行修改，甚至于允许重新设计Python面对对象">
+装饰">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -431,7 +432,7 @@ Python元编程有两种方法，一是采用类似“装饰器”的工具对�
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        415
+                        409
                     </div>
                     
 
@@ -454,86 +455,79 @@ Python元编程有两种方法，一是采用类似“装饰器”的工具对�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="概述">概述</h3>
-<ul>
-<li>Python元编程有两种方法，一是采用类似“装饰器”的工具对基本元素（例如函数、类、类型）内审和对其进行实时创建和修改，二是运用类型&quot;元类&quot;的方式对类实例的创建过程进行修改，甚至于允许重新设计Python面对对象编程范式的实现</li>
+                <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>Python元编程有两种方法，一是采用类似“装饰器”的工具对基本元素（例如函数、类、类型）内审和对其进行实时创建和修改，二是运用类型”元类”的方式对类实例的创建过程进行修改，甚至于允许重新设计Python面对对象编程范式的实现</li>
 </ul>
-<h3 id="装饰器">装饰器</h3>
-<pre class=" language-language-python"><code class="language-language-python">
-def doSomethingBeforeHi(func):
-    print("I am doing some boring work before executing hi()")
-    print(func())
+<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><pre class=" language-python"><code class="language-python">
+<span class="token keyword">def</span> <span class="token function">doSomethingBeforeHi</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"I am doing some boring work before executing hi()"</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>func<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
 
-from functools import wraps
- 
-def a_new_decorator(a_func):
-    @wraps(a_func)
-    def wrapTheFunction():
-        print("I am doing some boring work before executing a_func()")
-        a_func()
-        print("I am doing some boring work after executing a_func()")
-    return wrapTheFunction
- 
+<span class="token keyword">from</span> functools <span class="token keyword">import</span> wraps
 
-def logit(logfile='out.log'):
-    def logging_decorator(func):
-        @wraps(func)
-        def wrapped_function(*args, **kwargs):
-            log_string = func.__name__ + " was called"
-            print(log_string)
-            # 打开logfile，并写入内容
-            with open(logfile, 'a') as opened_file:
-                # 现在将日志打到指定的logfile
-                opened_file.write(log_string + '\n')
-            return func(*args, **kwargs)
-        return wrapped_function
-    return logging_decorator
+<span class="token keyword">def</span> <span class="token function">a_new_decorator</span><span class="token punctuation">(</span>a_func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    @wraps<span class="token punctuation">(</span>a_func<span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">wrapTheFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"I am doing some boring work before executing a_func()"</span><span class="token punctuation">)</span>
+        a_func<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"I am doing some boring work after executing a_func()"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> wrapTheFunction
+
+
+<span class="token keyword">def</span> <span class="token function">logit</span><span class="token punctuation">(</span>logfile<span class="token operator">=</span><span class="token string">'out.log'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">logging_decorator</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        @wraps<span class="token punctuation">(</span>func<span class="token punctuation">)</span>
+        <span class="token keyword">def</span> <span class="token function">wrapped_function</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            log_string <span class="token operator">=</span> func<span class="token punctuation">.</span>__name__ <span class="token operator">+</span> <span class="token string">" was called"</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>log_string<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 打开logfile，并写入内容</span>
+            <span class="token keyword">with</span> open<span class="token punctuation">(</span>logfile<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> opened_file<span class="token punctuation">:</span>
+                <span class="token comment" spellcheck="true"># 现在将日志打到指定的logfile</span>
+                opened_file<span class="token punctuation">.</span>write<span class="token punctuation">(</span>log_string <span class="token operator">+</span> <span class="token string">'\n'</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> wrapped_function
+    <span class="token keyword">return</span> logging_decorator
 
 
 </code></pre>
 <blockquote>
 <p>wraps 作用</p>
-</blockquote>
 <ul>
 <li>在类装饰器中使用闭包会导致生成的对象不再是被装饰的类的实例，二是在装饰器函数创建的子类的实例，这会影响__name__和__doc__等属性，在上篇我们使用@wraps装饰器对函数装饰器进行操作让问题得到解决，但在类装饰器中这一方法无效</li>
 </ul>
-<h3 id="meta">meta</h3>
-<hr>
-<h4 id="type">type</h4>
-<pre class=" language-language-python"><code class="language-language-python">type(obj) # 查看对象类型
-type(name, bases, dict) #用来创建类
+</blockquote>
+<h3 id="meta"><a href="#meta" class="headerlink" title="meta"></a>meta</h3><hr>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><pre class=" language-python"><code class="language-python">type<span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 查看对象类型</span>
+type<span class="token punctuation">(</span>name<span class="token punctuation">,</span> bases<span class="token punctuation">,</span> dict<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#用来创建类</span>
 </code></pre>
-<h4 id="metaclass">metaclass</h4>
-<pre class=" language-language-python"><code class="language-language-python">class FirstMetaClass(type):
-    def __new__(cls, name, bases, attrs):
-        return super().__new__(cls,name,bases,attrs)
-# cls 类
-# name  class instance ,个人理解
-# bases (object ,)
-# attrs 类属性
+<h4 id="metaclass"><a href="#metaclass" class="headerlink" title="metaclass"></a>metaclass</h4><pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">FirstMetaClass</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__new__</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> name<span class="token punctuation">,</span> bases<span class="token punctuation">,</span> attrs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> super<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__new__<span class="token punctuation">(</span>cls<span class="token punctuation">,</span>name<span class="token punctuation">,</span>bases<span class="token punctuation">,</span>attrs<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># cls 类</span>
+<span class="token comment" spellcheck="true"># name  class instance ,个人理解</span>
+<span class="token comment" spellcheck="true"># bases (object ,)</span>
+<span class="token comment" spellcheck="true"># attrs 类属性</span>
 </code></pre>
-<h4 id="动态创建function">动态创建function</h4>
-<pre class=" language-language-python"><code class="language-language-python">module_code = compile('def foobar(): return "foobar"', '', 'exec')
-function_code = [c for c in module_code.co_consts if isinstance(c, types.CodeType)][0]
-foobar = types.FunctionType(function_code, {})
-print foobar()
+<h4 id="动态创建function"><a href="#动态创建function" class="headerlink" title="动态创建function"></a>动态创建function</h4><pre class=" language-python"><code class="language-python">module_code <span class="token operator">=</span> compile<span class="token punctuation">(</span><span class="token string">'def foobar(): return "foobar"'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'exec'</span><span class="token punctuation">)</span>
+function_code <span class="token operator">=</span> <span class="token punctuation">[</span>c <span class="token keyword">for</span> c <span class="token keyword">in</span> module_code<span class="token punctuation">.</span>co_consts <span class="token keyword">if</span> isinstance<span class="token punctuation">(</span>c<span class="token punctuation">,</span> types<span class="token punctuation">.</span>CodeType<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+foobar <span class="token operator">=</span> types<span class="token punctuation">.</span>FunctionType<span class="token punctuation">(</span>function_code<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span> foobar<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
 </code></pre>
-<h4 id="动态method">动态method</h4>
-<pre class=" language-language-python"><code class="language-language-python">import types
- 
-class Person(object):
-    country = 'china'
-    def __init__(self,name):
-        self.name = name
- 
+<h4 id="动态method"><a href="#动态method" class="headerlink" title="动态method"></a>动态method</h4><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> types
+
+<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    country <span class="token operator">=</span> <span class="token string">'china'</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>name <span class="token operator">=</span> name
+
 @staticmethod
-def run():
-    print('在奔跑')
- 
-Person.run = run
-Person.run()
+<span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'在奔跑'</span><span class="token punctuation">)</span>
+
+Person<span class="token punctuation">.</span>run <span class="token operator">=</span> run
+Person<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
 
 </code></pre>
@@ -722,7 +716,6 @@ Person.run()
                     <div class="summary block-with-text">内部常用链接
 
 
-
 地址
 URL
 用户名
@@ -743,7 +736,7 @@ http://dido.51iwifi.com/#/login
 -
 
 
-gitl</div>
+gitla</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-18
@@ -789,7 +782,6 @@ gitl</div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">Error sending heartbeat: Kafka::UnknownMemberId
-
 通常是代码问题导致发送心跳失败
 
 </div>
@@ -970,7 +962,7 @@ gitl</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

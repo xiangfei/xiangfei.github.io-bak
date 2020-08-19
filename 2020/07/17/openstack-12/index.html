@@ -6,11 +6,10 @@
     <meta charset="utf-8">
     <meta name="keywords" content="openstack ussuri centos8 高可用安装 yum 替换, openstack,opennebula">
     <meta name="description" content="替换centos 8 源
-
 删除 /etc/yum.repos.d/*.repo 文件
 下载 centos-8 阿里云mirror
 http://mirrors.aliyun.com/repo/Centos-8.repo
-rename to">
+rename to ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -449,7 +448,7 @@ rename to">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        10 分
+                        9 分
                     </div>
                     
                 
@@ -465,78 +464,78 @@ rename to">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="替换centos-8-源">替换centos 8 源</h2>
-<ul>
+                <h2 id="替换centos-8-源"><a href="#替换centos-8-源" class="headerlink" title="替换centos 8 源"></a>替换centos 8 源</h2><ul>
 <li>删除 /etc/yum.repos.d/*.repo 文件</li>
-<li>下载 centos-8 阿里云mirror</li>
+<li>下载 centos-8 阿里云mirror<ul>
 <li><a href="http://mirrors.aliyun.com/repo/Centos-8.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-8.repo</a></li>
 <li>rename to Centos-Base.repo</li>
 </ul>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@cotroller01 yum.repos.d]# cat CentOS-Base.repo 
-# CentOS-Base.repo
-#
-# The mirror system uses the connecting IP address of the client and the
-# update status of each mirror to pick mirrors that are updated to and
-# geographically close to the client.  You should use this for CentOS updates
-# unless you are manually picking other mirrors.
-#
-# If the mirrorlist= does not work for you, as a fall back you can try the 
-# remarked out baseurl= line instead.
-#
-#
- 
-[base]
-name=CentOS-$releasever - Base - mirrors.aliyun.com
-failovermethod=priority
-baseurl=https://mirrors.aliyun.com/centos/$releasever/BaseOS/$basearch/os/
-gpgcheck=1
-gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-Official
- 
-#additional packages that may be useful
-[extras]
-name=CentOS-$releasever - Extras - mirrors.aliyun.com
-failovermethod=priority
-baseurl=https://mirrors.aliyun.com/centos/$releasever/extras/$basearch/os/
-gpgcheck=1
-gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-Official
- 
-#additional packages that extend functionality of existing packages
-[centosplus]
-name=CentOS-$releasever - Plus - mirrors.aliyun.com
-failovermethod=priority
-baseurl=https://mirrors.aliyun.com/centos/$releasever/centosplus/$basearch/os/
-gpgcheck=1
-enabled=0
-gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-Official
- 
-[PowerTools]
-name=CentOS-$releasever - PowerTools - mirrors.aliyun.com
-failovermethod=priority
-baseurl=https://mirrors.aliyun.com/centos/$releasever/PowerTools/$basearch/os/
-gpgcheck=1
-enabled=1
-gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-Official
-[AppStream]
-name=CentOS-$releasever - AppStream - mirrors.aliyun.com
-failovermethod=priority
-baseurl=https://mirrors.aliyun.com/centos/$releasever/AppStream/$basearch/os/
-gpgcheck=1
-gpgkey=https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-Official
+</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cotroller01 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat CentOS-Base.repo </span>
+<span class="token comment" spellcheck="true"># CentOS-Base.repo</span>
+<span class="token comment" spellcheck="true">#</span>
+<span class="token comment" spellcheck="true"># The mirror system uses the connecting IP address of the client and the</span>
+<span class="token comment" spellcheck="true"># update status of each mirror to pick mirrors that are updated to and</span>
+<span class="token comment" spellcheck="true"># geographically close to the client.  You should use this for CentOS updates</span>
+<span class="token comment" spellcheck="true"># unless you are manually picking other mirrors.</span>
+<span class="token comment" spellcheck="true">#</span>
+<span class="token comment" spellcheck="true"># If the mirrorlist= does not work for you, as a fall back you can try the </span>
+<span class="token comment" spellcheck="true"># remarked out baseurl= line instead.</span>
+<span class="token comment" spellcheck="true">#</span>
+<span class="token comment" spellcheck="true">#</span>
+
+<span class="token punctuation">[</span>base<span class="token punctuation">]</span>
+name<span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - Base - mirrors.aliyun.com
+failovermethod<span class="token operator">=</span>priority
+baseurl<span class="token operator">=</span>https://mirrors.aliyun.com/centos/<span class="token variable">$releasever</span>/BaseOS/<span class="token variable">$basearch</span>/os/
+gpgcheck<span class="token operator">=</span>1
+gpgkey<span class="token operator">=</span>https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-Official
+
+<span class="token comment" spellcheck="true">#additional packages that may be useful</span>
+<span class="token punctuation">[</span>extras<span class="token punctuation">]</span>
+name<span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - Extras - mirrors.aliyun.com
+failovermethod<span class="token operator">=</span>priority
+baseurl<span class="token operator">=</span>https://mirrors.aliyun.com/centos/<span class="token variable">$releasever</span>/extras/<span class="token variable">$basearch</span>/os/
+gpgcheck<span class="token operator">=</span>1
+gpgkey<span class="token operator">=</span>https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-Official
+
+<span class="token comment" spellcheck="true">#additional packages that extend functionality of existing packages</span>
+<span class="token punctuation">[</span>centosplus<span class="token punctuation">]</span>
+name<span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - Plus - mirrors.aliyun.com
+failovermethod<span class="token operator">=</span>priority
+baseurl<span class="token operator">=</span>https://mirrors.aliyun.com/centos/<span class="token variable">$releasever</span>/centosplus/<span class="token variable">$basearch</span>/os/
+gpgcheck<span class="token operator">=</span>1
+enabled<span class="token operator">=</span>0
+gpgkey<span class="token operator">=</span>https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-Official
+
+<span class="token punctuation">[</span>PowerTools<span class="token punctuation">]</span>
+name<span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - PowerTools - mirrors.aliyun.com
+failovermethod<span class="token operator">=</span>priority
+baseurl<span class="token operator">=</span>https://mirrors.aliyun.com/centos/<span class="token variable">$releasever</span>/PowerTools/<span class="token variable">$basearch</span>/os/
+gpgcheck<span class="token operator">=</span>1
+enabled<span class="token operator">=</span>1
+gpgkey<span class="token operator">=</span>https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-Official
+<span class="token punctuation">[</span>AppStream<span class="token punctuation">]</span>
+name<span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - AppStream - mirrors.aliyun.com
+failovermethod<span class="token operator">=</span>priority
+baseurl<span class="token operator">=</span>https://mirrors.aliyun.com/centos/<span class="token variable">$releasever</span>/AppStream/<span class="token variable">$basearch</span>/os/
+gpgcheck<span class="token operator">=</span>1
+gpgkey<span class="token operator">=</span>https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-Official
 
 
-[root@cotroller01 yum.repos.d]# yum clean all
-[root@cotroller01 yum.repos.d]# yum makecache
- 
+<span class="token punctuation">[</span>root@cotroller01 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum clean all</span>
+<span class="token punctuation">[</span>root@cotroller01 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum makecache</span>
+
 </code></pre>
-<h2 id="安装openstack-源">安装openstack 源</h2>
-<pre class=" language-language-bash"><code class="language-language-bash">
-[root@cotroller01 yum.repos.d]# yum -y install  centos-release-openstack-ussuri 
-[root@cotroller01 yum.repos.d]# yum config-manager --set-enabled PowerTools
+<h2 id="安装openstack-源"><a href="#安装openstack-源" class="headerlink" title="安装openstack 源"></a>安装openstack 源</h2><pre class=" language-bash"><code class="language-bash">
+<span class="token punctuation">[</span>root@cotroller01 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y install  centos-release-openstack-ussuri </span>
+<span class="token punctuation">[</span>root@cotroller01 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum config-manager --set-enabled PowerTools</span>
 </code></pre>
 <blockquote>
 <p>生成文件</p>
 </blockquote>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@cotroller01 yum.repos.d]# ll
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cotroller01 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ll</span>
 total 28
 -rw-r--r--. 1 root root  381 Jul  9 22:36 advanced-virtualization.repo
 -rw-r--r--. 1 root root 1781 Jul 13 11:46 CentOS-Base.repo
@@ -546,8 +545,7 @@ total 28
 -rw-r--r--. 1 root root  353 Mar 19 22:25 CentOS-Storage-common.repo
 
 </code></pre>
-<h2 id="替换源文件">替换源文件</h2>
-<ul>
+<h2 id="替换源文件"><a href="#替换源文件" class="headerlink" title="替换源文件"></a>替换源文件</h2><ul>
 <li>advanced-virtualuzation.repo</li>
 </ul>
 <pre><code>[advanced-virtualization]
@@ -561,8 +559,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization-RDO
 module_hotfixes=1
 
 
-</code></pre>
-<ul>
+</code></pre><ul>
 <li>CentOS-Ceph-Nautilus.repo</li>
 </ul>
 <pre><code>[root@cotroller01 yum.repos.d]# cat CentOS-Ceph-Nautilus.repo 
@@ -595,8 +592,7 @@ enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Storage
 
 
-</code></pre>
-<ul>
+</code></pre><ul>
 <li>CentOS-Messaging-rabbitmq.repo</li>
 </ul>
 <pre><code>[root@cotroller01 yum.repos.d]# cat CentOS-Messaging-rabbitmq.repo 
@@ -631,8 +627,7 @@ enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Messaging
 
 
-</code></pre>
-<ul>
+</code></pre><ul>
 <li>CentOS-OpenStack-ussuri.repo</li>
 </ul>
 <pre><code>
@@ -785,8 +780,7 @@ gpgcheck=0
 module_hotfixes=1
 
 
-</code></pre>
-<ul>
+</code></pre><ul>
 <li>CentOS-Storage-common.repo</li>
 </ul>
 <pre><code>[root@cotroller01 yum.repos.d]# cat CentOS-Storage-common.repo 
@@ -804,11 +798,8 @@ enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Storage
 
 
-</code></pre>
-<blockquote>
-<p>在aliyun能找到这些包<br>
-手动安装centos8 dns 配置 /etc/resolv.conf ,不存在手动创建<br>
-enabled = 0 禁用,不需要修改配置</p>
+</code></pre><blockquote>
+<p>在aliyun能找到这些包<br>手动安装centos8 dns 配置 /etc/resolv.conf ,不存在手动创建<br>enabled = 0 禁用,不需要修改配置</p>
 </blockquote>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
@@ -995,7 +986,6 @@ enabled = 0 禁用,不需要修改配置</p>
                     <div class="summary block-with-text">基本信息
 
 
-
 vip
 管理ip ens5
 存储ip ens6
@@ -1009,7 +999,7 @@ OS
 
 10.10.102.190
 10.10.102.191
-10.10.100.19</div>
+10.10.100.191</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-17
@@ -1062,11 +1052,10 @@ OS
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">karafka 使用ruby kafka monitor 监控业务状态
-#frozen_string_literal: true
+                    <div class="summary block-with-text">karafka 使用ruby kafka monitor 监控业务状态#frozen_string_literal: true
 
 ENV["RAILS_ENV"] ||= "development"
-ENV["KARAFKA_ENV"] </div>
+ENV["KARAFKA_ENV"] =</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-16
@@ -1236,7 +1225,7 @@ ENV["KARAFKA_ENV"] </div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

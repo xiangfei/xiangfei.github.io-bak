@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="k8s docker tips, openstack,opennebula">
     <meta name="description" content="DOKCER TIPS
-
-log-driver 通过使用--log-driver指定log-driver的类型，可以有none、json-file、syslog、journald等，docker version 1.12以前默认的log-d">
+log-driver 通过使用--log-driver指定log-driver的类型，可以有none、json-file、syslog、journald等，docker version 1.12以前默认的log-dr">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -454,79 +453,33 @@ log-driver 通过使用--log-driver指定log-driver的类型，可以有none、j
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1>DOKCER TIPS</h1>
-<ol>
-<li>log-driver 通过使用<code>--log-driver</code>指定log-driver的类型，可以有<code>none</code>、<code>json-file</code>、<code>syslog</code>、<code>journald</code>等，docker version 1.12以前默认的log-driver为<code>json-file</code>，1.12以后的默认log-driver为<code>journald</code>。<br>
-当log-driver的类型为json-file时，可使用–log-opt命令指定max-size(每个文件的大小)，max-file(最多保存多少个文件)等。设定–log-driver可以在docker engine的配置文件<code>/etc/sysconfig/dokcer</code>内进行指定，也可以在单个容器运行的时候通过–log-driver进行单独指定。</li>
-</ol>
+                <h1 id="DOKCER-TIPS"><a href="#DOKCER-TIPS" class="headerlink" title="DOKCER TIPS"></a>DOKCER TIPS</h1><ol>
+<li><p>log-driver 通过使用<code>--log-driver</code>指定log-driver的类型，可以有<code>none</code>、<code>json-file</code>、<code>syslog</code>、<code>journald</code>等，docker version 1.12以前默认的log-driver为<code>json-file</code>，1.12以后的默认log-driver为<code>journald</code>。<br>当log-driver的类型为json-file时，可使用–log-opt命令指定max-size(每个文件的大小)，max-file(最多保存多少个文件)等。设定–log-driver可以在docker engine的配置文件<code>/etc/sysconfig/dokcer</code>内进行指定，也可以在单个容器运行的时候通过–log-driver进行单独指定。  </p>
 <blockquote>
-<p>参考文档：<a href="https://docs.docker.com/engine/admin/logging/overview/" target="_blank" rel="noopener">https://docs.docker.com/engine/admin/logging/overview/</a></p>
+<p>参考文档：<a href="https://docs.docker.com/engine/admin/logging/overview/" target="_blank" rel="noopener">https://docs.docker.com/engine/admin/logging/overview/</a>  </p>
 </blockquote>
-<ol start="2">
-<li>关于指定docker数据存储路径后<code>/etc/sysconfig/docker: line 4: --graph=/data/docker: No such file or directory</code>报错的解释：<br>
-在docker engine的配置文件<code>/etc/sysconfig/docker</code>内通过<code>--graph=/data/docker</code>指定docker数据文件存储位置后会提示<code>/etc/sysconfig/docker: line 4: --graph=/data/docker: No such file or directory</code>，原因在于docker对于该参数的配置有格式要求<code>OPTIONS='--graph=&quot;/data/docker&quot;'</code>该标准可行。<br>
-<br></li>
-<li>关于<code>docker-storage-setup.service</code>无法启动，报错<code>ERROR: No valid volume group found. Exiting.</code>的原因。---------待跟踪<br>
-<br></li>
-<li>docker version 1.12以上的版本，可以通过指定参数(/etc/docker/daemon.json <code>&quot;live-restore&quot;: true</code> 默认参数) 当docker engine异常终止时(例如崩溃或者kill)，使在运行中的container不受影响。<br>
-<br></li>
-<li>使用docker进行端口映射(-p)时，会写入指定规则到iptables里面，firewalld及iptables在第一次启动初始化文件的时候会重置iptables里面规则，所以如果在docker engine启动后iptables或者firewalld再启动时，docker engine启动创建的iptables链会消失，此时通过<code>docker run -p </code>指定端口来启动container时会报错<code>failed: iptables: No chain/target/match by that name.</code>。经过个人测试docker version 1.12以下的版本在重启firewalld或者iptables后也会重置docker engine创建的iptables链表，1.12以上则不会。</li>
+</li>
+<li><p>关于指定docker数据存储路径后<code>/etc/sysconfig/docker: line 4: --graph=/data/docker: No such file or directory</code>报错的解释：<br>在docker engine的配置文件<code>/etc/sysconfig/docker</code>内通过<code>--graph=/data/docker</code>指定docker数据文件存储位置后会提示<code>/etc/sysconfig/docker: line 4: --graph=/data/docker: No such file or directory</code>，原因在于docker对于该参数的配置有格式要求<code>OPTIONS=&#39;--graph=&quot;/data/docker&quot;&#39;</code>该标准可行。<br><br></p>
+</li>
+<li>关于<code>docker-storage-setup.service</code>无法启动，报错<code>ERROR: No valid volume group found. Exiting.</code>的原因。———待跟踪<br><br></li>
+<li>docker version 1.12以上的版本，可以通过指定参数(/etc/docker/daemon.json <code>&quot;live-restore&quot;: true</code> 默认参数) 当docker engine异常终止时(例如崩溃或者kill)，使在运行中的container不受影响。<br><br></li>
+<li>使用docker进行端口映射(-p)时，会写入指定规则到iptables里面，firewalld及iptables在第一次启动初始化文件的时候会重置iptables里面规则，所以如果在docker engine启动后iptables或者firewalld再启动时，docker engine启动创建的iptables链会消失，此时通过<code>docker run -p</code>指定端口来启动container时会报错<code>failed: iptables: No chain/target/match by that name.</code>。经过个人测试docker version 1.12以下的版本在重启firewalld或者iptables后也会重置docker engine创建的iptables链表，1.12以上则不会。  </li>
 </ol>
-<h1>K8S TIPS</h1>
-<ol>
-<li>关于在K8S上面通过删除pod来使指定<code>restartPolicy:always</code>的deployment或者rc重新创建pod，以达到重启pod的效果而造成的宿主机上面该pod相关的container存储目录被删除（如果新的pod还是创建在这台宿主机(node)上面，则K8S会保留上一个pod的备份），但是docker engine并没有释放被删除的空间(可以通过<code>lsof |grep deleted</code>查看已删除但是未释放的空间)，此时只能通过重启docker engine来释放这些空间。------需要继续跟踪是否是因为删除pod造成的还是正常通过k8s重新布置pod也会出现该现象。<br>
-<br></li>
-<li>K8S及DOCKER怎么解决不同pod之间数据共享及数据持久化？<br>
-使用NFS或者其它分布式文件系统，通过docker或者k8s各自的方式挂载到容器内部，数据持久化系统可用NFS和glusterfs等实现。<br>
-<br></li>
-<li>k8s的kube-dns的使用<br>
-创建的service会随机分配一个clusterIP和targetport（IP不可ping，端口不可telnet) 当其它服务在访问tcp://clusterip:targetport 时，k8s会负载均衡到各node的pod上面，当发起访问请求的主机/pod和该pod的IP为同一网段时（即分配到的POD在和发起请求的POD在同一台node上面），因为路由寻址问题，将会访问失败。所以引入kube-dns概念。  （错错错，只有pod的node主机访问不了，so why???）<br>
-使用flannel搭建的docker网络，不同网段之间互访源地址会转换成该子网的类似192.168.0.0/32这个地址去访问，不会使用正确的源IP地址<br>
-<br></li>
-<li>k8s更新或者通过kubernetes-dashboard删除rc(直接使用kubectrl delete rc删除会同时删除pod)后对应的pods没有更新或者删除<br>
-k8s在更新rc中的容器的资源时，会立刻更新rc中的数据信息，但是rc却不会触发更新rc中pod的事件，也就是说并不会去更新正在运行中的pod的资源，但是当rc真正的做伸缩扩建（replicas的值增减），才会真正的用现有的rc模板中的数据去创建新的pod。而且在replicas值减小时，去删除对应的pod的机制是根据pod的创建时间顺序去删除的，最先删除最新创建的，让后次之。<br>
-<br></li>
-<li>k8s的yaml设置中Containers标签ports标签下clinetport参数的意义，并不会改变容器里面监听的端口,service 中port、targetport和clusterip代表的意义</li>
+<h1 id="K8S-TIPS"><a href="#K8S-TIPS" class="headerlink" title="K8S TIPS"></a>K8S TIPS</h1><ol>
+<li>关于在K8S上面通过删除pod来使指定<code>restartPolicy:always</code>的deployment或者rc重新创建pod，以达到重启pod的效果而造成的宿主机上面该pod相关的container存储目录被删除（如果新的pod还是创建在这台宿主机(node)上面，则K8S会保留上一个pod的备份），但是docker engine并没有释放被删除的空间(可以通过<code>lsof |grep deleted</code>查看已删除但是未释放的空间)，此时只能通过重启docker engine来释放这些空间。——需要继续跟踪是否是因为删除pod造成的还是正常通过k8s重新布置pod也会出现该现象。<br><br></li>
+<li>K8S及DOCKER怎么解决不同pod之间数据共享及数据持久化？<br>使用NFS或者其它分布式文件系统，通过docker或者k8s各自的方式挂载到容器内部，数据持久化系统可用NFS和glusterfs等实现。<br><br></li>
+<li>k8s的kube-dns的使用<br>创建的service会随机分配一个clusterIP和targetport（IP不可ping，端口不可telnet) 当其它服务在访问tcp://clusterip:targetport 时，k8s会负载均衡到各node的pod上面，当发起访问请求的主机/pod和该pod的IP为同一网段时（即分配到的POD在和发起请求的POD在同一台node上面），因为路由寻址问题，将会访问失败。所以引入kube-dns概念。  （错错错，只有pod的node主机访问不了，so why???）<br>使用flannel搭建的docker网络，不同网段之间互访源地址会转换成该子网的类似192.168.0.0/32这个地址去访问，不会使用正确的源IP地址<br><br></li>
+<li>k8s更新或者通过kubernetes-dashboard删除rc(直接使用kubectrl delete rc删除会同时删除pod)后对应的pods没有更新或者删除<br>k8s在更新rc中的容器的资源时，会立刻更新rc中的数据信息，但是rc却不会触发更新rc中pod的事件，也就是说并不会去更新正在运行中的pod的资源，但是当rc真正的做伸缩扩建（replicas的值增减），才会真正的用现有的rc模板中的数据去创建新的pod。而且在replicas值减小时，去删除对应的pod的机制是根据pod的创建时间顺序去删除的，最先删除最新创建的，让后次之。<br><br></li>
+<li>k8s的yaml设置中Containers标签ports标签下clinetport参数的意义，并不会改变容器里面监听的端口,service 中port、targetport和clusterip代表的意义  </li>
 </ol>
-<h1>Docker(k8s平台下) 日常使用指南</h1>
-<ol>
-<li>
-<p>确认Container运行所在Cluster。<br>
-可以通过kubernetes-dashboard界面查看POD的Cluster IP并跟《Cluster IP对照表》比较确认该POD(container)所运行的宿主Cluster。<br>
-例如：<br>
-<img src="/medias/img/clusterIP.png" alt="cluster ip"><br>
-<br><br>
-可知cloud及csclient这个POD(container)分别运行在外网地址为59.110.168.105及59.110.171.3的两台服务器(Cluster)上面。<br></p>
+<h1 id="Docker-k8s平台下-日常使用指南"><a href="#Docker-k8s平台下-日常使用指南" class="headerlink" title="Docker(k8s平台下) 日常使用指南  　"></a>Docker(k8s平台下) 日常使用指南  　</h1><ol>
+<li><p>确认Container运行所在Cluster。<br>可以通过kubernetes-dashboard界面查看POD的Cluster IP并跟《Cluster IP对照表》比较确认该POD(container)所运行的宿主Cluster。<br>例如：<br><img src="/medias/img/clusterIP.png" alt="cluster ip"><br><br><br>可知cloud及csclient这个POD(container)分别运行在外网地址为59.110.168.105及59.110.171.3的两台服务器(Cluster)上面。<br>   </p>
 </li>
-<li>
-<p>确认POD(container)的Container ID。<br>
-通过上面步骤我们可知POD(container)运行所在的Cluster，我们可以登陆服务器，通过POD NAME查出POD(container)的Container ID。<br><br>
-<img src="/medias/img/pod_name.png" alt="POD NAME"><br><br>
-通过<code>docker ps |grep cloud-2694259464-dxjs9</code>命令查询Container ID。<br><br>
-<img src="/medias/img/select_pod.png" alt="select"><br><br>
-PS：我们也可以直接<code>docker ps |grep cloud</code>查询在该Cluster运行的名为cloud-XXX的POD，但如果该Cluster运行多个名称为cloud-XXX的pod那结果就不是精确结果，可以通过image的版本号或者查看完整的POD NAME来进行精确确认。<br>
-<br></p>
+<li><p>确认POD(container)的Container ID。<br>通过上面步骤我们可知POD(container)运行所在的Cluster，我们可以登陆服务器，通过POD NAME查出POD(container)的Container ID。<br><br><img src="/medias/img/pod_name.png" alt="POD NAME"><br><br>通过<code>docker ps |grep cloud-2694259464-dxjs9</code>命令查询Container ID。<br><br><img src="/medias/img/select_pod.png" alt="select"><br><br>PS：我们也可以直接<code>docker ps |grep cloud</code>查询在该Cluster运行的名为cloud-XXX的POD，但如果该Cluster运行多个名称为cloud-XXX的pod那结果就不是精确结果，可以通过image的版本号或者查看完整的POD NAME来进行精确确认。<br><br></p>
 </li>
-<li>
-<p>查看POD(container)的控制台日志。<br>
-1)、根据步骤2我们可以得到我们所想查看的POD(container)的ID。<br>
-2)、通过<code>docker logs -f --tail=100 39c5fbe30c33</code>命令查看Container ID为39c5fbe30c33的最近100行(–tail=100)控制台日志输出，并且持续监控后续日志输出(-f)。<br>
-3)、通过<code>docker logs &gt; logfile.log</code>或者<code>docker logs --tail=&quot;all&quot; &gt; logfile.log</code> 命令打印所有控制台日志到logfile.log文件。<br>
-<br></p>
-</li>
-<li>
-<p>通过cluster连接POD(container)。<br>
-1)、根据步骤2我们可以得到我们所想连接的POD(container)的ID。<br>
-2)、通过<code>docker exec -it 39c5fbe30c33 /bin/bash</code>命令即可进入Container ID为39c5fbe30c33的POD(container)内部。可使用bash命令查看相关信息。<br><br>
-PS：<code>docker exec </code> 命令实际是调用container内部的命令，可以是<code>/bin/bash</code>也可是<code>cat</code>,<code>ls</code>等命令，但一般docker images会精简自身镜像，所以只会存放内核级别命令及一些基础命令，我们经常可以发现进入到container内部后一些基础命令类似<code>ll</code>,<code>vi</code>,'telnet’命令不可用，就是这个原因。<br>
-<br></p>
-</li>
-<li>
-<p>通过cluster拷贝POD(container)内外文件。<br>
-1)、根据步骤2我们可以得到我们所想连接的POD(container)的ID。<br>
-2)、通过<code>dokcer cp /opt/fromfile 39c5fbe30c33:/etc/tofile</code> 及<code>docker cp 39c5fbe30c33:/etc/fromfile /opt/tofile</code>命令，可以很方便的在container内外互相拷贝文件，类似Linux下<code>cp</code>,<code>scp</code>,<code>rsyc</code>命令。<br><br>
-PS:因为container是一次性，使用即销毁的，所以当容器销毁后通过image重新再次启动一个容器的时候，互相拷贝的数据将会消失。容器内数据会恢复到构建Image时默认的数据，如果我们要将一些数据持久化到container内，需要通过重新构建Image的方式进行,如何构建Image参见上一章。</p>
-</li>
+<li>查看POD(container)的控制台日志。<br>1)、根据步骤2我们可以得到我们所想查看的POD(container)的ID。<br>2)、通过<code>docker logs -f --tail=100 39c5fbe30c33</code>命令查看Container ID为39c5fbe30c33的最近100行(–tail=100)控制台日志输出，并且持续监控后续日志输出(-f)。<br>3)、通过<code>docker logs &gt; logfile.log</code>或者<code>docker logs --tail=&quot;all&quot; &gt; logfile.log</code> 命令打印所有控制台日志到logfile.log文件。<br><br></li>
+<li>通过cluster连接POD(container)。<br>1)、根据步骤2我们可以得到我们所想连接的POD(container)的ID。<br>2)、通过<code>docker exec -it 39c5fbe30c33 /bin/bash</code>命令即可进入Container ID为39c5fbe30c33的POD(container)内部。可使用bash命令查看相关信息。<br><br>PS：<code>docker exec</code> 命令实际是调用container内部的命令，可以是<code>/bin/bash</code>也可是<code>cat</code>,<code>ls</code>等命令，但一般docker images会精简自身镜像，所以只会存放内核级别命令及一些基础命令，我们经常可以发现进入到container内部后一些基础命令类似<code>ll</code>,<code>vi</code>,’telnet’命令不可用，就是这个原因。<br><br></li>
+<li>通过cluster拷贝POD(container)内外文件。<br>1)、根据步骤2我们可以得到我们所想连接的POD(container)的ID。<br>2)、通过<code>dokcer cp /opt/fromfile 39c5fbe30c33:/etc/tofile</code> 及<code>docker cp 39c5fbe30c33:/etc/fromfile /opt/tofile</code>命令，可以很方便的在container内外互相拷贝文件，类似Linux下<code>cp</code>,<code>scp</code>,<code>rsyc</code>命令。<br><br>PS:因为container是一次性，使用即销毁的，所以当容器销毁后通过image重新再次启动一个容器的时候，互相拷贝的数据将会消失。容器内数据会恢复到构建Image时默认的数据，如果我们要将一些数据持久化到container内，需要通过重新构建Image的方式进行,如何构建Image参见上一章。</li>
 </ol>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
@@ -710,16 +663,13 @@ PS:因为container是一次性，使用即销毁的，所以当容器销毁后�
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">一、flannel简介
-flannel官网
-
-https://coreos.com/flannel/
+                    <div class="summary block-with-text">一、flannel简介flannel官网
+https://coreos.com/flannel/  
 
 flannel官方文档
+https://coreos.com/flannel/docs/latest/  
 
-https://coreos.com/flannel/docs/latest/
-
-flannel github</div>
+flannel githu</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-25
@@ -764,17 +714,13 @@ flannel github</div>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">一、etcd简介
-etcd官网
-
-https://coreos.com/etcd/
+                    <div class="summary block-with-text">一、etcd简介etcd官网
+https://coreos.com/etcd/  
 
 etcd官方文档
-
-https://coreos.com/etcd/docs/latest/
+https://coreos.com/etcd/docs/latest/  
 
 etcd github
-
 https://github.c</div>
                     <div class="publish-info">
                             <span class="publish-date">
@@ -953,7 +899,7 @@ https://github.c</div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

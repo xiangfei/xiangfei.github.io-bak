@@ -6,14 +6,12 @@
     <meta charset="utf-8">
     <meta name="keywords" content="opennebula 镜像管理, openstack,opennebula">
     <meta name="description" content="disk类型
-
 os ,可以启动的镜像
 cd-rom , read only data 通常是iso文件
 datalock, 数据文件, 通常是empty drive
 
 file类型
-
-kernel A plain file to be u">
+kernel A plain file to be use">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -460,26 +458,21 @@ kernel A plain file to be u">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="disk类型">disk类型</h3>
-<ul>
+                <h3 id="disk类型"><a href="#disk类型" class="headerlink" title="disk类型"></a>disk类型</h3><ul>
 <li>os ,可以启动的镜像</li>
 <li>cd-rom , read only data 通常是iso文件</li>
 <li>datalock, 数据文件, 通常是empty drive</li>
 </ul>
-<h3 id="file类型">file类型</h3>
-<ul>
+<h3 id="file类型"><a href="#file类型" class="headerlink" title="file类型"></a>file类型</h3><ul>
 <li>kernel A plain file to be used as kernel (VM attribute OS/KERNEL_DS)</li>
 <li>ramdisk  A plain file to be used as ramdisk (VM attribute OS/INITRD_DS)</li>
 <li>context A plain file to be included in the context CD-ROM (VM attribute CONTEXT/FILES_DS)</li>
 </ul>
-<p>生命周期<br>
-<img src="/medias/opennebula/image-persistent.png" alt="persistent"><br>
-<img src="/medias/opennebula/image-nonpersistent.png" alt="nopersistent"></p>
+<p>生命周期<br><img src="/medias/opennebula/image-persistent.png" alt="persistent"><br><img src="/medias/opennebula/image-nonpersistent.png" alt="nopersistent"></p>
 <blockquote>
 <p>只能在file datastore注册</p>
 </blockquote>
-<h3 id="基础命令">基础命令</h3>
-<pre><code>cat ubuntu_img.one
+<h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><pre><code>cat ubuntu_img.one
 NAME          = &quot;Ubuntu&quot;
 PATH          = &quot;/home/cloud/images/ubuntu-desktop/disk.0&quot;
 TYPE          = &quot;OS&quot;
@@ -489,9 +482,7 @@ oneimage create ubuntu_img.one --datastore default
 oneimage clone Ubuntu new_image
 #share image
 oneimage chmod 0 664
-</code></pre>
-<h3 id="制作镜像">制作镜像</h3>
-<ul>
+</code></pre><h3 id="制作镜像"><a href="#制作镜像" class="headerlink" title="制作镜像"></a>制作镜像</h3><ul>
 <li>boot a vm instance</li>
 <li>安装 one context</li>
 <li>onevm disk-saveas centos-installation 0 centos-contextualized</li>
@@ -678,13 +669,10 @@ oneimage chmod 0 664
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">image
-需要安装one-context
-
-Set Up the Virtual Machine Template
-CONTEXT = [
+                    <div class="summary block-with-text">image需要安装one-context
+Set Up the Virtual Machine TemplateCONTEXT = [
     TOKEN = &quot;YES&quot;,
-    NETWORK = &quot;</div>
+    NETWORK = &quot;YES</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -729,16 +717,15 @@ CONTEXT = [
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">常用配置
-桥接
-cat private.txt
+                    <div class="summary block-with-text">常用配置桥接cat private.txt
 NAME    = &quot;bridged_net&quot;
 VN_MAD  = &quot;fw&quot;
 BRIDGE  = vbr1
 
 # 网桥需要手动配置
 
-#ebtables</div>
+#ebtables 
+</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-04
@@ -916,7 +903,7 @@ BRIDGE  = vbr1
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

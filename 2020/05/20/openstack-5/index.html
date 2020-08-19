@@ -5,10 +5,8 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="openstack stein 高可用安装(mariadb  rabbitmq , memcached  , chronyd , etcd), openstack,opennebula">
-    <meta name="description" content="mariadb galera 安装
-controller node 执行
-# controller01 
-[root@controller01 ~]# yum install mariadb mariadb-server python2-P">
+    <meta name="description" content="mariadb galera 安装controller node 执行# controller01 
+[root@controller01 ~]# yum install mariadb mariadb-server python2-PyM">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -432,7 +430,7 @@ controller node 执行
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        606
+                        613
                     </div>
                     
 
@@ -455,200 +453,188 @@ controller node 执行
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="mariadb-galera-安装">mariadb galera 安装</h2>
-<h3 id="controller-node-执行">controller node 执行</h3>
-<pre class=" language-language-bash"><code class="language-language-bash"># controller01 
-[root@controller01 ~]# yum install mariadb mariadb-server python2-PyMySQL  galera mariadb-galera-server rsync   -y
-# controller02 , controller03
-[root@controller03 ~]# yum install mariadb mariadb-server python2-PyMySQL  galera  rsync  -y
+                <h2 id="mariadb-galera-安装"><a href="#mariadb-galera-安装" class="headerlink" title="mariadb galera 安装"></a>mariadb galera 安装</h2><h3 id="controller-node-执行"><a href="#controller-node-执行" class="headerlink" title="controller node 执行"></a>controller node 执行</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># controller01 </span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install mariadb mariadb-server python2-PyMySQL  galera mariadb-galera-server rsync   -y</span>
+<span class="token comment" spellcheck="true"># controller02 , controller03</span>
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install mariadb mariadb-server python2-PyMySQL  galera  rsync  -y</span>
 
 
 </code></pre>
-<h3 id="修改配置文件-all-node">修改配置文件(all node)</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">
+<h3 id="修改配置文件-all-node"><a href="#修改配置文件-all-node" class="headerlink" title="修改配置文件(all node)"></a>修改配置文件(all node)</h3><pre class=" language-bash"><code class="language-bash">
 
-#controller01
+<span class="token comment" spellcheck="true">#controller01</span>
 
-[root@controller01 ~]# vim /etc/my.cnf.d/mariadb-server.cnf 
-[galera]
-# Mandatory settings
-#wsrep_on=ON
-#wsrep_provider=
-#wsrep_cluster_address=
-#binlog_format=row
-#default_storage_engine=InnoDB
-#innodb_autoinc_lock_mode=2
-#
-# Allow server to accept connections on all interfaces.
-#
-#bind-address=0.0.0.0
-#
-# Optional setting
-#wsrep_slave_threads=1
-#innodb_flush_log_at_trx_commit=0
-wsrep_on=ON
-wsrep_provider=/usr/lib64/galera/libgalera_smm.so
-wsrep_cluster_address="gcomm://192.168.151.71,192.168.151.72,192.168.151.73"
-wsrep_node_name= controller01
-wsrep_node_address=192.168.151.71
-binlog_format=row
-default_storage_engine=InnoDB
-innodb_autoinc_lock_mode=2
-wsrep_slave_threads=1
-innodb_flush_log_at_trx_commit=0
-innodb_buffer_pool_size=120M
-wsrep_sst_method=rsync
-wsrep_causal_reads=ON
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim /etc/my.cnf.d/mariadb-server.cnf </span>
+<span class="token punctuation">[</span>galera<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># Mandatory settings</span>
+<span class="token comment" spellcheck="true">#wsrep_on=ON</span>
+<span class="token comment" spellcheck="true">#wsrep_provider=</span>
+<span class="token comment" spellcheck="true">#wsrep_cluster_address=</span>
+<span class="token comment" spellcheck="true">#binlog_format=row</span>
+<span class="token comment" spellcheck="true">#default_storage_engine=InnoDB</span>
+<span class="token comment" spellcheck="true">#innodb_autoinc_lock_mode=2</span>
+<span class="token comment" spellcheck="true">#</span>
+<span class="token comment" spellcheck="true"># Allow server to accept connections on all interfaces.</span>
+<span class="token comment" spellcheck="true">#</span>
+<span class="token comment" spellcheck="true">#bind-address=0.0.0.0</span>
+<span class="token comment" spellcheck="true">#</span>
+<span class="token comment" spellcheck="true"># Optional setting</span>
+<span class="token comment" spellcheck="true">#wsrep_slave_threads=1</span>
+<span class="token comment" spellcheck="true">#innodb_flush_log_at_trx_commit=0</span>
+wsrep_on<span class="token operator">=</span>ON
+wsrep_provider<span class="token operator">=</span>/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address<span class="token operator">=</span><span class="token string">"gcomm://192.168.151.71,192.168.151.72,192.168.151.73"</span>
+wsrep_node_name<span class="token operator">=</span> controller01
+wsrep_node_address<span class="token operator">=</span>192.168.151.71
+binlog_format<span class="token operator">=</span>row
+default_storage_engine<span class="token operator">=</span>InnoDB
+innodb_autoinc_lock_mode<span class="token operator">=</span>2
+wsrep_slave_threads<span class="token operator">=</span>1
+innodb_flush_log_at_trx_commit<span class="token operator">=</span>0
+innodb_buffer_pool_size<span class="token operator">=</span>120M
+wsrep_sst_method<span class="token operator">=</span>rsync
+wsrep_causal_reads<span class="token operator">=</span>ON
 
 
-#controller02 ,controller03  
+<span class="token comment" spellcheck="true">#controller02 ,controller03  </span>
 copy 内容 修改 wsrep_node_name , wsrep_node_address
 
 </code></pre>
-<h3 id="启动">启动</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">
-#controller01  ,第一次启动
-[root@controller01 ~]# galera_new_cluster  #或者 /usr/libexec/mysqld  --wsrep-new-cluster --user=mysql
-# controller01 , 第二次启动
-###[root@controller01 ~]# service mariadb start
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre class=" language-bash"><code class="language-bash">
+<span class="token comment" spellcheck="true">#controller01  ,第一次启动</span>
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># galera_new_cluster  #或者 /usr/libexec/mysqld  --wsrep-new-cluster --user=mysql</span>
+<span class="token comment" spellcheck="true"># controller01 , 第二次启动</span>
+<span class="token comment" spellcheck="true">###[root@controller01 ~]# service mariadb start</span>
 
-#controller02 , controller03
-[root@controller02 ~]# service mariadb start
+<span class="token comment" spellcheck="true">#controller02 , controller03</span>
+<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># service mariadb start</span>
 
-# all node
+<span class="token comment" spellcheck="true"># all node</span>
 
-[root@controller02 ~]# systemctl enable mariadb
+<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable mariadb</span>
 
 
 </code></pre>
-<h3 id="测试">测试</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">
-#controller01
-Query OK, 1 row affected (0.006 sec)
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre class=" language-bash"><code class="language-bash">
+<span class="token comment" spellcheck="true">#controller01</span>
+Query OK, 1 row affected <span class="token punctuation">(</span>0.006 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> show databases;
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> show databases<span class="token punctuation">;</span>
 +--------------------+
-| Database           |
+<span class="token operator">|</span> Database           <span class="token operator">|</span>
 +--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| sss                |
-| vvv                |
+<span class="token operator">|</span> information_schema <span class="token operator">|</span>
+<span class="token operator">|</span> mysql              <span class="token operator">|</span>
+<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
+<span class="token operator">|</span> sss                <span class="token operator">|</span>
+<span class="token operator">|</span> vvv                <span class="token operator">|</span>
 +--------------------+
-5 rows in set (0.002 sec)
+5 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.002 sec<span class="token punctuation">)</span>
 
-#controller02 , controller03
+<span class="token comment" spellcheck="true">#controller02 , controller03</span>
 
 
-Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+Type <span class="token string">'help;'</span> or <span class="token string">'\h'</span> <span class="token keyword">for</span> help. Type <span class="token string">'\c'</span> to <span class="token function">clear</span> the current input statement.
 
-MariaDB [(none)]> show databases;
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> show databases<span class="token punctuation">;</span>
 +--------------------+
-| Database           |
+<span class="token operator">|</span> Database           <span class="token operator">|</span>
 +--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| sss                |
-| vvv                |
+<span class="token operator">|</span> information_schema <span class="token operator">|</span>
+<span class="token operator">|</span> mysql              <span class="token operator">|</span>
+<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
+<span class="token operator">|</span> sss                <span class="token operator">|</span>
+<span class="token operator">|</span> vvv                <span class="token operator">|</span>
 +--------------------+
-5 rows in set (0.002 sec)
+5 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.002 sec<span class="token punctuation">)</span>
 
-MariaDB [(none)]> exit
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> <span class="token keyword">exit</span>
 Bye
 
 
 </code></pre>
-<h2 id="rabbitmq-安装">rabbitmq 安装</h2>
-<pre class=" language-language-bash"><code class="language-language-bash"># all  controller nodes
-[root@controller03 ~]#  yum install rabbitmq-server -y
-[root@controller03 ~]#  systemctl enable rabbitmq-server.service
+<h2 id="rabbitmq-安装"><a href="#rabbitmq-安装" class="headerlink" title="rabbitmq 安装"></a>rabbitmq 安装</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># all  controller nodes</span>
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  yum install rabbitmq-server -y</span>
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  systemctl enable rabbitmq-server.service</span>
 
-# controller01 执行
+<span class="token comment" spellcheck="true"># controller01 执行</span>
 
-[root@controller01 ~]# service rabbitmq-server start   # 启动完成生成文件 /var/lib/rabbitmq/.erlang.cookie
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># service rabbitmq-server start   # 启动完成生成文件 /var/lib/rabbitmq/.erlang.cookie</span>
 
-# copy文件到controller02 , controller03
+<span class="token comment" spellcheck="true"># copy文件到controller02 , controller03</span>
 
-[root@controller01 ~]# scp /var/lib/rabbitmq/.erlang.cookie root@controller03:/var/lib/rabbitmq/.erlang.cookie
+<span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># scp /var/lib/rabbitmq/.erlang.cookie root@controller03:/var/lib/rabbitmq/.erlang.cookie</span>
 
-# 修改文件权限 controller02 ,controller03
+<span class="token comment" spellcheck="true"># 修改文件权限 controller02 ,controller03</span>
 
-[root@controller02 ~]# chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
-[root@controller02 ~]# chmod 400 /var/lib/rabbitmq/.erlang.cookie
+<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie</span>
+<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># chmod 400 /var/lib/rabbitmq/.erlang.cookie</span>
 
 
-# controller02 , controller03  执行
-## 启动rabbitmq-server
-[root@controller03 ~]# systemctl start rabbitmq-server.service
-[root@controller03 ~]# rabbitmqctl stop_app
-[root@controller03 ~]#  rabbitmqctl join_cluster --ram rabbit@controller01
+<span class="token comment" spellcheck="true"># controller02 , controller03  执行</span>
+<span class="token comment" spellcheck="true">## 启动rabbitmq-server</span>
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl start rabbitmq-server.service</span>
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rabbitmqctl stop_app</span>
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  rabbitmqctl join_cluster --ram rabbit@controller01</span>
 
 
 </code></pre>
-<h3 id="检查">检查</h3>
-<pre class=" language-language-bash"><code class="language-language-bash">[root@controller01 ~]# rabbitmqctl cluster_status
+<h3 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@controller01 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rabbitmqctl cluster_status</span>
 Cluster status of node rabbit@controller01
-[{nodes,[{disc,[rabbit@controller01]},
-         {ram,[rabbit@controller03,rabbit@controller02]}]},
- {running_nodes,[rabbit@controller01]},
- {cluster_name,<<"rabbit@controller01">>},
- {partitions,[]},
- {alarms,[{rabbit@controller01,[]}]}]
+<span class="token punctuation">[</span><span class="token punctuation">{</span>nodes,<span class="token punctuation">[</span><span class="token punctuation">{</span>disc,<span class="token punctuation">[</span>rabbit@controller01<span class="token punctuation">]</span><span class="token punctuation">}</span>,
+         <span class="token punctuation">{</span>ram,<span class="token punctuation">[</span>rabbit@controller03,rabbit@controller02<span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span>,
+ <span class="token punctuation">{</span>running_nodes,<span class="token punctuation">[</span>rabbit@controller01<span class="token punctuation">]</span><span class="token punctuation">}</span>,
+ <span class="token punctuation">{</span>cluster_name,<span class="token operator">&lt;&lt;</span><span class="token string">"rabbit@controller01"</span><span class="token operator">>></span><span class="token punctuation">}</span>,
+ <span class="token punctuation">{</span>partitions,<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">}</span>,
+ <span class="token punctuation">{</span>alarms,<span class="token punctuation">[</span><span class="token punctuation">{</span>rabbit@controller01,<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
 
 
 
-## 以后service  rabbitmq-server restart
+<span class="token comment" spellcheck="true">## 以后service  rabbitmq-server restart</span>
 </code></pre>
-<h3 id="创建用户-配置权限">创建用户,配置权限</h3>
-<pre><code>[root@controller01 ~]#  rabbitmqctl add_user openstack openstack
+<h3 id="创建用户-配置权限"><a href="#创建用户-配置权限" class="headerlink" title="创建用户,配置权限"></a>创建用户,配置权限</h3><pre><code>[root@controller01 ~]#  rabbitmqctl add_user openstack openstack
 Creating user &quot;openstack&quot;
 [root@controller01 ~]# rabbitmqctl set_permissions openstack &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;
 Setting permissions for user &quot;openstack&quot; in vhost &quot;/&quot;
 
 
+</code></pre><h2 id="memach-安装"><a href="#memach-安装" class="headerlink" title="memach 安装"></a>memach 安装</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">## all nodes执行</span>
+<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install memcached python-memcached -y</span>
+<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable memcached.service</span>
+
+
+<span class="token comment" spellcheck="true">## 修改配置文件</span>
+
+<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat   /etc/sysconfig/memcached</span>
+PORT<span class="token operator">=</span><span class="token string">"11211"</span>
+USER<span class="token operator">=</span><span class="token string">"memcached"</span>
+MAXCONN<span class="token operator">=</span><span class="token string">"1024"</span>
+CACHESIZE<span class="token operator">=</span><span class="token string">"64"</span>
+OPTIONS<span class="token operator">=</span><span class="token string">"-l 127.0.0.1,::1,controller02"</span>
+
+<span class="token comment" spellcheck="true">## 不同机器监听不同的hostname</span>
+
+<span class="token comment" spellcheck="true">## 启动</span>
+<span class="token punctuation">[</span>root@controller02 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl start memcached.service</span>
 </code></pre>
-<h2 id="memach-安装">memach 安装</h2>
-<pre class=" language-language-bash"><code class="language-language-bash">## all nodes执行
-[root@controller02 ~]# yum install memcached python-memcached -y
-[root@controller02 ~]# systemctl enable memcached.service
-
-
-## 修改配置文件
-
-[root@controller02 ~]# cat   /etc/sysconfig/memcached
-PORT="11211"
-USER="memcached"
-MAXCONN="1024"
-CACHESIZE="64"
-OPTIONS="-l 127.0.0.1,::1,controller02"
-
-## 不同机器监听不同的hostname
-
-## 启动
-[root@controller02 ~]# systemctl start memcached.service
-</code></pre>
-<h2 id="ntp-服务器">ntp 服务器</h2>
-<pre class=" language-language-bash"><code class="language-language-bash"># all nodes include compute nodes
-[root@controller03 ~]#  yum install chrony -y
-[root@controller03 ~]# systemctl enable chronyd.service
-[root@controller03 ~]# vim /etc/chrony.conf 
-#server 0.centos.pool.ntp.org iburst
-#server 1.centos.pool.ntp.org iburst
-#server 2.centos.pool.ntp.org iburst
-#server 3.centos.pool.ntp.org iburst
+<h2 id="ntp-服务器"><a href="#ntp-服务器" class="headerlink" title="ntp 服务器"></a>ntp 服务器</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># all nodes include compute nodes</span>
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  yum install chrony -y</span>
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl enable chronyd.service</span>
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim /etc/chrony.conf </span>
+<span class="token comment" spellcheck="true">#server 0.centos.pool.ntp.org iburst</span>
+<span class="token comment" spellcheck="true">#server 1.centos.pool.ntp.org iburst</span>
+<span class="token comment" spellcheck="true">#server 2.centos.pool.ntp.org iburst</span>
+<span class="token comment" spellcheck="true">#server 3.centos.pool.ntp.org iburst</span>
 
 server ntp1.aliyun.com  iburst
 server ntp2.aliyun.com  iburst
 
-[root@controller03 ~]# systemctl start chronyd.service
+<span class="token punctuation">[</span>root@controller03 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl start chronyd.service</span>
 
 </code></pre>
-<h2 id="etcd">etcd</h2>
-<pre class=" language-language-bash"><code class="language-language-bash">#没用到, 先不安装。等出错在<处理
+<h2 id="etcd"><a href="#etcd" class="headerlink" title="etcd"></a>etcd</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#没用到, 先不安装。等出错在&lt;处理</span>
 
 </code></pre>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -833,12 +819,10 @@ server ntp2.aliyun.com  iburst
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">controller01 执行
-创建vip 只是用来测试,haproxy pcs 需要以后修改
-[root@controller01 ~]# ip address add 192.168.151.170/24 dev  ens37
+                    <div class="summary block-with-text">controller01 执行创建vip 只是用来测试,haproxy pcs 需要以后修改[root@controller01 ~]# ip address add 192.168.151.170/24 dev  ens37
 
 
-数据</div>
+数据库准</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-20
@@ -886,7 +870,6 @@ server ntp2.aliyun.com  iburst
                     <div class="summary block-with-text">基本信息
 
 
-
 vip
 管理ip
 存储ip
@@ -906,7 +889,7 @@ centos 7
 
 
 192.168.151.200
-192.168.</div>
+192.168.1</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-20
@@ -1084,7 +1067,7 @@ centos 7
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

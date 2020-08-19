@@ -5,13 +5,12 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="ruby 变量, openstack,opennebula">
-    <meta name="description" content="Ruby 变量
-变量是持有可被任何程序使用的任何数据的存储位置。
+    <meta name="description" content="Ruby 变量变量是持有可被任何程序使用的任何数据的存储位置。
 Ruby 支持五种类型的变量。
 
 一般小写字母、下划线开头：变量（Variable）。
 $开头：全局变量（Global variable）。
-@开头：实例变量（Instanc">
+@开头：实例变量（Instance">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -458,8 +457,7 @@ $开头：全局变量（Global variable）。
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Ruby-变量">Ruby 变量</h3>
-<p>变量是持有可被任何程序使用的任何数据的存储位置。</p>
+                <h3 id="Ruby-变量"><a href="#Ruby-变量" class="headerlink" title="Ruby 变量"></a>Ruby 变量</h3><p>变量是持有可被任何程序使用的任何数据的存储位置。</p>
 <p>Ruby 支持五种类型的变量。</p>
 <ul>
 <li>一般小写字母、下划线开头：变量（Variable）。</li>
@@ -468,19 +466,16 @@ $开头：全局变量（Global variable）。
 <li>@@开头：类变量（Class variable）类变量被共享在整个继承链中</li>
 <li>大写字母开头：常数（Constant）。</li>
 </ul>
-<h4 id="Ruby-全局变量">Ruby 全局变量</h4>
-<ul>
-<li>
-<p>全局变量以 $ 开头。未初始化的全局变量的值为 nil，在使用 -w 选项后，会产生警告。</p>
+<h4 id="Ruby-全局变量"><a href="#Ruby-全局变量" class="headerlink" title="Ruby 全局变量"></a>Ruby 全局变量</h4><ul>
+<li><p>全局变量以 $ 开头。未初始化的全局变量的值为 nil，在使用 -w 选项后，会产生警告。</p>
 </li>
-<li>
-<p>给全局变量赋值会改变全局状态，所以不建议使用全局变量。</p>
+<li><p>给全局变量赋值会改变全局状态，所以不建议使用全局变量。</p>
 </li>
 </ul>
 <p>实例</p>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
- 
+
 $global_variable = 10
 class Class1
   def print_global
@@ -492,26 +487,21 @@ class Class2
       puts &quot;全局变量在 Class2 中输出为 #$global_variable&quot;
   end
 end
- 
+
 class1obj = Class1.new
 class1obj.print_global
 class2obj = Class2.new
 class2obj.print_global
-</code></pre>
-<p>在这里，$global_variable 是全局变量。</p>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>注意：在 Ruby 中，您可以通过在变量或常量前面放置 # 字符，来访问任何变量或常量的值。<br>
-全局变量在 Class1 中输出为 10<br>
-全局变量在 Class2 中输出为 10</p>
+</code></pre><p>在这里，$global_variable 是全局变量。<br><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>注意：在 Ruby 中，您可以通过在变量或常量前面放置 # 字符，来访问任何变量或常量的值。<br>全局变量在 Class1 中输出为 10<br>全局变量在 Class2 中输出为 10</p>
 </blockquote>
-</div></div>
-<h4 id="Ruby-实例变量">Ruby 实例变量</h4>
-<ul>
+</div></div></p>
+<h4 id="Ruby-实例变量"><a href="#Ruby-实例变量" class="headerlink" title="Ruby 实例变量"></a>Ruby 实例变量</h4><ul>
 <li>实例变量以 @ 开头。未初始化的实例变量的值为 nil，在使用 -w 选项后，会产生警告。</li>
 </ul>
 <p>实例</p>
 <pre><code>#!/usr/bin/ruby
- 
+
 class Customer
    def initialize(id, name, addr)
       @cust_id=id
@@ -524,40 +514,29 @@ class Customer
       puts &quot;Customer address #@cust_addr&quot;
     end
 end
- 
+
 # 创建对象
 cust1=Customer.new(&quot;1&quot;, &quot;John&quot;, &quot;Wisdom Apartments, Ludhiya&quot;)
 cust2=Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khandala&quot;)
- 
+
 # 调用方法
 cust1.display_details()
 cust2.display_details()
-</code></pre>
-<p>在这里，@cust_id、@cust_name 和 @cust_addr 是实例变量</p>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>Customer id 1<br>
-Customer name John<br>
-Customer address Wisdom Apartments, Ludhiya<br>
-Customer id 2<br>
-Customer name Poul<br>
-Customer address New Empire road, Khandala</p>
+</code></pre><p>在这里，@cust_id、@cust_name 和 @cust_addr 是实例变量<br><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>Customer id 1<br>Customer name John<br>Customer address Wisdom Apartments, Ludhiya<br>Customer id 2<br>Customer name Poul<br>Customer address New Empire road, Khandala</p>
 </blockquote>
-</div></div>
-<h4 id="Ruby-类变量">Ruby 类变量</h4>
-<ul>
-<li>
-<p>类变量以 @@ 开头，且必须初始化后才能在方法定义中使用。</p>
+</div></div></p>
+<h4 id="Ruby-类变量"><a href="#Ruby-类变量" class="headerlink" title="Ruby 类变量"></a>Ruby 类变量</h4><ul>
+<li><p>类变量以 @@ 开头，且必须初始化后才能在方法定义中使用。</p>
 </li>
-<li>
-<p>引用一个未初始化的类变量会产生错误。类变量在定义它的类或模块的子类或子模块中可共享使用。</p>
+<li><p>引用一个未初始化的类变量会产生错误。类变量在定义它的类或模块的子类或子模块中可共享使用。</p>
 </li>
-<li>
-<p>在使用 -w 选项后，重载类变量会产生警告。</p>
+<li><p>在使用 -w 选项后，重载类变量会产生警告。</p>
 </li>
 </ul>
 <pre><code>实例
 #!/usr/bin/ruby
- 
+
 class Customer
    @@no_of_customers=0
    def initialize(id, name, addr)
@@ -575,46 +554,36 @@ class Customer
        puts &quot;Total number of customers: #@@no_of_customers&quot;
     end
 end
- 
+
 # 创建对象
 cust1=Customer.new(&quot;1&quot;, &quot;John&quot;, &quot;Wisdom Apartments, Ludhiya&quot;)
 cust2=Customer.new(&quot;2&quot;, &quot;Poul&quot;, &quot;New Empire road, Khandala&quot;)
- 
+
 # 调用方法
 cust1.total_no_of_customers()
 cust2.total_no_of_customers()
-</code></pre>
-<p>在这里，@@no_of_customers 是类变量。</p>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>Total number of customers: 1<br>
-Total number of customers: 2</p>
+</code></pre><p>在这里，@@no_of_customers 是类变量。<br><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>Total number of customers: 1<br>Total number of customers: 2</p>
 </blockquote>
-</div></div>
-<h4 id="Ruby-局部变量">Ruby 局部变量</h4>
-<ul>
-<li>
-<p>局部变量以小写字母或下划线 _ 开头。局部变量的作用域从 class、module、def 或 do 到相对应的结尾或者从左大括号到右大括号 {}。</p>
+</div></div></p>
+<h4 id="Ruby-局部变量"><a href="#Ruby-局部变量" class="headerlink" title="Ruby 局部变量"></a>Ruby 局部变量</h4><ul>
+<li><p>局部变量以小写字母或下划线 _ 开头。局部变量的作用域从 class、module、def 或 do 到相对应的结尾或者从左大括号到右大括号 {}。</p>
 </li>
-<li>
-<p>当调用一个未初始化的局部变量时，它被解释为调用一个不带参数的方法。</p>
+<li><p>当调用一个未初始化的局部变量时，它被解释为调用一个不带参数的方法。</p>
 </li>
-<li>
-<p>对未初始化的局部变量赋值也可以当作是变量声明。变量会一直存在，直到当前域结束为止。局部变量的生命周期在 Ruby 解析程序时确定。</p>
+<li><p>对未初始化的局部变量赋值也可以当作是变量声明。变量会一直存在，直到当前域结束为止。局部变量的生命周期在 Ruby 解析程序时确定。</p>
 </li>
 </ul>
-<h4 id="Ruby-常量">Ruby 常量</h4>
-<ul>
-<li>
-<p>常量以大写字母开头。定义在类或模块内的常量可以从类或模块的内部访问，定义在类或模块外的常量可以被全局访问。</p>
+<h4 id="Ruby-常量"><a href="#Ruby-常量" class="headerlink" title="Ruby 常量"></a>Ruby 常量</h4><ul>
+<li><p>常量以大写字母开头。定义在类或模块内的常量可以从类或模块的内部访问，定义在类或模块外的常量可以被全局访问。</p>
 </li>
-<li>
-<p>常量不能定义在方法内。引用一个未初始化的常量会产生错误。对已经初始化的常量赋值会产生警告。</p>
+<li><p>常量不能定义在方法内。引用一个未初始化的常量会产生错误。对已经初始化的常量赋值会产生警告。</p>
 </li>
 </ul>
 <p>实例</p>
 <pre><code>#!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
- 
+
 class Example
    VAR1 = 100
    VAR2 = 200
@@ -623,40 +592,24 @@ class Example
        puts &quot;第二个常量的值为 #{VAR2}&quot;
    end
 end
- 
+
 # 创建对象
 object=Example.new()
 object.show
-</code></pre>
-<p>在这里，VAR1 和 VAR2 是常量</p>
-<div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
-<p>第一个常量的值为 100<br>
-第二个常量的值为 200</p>
+</code></pre><p>在这里，VAR1 和 VAR2 是常量<br><div class="spoiler collapsed"><div class="spoiler-title">以上实例输出结果为：</div><div class="spoiler-content"><blockquote>
+<p>第一个常量的值为 100<br>第二个常量的值为 200</p>
 </blockquote>
-</div></div>
-<h4 id="Ruby-伪变量">Ruby 伪变量</h4>
-<ul>
-<li>
-<p>它们是特殊的变量，有着局部变量的外观，但行为却像常量。您不能给这些变量赋任何值。</p>
+</div></div></p>
+<h4 id="Ruby-伪变量"><a href="#Ruby-伪变量" class="headerlink" title="Ruby 伪变量"></a>Ruby 伪变量</h4><ul>
+<li><p>它们是特殊的变量，有着局部变量的外观，但行为却像常量。您不能给这些变量赋任何值。</p>
 </li>
-<li>
-<p>self: 当前方法的接收器对象。</p>
+<li><p>self: 当前方法的接收器对象。</p>
 </li>
-<li>
-<p>true: 代表 true 的值。</p>
-</li>
-<li>
-<p>false: 代表 false 的值。</p>
-</li>
-<li>
-<p>nil: 代表 undefined 的值。</p>
-</li>
-<li>
-<p>_<em>FILE</em>_: 当前源文件的名称。</p>
-</li>
-<li>
-<p>_<em>LINE</em>_: 当前行在源文件中的编号。</p>
-</li>
+<li>true: 代表 true 的值。</li>
+<li>false: 代表 false 的值。</li>
+<li>nil: 代表 undefined 的值。</li>
+<li>__FILE__: 当前源文件的名称。</li>
+<li>__LINE__: 当前行在源文件中的编号。</li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </div>
@@ -840,9 +793,8 @@ object.show
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 运算符
-Ruby 支持一套丰富的运算符。大多数运算符实际上是方法调用。例如，a + b 被解释为 a.+(b)，其中指向变量 a 的 + 方法被调用，b 作为方法调用的参数。
-对于每个运算符（+ - * / % ** &amp; </div>
+                    <div class="summary block-with-text">Ruby 运算符Ruby 支持一套丰富的运算符。大多数运算符实际上是方法调用。例如，a + b 被解释为 a.+(b)，其中指向变量 a 的 + 方法被调用，b 作为方法调用的参数。
+对于每个运算符（+ - * / % ** &amp; |</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-23
@@ -887,12 +839,11 @@ Ruby 支持一套丰富的运算符。大多数运算符实际上是方法调用
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">Ruby 类案例
-面将创建一个名为 Customer 的 Ruby 类，声明两个方法：
-
+                    <div class="summary block-with-text">Ruby 类案例面将创建一个名为 Customer 的 Ruby 类，声明两个方法：
 display_details：该方法用于显示客户的详细信息。
 total_no_of_customers：该方法用于显示在系统中创建的客户总数量。
-</div>
+
+实</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-23
@@ -1070,7 +1021,7 @@ total_no_of_customers：该方法用于显示在系统中创建的客户总数�
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">85k</span>
+                <span class="white-color">88.8k</span>
             
 
             

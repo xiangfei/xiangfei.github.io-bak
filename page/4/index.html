@@ -317,6 +317,162 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2020/04/15/openstack-3/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="openstack  存储 iscsi">
+                            
+                            <span class="card-title">openstack  存储 iscsi</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                 tgtadm --lld iscsi --op show --mode target
+
+ iscsiadm -m node -T targetname -p ipaddress -l
+  iscsiadm -m node -o show
+
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-15
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/openstack/" class="post-category" target="_blank">
+                                    openstack
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/openstack/" target="_blank">
+                            <span class="chip bg-color">openstack</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/15/opennebula-20/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="opennebula win7 img制作">
+                            
+                            <span class="card-title">opennebula win7 img制作</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                需要安装virtio-win-0.1.141.iso
+win7.img 20G , qcow2 , virtio
+virtio-win raw cdrom
+win7.iso  raw cdrom
+
+启动顺序 win7.iso , virti
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-15
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/opennebula/" class="post-category" target="_blank">
+                                    opennebula
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/opennebula/" target="_blank">
+                            <span class="chip bg-color">opennebula</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/15/openstack-2/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="openstack 存储问题">
+                            
+                            <span class="card-title">openstack 存储问题</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                mount 存储 一直pending
+
+br-aux 网络异常，cinder-volume 进程报错vip 不能访问
+
+存储disk 找不不到
+
+detach手动创建snapshot ，导出存储lvscan 发现inactive ，enab
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-15
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/openstack/" class="post-category" target="_blank">
+                                    openstack
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/openstack/" target="_blank">
+                            <span class="chip bg-color">openstack</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2020/04/15/openstack-1/">
                         <div class="card-image">
                             
@@ -657,162 +813,6 @@ karafka 配置    kafk_conn =
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/17/ruby-27/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="ruby  zeitwerk">
-                            
-                            <span class="card-title">ruby  zeitwerk</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                reloadgem reloadrequire "zeitwerk"
-@loader = Zeitwerk::Loader.for_gem
-@loader.enable_reloading
-@loader.setup
-def reload!
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-17
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/ruby/" class="post-category" target="_blank">
-                                    ruby
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/ruby/" target="_blank">
-                            <span class="chip bg-color">ruby</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/06/rails-4/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="rails  puma 内存过高">
-                            
-                            <span class="card-title">rails  puma 内存过高</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                puma 内存高
-puma 操作系统内存占用, 但会复用已经申请过的内存. 所以会随着每分钟请求量的增加导致内存不断上升. 如果超出某个极限, 则有可能导致内存爆掉
-
-解决方法
-手动kill  worker
-
-
-手动kill puma会自动
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-06
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/rails/" class="post-category" target="_blank">
-                                    rails
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/rails/" target="_blank">
-                            <span class="chip bg-color">rails</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/05/centos-2/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="centos 内存优化">
-                            
-                            <span class="card-title">centos 内存优化</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                ksm 内存压缩zRAM means Virtual Swap Compressed in RAMswap 使用
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-05
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/kvm/" class="post-category" target="_blank">
-                                    kvm
-                                </a>
-                                
-                                <a href="/categories/kvm/centos/" class="post-category" target="_blank">
-                                    centos
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/centos/" target="_blank">
-                            <span class="chip bg-color">centos</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -854,7 +854,7 @@ puma 操作系统内存占用, 但会复用已经申请过的内存. 所以会�
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">88.8k</span>
+                <span class="white-color">91.7k</span>
             
 
             

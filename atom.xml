@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-19T09:18:02.835Z</updated>
+  <updated>2020-11-18T07:03:53.974Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>hive 3.1.2 高可用安装</title>
-    <link href="http://yoursite.com/2020/08/19/hive/"/>
-    <id>http://yoursite.com/2020/08/19/hive/</id>
-    <published>2020-08-19T06:33:14.000Z</published>
-    <updated>2020-08-19T09:18:02.835Z</updated>
+    <title>golang 学习</title>
+    <link href="http://yoursite.com/2020/11/18/golang/"/>
+    <id>http://yoursite.com/2020/11/18/golang/</id>
+    <published>2020-11-18T06:54:00.000Z</published>
+    <updated>2020-11-18T07:03:53.974Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,102 @@
       
         
         
-          &lt;h4
+          &lt;h3 id=&quot;go-mod&quot;&gt;&lt;a href=&quot;#go-mod&quot; class=&quot;headerlink&quot; title=&quot;go mod&quot;&gt;&lt;/a&gt;go mod&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;管理第三包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="golang" scheme="http://yoursite.com/categories/golang/"/>
+    
+    
+      <category term="golang" scheme="http://yoursite.com/tags/golang/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spark 集群安装</title>
+    <link href="http://yoursite.com/2020/08/24/spark/"/>
+    <id>http://yoursite.com/2020/08/24/spark/</id>
+    <published>2020-08-24T10:07:21.000Z</published>
+    <updated>2020-08-25T07:39:35.842Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="spark" scheme="http://yoursite.com/categories/spark/"/>
+    
+      <category term="bigdata" scheme="http://yoursite.com/categories/spark/bigdata/"/>
+    
+    
+      <category term="bigdata" scheme="http://yoursite.com/tags/bigdata/"/>
+    
+      <category term="spark" scheme="http://yoursite.com/tags/spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hive tez 集成</title>
+    <link href="http://yoursite.com/2020/08/24/tez/"/>
+    <id>http://yoursite.com/2020/08/24/tez/</id>
+    <published>2020-08-24T08:35:45.000Z</published>
+    <updated>2020-08-25T07:20:27.054Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;下载-bin-包&quot;&gt;&lt;a href=&quot;#下载-bin-包&quot; class=&quot;headerlink&quot; title=&quot;下载 bin 包&quot;&gt;&lt;/a&gt;下载 bin 包&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;url &lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="hive" scheme="http://yoursite.com/categories/hive/"/>
+    
+      <category term="tez" scheme="http://yoursite.com/categories/hive/tez/"/>
+    
+      <category term="bigdata" scheme="http://yoursite.com/categories/hive/tez/bigdata/"/>
+    
+    
+      <category term="bigdata" scheme="http://yoursite.com/tags/bigdata/"/>
+    
+      <category term="hive" scheme="http://yoursite.com/tags/hive/"/>
+    
+      <category term="tez" scheme="http://yoursite.com/tags/tez/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hive 3.1.2 高可用安装</title>
+    <link href="http://yoursite.com/2020/08/19/hive/"/>
+    <id>http://yoursite.com/2020/08/19/hive/</id>
+    <published>2020-08-19T06:33:14.000Z</published>
+    <updated>2020-08-25T07:21:45.889Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;机器&quot;&gt;&lt;a href=&quot;#机器&quot; class=&quot;headerlink&quot;
         
       
     
@@ -530,85 +625,6 @@
     
     
       <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>openstack stein 高可用安装horizon</title>
-    <link href="http://yoursite.com/2020/05/21/openstack-11/"/>
-    <id>http://yoursite.com/2020/05/21/openstack-11/</id>
-    <published>2020-05-21T05:49:49.000Z</published>
-    <updated>2020-05-21T06:12:22.341Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;controller01&quot;&gt;&lt;a href=&quot;#controller01&quot; class=&quot;headerlink&quot; title=&quot;controller01&quot;&gt;&lt;/a&gt;controller01&lt;/h3&gt;&lt;h4 id=&quot;安装包&quot;&gt;&lt;a href=&quot;#安装包&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
-    
-    
-      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>openstack  stein 高可用安装neutron(ovn)</title>
-    <link href="http://yoursite.com/2020/05/21/openstack-10/"/>
-    <id>http://yoursite.com/2020/05/21/openstack-10/</id>
-    <published>2020-05-21T02:03:19.000Z</published>
-    <updated>2020-05-26T09:31:34.923Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;ovn-准备&quot;&gt;&lt;a href=&quot;#ovn-准备&quot; class=&quot;headerlink&quot; title=&quot;ovn 准备&quot;&gt;&lt;/a&gt;ovn 准备&lt;/h2&gt;&lt;p&gt;gateway node   ovn-central&lt;/p&gt;
-&lt;p&gt;database
-        
-      
-    
-    </summary>
-    
-      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
-    
-    
-      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>openstack stein 高可用安装(nova)</title>
-    <link href="http://yoursite.com/2020/05/21/openstack-9/"/>
-    <id>http://yoursite.com/2020/05/21/openstack-9/</id>
-    <published>2020-05-21T00:36:07.000Z</published>
-    <updated>2020-05-22T01:53:37.707Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;controller01&quot;&gt;&lt;a href=&quot;#controller01&quot; class=&quot;headerlink&quot; title=&quot;controller01&quot;&gt;&lt;/a&gt;controller01&lt;/h2&gt;&lt;h3 id=&quot;安装数据库&quot;&gt;&lt;a href=&quot;#安装数据库&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
-    
-    
-      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
     
   </entry>
   
